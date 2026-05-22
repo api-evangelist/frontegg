@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Frontegg Env Auth API
+  description: 'Frontegg Env Auth API capability. 1 operations. Lead operation: Authenticate with env credentials. Self-contained Naftiko capability for the Frontegg Frontegg Env Auth business surface.'
+  tags:
+  - Frontegg
+  - Auth
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    FRONTEGG_CLIENT_ID: FRONTEGG_CLIENT_ID
+    FRONTEGG_API_KEY: FRONTEGG_API_KEY
+    FRONTEGG_BEARER_TOKEN: FRONTEGG_BEARER_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: frontegg-env-auth
+    baseUri: https://api.frontegg.com/auth/vendor
+    description: Frontegg Env Auth API. Bearer JWT (environment or user token) authentication.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: authenticate_vendor
+        method: POST
+        description: Authenticate with env credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: frontegg-env-auth-rest
+    port: 8080
+    description: REST adapter for Frontegg Env Auth. One resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: POST
+        name: authenticate_vendor
+        description: Authenticate with env credentials
+        call: frontegg-env-auth.authenticate_vendor
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: frontegg-env-auth-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Frontegg Env Auth. One tool per consumed operation.
+    tools:
+    - name: frontegg-env-auth-authenticate-vendor
+      description: Authenticate with env credentials
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-env-auth.authenticate_vendor
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

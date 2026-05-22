@@ -1,0 +1,81 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Frontegg
+providerId: frontegg
+created: '2026-05-22'
+modified: '2026-05-22'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - CIAM
+  - Identity
+description: >-
+  FOCUS-aligned FinOps surface for Frontegg. The platform bills primarily on
+  Monthly Active Users (MAU) with included tiers (7,500 MAU free on Pay as
+  you go) and custom Enterprise pricing. Additional meters cover enterprise
+  connections, environments, M2M tokens, and add-ons.
+sources:
+  - https://frontegg.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Frontegg
+serviceCategory: Identity
+billingModel:
+  pricingCategory: Per-MAU + Tier + Add-ons
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Frontegg CIAM
+  ServiceCategory: Identity
+  ProviderName: Frontegg
+  PublisherName: Frontegg
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingUnit: MAU
+meters:
+  - name: monthly_active_users
+    unit: MAU
+    aggregation: max
+    description: Distinct authenticated users per calendar month.
+  - name: enterprise_connections
+    unit: connection-month
+    aggregation: max
+    description: SAML / OIDC / SCIM enterprise connections active in the month.
+  - name: environments
+    unit: env-month
+    aggregation: max
+    description: Frontegg environments provisioned (Enterprise only).
+  - name: m2m_tokens
+    unit: token
+    aggregation: sum
+    description: Machine-to-machine access tokens issued.
+  - name: organizations
+    unit: org-month
+    aggregation: max
+    description: Tenant organizations active in the month.
+principles:
+  - name: Visibility
+    description: Track Frontegg MAU and connection meters monthly via the management portal.
+  - name: Allocation
+    description: Tag tenants to product lines and cost centers for chargeback.
+  - name: Optimization
+    description: >-
+      Right-size tier (free vs. enterprise), prune inactive tenants, and use
+      the Entitlements Agent (PDP) sidecar to reduce cloud entitlement calls.
+  - name: Accountability
+    description: Set MAU spend alerts; review entitlement-driven feature usage quarterly.
+optimizationLevers:
+  - lever: Cap MAU growth
+    description: Use Frontegg policies to deactivate dormant users before they roll into a new month.
+  - lever: Consolidate environments
+    description: Avoid spinning up unnecessary environments on the Enterprise tier.
+  - lever: Use PDP locally
+    description: Run the Entitlements Agent in-cluster to absorb high-RPS authorization checks.
+  - lever: Bundle enterprise connections
+    description: Stay within the 5 included Enterprise Connections on Pay as you go before upgrading.

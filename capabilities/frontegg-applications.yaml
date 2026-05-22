@@ -1,0 +1,980 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Frontegg Applications API
+  description: 'Frontegg Applications API capability. 20 operations. Lead operation: Get all applications for an environment. Self-contained Naftiko capability for the Frontegg Frontegg Applications business
+    surface.'
+  tags:
+  - Frontegg
+  - Applications
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+- namespace: env
+  keys:
+    FRONTEGG_CLIENT_ID: FRONTEGG_CLIENT_ID
+    FRONTEGG_API_KEY: FRONTEGG_API_KEY
+    FRONTEGG_BEARER_TOKEN: FRONTEGG_BEARER_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: frontegg-applications
+    baseUri: https://api.frontegg.com/applications
+    description: Frontegg Applications API. Bearer JWT (environment or user token) authentication.
+    resources:
+    - name: resources-applications-v1
+      path: /resources/applications/v1
+      operations:
+      - name: getApplications
+        method: GET
+        description: Get all applications for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _accessType
+          in: query
+          type: string
+          description: _accessType parameter
+          required: false
+        - name: _isDefault
+          in: query
+          type: boolean
+          description: _isDefault parameter
+          required: false
+        - name: _isActive
+          in: query
+          type: boolean
+          description: _isActive parameter
+          required: false
+        - name: ids
+          in: query
+          type: string
+          description: ids parameter
+          required: false
+        - name: type
+          in: query
+          type: array
+          description: type parameter
+          required: false
+        - name: frontendStack
+          in: query
+          type: array
+          description: frontendStack parameter
+          required: false
+        - name: name
+          in: query
+          type: string
+          description: Filter applications by name (case-insensitive partial match)
+          required: false
+        - name: _excludeAgents
+          in: query
+          type: string
+          description: _excludeAgents parameter
+          required: false
+      - name: createApplication
+        method: POST
+        description: Create application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: resources-applications-v1-default
+      path: /resources/applications/v1/default
+      operations:
+      - name: getDefaultApplication
+        method: GET
+        description: Get the default application for an environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: resources-applications-v1-id
+      path: /resources/applications/v1/{id}
+      operations:
+      - name: getApplicationById
+        method: GET
+        description: Get application by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+      - name: updateApplication
+        method: PATCH
+        description: Update an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteApplication
+        method: DELETE
+        description: Delete an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+    - name: resources-applications-tenant-assignments-v1
+      path: /resources/applications/tenant-assignments/v1
+      operations:
+      - name: getApplicationsTenantsAssignments
+        method: GET
+        description: Get application to accounts (tenants) assignments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appIds
+          in: query
+          type: string
+          description: appIds parameter
+          required: false
+        - name: tenantIds
+          in: query
+          type: string
+          description: tenantIds parameter
+          required: false
+        - name: accessType
+          in: query
+          type: string
+          description: accessType parameter
+          required: false
+        - name: frontegg-tenant-id
+          in: header
+          type: string
+          description: The tenant ID identifier
+          required: true
+    - name: resources-applications-tenant-assignments-v1-appid
+      path: /resources/applications/tenant-assignments/v1/{appId}
+      operations:
+      - name: getApplicationTenantsAssignmentsByAppId
+        method: GET
+        description: Get account (tenant) assignments for an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+      - name: createApplicationTenantAssignment
+        method: POST
+        description: Create application to account (tenant) assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: resources-applications-tenant-assignments-v1-appid-tenantid
+      path: /resources/applications/tenant-assignments/v1/{appId}/{tenantId}
+      operations:
+      - name: editApplicationTenantAssignment
+        method: PUT
+        description: Edit application to tenant assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+        - name: tenantId
+          in: path
+          type: string
+          description: tenantId parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteApplicationTenantAssignment
+        method: DELETE
+        description: Delete application to account (tenant) assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+        - name: tenantId
+          in: path
+          type: string
+          description: tenantId parameter
+          required: true
+    - name: resources-applications-tenant-assignments-v2
+      path: /resources/applications/tenant-assignments/v2
+      operations:
+      - name: getApplicationsTenantsAssignmentsV2
+        method: GET
+        description: Get tenant application assignments with per-app accessType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appIds
+          in: query
+          type: string
+          description: appIds parameter
+          required: false
+        - name: tenantIds
+          in: query
+          type: string
+          description: tenantIds parameter
+          required: false
+        - name: accessType
+          in: query
+          type: string
+          description: accessType parameter
+          required: false
+        - name: frontegg-tenant-id
+          in: header
+          type: string
+          description: The tenant ID identifier
+          required: true
+    - name: resources-applications-v1-credentials-appid
+      path: /resources/applications/v1/credentials/{appId}
+      operations:
+      - name: getApplicationClientCredentials
+        method: GET
+        description: Get application client credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+    - name: resources-applications-v1-credentials-regenerate
+      path: /resources/applications/v1/credentials/regenerate
+      operations:
+      - name: regenerateApplicationClientCredentials
+        method: POST
+        description: Regenerate application client credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: resources-applications-v1-credentials-shared-regenerate
+      path: /resources/applications/v1/credentials/shared/regenerate
+      operations:
+      - name: regenerateApplicationSharedSecretCredentials
+        method: POST
+        description: Regenerate application shared secret credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: application-clients
+      path: /application-clients
+      operations:
+      - name: createApplicationClient
+        method: POST
+        description: Create application client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: application-clients-app-appid
+      path: /application-clients/app/{appId}
+      operations:
+      - name: getApplicationClientsByAppId
+        method: GET
+        description: Get application clients by app ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appId
+          in: path
+          type: string
+          description: appId parameter
+          required: true
+    - name: application-clients-id
+      path: /application-clients/{id}
+      operations:
+      - name: getApplicationClientById
+        method: GET
+        description: Get application client by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+      - name: updateApplicationClient
+        method: PATCH
+        description: Update application client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteApplicationClient
+        method: DELETE
+        description: Delete application client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: id parameter
+          required: true
+  exposes:
+  - type: rest
+    namespace: frontegg-applications-rest
+    port: 8080
+    description: REST adapter for Frontegg Applications. One resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/resources/applications/v1
+      name: resources-applications-v1
+      description: REST surface for resources-applications-v1.
+      operations:
+      - method: GET
+        name: getApplications
+        description: Get all applications for an environment
+        call: frontegg-applications.getApplications
+        with:
+          _accessType: rest._accessType
+          _isDefault: rest._isDefault
+          _isActive: rest._isActive
+          ids: rest.ids
+          type: rest.type
+          frontendStack: rest.frontendStack
+          name: rest.name
+          _excludeAgents: rest._excludeAgents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1
+      name: resources-applications-v1
+      description: REST surface for resources-applications-v1.
+      operations:
+      - method: POST
+        name: createApplication
+        description: Create application
+        call: frontegg-applications.createApplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/default
+      name: resources-applications-v1-default
+      description: REST surface for resources-applications-v1-default.
+      operations:
+      - method: GET
+        name: getDefaultApplication
+        description: Get the default application for an environment
+        call: frontegg-applications.getDefaultApplication
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/{id}
+      name: resources-applications-v1-id
+      description: REST surface for resources-applications-v1-id.
+      operations:
+      - method: GET
+        name: getApplicationById
+        description: Get application by ID
+        call: frontegg-applications.getApplicationById
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/{id}
+      name: resources-applications-v1-id
+      description: REST surface for resources-applications-v1-id.
+      operations:
+      - method: PATCH
+        name: updateApplication
+        description: Update an application
+        call: frontegg-applications.updateApplication
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/{id}
+      name: resources-applications-v1-id
+      description: REST surface for resources-applications-v1-id.
+      operations:
+      - method: DELETE
+        name: deleteApplication
+        description: Delete an application
+        call: frontegg-applications.deleteApplication
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v1
+      name: resources-applications-tenant-assignments-v1
+      description: REST surface for resources-applications-tenant-assignments-v1.
+      operations:
+      - method: GET
+        name: getApplicationsTenantsAssignments
+        description: Get application to accounts (tenants) assignments
+        call: frontegg-applications.getApplicationsTenantsAssignments
+        with:
+          appIds: rest.appIds
+          tenantIds: rest.tenantIds
+          accessType: rest.accessType
+          frontegg-tenant-id: rest.frontegg-tenant-id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v1/{appId}
+      name: resources-applications-tenant-assignments-v1-appid
+      description: REST surface for resources-applications-tenant-assignments-v1-appid.
+      operations:
+      - method: GET
+        name: getApplicationTenantsAssignmentsByAppId
+        description: Get account (tenant) assignments for an application
+        call: frontegg-applications.getApplicationTenantsAssignmentsByAppId
+        with:
+          appId: rest.appId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v1/{appId}
+      name: resources-applications-tenant-assignments-v1-appid
+      description: REST surface for resources-applications-tenant-assignments-v1-appid.
+      operations:
+      - method: POST
+        name: createApplicationTenantAssignment
+        description: Create application to account (tenant) assignment
+        call: frontegg-applications.createApplicationTenantAssignment
+        with:
+          appId: rest.appId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v1/{appId}/{tenantId}
+      name: resources-applications-tenant-assignments-v1-appid-tenantid
+      description: REST surface for resources-applications-tenant-assignments-v1-appid-tenantid.
+      operations:
+      - method: PUT
+        name: editApplicationTenantAssignment
+        description: Edit application to tenant assignment
+        call: frontegg-applications.editApplicationTenantAssignment
+        with:
+          appId: rest.appId
+          tenantId: rest.tenantId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v1/{appId}/{tenantId}
+      name: resources-applications-tenant-assignments-v1-appid-tenantid
+      description: REST surface for resources-applications-tenant-assignments-v1-appid-tenantid.
+      operations:
+      - method: DELETE
+        name: deleteApplicationTenantAssignment
+        description: Delete application to account (tenant) assignment
+        call: frontegg-applications.deleteApplicationTenantAssignment
+        with:
+          appId: rest.appId
+          tenantId: rest.tenantId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/tenant-assignments/v2
+      name: resources-applications-tenant-assignments-v2
+      description: REST surface for resources-applications-tenant-assignments-v2.
+      operations:
+      - method: GET
+        name: getApplicationsTenantsAssignmentsV2
+        description: Get tenant application assignments with per-app accessType
+        call: frontegg-applications.getApplicationsTenantsAssignmentsV2
+        with:
+          appIds: rest.appIds
+          tenantIds: rest.tenantIds
+          accessType: rest.accessType
+          frontegg-tenant-id: rest.frontegg-tenant-id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/credentials/{appId}
+      name: resources-applications-v1-credentials-appid
+      description: REST surface for resources-applications-v1-credentials-appid.
+      operations:
+      - method: GET
+        name: getApplicationClientCredentials
+        description: Get application client credentials
+        call: frontegg-applications.getApplicationClientCredentials
+        with:
+          appId: rest.appId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/credentials/regenerate
+      name: resources-applications-v1-credentials-regenerate
+      description: REST surface for resources-applications-v1-credentials-regenerate.
+      operations:
+      - method: POST
+        name: regenerateApplicationClientCredentials
+        description: Regenerate application client credentials
+        call: frontegg-applications.regenerateApplicationClientCredentials
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resources/applications/v1/credentials/shared/regenerate
+      name: resources-applications-v1-credentials-shared-regenerate
+      description: REST surface for resources-applications-v1-credentials-shared-regenerate.
+      operations:
+      - method: POST
+        name: regenerateApplicationSharedSecretCredentials
+        description: Regenerate application shared secret credential
+        call: frontegg-applications.regenerateApplicationSharedSecretCredentials
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/application-clients
+      name: application-clients
+      description: REST surface for application-clients.
+      operations:
+      - method: POST
+        name: createApplicationClient
+        description: Create application client
+        call: frontegg-applications.createApplicationClient
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/application-clients/app/{appId}
+      name: application-clients-app-appid
+      description: REST surface for application-clients-app-appid.
+      operations:
+      - method: GET
+        name: getApplicationClientsByAppId
+        description: Get application clients by app ID
+        call: frontegg-applications.getApplicationClientsByAppId
+        with:
+          appId: rest.appId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/application-clients/{id}
+      name: application-clients-id
+      description: REST surface for application-clients-id.
+      operations:
+      - method: GET
+        name: getApplicationClientById
+        description: Get application client by ID
+        call: frontegg-applications.getApplicationClientById
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/application-clients/{id}
+      name: application-clients-id
+      description: REST surface for application-clients-id.
+      operations:
+      - method: PATCH
+        name: updateApplicationClient
+        description: Update application client
+        call: frontegg-applications.updateApplicationClient
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/application-clients/{id}
+      name: application-clients-id
+      description: REST surface for application-clients-id.
+      operations:
+      - method: DELETE
+        name: deleteApplicationClient
+        description: Delete application client
+        call: frontegg-applications.deleteApplicationClient
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: frontegg-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Frontegg Applications. One tool per consumed operation.
+    tools:
+    - name: frontegg-applications-getapplications
+      description: Get all applications for an environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplications
+      with:
+        _accessType: tools._accessType
+        _isDefault: tools._isDefault
+        _isActive: tools._isActive
+        ids: tools.ids
+        type: tools.type
+        frontendStack: tools.frontendStack
+        name: tools.name
+        _excludeAgents: tools._excludeAgents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-createapplication
+      description: Create application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.createApplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getdefaultapplication
+      description: Get the default application for an environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getDefaultApplication
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationbyid
+      description: Get application by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationById
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-updateapplication
+      description: Update an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.updateApplication
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-deleteapplication
+      description: Delete an application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: frontegg-applications.deleteApplication
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationstenantsassignments
+      description: Get application to accounts (tenants) assignments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationsTenantsAssignments
+      with:
+        appIds: tools.appIds
+        tenantIds: tools.tenantIds
+        accessType: tools.accessType
+        frontegg-tenant-id: tools.frontegg-tenant-id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationtenantsassignmentsbyappi
+      description: Get account (tenant) assignments for an application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationTenantsAssignmentsByAppId
+      with:
+        appId: tools.appId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-createapplicationtenantassignment
+      description: Create application to account (tenant) assignment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.createApplicationTenantAssignment
+      with:
+        appId: tools.appId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-editapplicationtenantassignment
+      description: Edit application to tenant assignment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.editApplicationTenantAssignment
+      with:
+        appId: tools.appId
+        tenantId: tools.tenantId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-deleteapplicationtenantassignment
+      description: Delete application to account (tenant) assignment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: frontegg-applications.deleteApplicationTenantAssignment
+      with:
+        appId: tools.appId
+        tenantId: tools.tenantId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationstenantsassignmentsv2
+      description: Get tenant application assignments with per-app accessType
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationsTenantsAssignmentsV2
+      with:
+        appIds: tools.appIds
+        tenantIds: tools.tenantIds
+        accessType: tools.accessType
+        frontegg-tenant-id: tools.frontegg-tenant-id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationclientcredentials
+      description: Get application client credentials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationClientCredentials
+      with:
+        appId: tools.appId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-regenerateapplicationclientcredentials
+      description: Regenerate application client credentials
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.regenerateApplicationClientCredentials
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-regenerateapplicationsharedsecretcrede
+      description: Regenerate application shared secret credential
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.regenerateApplicationSharedSecretCredentials
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-createapplicationclient
+      description: Create application client
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.createApplicationClient
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationclientsbyappid
+      description: Get application clients by app ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationClientsByAppId
+      with:
+        appId: tools.appId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-getapplicationclientbyid
+      description: Get application client by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: frontegg-applications.getApplicationClientById
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-updateapplicationclient
+      description: Update application client
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: frontegg-applications.updateApplicationClient
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontegg-applications-deleteapplicationclient
+      description: Delete application client
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: frontegg-applications.deleteApplicationClient
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

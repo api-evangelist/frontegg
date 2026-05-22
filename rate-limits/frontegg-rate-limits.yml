@@ -1,0 +1,77 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Frontegg
+providerId: frontegg
+created: '2026-05-22'
+modified: '2026-05-22'
+reconciled: false
+tags:
+  - Rate Limiting
+  - CIAM
+  - Identity
+description: >-
+  Frontegg's regional gateways (api.frontegg.com, api.us.frontegg.com,
+  api.au.frontegg.com, api.ca.frontegg.com) enforce per-tenant rate limits.
+  The published documentation references abuse-protection and per-environment
+  limits but does not publish a specific numeric matrix; values below are
+  conservative placeholders calibrated against Frontegg's public posture and
+  industry CIAM peers. Treat as guidance — confirm exact limits with Frontegg
+  support for production planning.
+sources:
+  - https://developers.frontegg.com/ciam/api/overview
+  - https://frontegg.com/pricing
+headers:
+  limit: X-RateLimit-Limit
+  remaining: X-RateLimit-Remaining
+  reset: X-RateLimit-Reset
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+  serviceUnavailable: 503
+limits:
+  - name: Authentication API (login, mfa, passwordless)
+    scope: tenant
+    metric: requests_per_minute
+    limit: 600
+    timeFrame: minute
+  - name: Management API (Pay as you go)
+    scope: tenant
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+  - name: Management API (Enterprise)
+    scope: tenant
+    metric: requests_per_minute
+    limit: 600
+    timeFrame: minute
+  - name: SCIM Provisioning
+    scope: tenant
+    metric: requests_per_minute
+    limit: 120
+    timeFrame: minute
+  - name: Entitlements check (cloud)
+    scope: tenant
+    metric: requests_per_second
+    limit: 50
+    timeFrame: second
+  - name: Entitlements Agent (PDP, sidecar)
+    scope: process
+    metric: requests_per_second
+    limit: unlimited
+    timeFrame: second
+  - name: Vendor auth token issuance
+    scope: tenant
+    metric: requests_per_minute
+    limit: 30
+    timeFrame: minute
+  - name: Anomaly detection (per IP)
+    scope: ip
+    metric: auth_attempts
+    limit: configurable
+    timeFrame: minute
+notes: >-
+  Frontegg recommends caching vendor tokens for their full TTL (typically
+  10 minutes) and using the local Entitlements Agent (PDP) for hot-path
+  authorization decisions to avoid hitting cloud limits.

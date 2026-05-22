@@ -1,0 +1,126 @@
+name: Frontegg Vocabulary
+description: >-
+  Shared vocabulary of terms used across the Frontegg CIAM platform — covering
+  authentication, identity, multi-tenancy, single sign-on, SCIM provisioning,
+  entitlements, applications, and audits.
+terms:
+  - term: Tenant
+    definition: >-
+      A logical isolated unit in Frontegg representing a customer account. Users,
+      roles, permissions, SSO configurations, and entitlements are scoped to a
+      tenant.
+  - term: Sub-Tenant
+    definition: >-
+      A nested tenant inside another tenant, used to model hierarchical B2B
+      relationships such as resellers, departments, or business units.
+  - term: User
+    definition: >-
+      An end-user identity in Frontegg, optionally linked to one or more tenants
+      and authenticated via password, social login, passwordless, passkey, or SSO.
+  - term: Environment
+    definition: >-
+      A Frontegg deployment scope (e.g. development, staging, production) that
+      contains its own tenants, applications, roles, and configurations.
+  - term: Vendor Token
+    definition: >-
+      An environment-scoped JWT obtained by exchanging Client ID and API Key at
+      /auth/vendor. Used as the Bearer token for management API calls.
+  - term: User Token
+    definition: >-
+      A user-scoped JWT issued after a successful login, containing user identity,
+      tenant claims, roles, and permissions.
+  - term: Role
+    definition: >-
+      A named bundle of permissions that can be assigned to users within a tenant.
+  - term: Permission
+    definition: >-
+      A fine-grained access right (e.g. fe.secure.read.users) that grants the
+      bearer the ability to perform a specific action.
+  - term: Group
+    definition: >-
+      A set of users within a tenant, typically used to assign roles in bulk or
+      to mirror identity provider groups via SCIM.
+  - term: SSO
+    definition: >-
+      Single sign-on. Frontegg supports SAML 2.0 and OpenID Connect (OIDC) as
+      enterprise SSO integration patterns.
+  - term: SCIM
+    definition: >-
+      System for Cross-domain Identity Management 2.0. Frontegg exposes a SCIM
+      endpoint at /directory for external IdPs to push user and group state.
+  - term: MFA
+    definition: >-
+      Multi-factor authentication. Frontegg supports TOTP, SMS OTP, email OTP,
+      WebAuthn / passkeys, and recovery codes.
+  - term: Passwordless
+    definition: >-
+      An authentication mode that issues a one-time link or code without
+      requiring a stored password.
+  - term: Passkey
+    definition: >-
+      A WebAuthn / FIDO2 credential bound to a device, usable as a phishing-
+      resistant authentication factor on Frontegg.
+  - term: Entitlement
+    definition: >-
+      A grant that allows a user or tenant to access a feature, package, or
+      bundle defined by an active plan.
+  - term: Feature Flag
+    definition: >-
+      A toggle that gates access to a named feature for specific tenants, users,
+      or rollouts. Managed via the entitlements API.
+  - term: Plan
+    definition: >-
+      A subscription tier in Frontegg's entitlements layer, composed of bundles
+      and features that determine what tenants/users can access.
+  - term: Bundle
+    definition: >-
+      A grouped set of features sold as a unit, attached to one or more plans.
+  - term: Package
+    definition: >-
+      A higher-order grouping of features and bundles used to model commercial
+      offerings.
+  - term: Application
+    definition: >-
+      A Frontegg multi-app entity representing a distinct customer-facing surface
+      under one environment, with its own login, branding, and tenant scope.
+  - term: Audit Event
+    definition: >-
+      A logged event capturing identity, configuration, or policy changes —
+      queryable for SOC 2 compliance, security investigation, and analytics.
+  - term: PDP
+    definition: >-
+      Policy Decision Point — the Frontegg Entitlements Agent that runs as a
+      sidecar in customer infrastructure to evaluate entitlements with
+      millisecond latency.
+  - term: Hosted Login
+    definition: >-
+      The Frontegg-hosted authentication UI (login box, sign-up, password reset,
+      MFA enrollment) that customers embed or redirect to.
+  - term: Self-Service Portal
+    definition: >-
+      The end-user-facing admin portal shipped by Frontegg for tenant admins to
+      manage users, invitations, SSO, and security settings without code.
+  - term: Enterprise Connection
+    definition: >-
+      A configured SAML or OIDC link between a tenant and an enterprise identity
+      provider such as Okta, Azure AD, or Google Workspace.
+  - term: Region
+    definition: >-
+      A Frontegg deployment region (EU, US, AU, CA, UK). Each region has its own
+      api.{region}.frontegg.com gateway and status component.
+  - term: MAU
+    definition: >-
+      Monthly Active User — a billing meter representing one unique authenticated
+      user in a calendar month.
+  - term: M2M
+    definition: >-
+      Machine-to-machine authentication using client credentials and access
+      tokens, separate from interactive user logins.
+  - term: AgentLink
+    definition: >-
+      Frontegg's agentic-AI integration layer announced Nov 2025, comprising
+      Agent Connector, Agent IAM, and Agent Analytics.
+  - term: Harmor
+    definition: >-
+      Frontegg's open-source data masking library used to redact PII in logs and
+      telemetry. Source at github.com/frontegg/harmor.

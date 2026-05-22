@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/frontegg/main/json-schema/frontegg-entitlements-planfeaturedto-schema.json",
+  "title": "PlanFeatureDto",
+  "description": "JSON Schema for Frontegg entitlements PlanFeatureDto entity, derived from the published OpenAPI specification.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "UUID string representing the feature ID",
+      "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+    },
+    "name": {
+      "type": "string",
+      "description": "String representing the feature name",
+      "example": "Test Feature"
+    },
+    "key": {
+      "type": "string",
+      "description": "String representing the feature key",
+      "example": "test-feature"
+    },
+    "permissions": {
+      "description": "Array of permissions linked to a feature",
+      "example": [
+        "permission.read",
+        "permission.write"
+      ],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "key",
+    "permissions"
+  ]
+}

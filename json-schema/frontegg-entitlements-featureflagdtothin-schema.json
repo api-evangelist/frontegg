@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/frontegg/main/json-schema/frontegg-entitlements-featureflagdtothin-schema.json",
+  "title": "FeatureFlagDtoThin",
+  "description": "JSON Schema for Frontegg entitlements FeatureFlagDtoThin entity, derived from the published OpenAPI specification.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "UUID string that represents the feature flag ID",
+      "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+    },
+    "name": {
+      "type": "string",
+      "description": "String that represent the feature flag name",
+      "example": "Test Feature Flag"
+    },
+    "on": {
+      "type": "boolean",
+      "description": "Boolean indicating whether the feature flag is on",
+      "example": true
+    },
+    "offTreatment": {
+      "type": "string",
+      "description": "Enum that represents the treatment in case feature flag is off",
+      "example": "false",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "defaultTreatment": {
+      "type": "string",
+      "description": "Enum that represents the default treatment",
+      "example": "true",
+      "enum": [
+        "true",
+        "false"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "String the represents the feature flag description",
+      "example": "This is a test feature flag"
+    },
+    "updatedAt": {
+      "format": "date-time",
+      "type": "string",
+      "description": "Date when feature flag was created",
+      "example": "2022-01-01T00:00:00"
+    },
+    "createdAt": {
+      "format": "date-time",
+      "type": "string",
+      "description": "Date when feature flag was last updated",
+      "example": "2022-01-01T00:00:00"
+    }
+  }
+}

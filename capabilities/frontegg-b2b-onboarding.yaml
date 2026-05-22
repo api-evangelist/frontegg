@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Frontegg B2B Onboarding Workflow
+  description: |
+    Composed Naftiko capability orchestrating a complete B2B onboarding flow on Frontegg: obtain an environment token,
+    create a tenant, invite users, configure SSO/SCIM, and enable entitlements. Wraps the underlying Frontegg APIs
+    (env-auth, tenants, identity, sso, scim, entitlements) into a single workflow surface.
+  tags:
+    - Frontegg
+    - Onboarding
+    - B2B
+    - Workflow
+    - CIAM
+  created: '2026-05-22'
+  modified: '2026-05-22'
+binds:
+  - namespace: env
+    keys:
+      FRONTEGG_CLIENT_ID: FRONTEGG_CLIENT_ID
+      FRONTEGG_API_KEY: FRONTEGG_API_KEY
+      FRONTEGG_REGION: FRONTEGG_REGION
+capability:
+  composes:
+    - capability: frontegg-env-auth
+      alias: auth
+    - capability: frontegg-tenants
+      alias: tenants
+    - capability: frontegg-identity
+      alias: identity
+    - capability: frontegg-sso
+      alias: sso
+    - capability: frontegg-scim
+      alias: scim
+    - capability: frontegg-entitlements
+      alias: entitlements
+  workflows:
+    - name: b2b-onboard-account
+      description: End-to-end B2B account onboarding — vendor auth, tenant creation, admin invite, SSO config, entitlement assignment.
+      steps:
+        - step: vendor-auth
+          call: auth.authenticateWithEnvCredentials
+          with:
+            clientId: env.FRONTEGG_CLIENT_ID
+            secret: env.FRONTEGG_API_KEY
+          outputs:
+            - name: bearer
+              value: $.token
+        - step: create-tenant
+          call: tenants.createTenant
+          with:
+            body:
+              name: workflow.tenantName
+              tenantId: workflow.tenantId
+          outputs:
+            - name: tenantId
+              value: $.tenantId
+        - step: invite-admin
+          call: identity.inviteUser
+          with:
+            body:
+              email: workflow.adminEmail
+              roleIds:
+                - workflow.adminRoleId
+              tenantId: previous.tenantId
+        - step: configure-sso
+          call: sso.createSamlConfiguration
+          with:
+            body:
+              tenantId: previous.tenantId
+              configuration: workflow.samlConfig
+        - step: enable-scim
+          call: scim.createScimConfiguration
+          with:
+            body:
+              tenantId: previous.tenantId
+        - step: assign-entitlements
+          call: entitlements.assignEntitlement
+          with:
+            body:
+              tenantId: previous.tenantId
+              planId: workflow.planId
+  exposes:
+    - type: rest
+      namespace: frontegg-b2b-onboarding-rest
+      port: 8080
+      description: REST adapter exposing the b2b-onboard-account workflow as POST /v1/onboard.
+      resources:
+        - path: /v1/onboard
+          name: onboard
+          description: Run the full Frontegg B2B onboarding workflow.
+          operations:
+            - method: POST
+              name: onboard
+              description: Onboard a new B2B account end-to-end.
+              call: workflow.b2b-onboard-account
+              with:
+                tenantName: rest.tenantName
+                tenantId: rest.tenantId
+                adminEmail: rest.adminEmail
+                adminRoleId: rest.adminRoleId
+                samlConfig: rest.samlConfig
+                planId: rest.planId
+              outputParameters:
+                - type: object
+                  mapping: $.
+    - type: mcp
+      namespace: frontegg-b2b-onboarding-mcp
+      port: 9090
+      transport: http
+      description: MCP adapter exposing the b2b-onboard-account workflow as a single tool.
+      tools:
+        - name: frontegg-b2b-onboard
+          description: Onboard a new B2B account on Frontegg — creates tenant, invites admin, configures SSO/SCIM, assigns plan.
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: workflow.b2b-onboard-account
+          with:
+            tenantName: tools.tenantName
+            tenantId: tools.tenantId
+            adminEmail: tools.adminEmail
+            adminRoleId: tools.adminRoleId
+            samlConfig: tools.samlConfig
+            planId: tools.planId
+          outputParameters:
+            - type: object
+              mapping: $.

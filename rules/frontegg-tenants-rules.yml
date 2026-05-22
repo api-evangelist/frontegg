@@ -1,0 +1,74 @@
+extends:
+  - spectral:oas
+rules:
+  frontegg-tenants-operation-summary-required:
+    description: Every operation MUST have a summary describing it.
+    given: $.paths[*][*]
+    severity: error
+    then:
+      field: summary
+      function: truthy
+  frontegg-tenants-summary-title-case:
+    description: Operation summaries MUST be in Title Case (Frontegg convention).
+    given: $.paths[*][*].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9-]*( [A-Za-z0-9-]+)*$"
+  frontegg-tenants-operation-tag-required:
+    description: Every operation MUST have at least one tag.
+    given: $.paths[*][*]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+  frontegg-tenants-tag-title-case:
+    description: Tag names MUST be in Title Case.
+    given: $.paths[*][*].tags[*]
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 -]*$"
+  frontegg-tenants-regional-server:
+    description: Servers MUST include at least one regional Frontegg gateway (api.frontegg.com, api.us.frontegg.com, api.au.frontegg.com, api.ca.frontegg.com).
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "(frontegg\\.com|localhost)"
+  frontegg-tenants-bearer-auth-required:
+    description: Frontegg APIs use JWT Bearer authentication; components.securitySchemes SHOULD declare it.
+    given: $
+    severity: info
+    then:
+      field: components.securitySchemes
+      function: truthy
+  frontegg-tenants-frontegg-tenant-header:
+    description: When environment tokens are used, the frontegg-tenant-id header SHOULD be available as a parameter on management operations.
+    given: $.paths[*][*].parameters
+    severity: info
+    then:
+      function: truthy
+  frontegg-tenants-response-2xx-required:
+    description: Every operation MUST declare at least one 2xx response.
+    given: $.paths[*][*].responses
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^2[0-9][0-9]$":
+              type: object
+          minProperties: 1
+  frontegg-tenants-error-response-401:
+    description: Authenticated operations SHOULD document 401 responses.
+    given: $.paths[*][*].responses
+    severity: info
+    then:
+      field: "401"
+      function: truthy
