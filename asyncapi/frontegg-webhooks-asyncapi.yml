@@ -1,0 +1,1718 @@
+asyncapi: '2.6.0'
+info:
+  title: Frontegg Webhooks
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of Frontegg's outbound webhook surface. Frontegg signs each
+    delivery with an `x-webhook-secret` header containing the configured signing secret,
+    and treats any 2XX HTTP response as a successful delivery. Event names are documented
+    by Frontegg using a `frontegg.<resource>.<action>` convention and cover authentication,
+    user lifecycle, MFA, tenants, groups, applications, plans, API tokens, and SCIM
+    provisioning. Payload schemas in this document model the documented event surface;
+    Frontegg does not publish a single canonical JSON schema per event, so receiver-side
+    payload field shape may vary by environment configuration.
+  contact:
+    name: Frontegg Developers
+    url: https://developers.frontegg.com
+  license:
+    name: Refer to Frontegg Terms
+    url: https://frontegg.com/terms
+  termsOfService: https://frontegg.com/terms
+defaultContentType: application/json
+tags:
+  - name: Authentication
+    description: Login and sign-in events
+  - name: MFA
+    description: Multi-factor authentication enrollment events
+  - name: User
+    description: User lifecycle events
+  - name: Tenant
+    description: Tenant (account) lifecycle events
+  - name: Group
+    description: Group membership and role assignment events
+  - name: Application
+    description: User/tenant application assignment events
+  - name: Plan
+    description: Plan assignment events
+  - name: APIToken
+    description: User and tenant API token events
+  - name: SCIM
+    description: SCIM provisioning events
+  - name: Security
+    description: Account-level security events
+externalDocs:
+  description: Frontegg webhook integration guide
+  url: https://developers.frontegg.com/ciam/guides/integrations/webhooks
+servers:
+  subscriber:
+    url: '{customer_webhook_url}'
+    protocol: https
+    description: |
+      The HTTPS endpoint configured by a Frontegg customer (vendor) inside the Frontegg
+      portal under Configurations -> Hooks. Frontegg POSTs JSON payloads to this URL when
+      subscribed events fire.
+    variables:
+      customer_webhook_url:
+        description: Customer-supplied HTTPS URL that receives Frontegg webhook deliveries.
+        default: https://example.com/frontegg/webhooks
+channels:
+  frontegg.user.authenticated:
+    description: A user signs in successfully.
+    publish:
+      operationId: onUserAuthenticated
+      summary: User signed in successfully.
+      tags:
+        - name: Authentication
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserAuthenticated'
+  frontegg.user.authenticatedWithSAML:
+    description: A user authenticates via SAML SSO.
+    publish:
+      operationId: onUserAuthenticatedWithSAML
+      summary: User authenticated via SAML.
+      tags:
+        - name: Authentication
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserAuthenticatedWithSAML'
+  frontegg.user.authenticatedWithSSO:
+    description: A user authenticates via SSO (non-SAML providers).
+    publish:
+      operationId: onUserAuthenticatedWithSSO
+      summary: User authenticated via SSO.
+      tags:
+        - name: Authentication
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserAuthenticatedWithSSO'
+  frontegg.user.failedAuthentication:
+    description: A user attempted to sign in and provided invalid credentials.
+    publish:
+      operationId: onUserFailedAuthentication
+      summary: User failed authentication.
+      tags:
+        - name: Authentication
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserFailedAuthentication'
+  frontegg.user.enrolledMFA:
+    description: A user enrolled in multi-factor authentication.
+    publish:
+      operationId: onUserEnrolledMFA
+      summary: User enrolled in MFA.
+      tags:
+        - name: MFA
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserEnrolledMFA'
+  frontegg.user.disabledMFA:
+    description: A user disabled their MFA configuration.
+    publish:
+      operationId: onUserDisabledMFA
+      summary: User disabled MFA.
+      tags:
+        - name: MFA
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserDisabledMFA'
+  frontegg.user.created:
+    description: A user account was created in Frontegg.
+    publish:
+      operationId: onUserCreated
+      summary: User created.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserCreated'
+  frontegg.user.signedUp:
+    description: A user completed the sign-up flow.
+    publish:
+      operationId: onUserSignedUp
+      summary: User signed up.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserSignedUp'
+  frontegg.user.activated:
+    description: A user completed account activation.
+    publish:
+      operationId: onUserActivated
+      summary: User activated.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserActivated'
+  frontegg.user.deleted:
+    description: A user account was deleted.
+    publish:
+      operationId: onUserDeleted
+      summary: User deleted.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserDeleted'
+  frontegg.user.updated:
+    description: A user profile was updated.
+    publish:
+      operationId: onUserUpdated
+      summary: User updated.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserUpdated'
+  frontegg.user.invitedToTenant:
+    description: A user was invited to join a tenant.
+    publish:
+      operationId: onUserInvitedToTenant
+      summary: User invited to tenant.
+      tags:
+        - name: User
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserInvitedToTenant'
+  frontegg.user.removedFromTenant:
+    description: A user was removed from a tenant.
+    publish:
+      operationId: onUserRemovedFromTenant
+      summary: User removed from tenant.
+      tags:
+        - name: User
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserRemovedFromTenant'
+  frontegg.user.joinedTenantUsingInvitationLink:
+    description: A user joined a tenant using an invitation link.
+    publish:
+      operationId: onUserJoinedTenantUsingInvitationLink
+      summary: User joined tenant via invitation link.
+      tags:
+        - name: User
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserJoinedTenantUsingInvitationLink'
+  frontegg.user.changedPassword:
+    description: A user changed their password.
+    publish:
+      operationId: onUserChangedPassword
+      summary: User changed password.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserChangedPassword'
+  frontegg.user.forgotPassword:
+    description: A user initiated a forgot-password flow.
+    publish:
+      operationId: onUserForgotPassword
+      summary: User forgot password.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserForgotPassword'
+  frontegg.user.temporary.access.given:
+    description: Temporary access was granted to a user.
+    publish:
+      operationId: onUserTemporaryAccessGiven
+      summary: Temporary access granted.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserTemporaryAccessGiven'
+  frontegg.user.temporary.access.edited:
+    description: A user's temporary access was modified.
+    publish:
+      operationId: onUserTemporaryAccessEdited
+      summary: Temporary access edited.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserTemporaryAccessEdited'
+  frontegg.user.temporary.access.temporary.to.permanentd:
+    description: A user was converted from temporary access to permanent access. Event name preserved as documented by Frontegg.
+    publish:
+      operationId: onUserTemporaryToPermanent
+      summary: Temporary user promoted to permanent.
+      tags:
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserTemporaryToPermanent'
+  frontegg.userApiToken.created:
+    description: A user API token was created.
+    publish:
+      operationId: onUserApiTokenCreated
+      summary: User API token created.
+      tags:
+        - name: APIToken
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserApiTokenCreated'
+  frontegg.userApiToken.deleted:
+    description: A user API token was revoked.
+    publish:
+      operationId: onUserApiTokenDeleted
+      summary: User API token deleted.
+      tags:
+        - name: APIToken
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserApiTokenDeleted'
+  frontegg.tenant.created:
+    description: A tenant was created.
+    publish:
+      operationId: onTenantCreated
+      summary: Tenant created.
+      tags:
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantCreated'
+  frontegg.tenant.updated:
+    description: A tenant was updated.
+    publish:
+      operationId: onTenantUpdated
+      summary: Tenant updated.
+      tags:
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantUpdated'
+  frontegg.tenant.deleted:
+    description: A tenant was deleted.
+    publish:
+      operationId: onTenantDeleted
+      summary: Tenant deleted.
+      tags:
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantDeleted'
+  frontegg.tenantApiToken.created:
+    description: A tenant API token was created.
+    publish:
+      operationId: onTenantApiTokenCreated
+      summary: Tenant API token created.
+      tags:
+        - name: APIToken
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantApiTokenCreated'
+  frontegg.tenantApiToken.deleted:
+    description: A tenant API token was revoked.
+    publish:
+      operationId: onTenantApiTokenDeleted
+      summary: Tenant API token deleted.
+      tags:
+        - name: APIToken
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantApiTokenDeleted'
+  frontegg.group.created:
+    description: A group was created.
+    publish:
+      operationId: onGroupCreated
+      summary: Group created.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupCreated'
+  frontegg.group.updated:
+    description: A group was updated.
+    publish:
+      operationId: onGroupUpdated
+      summary: Group updated.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupUpdated'
+  frontegg.group.deleted:
+    description: A group was deleted.
+    publish:
+      operationId: onGroupDeleted
+      summary: Group deleted.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupDeleted'
+  frontegg.group.users.added:
+    description: One or more users were added to a group.
+    publish:
+      operationId: onGroupUsersAdded
+      summary: Users added to group.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupUsersAdded'
+  frontegg.group.users.removed:
+    description: One or more users were removed from a group.
+    publish:
+      operationId: onGroupUsersRemoved
+      summary: Users removed from group.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupUsersRemoved'
+  frontegg.group.roles.updated:
+    description: The roles attached to a group were updated.
+    publish:
+      operationId: onGroupRolesUpdated
+      summary: Group roles updated.
+      tags:
+        - name: Group
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/GroupRolesUpdated'
+  frontegg.account.security.domain.restricted:
+    description: A domain was restricted from signing up for this account.
+    publish:
+      operationId: onAccountSecurityDomainRestricted
+      summary: Account security domain restricted.
+      tags:
+        - name: Security
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/AccountSecurityDomainRestricted'
+  frontegg.user.app.assigned:
+    description: A user was assigned to an application.
+    publish:
+      operationId: onUserAppAssigned
+      summary: User assigned to application.
+      tags:
+        - name: Application
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserAppAssigned'
+  frontegg.user.app.unassigned:
+    description: A user was unassigned from an application.
+    publish:
+      operationId: onUserAppUnassigned
+      summary: User unassigned from application.
+      tags:
+        - name: Application
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserAppUnassigned'
+  frontegg.tenant.app.assigned:
+    description: An application was assigned to a tenant.
+    publish:
+      operationId: onTenantAppAssigned
+      summary: Tenant assigned to application.
+      tags:
+        - name: Application
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantAppAssigned'
+  frontegg.tenant.app.unassigned:
+    description: An application was unassigned from a tenant.
+    publish:
+      operationId: onTenantAppUnassigned
+      summary: Tenant unassigned from application.
+      tags:
+        - name: Application
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantAppUnassigned'
+  frontegg.tenant.plan.assigned:
+    description: A plan was assigned to a tenant.
+    publish:
+      operationId: onTenantPlanAssigned
+      summary: Plan assigned to tenant.
+      tags:
+        - name: Plan
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantPlanAssigned'
+  frontegg.tenant.plan.unassigned:
+    description: A plan was unassigned from a tenant.
+    publish:
+      operationId: onTenantPlanUnassigned
+      summary: Plan unassigned from tenant.
+      tags:
+        - name: Plan
+        - name: Tenant
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/TenantPlanUnassigned'
+  frontegg.user.plan.assigned:
+    description: A plan was assigned to a user.
+    publish:
+      operationId: onUserPlanAssigned
+      summary: Plan assigned to user.
+      tags:
+        - name: Plan
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserPlanAssigned'
+  frontegg.user.plan.unassigned:
+    description: A plan was unassigned from a user.
+    publish:
+      operationId: onUserPlanUnassigned
+      summary: Plan unassigned from user.
+      tags:
+        - name: Plan
+        - name: User
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/UserPlanUnassigned'
+  frontegg.scim.user.created:
+    description: A user was provisioned via SCIM.
+    publish:
+      operationId: onScimUserCreated
+      summary: SCIM user created.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimUserCreated'
+  frontegg.scim.user.updated:
+    description: A SCIM-provisioned user was updated.
+    publish:
+      operationId: onScimUserUpdated
+      summary: SCIM user updated.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimUserUpdated'
+  frontegg.scim.user.deleted:
+    description: A SCIM-provisioned user was deprovisioned.
+    publish:
+      operationId: onScimUserDeleted
+      summary: SCIM user deleted.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimUserDeleted'
+  frontegg.scim.group.created:
+    description: A group was created via SCIM.
+    publish:
+      operationId: onScimGroupCreated
+      summary: SCIM group created.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimGroupCreated'
+  frontegg.scim.group.updated:
+    description: A SCIM group was updated.
+    publish:
+      operationId: onScimGroupUpdated
+      summary: SCIM group updated.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimGroupUpdated'
+  frontegg.scim.group.deleted:
+    description: A SCIM group was deleted.
+    publish:
+      operationId: onScimGroupDeleted
+      summary: SCIM group deleted.
+      tags:
+        - name: SCIM
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ScimGroupDeleted'
+components:
+  messageTraits:
+    WebhookHeaders:
+      headers:
+        type: object
+        properties:
+          x-webhook-secret:
+            type: string
+            description: |
+              Signing secret value generated by Frontegg when the hook is configured.
+              Receivers MUST validate this header against the secret stored at integration
+              setup time before processing the payload.
+          content-type:
+            type: string
+            description: Always application/json.
+            const: application/json
+        required:
+          - x-webhook-secret
+    BaseEnvelope:
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+  messages:
+    UserAuthenticated:
+      name: UserAuthenticated
+      title: User Authenticated
+      summary: A user successfully signed in.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.authenticated
+              data:
+                $ref: '#/components/schemas/UserAuthenticationData'
+    UserAuthenticatedWithSAML:
+      name: UserAuthenticatedWithSAML
+      title: User Authenticated With SAML
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.authenticatedWithSAML
+              data:
+                $ref: '#/components/schemas/UserAuthenticationData'
+    UserAuthenticatedWithSSO:
+      name: UserAuthenticatedWithSSO
+      title: User Authenticated With SSO
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.authenticatedWithSSO
+              data:
+                $ref: '#/components/schemas/UserAuthenticationData'
+    UserFailedAuthentication:
+      name: UserFailedAuthentication
+      title: User Failed Authentication
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.failedAuthentication
+              data:
+                $ref: '#/components/schemas/FailedAuthenticationData'
+    UserEnrolledMFA:
+      name: UserEnrolledMFA
+      title: User Enrolled MFA
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.enrolledMFA
+              data:
+                $ref: '#/components/schemas/MFAEventData'
+    UserDisabledMFA:
+      name: UserDisabledMFA
+      title: User Disabled MFA
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.disabledMFA
+              data:
+                $ref: '#/components/schemas/MFAEventData'
+    UserCreated:
+      name: UserCreated
+      title: User Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.created
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserSignedUp:
+      name: UserSignedUp
+      title: User Signed Up
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.signedUp
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserActivated:
+      name: UserActivated
+      title: User Activated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.activated
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserDeleted:
+      name: UserDeleted
+      title: User Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.deleted
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserUpdated:
+      name: UserUpdated
+      title: User Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.updated
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserInvitedToTenant:
+      name: UserInvitedToTenant
+      title: User Invited To Tenant
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.invitedToTenant
+              data:
+                $ref: '#/components/schemas/UserTenantMembershipData'
+    UserRemovedFromTenant:
+      name: UserRemovedFromTenant
+      title: User Removed From Tenant
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.removedFromTenant
+              data:
+                $ref: '#/components/schemas/UserTenantMembershipData'
+    UserJoinedTenantUsingInvitationLink:
+      name: UserJoinedTenantUsingInvitationLink
+      title: User Joined Tenant Using Invitation Link
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.joinedTenantUsingInvitationLink
+              data:
+                $ref: '#/components/schemas/UserTenantMembershipData'
+    UserChangedPassword:
+      name: UserChangedPassword
+      title: User Changed Password
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.changedPassword
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserForgotPassword:
+      name: UserForgotPassword
+      title: User Forgot Password
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.forgotPassword
+              data:
+                $ref: '#/components/schemas/UserData'
+    UserTemporaryAccessGiven:
+      name: UserTemporaryAccessGiven
+      title: User Temporary Access Given
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.temporary.access.given
+              data:
+                $ref: '#/components/schemas/TemporaryAccessData'
+    UserTemporaryAccessEdited:
+      name: UserTemporaryAccessEdited
+      title: User Temporary Access Edited
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.temporary.access.edited
+              data:
+                $ref: '#/components/schemas/TemporaryAccessData'
+    UserTemporaryToPermanent:
+      name: UserTemporaryToPermanent
+      title: User Temporary To Permanent
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.temporary.access.temporary.to.permanentd
+              data:
+                $ref: '#/components/schemas/TemporaryAccessData'
+    UserApiTokenCreated:
+      name: UserApiTokenCreated
+      title: User API Token Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.userApiToken.created
+              data:
+                $ref: '#/components/schemas/ApiTokenData'
+    UserApiTokenDeleted:
+      name: UserApiTokenDeleted
+      title: User API Token Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.userApiToken.deleted
+              data:
+                $ref: '#/components/schemas/ApiTokenData'
+    TenantCreated:
+      name: TenantCreated
+      title: Tenant Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.created
+              data:
+                $ref: '#/components/schemas/TenantData'
+    TenantUpdated:
+      name: TenantUpdated
+      title: Tenant Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.updated
+              data:
+                $ref: '#/components/schemas/TenantData'
+    TenantDeleted:
+      name: TenantDeleted
+      title: Tenant Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.deleted
+              data:
+                $ref: '#/components/schemas/TenantData'
+    TenantApiTokenCreated:
+      name: TenantApiTokenCreated
+      title: Tenant API Token Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenantApiToken.created
+              data:
+                $ref: '#/components/schemas/ApiTokenData'
+    TenantApiTokenDeleted:
+      name: TenantApiTokenDeleted
+      title: Tenant API Token Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenantApiToken.deleted
+              data:
+                $ref: '#/components/schemas/ApiTokenData'
+    GroupCreated:
+      name: GroupCreated
+      title: Group Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.created
+              data:
+                $ref: '#/components/schemas/GroupData'
+    GroupUpdated:
+      name: GroupUpdated
+      title: Group Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.updated
+              data:
+                $ref: '#/components/schemas/GroupData'
+    GroupDeleted:
+      name: GroupDeleted
+      title: Group Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.deleted
+              data:
+                $ref: '#/components/schemas/GroupData'
+    GroupUsersAdded:
+      name: GroupUsersAdded
+      title: Group Users Added
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.users.added
+              data:
+                $ref: '#/components/schemas/GroupMembershipChangeData'
+    GroupUsersRemoved:
+      name: GroupUsersRemoved
+      title: Group Users Removed
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.users.removed
+              data:
+                $ref: '#/components/schemas/GroupMembershipChangeData'
+    GroupRolesUpdated:
+      name: GroupRolesUpdated
+      title: Group Roles Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.group.roles.updated
+              data:
+                $ref: '#/components/schemas/GroupRolesChangeData'
+    AccountSecurityDomainRestricted:
+      name: AccountSecurityDomainRestricted
+      title: Account Security Domain Restricted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.account.security.domain.restricted
+              data:
+                $ref: '#/components/schemas/DomainRestrictionData'
+    UserAppAssigned:
+      name: UserAppAssigned
+      title: User Application Assigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.app.assigned
+              data:
+                $ref: '#/components/schemas/UserAppAssignmentData'
+    UserAppUnassigned:
+      name: UserAppUnassigned
+      title: User Application Unassigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.app.unassigned
+              data:
+                $ref: '#/components/schemas/UserAppAssignmentData'
+    TenantAppAssigned:
+      name: TenantAppAssigned
+      title: Tenant Application Assigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.app.assigned
+              data:
+                $ref: '#/components/schemas/TenantAppAssignmentData'
+    TenantAppUnassigned:
+      name: TenantAppUnassigned
+      title: Tenant Application Unassigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.app.unassigned
+              data:
+                $ref: '#/components/schemas/TenantAppAssignmentData'
+    TenantPlanAssigned:
+      name: TenantPlanAssigned
+      title: Tenant Plan Assigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.plan.assigned
+              data:
+                $ref: '#/components/schemas/TenantPlanAssignmentData'
+    TenantPlanUnassigned:
+      name: TenantPlanUnassigned
+      title: Tenant Plan Unassigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.tenant.plan.unassigned
+              data:
+                $ref: '#/components/schemas/TenantPlanAssignmentData'
+    UserPlanAssigned:
+      name: UserPlanAssigned
+      title: User Plan Assigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.plan.assigned
+              data:
+                $ref: '#/components/schemas/UserPlanAssignmentData'
+    UserPlanUnassigned:
+      name: UserPlanUnassigned
+      title: User Plan Unassigned
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.user.plan.unassigned
+              data:
+                $ref: '#/components/schemas/UserPlanAssignmentData'
+    ScimUserCreated:
+      name: ScimUserCreated
+      title: SCIM User Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.user.created
+              data:
+                $ref: '#/components/schemas/ScimUserData'
+    ScimUserUpdated:
+      name: ScimUserUpdated
+      title: SCIM User Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.user.updated
+              data:
+                $ref: '#/components/schemas/ScimUserData'
+    ScimUserDeleted:
+      name: ScimUserDeleted
+      title: SCIM User Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.user.deleted
+              data:
+                $ref: '#/components/schemas/ScimUserData'
+    ScimGroupCreated:
+      name: ScimGroupCreated
+      title: SCIM Group Created
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.group.created
+              data:
+                $ref: '#/components/schemas/ScimGroupData'
+    ScimGroupUpdated:
+      name: ScimGroupUpdated
+      title: SCIM Group Updated
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.group.updated
+              data:
+                $ref: '#/components/schemas/ScimGroupData'
+    ScimGroupDeleted:
+      name: ScimGroupDeleted
+      title: SCIM Group Deleted
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/WebhookHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/EventEnvelope'
+          - type: object
+            properties:
+              eventKey:
+                const: frontegg.scim.group.deleted
+              data:
+                $ref: '#/components/schemas/ScimGroupData'
+  schemas:
+    EventEnvelope:
+      type: object
+      description: |
+        Common envelope shape inferred from Frontegg's webhook documentation. Concrete
+        envelope fields are not exhaustively published by Frontegg; receivers should
+        rely on `eventKey` to discriminate and treat additional fields as informational.
+      properties:
+        eventKey:
+          type: string
+          description: Frontegg event identifier (e.g. frontegg.user.created).
+        eventContext:
+          type: object
+          description: Identifiers for the tenant and user the event is scoped to.
+          properties:
+            tenantId:
+              type: string
+              description: Tenant the event occurred in.
+            userId:
+              type: string
+              description: Acting or subject user, when applicable.
+        data:
+          description: Event-specific payload object.
+          type: object
+      required:
+        - eventKey
+    UserData:
+      type: object
+      description: User resource subset.
+      properties:
+        id:
+          type: string
+          description: Frontegg user identifier.
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        tenantId:
+          type: string
+        profilePictureUrl:
+          type: string
+          format: uri
+        verified:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties: true
+    UserAuthenticationData:
+      allOf:
+        - $ref: '#/components/schemas/UserData'
+        - type: object
+          properties:
+            ip:
+              type: string
+              description: IP address used during authentication.
+            userAgent:
+              type: string
+            authStrategy:
+              type: string
+              description: |
+                Authentication strategy used (e.g. password, mfa, sso, saml, social).
+    FailedAuthenticationData:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        tenantId:
+          type: string
+        ip:
+          type: string
+        userAgent:
+          type: string
+        reason:
+          type: string
+          description: Reason for the authentication failure when available.
+    MFAEventData:
+      allOf:
+        - $ref: '#/components/schemas/UserData'
+        - type: object
+          properties:
+            mfaStrategy:
+              type: string
+              description: MFA strategy involved (totp, sms, webauthn, etc.).
+    UserTenantMembershipData:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+          format: email
+        tenantId:
+          type: string
+        invitedBy:
+          type: string
+          description: User who issued the invitation, when applicable.
+        roleIds:
+          type: array
+          items:
+            type: string
+    TemporaryAccessData:
+      allOf:
+        - $ref: '#/components/schemas/UserData'
+        - type: object
+          properties:
+            expiresAt:
+              type: string
+              format: date-time
+              description: When the temporary access expires.
+    ApiTokenData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Token identifier (not the secret).
+        clientId:
+          type: string
+        description:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        createdBy:
+          type: string
+    TenantData:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        name:
+          type: string
+        website:
+          type: string
+        creatorEmail:
+          type: string
+          format: email
+        metadata:
+          type: object
+          additionalProperties: true
+    GroupData:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        managedBy:
+          type: string
+    GroupMembershipChangeData:
+      type: object
+      properties:
+        groupId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+    GroupRolesChangeData:
+      type: object
+      properties:
+        groupId:
+          type: string
+        tenantId:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+    DomainRestrictionData:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        domain:
+          type: string
+          description: Domain that was restricted from sign-up.
+        restrictedBy:
+          type: string
+    UserAppAssignmentData:
+      type: object
+      properties:
+        userId:
+          type: string
+        tenantId:
+          type: string
+        appId:
+          type: string
+    TenantAppAssignmentData:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        appId:
+          type: string
+    TenantPlanAssignmentData:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        planId:
+          type: string
+    UserPlanAssignmentData:
+      type: object
+      properties:
+        userId:
+          type: string
+        tenantId:
+          type: string
+        planId:
+          type: string
+    ScimUserData:
+      type: object
+      properties:
+        userId:
+          type: string
+        tenantId:
+          type: string
+        externalId:
+          type: string
+        email:
+          type: string
+          format: email
+        userName:
+          type: string
+        active:
+          type: boolean
+    ScimGroupData:
+      type: object
+      properties:
+        groupId:
+          type: string
+        tenantId:
+          type: string
+        externalId:
+          type: string
+        displayName:
+          type: string
+        members:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              externalId:
+                type: string
