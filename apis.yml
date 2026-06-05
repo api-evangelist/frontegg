@@ -1,344 +1,362 @@
 aid: frontegg
 name: Frontegg
-description: |
-  Frontegg is a customer identity and access management (CIAM) platform for B2B SaaS. It provides self-serve authentication,
-  multi-tenancy, role-based access control, single sign-on, SCIM provisioning, entitlements, and an admin portal that ships
+description: >
+  Frontegg is a customer identity and access management (CIAM) platform for B2B SaaS. It provides self-serve
+  authentication,
+
+  multi-tenancy, role-based access control, single sign-on, SCIM provisioning, entitlements, and an admin portal that
+  ships
+
   with the product. Frontegg publishes OpenAPI specifications for its Authentication and Identity, Account Management,
+
   Single Sign-On, SCIM Provisioning, Applications, Audits, Entitlements, Entitlements Agent (PDP), and Environment
-  Authentication APIs, all served from regional gateway endpoints (api.frontegg.com, api.us.frontegg.com, api.au.frontegg.com,
+
+  Authentication APIs, all served from regional gateway endpoints (api.frontegg.com, api.us.frontegg.com,
+  api.au.frontegg.com,
+
   api.ca.frontegg.com).
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Authentication
-- Authorization
-- Identity Management
-- CIAM
-- B2B SaaS
-- Multi-Tenancy
-- RBAC
-- SSO
-- SCIM
-- Entitlements
-- OAuth
-- OpenID Connect
+  - Authentication
+  - Authorization
+  - Identity Management
+  - CIAM
+  - B2B SaaS
+  - Multi-Tenancy
+  - RBAC
+  - SSO
+  - SCIM
+  - Entitlements
+  - OAuth
+  - OpenID Connect
 url: https://raw.githubusercontent.com/api-evangelist/frontegg/refs/heads/main/apis.yml
 created: '2026-05-22'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-- aid: frontegg:frontegg-identity
-  name: Frontegg Authentication and Identity Management API
-  description: |
-    The Frontegg Authentication and Identity Management API handles login, registration, MFA, passwordless flows, social
-    logins, sessions, passwords, passkeys, OAuth, OIDC, JWT, user management, roles, permissions, groups, and tenant
-    membership. With 232 documented operations across 305 schemas, this is the core of the Frontegg CIAM platform.
-  humanURL: https://developers.frontegg.com/ciam/api/identity
-  baseURL: https://api.frontegg.com/identity
-  tags:
-  - Authentication
-  - Identity
-  - User Management
-  - MFA
-  - Passwordless
-  - OAuth
-  - OpenID Connect
-  - JWT
-  - Sessions
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/identity
-  - type: APIReference
-    url: https://developers.frontegg.com/ciam/api/identity
-  - type: OpenAPI
-    url: openapi/frontegg-identity-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-identity-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-identity.yaml
-- aid: frontegg:frontegg-tenants
-  name: Frontegg Account Management API
-  description: |
-    The Frontegg Account Management (Tenants) API manages B2B accounts, tenant hierarchies, sub-accounts, tenant metadata,
-    invitations, and tenant-scoped configuration. Multi-tenancy is a core Frontegg concept and this API is how callers
-    create and manage the tenant graph.
-  humanURL: https://developers.frontegg.com/ciam/api/tenants
-  baseURL: https://api.frontegg.com/tenants
-  tags:
-  - Tenants
-  - Accounts
-  - Multi-Tenancy
-  - B2B
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/tenants
-  - type: OpenAPI
-    url: openapi/frontegg-tenants-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-tenants-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-tenants.yaml
-- aid: frontegg:frontegg-sso
-  name: Frontegg Single Sign-On API
-  description: |
-    The Frontegg Single Sign-On (Team) API manages SAML and OIDC SSO configurations, IdP metadata, JIT provisioning,
-    enterprise connections, and domain claims. Frontegg ships with 5 Enterprise Connections included on the free Pay
-    As You Go tier.
-  humanURL: https://developers.frontegg.com/ciam/api/team
-  baseURL: https://api.frontegg.com/team
-  tags:
-  - SSO
-  - SAML
-  - OIDC
-  - Enterprise
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/team
-  - type: OpenAPI
-    url: openapi/frontegg-sso-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-sso-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-sso.yaml
-- aid: frontegg:frontegg-scim
-  name: Frontegg SCIM Provisioning API
-  description: |
-    The Frontegg SCIM 2.0 Provisioning API implements directory provisioning for users and groups from external identity
-    providers such as Okta, Azure AD, and Google Workspace.
-  humanURL: https://developers.frontegg.com/ciam/api/scim
-  baseURL: https://api.frontegg.com/directory
-  tags:
-  - SCIM
-  - Provisioning
-  - Directory
-  - Identity
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/scim
-  - type: OpenAPI
-    url: openapi/frontegg-scim-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-scim-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-scim.yaml
-- aid: frontegg:frontegg-entitlements
-  name: Frontegg Entitlements API
-  description: |
-    The Frontegg Entitlements API manages feature flags, plans, subscriptions, packages, bundles, and entitlements that
-    determine what users and tenants are allowed to do. 29 operations across 52 schemas govern entitlement decisions in
-    the CIAM platform.
-  humanURL: https://developers.frontegg.com/ciam/api/entitlements
-  baseURL: https://api.frontegg.com/entitlements
-  tags:
-  - Entitlements
-  - Feature Flags
-  - Authorization
-  - Plans
-  - Subscriptions
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/entitlements
-  - type: OpenAPI
-    url: openapi/frontegg-entitlements-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-entitlements-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-entitlements.yaml
-- aid: frontegg:frontegg-entitlements-agent
-  name: Frontegg Entitlements Agent (PDP)
-  description: |
-    The Frontegg Entitlements Agent is a Policy Decision Point (PDP) that runs locally inside customer infrastructure to
-    evaluate entitlements with millisecond latency. Default listen port 8181. Java and Node.js bindings ship as separate
-    SDKs.
-  humanURL: https://developers.frontegg.com/ciam/api/agent
-  baseURL: http://localhost:8181
-  tags:
-  - PDP
-  - Policy Decision Point
-  - Entitlements
-  - Authorization
-  - Sidecar
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/agent
-  - type: OpenAPI
-    url: openapi/frontegg-entitlements-agent-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-entitlements-agent-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-entitlements-agent.yaml
-- aid: frontegg:frontegg-applications
-  name: Frontegg Multi-Apps API
-  description: |
-    The Frontegg Applications (Multi-Apps) API manages multiple application surfaces under a single Frontegg environment,
-    each with its own login experience, integrations, and tenant scope. Useful for portfolio SaaS vendors.
-  humanURL: https://developers.frontegg.com/ciam/api/applications
-  baseURL: https://api.frontegg.com/applications
-  tags:
-  - Applications
-  - Multi-App
-  - Tenant Scoping
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/applications
-  - type: OpenAPI
-    url: openapi/frontegg-applications-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-applications-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-applications.yaml
-- aid: frontegg:frontegg-audits
-  name: Frontegg Audits API
-  description: |
-    The Frontegg Audits API exposes the audit log surface for compliance, SOC 2, and security incident response. Events
-    are streamed and queryable by tenant.
-  humanURL: https://developers.frontegg.com/ciam/api/audits
-  baseURL: https://api.frontegg.com/audits
-  tags:
-  - Audits
-  - Logging
-  - Compliance
-  - Security
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/audits
-  - type: OpenAPI
-    url: openapi/frontegg-audits-openapi.yml
-  - type: SpectralRules
-    url: rules/frontegg-audits-rules.yml
-  - type: NaftikoCapability
-    url: capabilities/frontegg-audits.yaml
-- aid: frontegg:frontegg-env-auth
-  name: Frontegg Environment Authentication API
-  description: |
-    The Frontegg Environment Authentication endpoint exchanges a Client ID and API Key for an environment-scoped JWT,
-    which is then used as the Bearer token for Management APIs. Single operation at /auth/vendor.
-  humanURL: https://developers.frontegg.com/ciam/api/overview
-  baseURL: https://api.frontegg.com/auth/vendor
-  tags:
-  - Authentication
-  - Vendor
-  - Environment
-  - JWT
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/api/overview
-  - type: OpenAPI
-    url: openapi/frontegg-env-auth-openapi.yml
-- aid: frontegg:frontegg-combined
-  name: Frontegg Combined API
-  description: |
-    The combined OpenAPI specification bundles all Frontegg public services (Identity, Tenants, SSO, SCIM, Entitlements,
-    Applications, Audits, and Environment Authentication) into a single document for end-to-end client generation.
-  humanURL: https://github.com/frontegg/openapi-public
-  baseURL: https://api.frontegg.com
-  tags:
-  - Combined
-  - Aggregated
-  - CIAM
-  properties:
-  - type: SourceCode
-    url: https://github.com/frontegg/openapi-public
-  - type: OpenAPI
-    url: openapi/frontegg-combined-openapi.yml
-- aid: frontegg:frontegg-webhooks
-  name: Frontegg Webhooks
-  description: |
-    AsyncAPI 2.6 description of Frontegg's outbound webhook surface. Covers authentication, MFA, user lifecycle, tenant
-    lifecycle, group, application, plan, API token, account security, and SCIM provisioning events. Frontegg signs each
-    delivery with an x-webhook-secret header and treats any 2XX HTTP response as a successful delivery.
-  humanURL: https://developers.frontegg.com/ciam/guides/integrations/webhooks
-  baseURL: https://api.frontegg.com
-  tags:
-  - Webhooks
-  - AsyncAPI
-  - Events
-  - Authentication
-  - User Lifecycle
-  - Tenant Lifecycle
-  - MFA
-  - SCIM
-  properties:
-  - type: Documentation
-    url: https://developers.frontegg.com/ciam/guides/integrations/webhooks
-  - type: AsyncAPI
-    url: asyncapi/frontegg-webhooks-asyncapi.yml
+  - aid: frontegg:frontegg-identity
+    name: Frontegg Authentication and Identity Management API
+    description: >
+      The Frontegg Authentication and Identity Management API handles login, registration, MFA, passwordless flows,
+      social
+
+      logins, sessions, passwords, passkeys, OAuth, OIDC, JWT, user management, roles, permissions, groups, and tenant
+
+      membership. With 232 documented operations across 305 schemas, this is the core of the Frontegg CIAM platform.
+    humanURL: https://developers.frontegg.com/ciam/api/identity
+    baseURL: https://api.frontegg.com/identity
+    tags:
+      - Authentication
+      - Identity
+      - User Management
+      - MFA
+      - Passwordless
+      - OAuth
+      - OpenID Connect
+      - JWT
+      - Sessions
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/identity
+      - type: APIReference
+        url: https://developers.frontegg.com/ciam/api/identity
+      - type: OpenAPI
+        url: openapi/frontegg-identity-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-identity-rules.yml
+  - aid: frontegg:frontegg-tenants
+    name: Frontegg Account Management API
+    description: >
+      The Frontegg Account Management (Tenants) API manages B2B accounts, tenant hierarchies, sub-accounts, tenant
+      metadata,
+
+      invitations, and tenant-scoped configuration. Multi-tenancy is a core Frontegg concept and this API is how callers
+
+      create and manage the tenant graph.
+    humanURL: https://developers.frontegg.com/ciam/api/tenants
+    baseURL: https://api.frontegg.com/tenants
+    tags:
+      - Tenants
+      - Accounts
+      - Multi-Tenancy
+      - B2B
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/tenants
+      - type: OpenAPI
+        url: openapi/frontegg-tenants-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-tenants-rules.yml
+  - aid: frontegg:frontegg-sso
+    name: Frontegg Single Sign-On API
+    description: |
+      The Frontegg Single Sign-On (Team) API manages SAML and OIDC SSO configurations, IdP metadata, JIT provisioning,
+      enterprise connections, and domain claims. Frontegg ships with 5 Enterprise Connections included on the free Pay
+      As You Go tier.
+    humanURL: https://developers.frontegg.com/ciam/api/team
+    baseURL: https://api.frontegg.com/team
+    tags:
+      - SSO
+      - SAML
+      - OIDC
+      - Enterprise
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/team
+      - type: OpenAPI
+        url: openapi/frontegg-sso-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-sso-rules.yml
+  - aid: frontegg:frontegg-scim
+    name: Frontegg SCIM Provisioning API
+    description: >
+      The Frontegg SCIM 2.0 Provisioning API implements directory provisioning for users and groups from external
+      identity
+
+      providers such as Okta, Azure AD, and Google Workspace.
+    humanURL: https://developers.frontegg.com/ciam/api/scim
+    baseURL: https://api.frontegg.com/directory
+    tags:
+      - SCIM
+      - Provisioning
+      - Directory
+      - Identity
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/scim
+      - type: OpenAPI
+        url: openapi/frontegg-scim-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-scim-rules.yml
+  - aid: frontegg:frontegg-entitlements
+    name: Frontegg Entitlements API
+    description: >
+      The Frontegg Entitlements API manages feature flags, plans, subscriptions, packages, bundles, and entitlements
+      that
+
+      determine what users and tenants are allowed to do. 29 operations across 52 schemas govern entitlement decisions
+      in
+
+      the CIAM platform.
+    humanURL: https://developers.frontegg.com/ciam/api/entitlements
+    baseURL: https://api.frontegg.com/entitlements
+    tags:
+      - Entitlements
+      - Feature Flags
+      - Authorization
+      - Plans
+      - Subscriptions
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/entitlements
+      - type: OpenAPI
+        url: openapi/frontegg-entitlements-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-entitlements-rules.yml
+  - aid: frontegg:frontegg-entitlements-agent
+    name: Frontegg Entitlements Agent (PDP)
+    description: >
+      The Frontegg Entitlements Agent is a Policy Decision Point (PDP) that runs locally inside customer infrastructure
+      to
+
+      evaluate entitlements with millisecond latency. Default listen port 8181. Java and Node.js bindings ship as
+      separate
+
+      SDKs.
+    humanURL: https://developers.frontegg.com/ciam/api/agent
+    baseURL: http://localhost:8181
+    tags:
+      - PDP
+      - Policy Decision Point
+      - Entitlements
+      - Authorization
+      - Sidecar
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/agent
+      - type: OpenAPI
+        url: openapi/frontegg-entitlements-agent-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-entitlements-agent-rules.yml
+  - aid: frontegg:frontegg-applications
+    name: Frontegg Multi-Apps API
+    description: >
+      The Frontegg Applications (Multi-Apps) API manages multiple application surfaces under a single Frontegg
+      environment,
+
+      each with its own login experience, integrations, and tenant scope. Useful for portfolio SaaS vendors.
+    humanURL: https://developers.frontegg.com/ciam/api/applications
+    baseURL: https://api.frontegg.com/applications
+    tags:
+      - Applications
+      - Multi-App
+      - Tenant Scoping
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/applications
+      - type: OpenAPI
+        url: openapi/frontegg-applications-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-applications-rules.yml
+  - aid: frontegg:frontegg-audits
+    name: Frontegg Audits API
+    description: >
+      The Frontegg Audits API exposes the audit log surface for compliance, SOC 2, and security incident response.
+      Events
+
+      are streamed and queryable by tenant.
+    humanURL: https://developers.frontegg.com/ciam/api/audits
+    baseURL: https://api.frontegg.com/audits
+    tags:
+      - Audits
+      - Logging
+      - Compliance
+      - Security
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/audits
+      - type: OpenAPI
+        url: openapi/frontegg-audits-openapi.yml
+      - type: SpectralRules
+        url: rules/frontegg-audits-rules.yml
+  - aid: frontegg:frontegg-env-auth
+    name: Frontegg Environment Authentication API
+    description: |
+      The Frontegg Environment Authentication endpoint exchanges a Client ID and API Key for an environment-scoped JWT,
+      which is then used as the Bearer token for Management APIs. Single operation at /auth/vendor.
+    humanURL: https://developers.frontegg.com/ciam/api/overview
+    baseURL: https://api.frontegg.com/auth/vendor
+    tags:
+      - Authentication
+      - Vendor
+      - Environment
+      - JWT
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/api/overview
+      - type: OpenAPI
+        url: openapi/frontegg-env-auth-openapi.yml
+  - aid: frontegg:frontegg-combined
+    name: Frontegg Combined API
+    description: >
+      The combined OpenAPI specification bundles all Frontegg public services (Identity, Tenants, SSO, SCIM,
+      Entitlements,
+
+      Applications, Audits, and Environment Authentication) into a single document for end-to-end client generation.
+    humanURL: https://github.com/frontegg/openapi-public
+    baseURL: https://api.frontegg.com
+    tags:
+      - Combined
+      - Aggregated
+      - CIAM
+    properties:
+      - type: SourceCode
+        url: https://github.com/frontegg/openapi-public
+      - type: OpenAPI
+        url: openapi/frontegg-combined-openapi.yml
+  - aid: frontegg:frontegg-webhooks
+    name: Frontegg Webhooks
+    description: >
+      AsyncAPI 2.6 description of Frontegg's outbound webhook surface. Covers authentication, MFA, user lifecycle,
+      tenant
+
+      lifecycle, group, application, plan, API token, account security, and SCIM provisioning events. Frontegg signs
+      each
+
+      delivery with an x-webhook-secret header and treats any 2XX HTTP response as a successful delivery.
+    humanURL: https://developers.frontegg.com/ciam/guides/integrations/webhooks
+    baseURL: https://api.frontegg.com
+    tags:
+      - Webhooks
+      - AsyncAPI
+      - Events
+      - Authentication
+      - User Lifecycle
+      - Tenant Lifecycle
+      - MFA
+      - SCIM
+    properties:
+      - type: Documentation
+        url: https://developers.frontegg.com/ciam/guides/integrations/webhooks
+      - type: AsyncAPI
+        url: asyncapi/frontegg-webhooks-asyncapi.yml
 common:
-- type: Portal
-  url: https://frontegg.com
-- type: SignUp
-  url: https://frontegg-prod.us.frontegg.com/oauth/account/sign-up
-- type: Documentation
-  url: https://developers.frontegg.com
-- type: APIReference
-  url: https://developers.frontegg.com/ciam/api/overview
-- type: GettingStarted
-  url: https://developers.frontegg.com/guides/getting-started/home
-- type: Pricing
-  url: https://frontegg.com/pricing
-- type: Blog
-  url: https://frontegg.com/blog
-- type: StatusPage
-  url: https://status.frontegg.com
-- type: StatusAtom
-  url: https://status.frontegg.com/history.atom
-- type: StatusRSS
-  url: https://status.frontegg.com/history.rss
-- type: GitHub
-  url: https://github.com/frontegg
-- type: OpenAPIRepository
-  url: https://github.com/frontegg/openapi-public
-- type: SDK
-  url: https://github.com/frontegg/frontegg-react
-  name: React SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-nextjs
-  name: Next.js SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-angular
-  name: Angular SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-vue
-  name: Vue.js SDK
-- type: SDK
-  url: https://github.com/frontegg/nodejs-sdk
-  name: Node.js SDK
-- type: SDK
-  url: https://github.com/frontegg/python-sdk
-  name: Python SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-flutter
-  name: Flutter SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-ios-swift
-  name: iOS Swift SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-android-kotlin
-  name: Android Kotlin SDK
-- type: SDK
-  url: https://github.com/frontegg/frontegg-ionic-capacitor
-  name: Ionic Capacitor SDK
-- type: Tool
-  url: https://github.com/frontegg/terraform-provider-frontegg
-  name: Terraform Provider
-- type: Tool
-  url: https://github.com/frontegg/frontegg-mcp-server
-  name: MCP Server
-- type: Tool
-  url: https://github.com/frontegg/harmor
-  name: Harmor (data masking)
-- type: Plans
-  url: plans/frontegg-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/frontegg-rate-limits.yml
-- type: FinOps
-  url: finops/frontegg-finops.yml
-- type: Vocabulary
-  url: vocabulary/frontegg-vocabulary.yml
-- type: JSONLDContext
-  url: json-ld/frontegg-context.jsonld
-- type: LLMsTxt
-  url: https://developers.frontegg.com/llms.txt
+  - type: Portal
+    url: https://frontegg.com
+  - type: SignUp
+    url: https://frontegg-prod.us.frontegg.com/oauth/account/sign-up
+  - type: Documentation
+    url: https://developers.frontegg.com
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: GettingStarted
+    url: https://developers.frontegg.com/guides/getting-started/home
+  - type: Pricing
+    url: https://frontegg.com/pricing
+  - type: Blog
+    url: https://frontegg.com/blog
+  - type: StatusPage
+    url: https://status.frontegg.com
+  - type: StatusAtom
+    url: https://status.frontegg.com/history.atom
+  - type: StatusRSS
+    url: https://status.frontegg.com/history.rss
+  - type: GitHub
+    url: https://github.com/frontegg
+  - type: OpenAPIRepository
+    url: https://github.com/frontegg/openapi-public
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-react
+    name: React SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-nextjs
+    name: Next.js SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-angular
+    name: Angular SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-vue
+    name: Vue.js SDK
+  - type: SDK
+    url: https://github.com/frontegg/nodejs-sdk
+    name: Node.js SDK
+  - type: SDK
+    url: https://github.com/frontegg/python-sdk
+    name: Python SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-flutter
+    name: Flutter SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-ios-swift
+    name: iOS Swift SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-android-kotlin
+    name: Android Kotlin SDK
+  - type: SDK
+    url: https://github.com/frontegg/frontegg-ionic-capacitor
+    name: Ionic Capacitor SDK
+  - type: Tool
+    url: https://github.com/frontegg/terraform-provider-frontegg
+    name: Terraform Provider
+  - type: Tool
+    url: https://github.com/frontegg/frontegg-mcp-server
+    name: MCP Server
+  - type: Tool
+    url: https://github.com/frontegg/harmor
+    name: Harmor (data masking)
+  - type: Plans
+    url: plans/frontegg-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/frontegg-rate-limits.yml
+  - type: FinOps
+    url: finops/frontegg-finops.yml
+  - type: Vocabulary
+    url: vocabulary/frontegg-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/frontegg-context.jsonld
+  - type: LLMsTxt
+    url: https://developers.frontegg.com/llms.txt
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
