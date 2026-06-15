@@ -1,0 +1,546 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Account Management Overview",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "The account (tenant) ID to get."
+              }
+            ]
+          },
+          "docs": "Use the V2 route for **Get account (tenant)**. This route is no longer relevant."
+        },
+        {
+          "info": {
+            "name": "Update Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use the V2 route for **update account (tenant)**. This route is no longer relevant."
+        },
+        {
+          "info": {
+            "name": "Delete Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Create an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Current Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1"
+          },
+          "docs": "Delete the current account (tenant) and all users belonging to that account.\n\nOnly users with the `fe.account-settings.delete.account` permission can perform this action.\n\nA user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Add Account (tenant) Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1/:tenantId/metadata",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add metadata to an account (tenant).\n\nIf a metadata key already exists, its value is overwritten.\n\nProvide the account (tenant) ID as a path parameter and the metadata object in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Account (tenant) Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v1/:tenantId/metadata/:key",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a key-value pair from an account's (tenant's) metadata.\n\nProvide the account (tenant) ID and the metadata key as path parameters.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v2",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "The default limit is 50 accounts (tenants) per request, the maximum is 200"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_filter",
+                "value": "",
+                "type": "query",
+                "description": "This param allows filtering the request using an account's name or tenantId"
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query",
+                "description": "This param allows sorting the results via createdAt, name, tenantId"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query",
+                "description": "This param can be used together with sortBy and define the order as ACS or DESC"
+              },
+              {
+                "name": "_tenantIds",
+                "value": "",
+                "type": "query",
+                "description": "This param allows passing specific tenantIds and getting only these accounts (tenants) data"
+              }
+            ]
+          },
+          "docs": "Retrieve all accounts (tenants) for an environment.\n\nSupports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).\n\nYou can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200."
+        },
+        {
+          "info": {
+            "name": "Get an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v2/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an account (tenant) by its identifier.\n\nIf the account (tenant) cannot be found, an empty array is returned.\n\nProvide the account (tenant) ID as a path parameter.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Update an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v2/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an account (tenant).\n\nProvide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) by Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/tenants/v2/alias/:alias",
+            "params": [
+              {
+                "name": "alias",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an account (tenant) with custom login by alias. When an account (tenant) cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sub-accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Sub-account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/tenants/resources/sub-tenants/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Update Sub-account (tenant) Management",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/tenants/resources/sub-tenants/v1/:tenantId/management",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability"
+        },
+        {
+          "info": {
+            "name": "Update Sub-account Hierarchy Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/tenants/resources/sub-tenants/v1/:tenantId/hierarchy-settings",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users."
+        },
+        {
+          "info": {
+            "name": "Delete a Sub-account by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/tenants/resources/sub-tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get Sub-accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/hierarchy/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Parent Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/hierarchy/v1/parents",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Sub-accounts (tenanants) Hierarchy Tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/hierarchy/v1/tree",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/account-settings/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Update Account Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/tenants/resources/account-settings/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Public Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/account-settings/v1/public",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account Migration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/tenants/resources/migrations/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication."
+        },
+        {
+          "info": {
+            "name": "Accounts (tenants) Migration Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/tenants/resources/migrations/v1/tenants/status/:migrationId",
+            "params": [
+              {
+                "name": "migrationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sub-accounts and Hierarchy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Sub-account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/tenants/resources/hierarchy/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Sub-account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/tenants/resources/hierarchy/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

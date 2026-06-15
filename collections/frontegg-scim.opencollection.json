@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SCIM Provisioning Overview",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SCIM Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All SCIM Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/directory/resources/v1/configurations/scim2",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all provisioning (SCIM) configurations for the environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SCIM Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a SCIM Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/directory/resources/v1/configurations/scim2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a provisioning (SCIM) configuration for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get a SCIM Configuration by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/directory/resources/v1/configurations/scim2/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a provisioning (SCIM) configuration by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a SCIM Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/directory/resources/v1/configurations/scim2/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a provisioning (SCIM) configuration for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Delete a SCIM Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/directory/resources/v1/configurations/scim2/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a provisioning (SCIM) configuration for an account (tenant)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

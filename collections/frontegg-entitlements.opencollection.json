@@ -1,0 +1,1200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Entitlements Overview",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/tenant/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              },
+              {
+                "name": "excludeNonEntitledPlans",
+                "value": "",
+                "type": "query",
+                "description": "Boolean value to include related entities in the response"
+              },
+              {
+                "name": "featureKeys",
+                "value": "feature-key-1,feature-key-2",
+                "type": "query",
+                "description": "Filter plans that contain features with these keys"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans."
+        },
+        {
+          "info": {
+            "name": "Get Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs to filter results by"
+              },
+              {
+                "name": "userIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated user IDs to filter results by"
+              },
+              {
+                "name": "tenantIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated account (tenant) IDs to filter results by"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs."
+        },
+        {
+          "info": {
+            "name": "Create Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new plan with features, rules, default treatment, and optional auto-assignment settings."
+        },
+        {
+          "info": {
+            "name": "Get Single Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single plan by its unique identifier, including linked features and entitlements."
+        },
+        {
+          "info": {
+            "name": "Update Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing plan's name, features, rules, default treatment, or auto-assignment settings."
+        },
+        {
+          "info": {
+            "name": "Delete Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an existing plan by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Get Plan Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id/features",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input; Searchable fields: `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "key",
+                "type": "query",
+                "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs that can be used to filter the results"
+              },
+              {
+                "name": "permissionKeys",
+                "value": "permission.read,permission.write",
+                "type": "query",
+                "description": "Comma separated permission keys that can be used to filter the results"
+              },
+              {
+                "name": "hasFeatureFlag",
+                "value": "flase",
+                "type": "query",
+                "description": "Filter out features that are linked/not linked to feature-flag"
+              },
+              {
+                "name": "featureKeys",
+                "value": "test-feature",
+                "type": "query",
+                "description": "Comma separated feature Keys that can be used to filter the results"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`))."
+        },
+        {
+          "info": {
+            "name": "Link Features to Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id/features/link",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Link multiple features to an existing plan by their feature IDs."
+        },
+        {
+          "info": {
+            "name": "Unlink Features From Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/plans/v1/:id/features/unlink",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unlink multiple features from an existing plan by their feature IDs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Access Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1"
+          },
+          "docs": "Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating."
+        },
+        {
+          "info": {
+            "name": "Create Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management."
+        },
+        {
+          "info": {
+            "name": "Get Single Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules."
+        },
+        {
+          "info": {
+            "name": "Update Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management."
+        },
+        {
+          "info": {
+            "name": "Delete Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules."
+        },
+        {
+          "info": {
+            "name": "Import Open API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/import-open-api"
+          },
+          "docs": "Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition."
+        },
+        {
+          "info": {
+            "name": "Create or Replace Route Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/:id/rules",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "API Access Control Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Routes Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/configuration"
+          },
+          "docs": "Retrieve routes configuration"
+        },
+        {
+          "info": {
+            "name": "Update Routes Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/routes/v1/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update route configurations"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input; Searchable fields: `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "key",
+                "type": "query",
+                "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs that can be used to filter the results"
+              },
+              {
+                "name": "permissionKeys",
+                "value": "permission.read,permission.write",
+                "type": "query",
+                "description": "Comma separated permission keys that can be used to filter the results"
+              },
+              {
+                "name": "hasFeatureFlag",
+                "value": "flase",
+                "type": "query",
+                "description": "Filter out features that are linked/not linked to feature-flag"
+              },
+              {
+                "name": "featureKeys",
+                "value": "test-feature",
+                "type": "query",
+                "description": "Comma separated feature Keys that can be used to filter the results"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date."
+        },
+        {
+          "info": {
+            "name": "Create Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new feature with a unique name and key, optional description, and associated permissions."
+        },
+        {
+          "info": {
+            "name": "Update Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v1/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing feature's name, key, description, or associated permissions."
+        },
+        {
+          "info": {
+            "name": "Delete Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v1/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an existing feature by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Create Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata."
+        },
+        {
+          "info": {
+            "name": "Update Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/features/v2/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing feature's name, key, description, associated permissions, or custom metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, `ASC` for ascending, `DESC` for descending"
+              },
+              {
+                "name": "planId",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "UUID string representing the plan ID"
+              },
+              {
+                "name": "planIds",
+                "value": "[\"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"]",
+                "type": "query",
+                "description": "UUIDs string array representing the plan IDs"
+              },
+              {
+                "name": "assignLevel",
+                "value": "User",
+                "type": "query",
+                "description": "Assign level, `USER` for user-level entitlements, `TENANT` for tenant-level entitlements"
+              },
+              {
+                "name": "orderBy",
+                "value": "expirationDate",
+                "type": "query",
+                "description": "Field to order results by date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "userIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated user IDs to filter results by"
+              },
+              {
+                "name": "tenantIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated account (tenant) IDs to filter results by"
+              },
+              {
+                "name": "withRelations",
+                "value": "",
+                "type": "query",
+                "description": "Boolean value to include related entities in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`)."
+        },
+        {
+          "info": {
+            "name": "Create Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings."
+        },
+        {
+          "info": {
+            "name": "Batch Create Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users."
+        },
+        {
+          "info": {
+            "name": "Batch Update Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties."
+        },
+        {
+          "info": {
+            "name": "Batch Delete Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/batch",
+            "params": [
+              {
+                "name": "ids",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "UUID string that represents the entitlement ID"
+              }
+            ]
+          },
+          "docs": "Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements."
+        },
+        {
+          "info": {
+            "name": "Get Single Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata."
+        },
+        {
+          "info": {
+            "name": "Update Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify."
+        },
+        {
+          "info": {
+            "name": "Delete Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feature Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/feature-flags/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or name (`name`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields)."
+        },
+        {
+          "info": {
+            "name": "Create Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/feature-flags/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts."
+        },
+        {
+          "info": {
+            "name": "Get Single Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details."
+        },
+        {
+          "info": {
+            "name": "Update Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata."
+        },
+        {
+          "info": {
+            "name": "Delete Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ReBAC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entity Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1"
+          },
+          "docs": "List all entity types in your schema."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new entity type (e.g. document, folder, project)."
+        },
+        {
+          "info": {
+            "name": "Get Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an entity type along with its relations and actions."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing entity type."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key"
+          },
+          "docs": "Deletes an entity type and all its schema definitions."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/actions/:actionKey",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing action's relation mappings."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/actions/:actionKey"
+          },
+          "docs": "Remove an action from an entity type."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type Relations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/relations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/relations/:relationKey",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a relation's allowed subject entity types."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/entitlements/resources/entity-types/v1/:key/relations/:relationKey"
+          },
+          "docs": "Remove a relation definition from an entity type."
+        },
+        {
+          "info": {
+            "name": "Get Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/entitlements/resources/relations/v1/assignments",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all instance-level relationship assignments."
+        },
+        {
+          "info": {
+            "name": "Create Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/relations/v1/assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create relation assignments (instance-level relationships). E.g., \"User A is a reader of Document 1\"."
+        },
+        {
+          "info": {
+            "name": "Delete Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/entitlements/resources/relations/v1/unassign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove instance-level relationship assignments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

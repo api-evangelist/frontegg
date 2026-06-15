@@ -1,0 +1,645 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Single Sign-On Overview",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SAML Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Vendor's SAML Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/saml/configurations/vendor-config"
+          },
+          "docs": "Retrieve the environment’s SAML configuration.\n\nReturns the current SAML identity provider settings configured for the environment."
+        },
+        {
+          "info": {
+            "name": "Get Service Provider Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/saml/configurations/sp-certificate"
+          },
+          "docs": "Retrieve the service provider (SP) certificate used for SAML authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSO Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Provider Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/saml/configurations/sp-metadata",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve the service provider metadata for a specific account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get SSO Excluded Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/excluded-emails"
+          },
+          "docs": "Retrieve the list of email addresses excluded from SSO enforcement."
+        },
+        {
+          "info": {
+            "name": "Exclude Email From SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/excluded-emails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exclude an email address from SSO enforcement.\n\nProvide the email address to exclude in the request body."
+        },
+        {
+          "info": {
+            "name": "Delete SSO Excluded Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/excluded-emails/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove an email address from the list of SSO-excluded emails."
+        },
+        {
+          "info": {
+            "name": "Vendor Only - Force SSO Domain Validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/domains/:domain/force-validate",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Force domain validation for SSO configuration in the environment."
+        },
+        {
+          "info": {
+            "name": "Get SSO per Account (tenant) Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/multiple-sso-per-domain"
+          },
+          "docs": "Retrieve the SSO configuration for a specific account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create or Update SSO per Account (tenant) Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/multiple-sso-per-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the SSO configuration for a specific account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Configure OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/oidc/configurations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure or update an OpenID Connect (OIDC) identity provider for the environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSO Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SSO Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve Single Sign-On (SSO) configurations for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create SSO Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Single Sign-On (SSO) configuration for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Update SSO Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update SSO configuration"
+        },
+        {
+          "info": {
+            "name": "Delete SSO Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Single Sign-On (SSO) configurations for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create SSO Configuration Using Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/metadata",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Update SSO Configuration Using Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/metadata",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create SSO Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/domains",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a domain to a Single Sign-On (SSO) configuration for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Delete SSO Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/domains/:domainId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a domain from a Single Sign-On (SSO) configuration for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Validate SSO Domain by Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/domains/:domainId/validate/email",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Validate a domain in a Single Sign-On (SSO) configuration using the user's email domain."
+        },
+        {
+          "info": {
+            "name": "Validate SSO Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v2/configurations/:configurationId/domains/:domainId/validate",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Validate a domain in a Single Sign-On (SSO) configuration for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get SSO Default Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Set SSO Default Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get SSO Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/groups",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an SSO group from the specified SSO configuration for the account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create an SSO Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/groups",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SSO group for user management and access control within the specified SSO configuration for the account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Update SSO Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing SSO group within the specified SSO configuration for the account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Delete SSO Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "configurationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an existing SSO group from the specified SSO configuration for the account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get SSO Domains Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/domains"
+          },
+          "docs": "Retrieve the SSO domains configuration for the account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create or Update SSO Domains Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/configurations/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the SSO domains configuration for the account (tenant)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OIDC Configurations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OIDC Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/team/resources/sso/v1/oidc/configurations"
+          },
+          "docs": "Retrieve the OpenID Connect (OIDC) configuration for the environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
