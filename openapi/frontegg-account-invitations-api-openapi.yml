@@ -1,0 +1,395 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Account Invitations
+  x-displayName: Account invitations
+paths:
+  /resources/tenants/invites/v1/user:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantInvitesController_getTenantInviteForUser
+      summary: Get Account (tenant) Invite of User
+      description: Retrieve an invitation for a specific user to join an account (tenant).
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+    post:
+      operationId: TenantInvitesController_createTenantInviteForUser
+      summary: Create Account (tenant) Invite for User
+      description: 'Create an invitation for a specific user to join an account (tenant).
+
+
+        To create a general invitation, use the general invitation route.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInviteTokenRequestForUser'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantInvitesController_deleteTenantInviteForUser
+      summary: Delete Account (tenant) Invite of User
+      description: 'Delete an invitation for a specific user to join an account (tenant).
+
+
+        To delete a general invitation, use the general invitation route.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+    patch:
+      operationId: TenantInvitesController_updateTenantInviteForUser
+      summary: Update Account (tenant) Invite of User
+      description: 'Update an invitation for a specific user to join an account (tenant).
+
+
+        To set a specific expiration time, use the `expiresInMinutes` parameter to define when the invitation will be invalidated. Use the `shouldSendEmail` Boolean parameter to control whether an invitation email is sent.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInviteTokenRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+  /resources/tenants/invites/v1/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantInvitesController_verifyTenantInvite
+      summary: Verify Account (tenant) Invite
+      description: 'Verify an account (tenant) invitation.
+
+
+        Pass the invitation token as the `token` parameter.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyInviteTokenRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+  /resources/tenants/invites/v1/configuration:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: getInvitationConfiguration
+      summary: Get Account (tenant) Invite Configuration
+      description: 'Check whether account (tenant) invitations are enabled and whether notifications are active for your environment.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationConfigurationResponse'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+  /resources/tenants/invites/v2/user:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantInvitesV2Controller_createTenantInviteForUser
+      summary: Create Tenant Invite with Roles for User
+      description: Creates an invitation with assigned roles for a specific user to join an account (tenant). Provide the user's ID via the `frontegg-user-id` header and the account ID via the `frontegg-tenant-id` header. For general invitations without a specific user, use the general invitation endpoint instead.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInviteTokenRequestForUserV2'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateInviteTokenRequestForUserV2:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+        roleIds:
+          description: Array of role IDs to assign to invited users
+          example:
+          - role1
+          - role2
+          type: array
+          items:
+            type: string
+      required:
+      - expiresInMinutes
+      - shouldSendEmail
+      - roleIds
+    CreateInviteTokenRequestForUser:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+      required:
+      - expiresInMinutes
+      - shouldSendEmail
+    InvitationConfigurationResponse:
+      type: object
+      properties:
+        tenantInvitationsAllowed:
+          type: boolean
+        emailsEnabled:
+          type: boolean
+      required:
+      - tenantInvitationsAllowed
+      - emailsEnabled
+    UpdateInviteTokenRequest:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+    VerifyInviteTokenRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    InviteTokenDto:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        token:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        shouldSendEmail:
+          type: boolean
+        name:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - token
+      - expires
+      - shouldSendEmail
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

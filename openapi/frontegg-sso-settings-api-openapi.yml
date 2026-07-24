@@ -1,0 +1,282 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations SSO Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: SSO Settings
+  x-displayName: SSO settings
+paths:
+  /resources/sso/v1/saml/configurations/sp-metadata:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: SamlControllerV1_getSpMetadata
+      summary: Get Service Provider Metadata
+      description: Retrieve the service provider metadata for a specific account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Settings
+  /resources/sso/v1/configurations/excluded-emails:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ExcludeEmailsFromSSOV1_excludeSSOEmail
+      summary: Exclude Email From SSO
+      description: 'Exclude an email address from SSO enforcement.
+
+
+        Provide the email address to exclude in the request body.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExcludeEmailFromSSORequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Settings
+    get:
+      operationId: ExcludeEmailsFromSSOV1_getSSOExcludedEmails
+      summary: Get SSO Excluded Emails
+      description: Retrieve the list of email addresses excluded from SSO enforcement.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Settings
+  /resources/sso/v1/configurations/excluded-emails/{email}:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: ExcludeEmailsFromSSOV1_deleteSSOExcludedEmail
+      summary: Delete SSO Excluded Email
+      description: Remove an email address from the list of SSO-excluded emails.
+      parameters:
+      - name: email
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Settings
+  /resources/sso/v1/configurations/domains/{domain}/force-validate:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: VendorOnlySsoConfigurationControllerV1_forceSsoDomainValidation
+      summary: Vendor Only - Force SSO Domain Validation
+      description: Force domain validation for SSO configuration in the environment.
+      parameters:
+      - name: domain
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForceValidateDomainRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Settings
+  /resources/sso/v1/configurations/multiple-sso-per-domain:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: SsoPerTenantControllerV1_getSSOPerTenantConfig
+      summary: Get SSO per Account (tenant) Configuration
+      description: Retrieve the SSO configuration for a specific account (tenant).
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Settings
+    put:
+      operationId: SsoPerTenantControllerV1_createOrUpdateSSOPerTenantConfig
+      summary: Create or Update SSO per Account (tenant) Configuration
+      description: Create or update the SSO configuration for a specific account (tenant).
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSOPerTenantConfigRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Settings
+  /resources/sso/v1/oidc/configurations:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: OidcControllerV1_configureOidc
+      summary: Configure OIDC
+      description: Configure or update an OpenID Connect (OIDC) identity provider for the environment.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigureOidcRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Settings
+components:
+  schemas:
+    CreateSSOPerTenantConfigRequest:
+      type: object
+      properties:
+        unspecifiedTenantStrategy:
+          type: string
+        active:
+          type: boolean
+        useActiveTenant:
+          type: boolean
+      required:
+      - unspecifiedTenantStrategy
+      - active
+      - useActiveTenant
+    ConfigureOidcRequest:
+      type: object
+      properties:
+        active:
+          type: boolean
+        redirectUri:
+          type: string
+          description: Redirect URI that the user will be redirected. Should match the redirect URI you set on your application. Leave it empty if you didn't change it on your application
+      required:
+      - active
+    ForceValidateDomainRequestDto:
+      type: object
+      properties: {}
+    ExcludeEmailFromSSORequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

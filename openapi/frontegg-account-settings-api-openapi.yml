@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Account Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Account Settings
+  x-displayName: Account settings
+paths:
+  /resources/account-settings/v1:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: AccountSettingsControllerV1_getSettings
+      summary: Get Account Settings
+      description: Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Settings retrieved successfully
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+      security:
+      - bearer: []
+    put:
+      operationId: AccountSettingsControllerV1_updateSettings
+      summary: Update Account Settings
+      description: Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSettingsUpdateRequest'
+      responses:
+        '200':
+          description: Settings updated successfully
+        '400':
+          description: 'When: a) given parameters do not pass validation b) empty object is passed in request content'
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+      security:
+      - bearer: []
+  /resources/account-settings/v1/public:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: AccountSettingsControllerV1_getPublicSettings
+      summary: Get Public Settings
+      description: Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Public settings retrieved successfully
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+      security:
+      - bearer: []
+components:
+  schemas:
+    AccountSettingsUpdateRequest:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

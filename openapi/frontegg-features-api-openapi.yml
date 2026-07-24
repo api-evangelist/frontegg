@@ -1,0 +1,528 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Features API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Features
+  x-displayName: Features
+paths:
+  /resources/features/v1:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: FeaturesControllerV1_getFeatures
+      x-tag: Features
+      summary: Get Feature Flags
+      description: Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: 'Search input; Searchable fields: `name`'
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Order fields by date created (`createdAt`) or expired (`expirationDate`)
+        example: key
+        schema:
+          default: createdAt
+          enum:
+          - name
+          - key
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort fields by an ascending (`ASC`) or a decending (`DESC`) order
+        example: ASC
+        schema:
+          default: DESC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs that can be used to filter the results
+        example:
+        - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: permissionKeys
+        required: false
+        in: query
+        description: Comma separated permission keys that can be used to filter the results
+        example:
+        - permission.read
+        - permission.write
+        schema:
+          type: array
+          items:
+            type: string
+      - name: hasFeatureFlag
+        required: false
+        in: query
+        description: Filter out features that are linked/not linked to feature-flag
+        example: flase
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Comma separated feature Keys that can be used to filter the results
+        example:
+        - test-feature
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FeatureDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Features
+      security:
+      - bearer: []
+    post:
+      operationId: FeaturesControllerV1_createFeature
+      x-tag: Features
+      summary: Create Feature
+      description: Create a new feature with a unique name and key, optional description, and associated permissions.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeatureDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureDto'
+      tags:
+      - Features
+      security:
+      - bearer: []
+  /resources/features/v1/{featureId}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: FeaturesControllerV1_updateFeature
+      x-tag: Features
+      summary: Update Feature
+      description: Update an existing feature's name, key, description, or associated permissions.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeatureDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+      security:
+      - bearer: []
+    delete:
+      operationId: FeaturesControllerV1_deleteFeature
+      x-tag: Features
+      summary: Delete Feature
+      description: Delete an existing feature by its unique identifier.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+      security:
+      - bearer: []
+  /resources/features/v2:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: FeaturesControllerV2_create
+      x-tag: Features
+      summary: Create Feature
+      description: Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeatureDtoV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureDto'
+      tags:
+      - Features
+      security:
+      - bearer: []
+  /resources/features/v2/{featureId}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: FeaturesControllerV2_update
+      x-tag: Features
+      summary: Update Feature
+      description: Update an existing feature's name, key, description, associated permissions, or custom metadata.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeatureDtoV2'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+      security:
+      - bearer: []
+components:
+  schemas:
+    FeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string representing the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        metadata:
+          type: object
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        createdAt:
+          type: string
+          description: Date when a feature was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when a feature was last updated
+          example: '2022-01-01T00:00:00'
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+        featureFlag:
+          description: Related Feature-Flag
+          allOf:
+          - $ref: '#/components/schemas/FeatureFlagDtoThin'
+      required:
+      - id
+      - vendorId
+      - name
+      - key
+      - metadata
+      - createdAt
+    PageDto:
+      type: object
+      properties: {}
+    UpdateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+    CreateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - key
+    UpdateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+    FeatureFlagDtoThin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the feature flag ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was created
+          example: '2022-01-01T00:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was last updated
+          example: '2022-01-01T00:00:00'
+    CreateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+      required:
+      - name
+      - key
+    PermissionDto:
+      type: object
+      properties:
+        permissionKey:
+          type: string
+          description: Permission key
+          example: user.read
+        permissionId:
+          type: string
+          description: Permission identifier
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

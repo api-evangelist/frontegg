@@ -1,0 +1,3124 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations User Management API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: User Management
+  x-displayName: User management
+paths:
+  /resources/tenants/users/v1/{userId}/disable:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantsControllerV1_disableUserTenant
+      summary: Disable User Account (tenant)
+      description: 'Disable a user for an account (tenant).
+
+
+        A disabled user cannot log in to the account (tenant) or use the system.
+
+
+        Provide the user''s ID as a path parameter.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+        '403':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/tenants/users/v1/{userId}/enable:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantsControllerV1_enableUserTenant
+      summary: Enable User Account (tenant)
+      description: 'Enable a disabled user for an account (tenant).
+
+
+        An enabled user can log in and use the system.
+
+
+        Provide the user''s ID as a path parameter.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+        '403':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/temporary/v1/{userId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: TemporaryUsersV1Controller_editTimeLimit
+      summary: Sets a Permanent User to Temporary
+      description: 'Update the settings for temporary users.
+
+
+        Use this route to enable or disable temporary users for your environment'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemporaryUserDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryUserDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    delete:
+      operationId: TemporaryUsersV1Controller_setUserPermanent
+      summary: Sets a Temporary User to Permanent
+      description: 'Set an existing temporary user as permanent.
+
+
+        Provide the user''s ID as a path parameter.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/temporary/v1/configuration:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TemporaryUsersV1Controller_getConfiguration
+      summary: Gets Temporary Users Configuration
+      description: 'Retrieve the settings for temporary users.
+
+
+        Use this endpoint to check whether the policy is enabled or disabled.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryUsersConfigurationDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserEmailsControllerV1_getAllEmails
+      summary: Get All User Emails
+      description: 'This route returns all user emails. '
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - userId
+          - email
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _email
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: userIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/UserEmailResponseDto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    post:
+      operationId: UserEmailsControllerV1_createUserEmail
+      summary: Create a User Email
+      description: This route creates a user email.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEmailRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEmailResponseDto'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEmailResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserEmailsControllerV1_verifyUserEmail
+      summary: Verify User Email
+      description: This route verifies a user email.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEmailVerifyRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/{emailId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UserEmailsControllerV1_deleteUserEmail
+      summary: Delete a User Email
+      description: This route deletes a user email.
+      parameters:
+      - name: emailId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/vendor/{userId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserEmailsControllerV1_createUserEmailForVendor
+      summary: Create a User Email for Vendor
+      description: Creates a new email address for a user.
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEmailVendorRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEmailResponseDto'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEmailResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/vendor/{userId}/{emailId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UserEmailsControllerV1_deleteUserEmailForVendor
+      summary: Delete a User Email for Vendor
+      description: This route deletes a user email.
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: emailId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/vendor/{userId}/primary:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserEmailsControllerV1_markEmailAsPrimary
+      summary: Mark Email as Primary for Vendor
+      description: This route marks an email as primary.
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkEmailAsPrimaryRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/me/primary:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserEmailsControllerV1_markEmailAsPrimaryMe
+      summary: Mark Email as Primary
+      description: This route marks an email as primary.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkEmailAsPrimaryRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/emails/v1/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserEmailsControllerV1_getUserOwnEmails
+      summary: Get Current User`s Emails
+      description: This route returns all user emails for the current user.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserEmailResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/sub-tenants/users/v1/{userId}/access:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UsersControllerV1_setUserRolesFromSubTenants
+      summary: Set Sub-account Access for a User
+      description: 'Set sub-account access for a user.
+
+
+        Use this endpoint to enable or disable sub-account access by setting the value to `true` or `false`.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubAccountAccessRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/activate/reset:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersActivationControllerV1_resetActivationToken
+      summary: Reset User Activation Token
+      description: 'Reset the activation token for a user and trigger a new activation email.
+
+
+        Provide the user''s ID as a path parameter.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetActivationTokenDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/invitation/reset:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantManagementControllerV1_resetTenantInvitationToken
+      summary: Reset Invitation
+      description: 'Reset an invitation for a user to join a specific account (tenant).
+
+
+        The response includes a new invitation link with a new token.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetTenantInvitationDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/invitation/reset/all:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantManagementControllerV1_resetAllTenantsInvitationToken
+      summary: Reset All Invitation Tokens
+      description: 'Reset all invitations for a user to join all sub-accounts (tenants) that currently have an invitation token.
+
+
+        The response includes new invitation links with new tokens.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetTenantInvitationDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v3:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV3_getUsers
+      summary: Get Users
+      description: Retrieve all users for an account (tenant) or for the entire environment.
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        description: The default limit is 50 users per request, the maximum is 200
+        schema:
+          type: number
+      - name: _identifier
+        required: false
+        in: query
+        description: Filter users by username prefix match. Must be provided together with _identifierType
+        schema:
+          type: string
+      - name: _identifierType
+        required: false
+        in: query
+        description: Filter users by username. Must be provided together with _identifier
+        schema:
+          enum:
+          - email
+          - phoneNumber
+          - username
+          type: string
+      - name: _includeSubTenants
+        required: false
+        in: query
+        description: when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users
+        schema:
+          default: true
+          type: boolean
+      - name: _namePrefix
+        required: false
+        in: query
+        description: Filter users by prefix name match
+        schema:
+          type: string
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _email
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: _tenantId
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: ids
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - createdAt
+          - name
+          - email
+          - id
+          - verified
+          - isLocked
+          - provider
+          - tenantId
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _externalIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/UserV3Dto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v3/roles:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV3_getUsersRoles
+      summary: Get Users Roles
+      description: Retrieve all user roles for an account (tenant).
+      parameters:
+      - name: ids
+        required: true
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserRolesResponse'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v3/groups:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV3_getUsersGroups
+      summary: Get Users Groups
+      description: Retrieve all user groups for an account (tenant).
+      parameters:
+      - name: ids
+        required: true
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserGroupsResponse'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v3/me/unlock:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersControllerV3_unlock
+      summary: Unlock User
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnlockUserRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      description: 'Unlock your user account.
+
+
+        Provide the required information in the request body to unlock the account.'
+      security:
+      - bearer: []
+  /resources/users/v2:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersControllerV2_createUser
+      summary: Invite User
+      description: 'Create a user for a specific account (tenant).
+
+
+        Include the user''s information in the request body. The `email` and `metadata` fields are required. The `metadata` field can be empty (e.g., `{}`).'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreatedResponse'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v2/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UsersControllerV2_updateUserProfile
+      summary: Update User Profile
+      description: 'Update the profile of a logged-in user.
+
+
+        Provide the updated values in the request body.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    get:
+      operationId: UsersControllerV2_getUserProfile
+      summary: Get User Profile
+      description: 'Retrieve the profile of a logged-in user.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersControllerV1_createUser
+      summary: Create User
+      description: Use the V2 route for Invite User. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreatedResponse'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    put:
+      operationId: UsersControllerV1_updateUser
+      summary: Update User
+      description: 'TUpdate a user''s information for a specific account (tenant).
+
+
+        Include the updated user information in the request body.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/{userId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UsersControllerV1_removeUserFromTenant
+      summary: Remove User
+      description: 'Remove a user globally or from a specific account (tenant).
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier (optional)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/{userId}/roles:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersControllerV1_addRolesToUser
+      summary: Assign Roles to User
+      description: Associate roles to a specific user for a specific account (tenant).
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignUserToRolesDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignUserToRolesResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    delete:
+      operationId: UsersControllerV1_deleteRolesFromUser
+      summary: Unassign Roles From User
+      description: 'Disassociate roles from a specific user for a specific account (tenant).
+
+
+        Include the role IDs in the request body as an array of strings.'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignUserFromRolesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserToRolesResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/tenant:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UsersControllerV1_updateUserTenant
+      summary: Update User's Active Account (tenant)
+      description: 'Update the current account (tenant) for a logged-in user.
+
+
+        Use this endpoint when a user belongs to multiple accounts (tenants) and wants to change the active account (tenant).
+
+
+        Include the target account (tenant) ID in the request body.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserTenantDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/query/phrase:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV1_searchUsers
+      summary: Get Users with Fuzzy Search
+      description: 'Retrieve all users for a specific account (tenant) or for the entire environment.
+
+
+        In addition to all standard Get users query parameters, this route supports phrase search, enabling complex queries with options such as `contains`, `excludes`, `optional`, and approximate matching.'
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        description: The default limit is 50 users per request, the maximum is 200
+        schema:
+          type: number
+      - name: _identifier
+        required: false
+        in: query
+        description: Filter users by username prefix match. Must be provided together with _identifierType
+        schema:
+          type: string
+      - name: _identifierType
+        required: false
+        in: query
+        description: Filter users by username. Must be provided together with _identifier
+        schema:
+          enum:
+          - email
+          - phoneNumber
+          - username
+          type: string
+      - name: _includeSubTenants
+        required: false
+        in: query
+        description: when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users
+        schema:
+          default: true
+          type: boolean
+      - name: _namePrefix
+        required: false
+        in: query
+        description: Filter users by prefix name match
+        schema:
+          type: string
+      - name: _phraseSearchContains
+        required: false
+        in: query
+        description: Pass a list of strings, separated by comma, to search for users that contain all of the strings in the list
+        schema:
+          type: array
+          items:
+            type: string
+      - name: _phraseSearchExcludes
+        required: false
+        in: query
+        description: Pass a list of strings, separated by comma, to search for users that do not contain any of the strings in the list
+        schema:
+          type: array
+          items:
+            type: string
+      - name: _phraseSearchOptional
+        required: false
+        in: query
+        description: Pass a list of strings, separated by comma, to search for users that contain at least one of the strings in the list
+        schema:
+          type: array
+          items:
+            type: string
+      - name: _phraseSearchApproximate
+        required: false
+        in: query
+        description: When true, the search will be approximate (fuzzy), meaning it will include similar characters to the ones in the search string
+        schema:
+          default: false
+          type: boolean
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _email
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: _tenantId
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: ids
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - createdAt
+          - name
+          - email
+          - id
+          - verified
+          - isLocked
+          - provider
+          - tenantId
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _externalIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/UserV3Dto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/usernames/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsernamesControllerV1_getUsersUsernames
+      summary: Get Usernames for Users
+      description: This route gets usernames for users.
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - userId
+          - username
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _usernamePrefix
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: userIds
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: usernames
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsernameResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+    post:
+      operationId: UsernamesControllerV1_createUsername
+      summary: Create a Username for User
+      description: This route creates a username for a user.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUsernameRequestDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/usernames/v1/{username}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UsernamesControllerV1_deleteUsername
+      summary: Delete a Username for User
+      description: This route deletes a username for a user.
+      parameters:
+      - name: username
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/usernames/v1/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsernamesControllerV1_getMeUsernames
+      summary: Get Authenticated User's Username
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsernameResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/email/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SelfEmailUpdateControllerV1_updateEmailMe
+      summary: Update User Email
+      description: This route updates the email for a user.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelfEmailUpdateRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/email/me/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SelfEmailUpdateControllerV1_verifyEmailMe
+      summary: Verify User Email
+      description: This route verifies the email for a user.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelfEmailUpdateVerifyRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/activate:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersActivationControllerV1_activateUser
+      summary: Activate User
+      description: 'Activate a non-activated user.
+
+
+        Include the `userId` and `activationToken` in the request body. If required by your environment''s sign-in flow, also include the user''s password and reCAPTCHA values.
+
+
+        You can generate an activation token using the route under Users → Generate Activation Token.
+
+
+        Alternatively, you can use the built-in email template for user activation.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateUserDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/activate/code:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersActivationControllerV1_activateUserWithCode
+      summary: Activate User with Code
+      description: 'Activate a non-activated user.
+
+
+        Use this endpoint to implement a custom activation flow.
+
+
+        Include the `userId`, `activationToken`, and `code` in the request body. If required by your environment''s sign-in flow, also include the user''s password and reCAPTCHA values.
+
+
+        You can generate an activation token using the route under Users → Generate Activation Token.
+
+
+        Alternatively, you can use the built-in email template for user activation.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateUserWithCodeDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/activate/strategy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersActivationControllerV1_getActivationStrategy
+      summary: Get User Activation Strategy
+      description: 'Retrieve a user''s activation strategy.
+
+
+        The activation strategy indicates whether the user needs to set a password.
+
+
+        Include the `userId` and `activationToken` in the request body. You can generate an activation token using the route under Users → Generate Activation Token.
+
+
+        The response returns a Boolean field `shouldSetPassword`. If `true`, the user needs to set a password. If `false`, the user does not need to set a password (for example, SSO users do not set passwords).'
+      parameters:
+      - name: userId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: token
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActivateStrategyResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/invitation/accept:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantManagementControllerV1_acceptInvitation
+      summary: Accept Invitation
+      description: 'Accept an invitation for a user to join a specific account (tenant).
+
+
+        Include the `userId` and `invitationToken` in the request body. These values appear as query parameters in the URL that Frontegg sends to the user in the activation email.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptInvitationDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/invitation/accept/code:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersTenantManagementControllerV1_acceptInvitationWithCode
+      summary: Accept Invitation with Code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptInvitationWithCodeDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Management
+      description: 'Accept an invitation to join a specific account (tenant) using an invitation code.
+
+
+        Include the required `userId`, `invitationToken`, and `code` in the request body.'
+      security:
+      - bearer: []
+  /resources/users/v3/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV3_getUserProfile
+      summary: Get User Profile
+      description: 'Retrieve the profile of a logged-in user.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserV3Dto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v2/me/tenants:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV2_getUserTenants
+      summary: Get User Accounts (tenants)
+      description: 'Retrieve the list of accounts (tenants) that a logged-in user belongs to.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserTenantDataDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v2/me/hierarchy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV2_getUserTenantsHierarchy
+      summary: Get User Accounts (tenants) Hierarchy
+      description: 'Retrieve the list of accounts (tenants) with hierarchy metadata that a logged-in user belongs to.
+
+
+        If the user is a member of multiple accounts (tenants) in a hierarchy, some entries may be reduced based on the hierarchy structure.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserTenantsHierarchyResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/me/authorization:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV1_getMeAuthorization
+      summary: Get User Permissions and Roles
+      description: 'Retrieve the list of permissions and roles that a logged-in user has.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeAuthorizationResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+  /resources/users/v1/me/tenants:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UsersControllerV1_getUserTenants
+      summary: Get User Accounts (tenants)
+      description: 'Retrieve the list of accounts (tenants) that a logged-in user belongs to.
+
+
+        No parameters are required.
+
+
+        Use your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserTenantsResponseDto'
+      tags:
+      - User Management
+      security:
+      - bearer: []
+components:
+  schemas:
+    AcceptInvitationWithCodeDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+        code:
+          type: string
+      required:
+      - userId
+      - token
+      - code
+    TemporaryUsersConfigurationDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
+    CreateUserEmailVendorRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: New email
+        isVerified:
+          type: boolean
+          description: Is user email verified
+      required:
+      - email
+    MeAuthorizationResponseDto:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionResponse'
+      required:
+      - roles
+      - permissions
+    UserTenantDataDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        name:
+          type: string
+      required:
+      - tenantId
+      - name
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    GetUserGroupsResponse:
+      type: object
+      properties: {}
+    AssignUserToRolesDto:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    GetUserRolesResponse:
+      type: object
+      properties: {}
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    CreateUserDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email of the user. If not provided, the username is required
+        username:
+          type: string
+          maxLength: 255
+          pattern: /^[a-zA-Z0-9._-]+$/
+          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        password:
+          type: string
+        phoneNumber:
+          type: string
+        provider:
+          type: string
+          default: local
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        skipInviteEmail:
+          type: boolean
+        roleIds:
+          type: array
+          items:
+            type: string
+        emailMetadata:
+          type: object
+        expirationInSeconds:
+          type: number
+          minimum: 300
+          description: Temporary user expiration in seconds
+    UserEmailResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        verified:
+          type: boolean
+        isPrimary:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - userId
+      - email
+      - verified
+      - isPrimary
+      - createdAt
+      - updatedAt
+    UserMFAPhoneDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - id
+      - phoneNumber
+    SelfEmailUpdateRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email to update to
+      required:
+      - email
+    AcceptInvitationDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+      required:
+      - userId
+      - token
+    ActivateUserWithCodeDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        lastTermsCheck:
+          type: string
+        code:
+          type: string
+      required:
+      - userId
+      - token
+      - code
+    UserV3Dto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        sub:
+          type: string
+        verified:
+          type: boolean
+        mfaEnrolled:
+          type: boolean
+        mfaBypass:
+          type: boolean
+        phoneNumber:
+          type: string
+        provider:
+          type: string
+        tenantId:
+          type: string
+        tenantIds:
+          type: array
+          items:
+            type: string
+        activatedForTenant:
+          type: boolean
+        isLocked:
+          type: boolean
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTenantDto'
+        invisible:
+          type: boolean
+        superUser:
+          type: boolean
+        metadata:
+          type: string
+        vendorMetadata:
+          type: string
+        externalId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        subAccountAccessAllowed:
+          type: boolean
+        managedBy:
+          enum:
+          - frontegg
+          - scim2
+          - external
+          type: string
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - sub
+      - verified
+      - mfaEnrolled
+      - provider
+      - tenantId
+      - tenantIds
+      - tenants
+      - metadata
+      - vendorMetadata
+      - createdAt
+      - lastLogin
+      - subAccountAccessAllowed
+    ResetActivationTokenDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        emailMetadata:
+          type: object
+      required:
+      - email
+      - emailMetadata
+    TemporaryUserDto:
+      type: object
+      properties:
+        expirationInSeconds:
+          type: number
+          minimum: 300
+      required:
+      - expirationInSeconds
+    UserCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        verified:
+          type: boolean
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        metadata:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        activatedForTenant:
+          type: boolean
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+    UnlockUserRequestDto:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    GetUserTenantsHierarchyResponseDto:
+      type: object
+      properties: {}
+    GetActivateStrategyResponseDto:
+      type: object
+      properties:
+        shouldSetPassword:
+          type: boolean
+      required:
+      - shouldSetPassword
+    AssignUserToRolesResponseDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/IRole'
+      required:
+      - tenantId
+      - userId
+      - roles
+    PermissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        categoryId:
+          type: string
+        fePermission:
+          type: boolean
+      required:
+      - id
+      - key
+      - name
+      - description
+      - createdAt
+      - updatedAt
+      - roleIds
+      - categoryId
+      - fePermission
+    MarkEmailAsPrimaryRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email to mark as primary
+      required:
+      - email
+    ActivateUserDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        lastTermsCheck:
+          type: string
+      required:
+      - userId
+      - token
+    CreateUserEmailVerifyRequestDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code for the user to verify their email
+        email:
+          type: string
+          description: The email for the user to verify their email
+      required:
+      - code
+      - email
+    CreateUsernameRequestDto:
+      type: object
+      properties:
+        username:
+          type: string
+          description: 'The username to create. Allowed characters: alphanumeric (a-z, 0-9), ^, $, ., !, -, #, +, '', ~, _ (no spaces, no accents, automatically converted to lowercase). Max length: 128 characters.'
+          example: john.doe$!#-+'~_
+      required:
+      - username
+    UnassignUserFromRolesDto:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    DeleteUserToRolesResponseDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/IRole'
+      required:
+      - tenantId
+      - userId
+      - roles
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        sub:
+          type: string
+        verified:
+          type: boolean
+        mfaEnrolled:
+          type: boolean
+        mfaBypass:
+          type: boolean
+        phoneNumber:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionResponse'
+        provider:
+          type: string
+        tenantId:
+          type: string
+        tenantIds:
+          type: array
+          items:
+            type: string
+        activatedForTenant:
+          type: boolean
+        isLocked:
+          type: boolean
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTenantDto'
+        invisible:
+          type: boolean
+        superUser:
+          type: boolean
+        metadata:
+          type: string
+        vendorMetadata:
+          type: string
+        externalId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        groups:
+          type: array
+          items:
+            type: object
+        subAccountAccessAllowed:
+          type: boolean
+        managedBy:
+          enum:
+          - frontegg
+          - scim2
+          - external
+          type: string
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - sub
+      - verified
+      - mfaEnrolled
+      - roles
+      - permissions
+      - provider
+      - tenantId
+      - tenantIds
+      - tenants
+      - metadata
+      - vendorMetadata
+      - createdAt
+      - lastLogin
+      - subAccountAccessAllowed
+    ResetTenantInvitationDto:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    UpdateUserDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9]{1}(\-?)(([0-9])(\-?)){5,13}(([0-9]$){1})
+        profilePictureUrl:
+          type: string
+          nullable: true
+          maxLength: 4095
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    UserMFADevicesResponse:
+      type: object
+      properties:
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+      required:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    IRole:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - key
+      - name
+      - description
+      - isDefault
+      - level
+      - createdAt
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        tokenType:
+          type: string
+          default: bearer
+        otcToken:
+          type: string
+        mfaRequired:
+          type: boolean
+        mfaToken:
+          type: string
+        resetPasswordToken:
+          type: string
+        passwordExpiresIn:
+          type: number
+        notificationPeriod:
+          type: number
+        mfaEnrolled:
+          type: boolean
+        mfaDevices:
+          $ref: '#/components/schemas/UserMFADevicesResponse'
+        mfaStrategies:
+          type: object
+        qrCode:
+          type: string
+        recoveryCode:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+        expires:
+          type: string
+        userId:
+          type: string
+        userEmail:
+          type: string
+        emailVerified:
+          type: boolean
+        isBreachedPassword:
+          type: boolean
+      required:
+      - mfaRequired
+      - accessToken
+      - refreshToken
+      - expiresIn
+      - expires
+    GetUserTenantsResponseDto:
+      type: object
+      properties: {}
+    UpdateSubAccountAccessRequestDto:
+      type: object
+      properties:
+        allowAccess:
+          type: boolean
+      required:
+      - allowAccess
+    SelfEmailUpdateVerifyRequestDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code for the user to verify their email
+        email:
+          type: string
+          description: The email for the user to verify their email
+      required:
+      - code
+      - email
+    UserTenantDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+        isDisabled:
+          type: boolean
+      required:
+      - tenantId
+      - roles
+    CreateUserEmailRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: New email
+      required:
+      - email
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    UpdateUserTenantDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user
+      required:
+      - tenantId
+    UsernameResponseDto:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The username value
+          example: user.name
+        userId:
+          type: string
+          description: The user id value
+          example: user-id
+      required:
+      - username
+      - userId
+    UserMFAWebAuthnDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
+      required:
+      - id
+      - deviceType
+      - name
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

@@ -1,0 +1,330 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Email Templates API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Email Templates
+  x-displayName: Email templates
+paths:
+  /resources/mail/v1/configs/templates:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: MailV1Controller_addOrUpdateTemplate
+      summary: Add or Update Template
+      description: 'Create or update an email template for your environment.
+
+
+        Specify the email template using the `type` parameter. The value of `type` must match one of the predefined Frontegg email templates. Set the sender using the `senderEmail` parameter, and optionally include values for the other available body parameters. Provide the template information in the request body.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTemplateDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+    get:
+      operationId: MailV1Controller_getTemplateConfiguration
+      summary: Get Template
+      description: 'Retrieve all email templates for your environment.
+
+
+        To retrieve a specific template, pass its `type` as a query parameter.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: type
+        required: false
+        in: query
+        schema:
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetTemplateResponseDto'
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+  /resources/mail/v1/configs/templates/{templateId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: MailV1Controller_deleteTemplate
+      summary: Delete Template
+      description: 'Delete a specified email template.
+
+
+        Provide the ID of the template to delete. You can obtain the template ID via the **Get template** API.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: templateId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+  /resources/mail/v1/configs/{type}/default:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: MailV1Controller_getDefaultTemplateConfiguration
+      summary: Get Default Template by Type
+      description: 'Retrieve the default email template by type.
+
+
+        Pass the required `type` as a query parameter.'
+      parameters:
+      - name: type
+        required: true
+        in: path
+        description: The email template type
+        schema:
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTemplateResponseDto'
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateTemplateDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+        senderEmail:
+          type: string
+          description: Email of the sender cannot exceed 512 characters
+        subject:
+          type: string
+          description: Subject of the email cannot exceed 512 characters
+        fromName:
+          type: string
+          description: Name of the sender cannot exceed 512 characters
+        redirectURL:
+          type: string
+          description: 'Only required for: ResetPassword, ActivateUser, InviteToTenant, MagicLink, BulkInvitesToTenant'
+        htmlTemplate:
+          type: string
+          maxLength: 1000000
+        successRedirectUrl:
+          type: string
+        active:
+          type: boolean
+      required:
+      - type
+    GetTemplateResponseDto:
+      type: object
+      properties:
+        htmlTemplate:
+          type: string
+        senderEmail:
+          type: string
+        redirectURL:
+          type: string
+        successRedirectUrl:
+          type: string
+        subject:
+          type: string
+        fromName:
+          type: string
+        active:
+          type: boolean
+        type:
+          type: object
+        redirectURLPattern:
+          type: string
+        successRedirectUrlPattern:
+          type: string
+      required:
+      - htmlTemplate
+      - senderEmail
+      - redirectURL
+      - successRedirectUrl
+      - subject
+      - fromName
+      - active
+      - type
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

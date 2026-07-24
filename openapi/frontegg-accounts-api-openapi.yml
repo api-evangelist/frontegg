@@ -1,0 +1,446 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Accounts API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Accounts
+  x-displayName: Accounts
+paths:
+  /resources/tenants/v1/{tenantId}:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantControllerV1_getTenant
+      summary: Get Account (tenant) by ID
+      description: Use the V2 route for **Get account (tenant)**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        description: The account (tenant) ID to get.
+        schema:
+          type: string
+      responses:
+        '400':
+          description: When the account (tenant) ID does not pass the validation.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+    put:
+      operationId: TenantControllerV1_updateTenant
+      summary: Update Account (tenant)
+      description: Use the V2 route for **update account (tenant)**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        '400':
+          description: When body doesn't contain any property to change.
+        '404':
+          description: When given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantControllerV1_deleteTenant
+      summary: Delete Account (tenant)
+      description: Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /resources/tenants/v1:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantControllerV1_createTenant
+      summary: Create an Account (tenant)
+      description: Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '400':
+          description: When the account (tenant) ID does not pass the validation.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantControllerV1_deleteCurrentTenant
+      summary: Delete Current Account (tenant)
+      description: 'Delete the current account (tenant) and all users belonging to that account.
+
+
+        Only users with the `fe.account-settings.delete.account` permission can perform this action.
+
+
+        A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: When current account (tenant) has been removed.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /resources/tenants/v1/{tenantId}/metadata:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantControllerV1_addTenantMetadata
+      summary: Add Account (tenant) Metadata
+      description: 'Add metadata to an account (tenant).
+
+
+        If a metadata key already exists, its value is overwritten.
+
+
+        Provide the account (tenant) ID as a path parameter and the metadata object in the request body.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTenantMetadataRequest'
+      responses:
+        '400':
+          description: When the given metadata is neither a JSON, nor JSON-string.
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /resources/tenants/v1/{tenantId}/metadata/{key}:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: TenantControllerV1_deleteTenantMetadata
+      summary: Delete Account (tenant) Metadata
+      description: 'Remove a key-value pair from an account''s (tenant''s) metadata.
+
+
+        Provide the account (tenant) ID and the metadata key as path parameters.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: key
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the provided account (tenant) doesn't exist.
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /resources/tenants/v2:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantControllerV2_getTenants
+      summary: Get Accounts (tenants)
+      description: 'Retrieve all accounts (tenants) for an environment.
+
+
+        Supports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).
+
+
+        You can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200.'
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        description: The default limit is 50 accounts (tenants) per request, the maximum is 200
+        schema:
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: _filter
+        required: false
+        in: query
+        description: This param allows filtering the request using an account's name or tenantId
+        schema:
+          type: string
+      - name: _sortBy
+        required: false
+        in: query
+        description: This param allows sorting the results via createdAt, name, tenantId
+        schema:
+          type: string
+      - name: _order
+        required: false
+        in: query
+        description: This param can be used together with sortBy and define the order as ACS or DESC
+        schema:
+          type: string
+      - name: _tenantIds
+        required: false
+        in: query
+        description: This param allows passing specific tenantIds and getting only these accounts (tenants) data
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /resources/tenants/v2/{tenantId}:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantControllerV2_getTenant
+      summary: Get an Account (tenant)
+      description: 'Retrieve an account (tenant) by its identifier.
+
+
+        If the account (tenant) cannot be found, an empty array is returned.
+
+
+        Provide the account (tenant) ID as a path parameter.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+    put:
+      operationId: TenantControllerV2_updateTenant
+      summary: Update an Account (tenant)
+      description: 'Update an account (tenant).
+
+
+        Provide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequestV2'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Send your own unique tenantId or Frontegg will auto-generate a UUID
+        name:
+          type: string
+        status:
+          type: string
+          description: This field can be used for custom logic, it is not enforced in Frontegg flows
+        website:
+          type: string
+        applicationUrl:
+          type: string
+        logo:
+          type: string
+          description: Base64-encoded image to use as logo.
+        logoUrl:
+          type: string
+        address:
+          type: string
+        timezone:
+          type: string
+        currency:
+          type: string
+        creatorName:
+          type: string
+        creatorEmail:
+          type: string
+        isReseller:
+          type: boolean
+        parentTenantId:
+          type: string
+    UpdateTenantRequest:
+      type: object
+      properties: {}
+    AddTenantMetadataRequest:
+      type: object
+      properties:
+        metadata:
+          oneOf:
+          - type: object
+            example:
+              maximumUsers: 50
+      required:
+      - metadata
+    UpdateTenantRequestV2:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

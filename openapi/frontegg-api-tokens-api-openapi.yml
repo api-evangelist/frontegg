@@ -1,0 +1,538 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations API Tokens API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: API Tokens
+  x-displayName: API tokens
+paths:
+  /resources/tenants/access-tokens/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantAccessTokensV1Controller_createTenantAccessToken
+      summary: Create Account (tenant) Access Token
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantAccessTokenRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAccessTokenResponse'
+      tags:
+      - API Tokens
+      description: Create an access token for a specific account (tenant).
+      security:
+      - bearer: []
+    get:
+      operationId: TenantAccessTokensV1Controller_getTenantAccessTokens
+      summary: Get Account (tenant) Access Tokens
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTenantAccessTokensResponse'
+      tags:
+      - API Tokens
+      description: Retrieve all access tokens for a specific account (tenant).
+      security:
+      - bearer: []
+  /resources/tenants/access-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: TenantAccessTokensV1Controller_deleteTenantAccessToken
+      summary: Delete Account (tenant) Access Token
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Tokens
+      description: Delete an account (tenant) access token.
+      security:
+      - bearer: []
+  /resources/tenants/api-tokens/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantApiTokensV1Controller_createTenantApiToken
+      summary: Create Client Credentials Token
+      description: Do not use. Instead, use v2 of this route.
+      deprecated: true
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantApiTokenDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTenantApiTokenResponseDto'
+      tags:
+      - API Tokens
+      security:
+      - bearer: []
+    get:
+      operationId: TenantApiTokensV1Controller_getTenantsApiTokens
+      summary: Get Client Credentials Tokens
+      description: Retrieve all API tokens for a specific account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetTenantApiTokensResponse'
+      tags:
+      - API Tokens
+      security:
+      - bearer: []
+  /resources/tenants/api-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: TenantApiTokensV1Controller_deleteTenantApiToken
+      summary: Delete Client Credentials Token
+      description: Delete an account (tenant) API token.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Tokens
+      security:
+      - bearer: []
+    patch:
+      operationId: TenantApiTokensV1Controller_updateTenantApiToken
+      summary: Update Client Credentials Token
+      description: Update an account (tenant) API token.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApiTokenDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTenantApiTokenResponseDto'
+      tags:
+      - API Tokens
+      security:
+      - bearer: []
+  /resources/tenants/api-tokens/v2:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantApiTokensV2Controller_createTenantApiToken
+      summary: Create Client Credentials Token
+      description: 'Create an account (tenant) API token.
+
+
+        You can retrieve roles and permissions via the API.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantApiTokenDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTenantApiTokenResponseDto'
+      tags:
+      - API Tokens
+      security:
+      - bearer: []
+components:
+  schemas:
+    TenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        createdByUserId:
+          type: string
+          nullable: true
+      required:
+      - id
+      - createdAt
+      - roleIds
+      - createdByUserId
+    CreateTenantAccessTokenRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+        roleIds:
+          description: Array of role IDs to attach to the token
+          type: array
+          items:
+            type: string
+    CreateTenantApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        roleIds:
+          description: Array of role Ids. Either this or permissionIds must be provided, but not both.
+          type: array
+          items:
+            type: string
+        permissionIds:
+          description: Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.
+          type: array
+          items:
+            type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    UpdateApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+    UpdateTenantApiTokenResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+        createdByUserId:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - createdByUserId
+      - metadata
+      - createdAt
+    GetTenantAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantAccessTokenResponse'
+      required:
+      - accessTokens
+    GetTenantApiTokensResponse:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+        createdByUserId:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        permissionIds:
+          description: Array of permission Ids. Either this or roleIds will be present, but not both.
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids. Either this or permissionIds will be present, but not both.
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - createdByUserId
+      - metadata
+      - createdAt
+      - permissionIds
+      - roleIds
+      - expires
+    CreateTenantApiTokenResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+        secret:
+          type: string
+        createdByUserId:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - secret
+      - createdByUserId
+      - metadata
+      - createdAt
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

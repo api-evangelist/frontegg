@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Email Configuration API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Email Configuration
+  x-displayName: Email configuration
+paths:
+  /resources/mail/v1/configurations:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: MailConfigController_createOrUpdateMailConfig
+      summary: Create or Update Configuration
+      description: 'Configure your SendGrid account to send emails from your environment.
+
+
+        Provide your SendGrid secret key in the request body.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      deprecated: true
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateMailConfigRequestDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+      tags:
+      - Email Configuration
+      security:
+      - bearer: []
+    get:
+      operationId: MailConfigController_getMailConfig
+      summary: Get Configuration
+      description: 'Retrieve the mail configuration for your SendGrid account.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMailConfigResponseDto'
+      tags:
+      - Email Configuration
+      security:
+      - bearer: []
+    delete:
+      operationId: MailConfigController_deleteMailConfig
+      summary: Delete Configuration
+      description: 'Delete the mail configuration for your SendGrid account.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Email Configuration
+      security:
+      - bearer: []
+  /resources/mail/v2/configurations:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: MailConfigController_createOrUpdateMailConfigV2
+      summary: Create or Update Configuration V2
+      description: 'Configure email settings for your environment, supporting SES, Mailgun, and SendGrid.
+
+
+        Provide the email provider, sender details, and any additional parameters in the request body.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  oneOf:
+                  - $ref: '#/components/schemas/SendGridDto'
+                  - $ref: '#/components/schemas/SesDto'
+                  - $ref: '#/components/schemas/MailgunDto'
+                  - $ref: '#/components/schemas/SesRoleDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Email Configuration
+      security:
+      - bearer: []
+components:
+  schemas:
+    GetMailConfigResponseDto:
+      type: object
+      properties:
+        secret:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        extension:
+          type: array
+          items:
+            type: object
+        provider:
+          type: string
+          enum:
+          - sendgrid
+          - mailgun
+          - ses
+          - ses-role
+      required:
+      - secret
+      - createdAt
+      - updatedAt
+      - extension
+      - provider
+    CreateOrUpdateMailConfigRequestDto:
+      type: object
+      properties:
+        secret:
+          type: string
+      required:
+      - secret
+    SesDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - ses
+        secret:
+          type: string
+        id:
+          type: string
+        region:
+          type: string
+      required:
+      - provider
+      - secret
+      - id
+      - region
+    SendGridDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - sendgrid
+        secret:
+          type: string
+      required:
+      - provider
+      - secret
+    MailgunDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - mailgun
+        secret:
+          type: string
+        domain:
+          type: string
+        region:
+          default: us
+          enum:
+          - US: us
+            EU: eu
+          type: number
+      required:
+      - provider
+      - secret
+      - domain
+      - region
+    SesRoleDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - ses-role
+        secret:
+          type: string
+        region:
+          type: string
+      required:
+      - provider
+      - secret
+      - region
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

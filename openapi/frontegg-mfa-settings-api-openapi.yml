@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations MFA Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: MFA Settings
+  x-displayName: MFA settings
+paths:
+  /resources/configurations/v1/mfa-policy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SecurityPolicyController_createMfaPolicy
+      summary: Create MFA Policy
+      description: Create an MFA policy globally or for a specific account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaPolicyRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaPolicyResponse'
+        '409':
+          description: MFA Policy already exists. Try to use the Update MFA Policy API
+      tags:
+      - MFA Settings
+      security:
+      - bearer: []
+    patch:
+      operationId: SecurityPolicyController_updateSecurityPolicy
+      summary: Update Security Policy
+      description: Update the MFA policy for all accounts (tenants).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaPolicyRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaPolicyResponse'
+        '400':
+          description: Missing parameters to update
+        '404':
+          description: Security policy not found
+      tags:
+      - MFA Settings
+      security:
+      - bearer: []
+    put:
+      operationId: SecurityPolicyController_upsertSecurityPolicy
+      summary: Upsert Security Policy
+      description: Create or update the MFA policy for all accounts (tenants).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MfaPolicyRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaPolicyResponse'
+      tags:
+      - MFA Settings
+      security:
+      - bearer: []
+    get:
+      operationId: SecurityPolicyController_getSecurityPolicy
+      summary: Get Security Policy
+      description: This route gets the MFA policy for all accounts (tenants).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MfaPolicyResponse'
+        '404':
+          description: Security Policy not found. MFA is disabled
+      tags:
+      - MFA Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/mfa/strategies:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: MFAStrategiesControllerV1_getMFAStrategies
+      summary: Get MFA Strategies
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MFAStrategiesResponse'
+      tags:
+      - MFA Settings
+      description: Retrieve the MFA strategies configured for your environment.
+      security:
+      - bearer: []
+    post:
+      operationId: MFAStrategiesControllerV1_createOrUpdateMFAStrategy
+      summary: Create or Update MFA Strategy
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateMFAStrategyRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - MFA Settings
+      description: 'Create or update an MFA strategy.
+
+
+        Provide the desired strategy configuration in the request body.'
+      security:
+      - bearer: []
+components:
+  schemas:
+    MfaPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        enforceMFAType:
+          type: string
+        allowRememberMyDevice:
+          type: boolean
+        mfaDeviceExpiration:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - allowRememberMyDevice
+      - mfaDeviceExpiration
+      - createdAt
+      - updatedAt
+    MFAStrategiesResponse:
+      type: object
+      properties:
+        strategies:
+          type: array
+          items:
+            $ref: '#/components/schemas/MFAStrategyResponse'
+      required:
+      - strategies
+    MFAStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          enum:
+          - AuthenticatorApp
+          - WebAuthnPlatform
+          - WebAuthnCrossPlatform
+          - SMS
+          - EmailCode
+          type: string
+        isActive:
+          type: boolean
+      required:
+      - strategy
+      - isActive
+    CreateOrUpdateMFAStrategyRequest:
+      type: object
+      properties:
+        isActive:
+          type: boolean
+        strategy:
+          type: string
+          enum:
+          - AuthenticatorApp
+          - WebAuthnPlatform
+          - WebAuthnCrossPlatform
+          - SMS
+          - EmailCode
+      required:
+      - isActive
+      - strategy
+    MfaPolicyRequest:
+      type: object
+      properties:
+        enforceMFAType:
+          type: string
+          enum:
+          - DontForce
+          - Force
+          - ForceExceptSAML
+          description: Determine whether MFA should be enforced.
+          default: Force
+        allowRememberMyDevice:
+          type: boolean
+          description: Determine whether devices can be remembered and authentication can be skipped.
+          default: false
+        mfaDeviceExpiration:
+          type: number
+          description: Expiration time of device in seconds
+          default: 1209600
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

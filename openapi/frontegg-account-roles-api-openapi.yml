@@ -1,0 +1,364 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Account Roles API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Account Roles
+  x-displayName: Account roles
+paths:
+  /resources/roles/v2:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PermissionsControllerV2_getAllRoles
+      summary: Get Roles V2
+      description: 'Retrieve all roles for your environment.
+
+
+        Each role object includes the name, permissions, and other defining information.'
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 2000
+          default: 50
+          type: number
+      - name: _sortBy
+        required: true
+        in: query
+        schema:
+          enum:
+          - key
+          - name
+          - description
+          - isDefault
+          - firstUserRole
+          - level
+          - updatedAt
+          - createdAt
+          - permissions
+          - userTenants
+          - groups
+          type: string
+      - name: _levels
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: number
+      - name: _tenantIds
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          default: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _filter
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/RoleResponse'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - Account Roles
+      security:
+      - bearer: []
+    post:
+      operationId: RolesControllerV2_addRole
+      summary: Create a New Role
+      description: 'Add a new role for a specific account (tenant).
+
+
+        Include the required permissions in the request body to customize the role.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRoleWithPermissionsRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRoleWithPermissionsResponse'
+      tags:
+      - Account Roles
+      security:
+      - bearer: []
+  /resources/roles/v2/distinct-levels:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RolesControllerV2_getDistinctLevels
+      summary: Get Distinct Levels of Roles
+      description: Retrieve all role levels for your environment.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Roles
+      security:
+      - bearer: []
+  /resources/roles/v2/distinct-tenants:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RolesControllerV2_getDistinctTenants
+      summary: Get Distinct Assigned Accounts (tenants) of Roles
+      description: Retrieve all assigned account (tenant) IDs from roles for your environment.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Roles
+      security:
+      - bearer: []
+components:
+  schemas:
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    AddRoleWithPermissionsRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        baseRoleId:
+          type: string
+          description: Role level of the new role will be based on this parameter
+        permissionIds:
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - name
+      - baseRoleId
+      - permissionIds
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    AddRoleWithPermissionsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - permissions
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

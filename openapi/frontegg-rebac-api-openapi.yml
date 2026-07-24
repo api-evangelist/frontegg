@@ -1,0 +1,765 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations ReBAC API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: ReBAC
+  x-displayName: ReBAC
+paths:
+  /resources/entity-types/v1:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: EntityTypesV1Controller_getEntityTypes
+      summary: Get Entity Types
+      description: List all entity types in your schema.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedEntityTypesResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+    post:
+      operationId: EntityTypesV1Controller_createEntityType
+      summary: Create Entity Type
+      description: Create a new entity type (e.g. document, folder, project).
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/entity-types/v1/{key}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: EntityTypesV1Controller_getEntityType
+      summary: Get Entity Type
+      description: Retrieve an entity type along with its relations and actions.
+      parameters:
+      - name: key
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeOneResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+    patch:
+      operationId: EntityTypesV1Controller_updateEntityType
+      summary: Update Entity Type
+      description: Update an existing entity type.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+    delete:
+      operationId: EntityTypesV1Controller_deleteEntityType
+      summary: Delete Entity Type
+      description: Deletes an entity type and all its schema definitions.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/entity-types/v1/{key}/actions:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: EntityTypesActionsV1Controller_createEntityTypeActions
+      summary: Create Entity Type Actions
+      description: Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeActionsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityTypeActionsResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/entity-types/v1/{key}/actions/{actionKey}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: EntityTypesActionsV1Controller_updateEntityTypeAction
+      summary: Update Entity Type Action
+      description: Update an existing action's relation mappings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeActionUpdateRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeActionsResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+    delete:
+      operationId: EntityTypesActionsV1Controller_deleteEntityTypeAction
+      summary: Delete Entity Type Action
+      description: Remove an action from an entity type.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/entity-types/v1/{key}/relations:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: EntityTypesRelationsV1Controller_createEntityTypeRelations
+      summary: Create Entity Type Relations
+      description: Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRelationsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityTypeRelationResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/entity-types/v1/{key}/relations/{relationKey}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: EntityTypesRelationsV1Controller_updateEntityTypeRelation
+      summary: Update Entity Type Relation
+      description: Modify a relation's allowed subject entity types.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRelationUpdateRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeRelationResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+    delete:
+      operationId: EntityTypesRelationsV1Controller_deleteEntityTypeRelation
+      summary: Delete Entity Type Relation
+      description: Remove a relation definition from an entity type.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/relations/v1/assignments:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RelationsV1Controller_getRelationAssignments
+      summary: Get Relation Assignments
+      description: List all instance-level relationship assignments.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        example: 0
+        schema:
+          default: 0
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        example: 10
+        schema:
+          default: 10
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRelationAssignmentsResponse'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/relations/v1/assign:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: RelationsV1Controller_createRelationAssignments
+      summary: Create Relation Assignments
+      description: Create relation assignments (instance-level relationships). E.g., "User A is a reader of Document 1".
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationAssignmentsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelationAssignmentDto'
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+  /resources/relations/v1/unassign:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: RelationsV1Controller_deleteRelationAssignments
+      summary: Delete Relation Assignments
+      description: Remove instance-level relationship assignments.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationAssignmentsRequest'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+      security:
+      - bearer: []
+components:
+  schemas:
+    EntityTypeRelationRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - subjectEntityKeys
+    EntityTypeRelationsRequest:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeRelationRequest'
+      required:
+      - relations
+    EntityTypeOneResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+        relations:
+          readOnly: true
+          type: array
+          items:
+            type: string
+        actions:
+          readOnly: true
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - description
+      - createdAt
+      - relations
+      - actions
+    PagedRelationAssignmentsResponse:
+      type: object
+      properties:
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentDto'
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: false
+      required:
+      - items
+      - hasNext
+    RelationAssignmentRequestDto:
+      type: object
+      properties:
+        subjectEntityTypeKey:
+          type: string
+          example: user
+        subjectKey:
+          type: string
+          example: anthony@email-of.his
+        relationKey:
+          type: string
+          example: reader
+        targetEntityTypeKey:
+          type: string
+          example: document
+        targetKey:
+          type: string
+          example: document-1.doc
+        activeFrom:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+        activeUntil:
+          type: string
+          example: '2024-12-31T23:59:59Z'
+      required:
+      - subjectEntityTypeKey
+      - subjectKey
+      - relationKey
+      - targetEntityTypeKey
+      - targetKey
+    EntityTypeRelationResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: reader
+        subjectEntityTypeKeys:
+          readOnly: true
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - targetEntityTypeKey
+      - key
+      - subjectEntityTypeKeys
+    EntityTypeResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+      required:
+      - key
+      - description
+      - createdAt
+    EntityTypeRelationUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - subjectEntityKeys
+    RelationAssignmentsRequest:
+      type: object
+      properties:
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentRequestDto'
+      required:
+      - assignments
+    PagedEntityTypesResponse:
+      type: object
+      properties:
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: true
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeResponse'
+      required:
+      - hasNext
+      - items
+    EntityTypeActionsResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        entityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: read
+        relationKeys:
+          readOnly: true
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - entityTypeKey
+      - key
+      - relationKeys
+    EntityTypeActionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    EntityTypeActionUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    EntityTypeActionsRequest:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeActionRequest'
+      required:
+      - actions
+    RelationAssignmentDto:
+      type: object
+      properties:
+        subjectEntityTypeKey:
+          type: string
+          readOnly: true
+          example: user
+        subjectKey:
+          type: string
+          readOnly: true
+          example: anthony@email-of.his
+        relationKey:
+          type: string
+          readOnly: true
+          example: reader
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: document
+        targetKey:
+          type: string
+          readOnly: true
+          example: document-1.doc
+        activeFrom:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+        activeUntil:
+          type: string
+          example: '2024-12-31T23:59:59Z'
+      required:
+      - subjectEntityTypeKey
+      - subjectKey
+      - relationKey
+      - targetEntityTypeKey
+      - targetKey
+    EntityTypeRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: document
+        description:
+          type: string
+          example: Representation of a Word document file
+      required:
+      - key
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

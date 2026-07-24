@@ -1,0 +1,603 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Approval Flows API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Approval Flows
+  x-displayName: Approval Flows
+paths:
+  /resources/approval-flows/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ApprovalFlowsController_createApprovalFlow
+      summary: Create Approval Flow
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApprovalFlowDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalFlowResponseDto'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalFlowResponseDto'
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+    get:
+      operationId: ApprovalFlowsController_getApprovalFlows
+      summary: Get Approval Flows
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalFlowsListResponseDto'
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+  /resources/approval-flows/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ApprovalFlowsController_getApprovalFlowById
+      summary: Get Approval Flow by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalFlowResponseDto'
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+    patch:
+      operationId: ApprovalFlowsController_updateApprovalFlow
+      summary: Update Approval Flow
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApprovalFlowDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalFlowResponseDto'
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+    delete:
+      operationId: ApprovalFlowsController_deleteApprovalFlow
+      summary: Delete Approval Flow
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        '204':
+          description: ''
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+  /resources/approval-flows/v1/approver-action:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ApprovalFlowsController_approverAction
+      summary: Approver Action
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproverActionDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+  /resources/approval-flows/v1/execution-data:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ApprovalFlowsController_getExecutionData
+      summary: Get Approval Flow Execution Data
+      parameters:
+      - name: approvalFlowExecutionId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: approverId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: approvalFlowStepId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionDataResponseDto'
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+  /resources/approval-flows/v1/{id}/execute:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ApprovalFlowsController_executeApprovalFlow
+      summary: Execute Approval Flow
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteApprovalFlowDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+  /resources/approval-flows/v1/step-up/execute:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ApprovalFlowsController_executeStepUpApprovalFlow
+      summary: Execute Step up Approval Flow
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteApprovalFlowDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Approval Flows
+      security:
+      - bearer: []
+components:
+  schemas:
+    ApproverSelectorResponseDto:
+      type: object
+      properties:
+        roleKeys:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+      required:
+      - roleKeys
+      - emails
+      - phoneNumbers
+    ApprovalFlowResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        channels:
+          $ref: '#/components/schemas/ApprovalFlowChannel'
+        configuration:
+          $ref: '#/components/schemas/ApprovalFlowConfigurationResponseDto'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFlowStepResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - vendorId
+      - name
+      - isActive
+      - channels
+      - configuration
+      - steps
+      - createdAt
+      - updatedAt
+    StepConfigurationResponseDto:
+      type: object
+      properties:
+        minApprovals:
+          type: number
+    ApprovalFlowsListResponseDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFlowResponseDto'
+        total:
+          type: number
+      required:
+      - items
+      - total
+    StepConfigurationDto:
+      type: object
+      properties:
+        minApprovals:
+          type: number
+          minimum: 1
+      required:
+      - minApprovals
+    ApprovalFlowConfigurationDto:
+      type: object
+      properties:
+        autoApproveInMinutes:
+          type: number
+          minimum: 1
+        reminderIntervalMinutes:
+          type: number
+          minimum: 60
+        notifyOnDecisions:
+          type: boolean
+        timeoutMinutes:
+          type: number
+          minimum: 5
+          maximum: 10080
+        webhookUrl:
+          type: string
+    ExecuteApprovalFlowDto:
+      type: object
+      properties:
+        executionData:
+          type: object
+        webhookUrl:
+          type: string
+    ExecutionDataResponseDto:
+      type: object
+      properties:
+        approvalFlowName:
+          type: string
+        approvalFlowDescription:
+          type: string
+        requester:
+          type: string
+        approvalFlowRequestDate:
+          format: date-time
+          type: string
+        executionData:
+          type: object
+      required:
+      - approvalFlowName
+      - requester
+      - approvalFlowRequestDate
+    ApproverActionDto:
+      type: object
+      properties:
+        approved:
+          type: boolean
+        approvalFlowExecutionId:
+          type: string
+        approverId:
+          type: string
+        approvalFlowStepId:
+          type: string
+      required:
+      - approved
+      - approvalFlowExecutionId
+      - approverId
+      - approvalFlowStepId
+    ApprovalFlowStepResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        stepOrder:
+          type: number
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorResponseDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - stepOrder
+      - approverSelectors
+      - configuration
+      - createdAt
+      - updatedAt
+    UpdateApprovalFlowDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        channels:
+          $ref: '#/components/schemas/ApprovalFlowChannelDto'
+        configuration:
+          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
+    ApprovalFlowConfigurationResponseDto:
+      type: object
+      properties:
+        autoApproveInMinutes:
+          type: number
+        reminderIntervalMinutes:
+          type: number
+        notifyOnDecisions:
+          type: boolean
+        logging:
+          type: boolean
+        timeoutMinutes:
+          type: number
+        webhookUrl:
+          type: string
+    ApprovalFlowChannelDto:
+      type: object
+      properties:
+        email:
+          type: boolean
+        sms:
+          type: boolean
+      required:
+      - email
+      - sms
+    CreateApprovalFlowDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        channels:
+          $ref: '#/components/schemas/ApprovalFlowChannelDto'
+        configuration:
+          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
+      required:
+      - name
+      - channels
+      - configuration
+      - steps
+    CreateApprovalFlowStepDto:
+      type: object
+      properties:
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationDto'
+        stepOrder:
+          type: number
+          minimum: 1
+      required:
+      - approverSelectors
+      - configuration
+      - stepOrder
+    ApproverSelectorDto:
+      type: object
+      properties:
+        roleKeys:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+    ApprovalFlowChannel:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

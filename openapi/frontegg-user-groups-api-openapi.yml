@@ -1,0 +1,818 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations User Groups API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: User Groups
+  x-displayName: User groups
+paths:
+  /resources/groups/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: GroupsControllerV1_getAllGroups
+      summary: Get All Groups
+      description: Retrieve all user groups for an account (tenant).
+      parameters:
+      - name: _groupsRelations
+        required: false
+        in: query
+        schema:
+          enum:
+          - roles
+          - users
+          - rolesAndUsers
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    post:
+      operationId: GroupsControllerV1_createGroup
+      summary: Create Group
+      description: 'Create a user group for an account (tenant).
+
+
+        Provide the group details in the request body.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v1/bulkGet:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: GroupsControllerV1_getGroupsByIds
+      summary: Get Groups by Ids
+      description: 'Retrieve user groups by given IDs for an account (tenant).
+
+
+        Provide the group IDs in the request body.'
+      parameters:
+      - name: _groupsRelations
+        required: false
+        in: query
+        schema:
+          enum:
+          - roles
+          - users
+          - rolesAndUsers
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetGroupsDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupsResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: GroupsControllerV1_updateGroup
+      summary: Update Group
+      description: 'Update a user group by ID for an account (tenant).
+
+
+        Provide the group ID as a path parameter and the updated group details in the request body.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    delete:
+      operationId: GroupsControllerV1_deleteGroup
+      summary: Delete Group
+      description: 'Delete a user group by ID for an account (tenant).
+
+
+        Provide the group ID as a path parameter.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    get:
+      operationId: GroupsControllerV1_getGroupById
+      summary: Get Group by ID
+      description: 'Retrieve a user group by ID for an account (tenant).
+
+
+        Provide the group ID as a path parameter.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: _groupsRelations
+        required: false
+        in: query
+        schema:
+          enum:
+          - roles
+          - users
+          - rolesAndUsers
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v1/config:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: GroupsControllerV1_getGroupsConfiguration
+      summary: Get Groups Configuration
+      description: Retrieve the user group configuration for your environment.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupConfigurationResponse'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    post:
+      operationId: GroupsControllerV1_createOrUpdateGroupsConfiguration
+      summary: Create or Update Groups Configuration
+      description: 'Create or update the user group configuration for your environment.
+
+
+        Provide the configuration details in the request body.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateGroupConfigurationDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v1/{groupId}/roles:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: GroupsControllerV1_addRolesToGroup
+      summary: Add Roles to Group
+      description: 'Add roles to an existing user group.
+
+
+        A user can assign only roles that are lower than their own.'
+      parameters:
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRolesOnGroupDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    delete:
+      operationId: GroupsControllerV1_removeRolesFromGroup
+      summary: Remove Roles From Group
+      description: 'Remove roles from an existing user group.
+
+
+        Provide the roles to remove in the request body.'
+      parameters:
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRolesOnGroupDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v1/{groupId}/users:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: GroupsControllerV1_addUsersToGroup
+      summary: Add Users to Group
+      description: 'Add users to an existing user group.
+
+
+        Only users with higher roles than the group''s roles are allowed to perform this action.'
+      parameters:
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUsersOnGroupDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+    delete:
+      operationId: GroupsControllerV1_removeUsersFromGroup
+      summary: Remove Users From Group
+      description: 'Remove users from an existing user group.
+
+
+        Provide the users to remove in the request body.'
+      parameters:
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUsersOnGroupDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+  /resources/groups/v2:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: GroupsControllerV2_getAllGroupsPaginated
+      summary: Get All Groups Paginated
+      description: 'Retrieve all user groups for an account (tenant), with pagination.
+
+
+        Use query parameters to control pagination and optionally include related group data.'
+      parameters:
+      - name: _groupsRelations
+        required: false
+        in: query
+        schema:
+          enum:
+          - roles
+          - users
+          - rolesAndUsers
+          type: string
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - id
+          - name
+          - createdAt
+          - updatedAt
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GroupResponse'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - User Groups
+      security:
+      - bearer: []
+components:
+  schemas:
+    UpdateUsersOnGroupDto:
+      type: object
+      properties:
+        userIds:
+          description: An array of User IDs to add / remove existing users to / from the group.
+          example:
+          - 262io276-3c5v-9y31-ba03-281674a89d4c
+          - eeooc819-87dd-1cdd-b81d-e8829vm9d684
+          type: array
+          items:
+            type: string
+      required:
+      - userIds
+    CreateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
+      required:
+      - name
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    GetGroupsDto:
+      type: object
+      properties:
+        groupsIds:
+          description: Group IDs
+          type: array
+          items:
+            type: string
+      required:
+      - groupsIds
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+    UpdateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
+    GetGroupConfigurationResponse:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        rolesEnabled:
+          type: boolean
+      required:
+      - enabled
+      - rolesEnabled
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    GroupResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleDto'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupUserDto'
+        managedBy:
+          enum:
+          - frontegg
+          - scim2
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - name
+      - color
+      - description
+      - metadata
+      - roles
+      - users
+      - managedBy
+      - createdAt
+      - updatedAt
+    CreateOrUpdateGroupConfigurationDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Determine whether groups are enabled/disabled. Default value is true.
+          default: true
+        rolesEnabled:
+          type: boolean
+          description: Determine whether groups can have roles or not. Default value is true.
+          default: true
+    UpdateRolesOnGroupDto:
+      type: object
+      properties:
+        roleIds:
+          description: Will add / remove requested roles from the group
+          example:
+          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
+          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    GroupUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        activatedForTenant:
+          type: boolean
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - createdAt
+      - activatedForTenant
+    GroupsResponse:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponse'
+      required:
+      - groups
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

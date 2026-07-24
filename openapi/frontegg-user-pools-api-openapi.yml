@@ -1,0 +1,1270 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations User Pools API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: User Pools
+  x-displayName: User pools
+paths:
+  /resources/user-sources/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserSourcesControllerV1_getUserSources
+      summary: Get Vendor User Sources
+      description: 'Retrieve all user sources configured for your environment.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserSourceExtendedResponseDTO'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserSourcesControllerV1_getUserSource
+      summary: Get Vendor User Source
+      description: 'Retrieve a user source by ID.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserSourceResponseDTO'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+    delete:
+      operationId: UserSourcesControllerV1_deleteUserSource
+      summary: Delete User Source
+      description: 'Delete a user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/auth0:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_createAuth0ExternalUserSource
+      summary: Create Auth0 External User Source
+      description: 'Create a new external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAuth0ExternalUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserSourceResponse'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/cognito:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_createCognitoExternalUserSource
+      summary: Create Cognito External User Source
+      description: 'Create a new external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCognitoExternalUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserSourceResponse'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/firebase:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_createFirebaseExternalUserSource
+      summary: Create Firebase External User Source
+      description: 'Create a new external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirebaseExternalUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserSourceResponse'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/custom-code:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_createCustomCodeExternalUserSource
+      summary: Create Custom-Code External User Source
+      description: 'Create a new external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomCodeExternalUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserSourceResponse'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/federation:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_createFederationUserSource
+      summary: Create Federation User Source
+      description: 'Create a new federation user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFederationUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserSourceResponse'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/auth0/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UserSourcesControllerV1_updateAuth0ExternalUserSource
+      summary: Update Auth0 External User Source
+      description: 'Update an external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalAuth0UserSourceRequestDTO'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/cognito/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UserSourcesControllerV1_updateCognitoExternalUserSource
+      summary: Update Cognito External User Source
+      description: 'Update an external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalCognitoUserSourceRequestDTO'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/firebase/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UserSourcesControllerV1_updateFirebaseExternalUserSource
+      summary: Update Firebase External User Source
+      description: 'Update an external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalFirebaseUserSourceRequestDTO'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/external/custom-code/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UserSourcesControllerV1_updateCustomCodeExternalUserSource
+      summary: Update Custom-Code External User Source
+      description: 'Update an external user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExternalCustomCodeUserSourceRequestDTO'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/federation/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: UserSourcesControllerV1_updateFederationUserSource
+      summary: Update Federation User Source
+      description: 'Update a federation user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFederationUserSourceRequestDTO'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/assign:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_assignUserSource
+      summary: Assign Applications to a User Source
+      description: 'Assign applications to a user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignApplicationsToUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/unassign:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserSourcesControllerV1_unassignUserSource
+      summary: Unassign Applications From a User Source
+      description: 'Unassign applications from a user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignApplicationsFromUserSourceRequestDTO'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+  /resources/user-sources/v1/{id}/users:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserSourcesControllerV1_getUserSourceUsers
+      summary: Get User Source Users
+      description: 'Retrieve all users of a user source.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GetUserSourceUsersResponseDTO'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - User Pools
+      security:
+      - bearer: []
+components:
+  schemas:
+    UpdateExternalAuth0UserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    UserSourceStaticTenantConfig:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: The tenant id which all of the users would be added to
+        tenantResolverType:
+          type: string
+          enum:
+          - static
+      required:
+      - tenantId
+      - tenantResolverType
+    GetUserSourceResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+        configuration:
+          type: object
+      required:
+      - id
+      - name
+      - type
+      - description
+      - appIds
+      - index
+      - configuration
+    UpdateExternalFirebaseUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalFirebaseUserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    CreateAuth0ExternalUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+      required:
+      - name
+      - configuration
+      - index
+    Oauth2UserSourceConfig:
+      type: object
+      properties:
+        authorizationUrl:
+          type: string
+          description: The authorization URL of the OAuth2 provider
+        tokenUrl:
+          type: string
+          description: The token URL of the OAuth2 provider
+        userInfoUrl:
+          type: string
+          description: The user info URL of the OAuth2 provider
+        scopes:
+          description: The scopes to request from the OAuth2 provider
+          example:
+          - openid
+          - email
+          - profile
+          type: array
+          items:
+            type: string
+        grantTypes:
+          description: The OAuth2 grant types
+          example:
+          - authorization_code
+          type: array
+          items:
+            type: string
+      required:
+      - authorizationUrl
+      - tokenUrl
+      - userInfoUrl
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    GetUserSourceExtendedResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+        configuration:
+          type: object
+        usersCount:
+          type: number
+      required:
+      - id
+      - name
+      - type
+      - description
+      - appIds
+      - index
+      - configuration
+      - usersCount
+    ExternalCustomCodeUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        codePayload:
+          type: string
+        getUserCodePayload:
+          type: string
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+          - $ref: '#/components/schemas/UserSourceFromSourceTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - codePayload
+      - tenantConfig
+    UnassignApplicationsFromUserSourceRequestDTO:
+      type: object
+      properties:
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        userSourceId:
+          type: string
+          description: The user source id
+      required:
+      - appIds
+      - userSourceId
+    ExternalFirebaseUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        apiKey:
+          type: string
+          description: The firebase Web API Key
+        serviceAccount:
+          $ref: '#/components/schemas/FirebaseServiceAccountConfig'
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - apiKey
+      - serviceAccount
+      - tenantConfig
+    CreateCustomCodeExternalUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+      required:
+      - name
+      - configuration
+      - index
+    ExternalAuth0UserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        domain:
+          type: string
+          description: the auth0 domain
+        clientId:
+          type: string
+          description: the auth0 application clientId
+        secret:
+          type: string
+          description: the auth0 application secret
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - domain
+      - clientId
+      - secret
+      - tenantConfig
+    UpdateExternalCustomCodeUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    GetUserSourceUsersResponseDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+      required:
+      - email
+      - lastLogin
+    ExternalCognitoUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        region:
+          type: string
+          description: The aws region of the cognito user pool
+        clientId:
+          type: string
+          description: The cognito app client id
+        userPoolId:
+          type: string
+          description: The id of the cognito user pool
+        accessKeyId:
+          type: string
+          description: The access key of the aws account
+        secretAccessKey:
+          type: string
+          description: The secret of the aws account
+        clientSecret:
+          type: string
+          description: The cognito application client secret, required if the app client is configured with a client secret
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - region
+      - clientId
+      - userPoolId
+      - accessKeyId
+      - secretAccessKey
+      - tenantConfig
+    FirebaseServiceAccountConfig:
+      type: object
+      properties:
+        type:
+          type: string
+        project_id:
+          type: string
+        private_key_id:
+          type: string
+        private_key:
+          type: string
+        client_email:
+          type: string
+        client_id:
+          type: string
+        auth_uri:
+          type: string
+        token_uri:
+          type: string
+        auth_provider_x509_cert_url:
+          type: string
+        client_x509_cert_url:
+          type: string
+        universe_domain:
+          type: string
+      required:
+      - type
+      - project_id
+      - private_key_id
+      - private_key
+      - client_email
+      - client_id
+      - auth_uri
+      - token_uri
+      - auth_provider_x509_cert_url
+      - client_x509_cert_url
+      - universe_domain
+    CreateCognitoExternalUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+      required:
+      - name
+      - configuration
+      - index
+    UpdateFederationUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/FederationUserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    UserSourceFromSourceTenantConfig:
+      type: object
+      properties:
+        tenantResolverType:
+          type: string
+          enum:
+          - from-source
+      required:
+      - tenantResolverType
+    UserSourceDynamicTenantConfig:
+      type: object
+      properties:
+        tenantIdFieldName:
+          type: string
+          description: The attribute name of which the tenant id would be taken from
+        tenantResolverType:
+          type: string
+          enum:
+          - dynamic
+      required:
+      - tenantIdFieldName
+      - tenantResolverType
+    UpdateExternalCognitoUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    UserSourceNewTenantConfig:
+      type: object
+      properties:
+        tenantResolverType:
+          type: string
+          enum:
+          - new
+      required:
+      - tenantResolverType
+    CreateUserSourceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        index:
+          type: number
+      required:
+      - id
+      - name
+      - type
+      - appIds
+      - description
+      - index
+    CreateFederationUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/FederationUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+      required:
+      - name
+      - configuration
+      - index
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    AssignApplicationsToUserSourceRequestDTO:
+      type: object
+      properties:
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        userSourceId:
+          type: string
+          description: The user source id
+      required:
+      - appIds
+      - userSourceId
+    FederationUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        wellknownUrl:
+          type: string
+          description: The url of the service provider
+        oauth2Config:
+          description: OAuth2 configuration (required if wellknownUrl is not provided)
+          allOf:
+          - $ref: '#/components/schemas/Oauth2UserSourceConfig'
+        clientId:
+          type: string
+          description: The client id from the service provider
+        secret:
+          type: string
+          description: The secret from the service provider
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+      required:
+      - syncOnLogin
+      - clientId
+      - secret
+      - tenantConfig
+    CreateFirebaseExternalUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalFirebaseUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+      required:
+      - name
+      - configuration
+      - index
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

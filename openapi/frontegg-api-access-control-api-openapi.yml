@@ -1,0 +1,424 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations API Access Control API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: API Access Control
+  x-displayName: API Access Control
+paths:
+  /resources/routes/v1:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RoutesControllerV1_getMany
+      x-tag: API Access Control
+      summary: Get Routes
+      description: Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+    post:
+      operationId: RoutesControllerV1_create
+      x-tag: API Access Control
+      summary: Create Route
+      description: Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRouteDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+  /resources/routes/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RoutesControllerV1_getSingle
+      x-tag: API Access Control
+      summary: Get Single Route
+      description: Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+    delete:
+      operationId: RoutesControllerV1_delete
+      x-tag: API Access Control
+      summary: Delete Route
+      description: Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+    patch:
+      operationId: RoutesControllerV1_update
+      x-tag: API Access Control
+      summary: Update Route
+      description: Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRouteDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+  /resources/routes/v1/import-open-api:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: RoutesControllerV1_importOpenApi
+      x-tag: API Access Control
+      summary: Import Open API
+      description: Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+  /resources/routes/v1/{id}/rules:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: RoutesControllerV1_replaceRules
+      x-tag: API Access Control
+      summary: Create or Replace Route Rules
+      description: Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceRouteRulesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteRuleDto'
+      tags:
+      - API Access Control
+      security:
+      - bearer: []
+components:
+  schemas:
+    RouteRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        routeId:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        type:
+          type: string
+          readOnly: true
+          example: feature
+          enum:
+          - feature
+          - permission
+        value:
+          type: string
+          readOnly: true
+          example: my-feature-key
+      required:
+      - id
+      - routeId
+      - type
+      - value
+    ReplaceRouteRulesDto:
+      type: object
+      properties:
+        rules:
+          description: Set of route rules
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRouteRuleDto'
+      required:
+      - rules
+    UpdateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
+    CreateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
+    RouteDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        method:
+          type: string
+          readOnly: true
+          example: GET
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+        path:
+          type: string
+          readOnly: true
+          example: /users
+        priority:
+          type: number
+          readOnly: true
+          example: 100
+        description:
+          type: string
+          readOnly: true
+          example: This is an example route
+        policyType:
+          type: string
+          readOnly: true
+          example: allow
+          enum:
+          - allow
+          - deny
+          - ruleBased
+        rules:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteRuleDto'
+      required:
+      - id
+      - method
+      - path
+      - priority
+      - description
+      - policyType
+      - rules
+    CreateRouteRuleDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type - can be either "feature" or "permission"
+          enum:
+          - feature
+          - permission
+          example: feature
+        value:
+          type: string
+          description: Rule value - represents a reference key to the rule type entity
+          example: my-feature-key
+      required:
+      - type
+      - value
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

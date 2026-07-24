@@ -1,42 +1,43 @@
 openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations SCIM Configurations API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: SCIM Configurations
+  x-displayName: SCIM configurations
 paths:
   /resources/v1/configurations/scim2:
-    get:
-      operationId: Scim2ConnectionConfigController_fetchAll
-      summary: Get All SCIM Configurations
-      description: Retrieve all provisioning (SCIM) configurations for the environment.
-      parameters:
-      - name: tenantId
-        required: false
-        in: query
-        schema:
-          type: string
-      - name: source
-        required: false
-        in: query
-        schema:
-          type: string
-      - name: connectionName
-        required: false
-        in: query
-        schema:
-          type: string
-      - name: id
-        required: false
-        in: query
-        schema:
-          type: string
-      responses:
-        '200':
-          description: List of SCIM configurations. Vendor only endpoint
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Scim2ConnectionConfigResponse'
-      tags:
-      - SCIM Settings
+    servers:
+    - url: https://api.frontegg.com/directory
+      description: EU Region
+    - url: https://api.us.frontegg.com/directory
+      description: US Region
+    - url: https://api.ca.frontegg.com/directory
+      description: CA Region
+    - url: https://api.au.frontegg.com/directory
+      description: AU Region
+    - url: https://{domain}.frontegg.com/directory
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     post:
       operationId: Scim2ConnectionConfigController_create
       summary: Create a SCIM Configuration
@@ -64,6 +65,20 @@ paths:
       tags:
       - SCIM Configurations
   /resources/v1/configurations/scim2/{id}:
+    servers:
+    - url: https://api.frontegg.com/directory
+      description: EU Region
+    - url: https://api.us.frontegg.com/directory
+      description: US Region
+    - url: https://api.ca.frontegg.com/directory
+      description: CA Region
+    - url: https://api.au.frontegg.com/directory
+      description: AU Region
+    - url: https://{domain}.frontegg.com/directory
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     get:
       operationId: Scim2ConnectionConfigController_fetchById
       summary: Get a SCIM Configuration by ID
@@ -137,45 +152,37 @@ paths:
           description: ''
       tags:
       - SCIM Configurations
-info:
-  title: SCIM Provisioning Overview
-  description: 'The SCIM Provisioning endpoints enable seamless management of user identities and groups in compliance with the [SCIM (System for Cross-domain Identity Management) standard](https://datatracker.ietf.org/doc/html/rfc7644). This service supports automatic provisioning and deprovisioning of user accounts, ensuring data synchronization across multiple identity providers and applications.
-
-
-    Fully compliant with SCIM 2.0, the SCIM Provisioning Service guarantees compatibility and interoperability across various identity platforms.
-
-
-    This section lists all relevant API endpoints, organized into Management and Self-Service categories:
-
-
-    **Management Endpoints**: Require environment-level authorization and offer comprehensive control over SCIM resources.
-
-    <br>
-
-
-    **Self-Service Endpoints**: Accessible with a user token (JWT) and allow users with the necessary permissions to create, update, and delete a SCIM connection on their account.'
-  version: '1.0'
-servers:
-- url: https://api.frontegg.com/directory
-  description: EU Region
-- url: https://api.us.frontegg.com/directory
-  description: US Region
-- url: https://api.ca.frontegg.com/directory
-  description: CA Region
-- url: https://api.au.frontegg.com/directory
-  description: AU Region
-- url: https://{domain}.frontegg.com/directory
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 components:
-  securitySchemes:
-    bearer:
-      scheme: bearer
-      bearerFormat: JWT
-      type: http
   schemas:
+    Scim2CreateConnectionConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        connectionName:
+          type: string
+        token:
+          type: string
+      required:
+      - id
+      - connectionName
+      - token
+    Scim2CreateConnectionConfigRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+          - frontegg
+          - okta
+          - azure-ad
+          - other
+        connectionName:
+          type: string
+        syncToUserManagement:
+          type: boolean
+      required:
+      - source
     Scim2ConnectionConfigResponse:
       type: object
       properties:
@@ -204,35 +211,6 @@ components:
       - syncToUserManagement
       - lastSync
       - createdAt
-    Scim2CreateConnectionConfigRequest:
-      type: object
-      properties:
-        source:
-          type: string
-          enum:
-          - frontegg
-          - okta
-          - azure-ad
-          - other
-        connectionName:
-          type: string
-        syncToUserManagement:
-          type: boolean
-      required:
-      - source
-    Scim2CreateConnectionConfigResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        connectionName:
-          type: string
-        token:
-          type: string
-      required:
-      - id
-      - connectionName
-      - token
     Scim2PatchConnectionConfigRequest:
       type: object
       properties:
@@ -240,10 +218,12 @@ components:
           type: boolean
       required:
       - syncToUserManagement
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
 x-tagGroups:
 - name: Management
   tags:
-  - SCIM settings
-- name: Self-Service
-  tags:
-  - SCIM configurations
+  - Applications settings

@@ -1,0 +1,175 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Lockout Policy API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Lockout Policy
+  x-displayName: Lockout policy
+paths:
+  /resources/configurations/v1/lockout-policy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: LockoutPolicyController_createLockoutPolicy
+      summary: Create Lockout Policy
+      description: 'Create a lockout policy for all accounts (tenants).
+
+
+        To enable the lockout policy, set the `enabled` parameter to `true` and configure the `maximumAttempts` value as desired.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockoutPolicyRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockoutPolicyResponse'
+        '409':
+          description: Lockout Policy already exists
+      tags:
+      - Lockout Policy
+      security:
+      - bearer: []
+    patch:
+      operationId: LockoutPolicyController_updateLockoutPolicy
+      summary: Update Lockout Policy
+      description: 'Update the lockout policy for all accounts (tenants).
+
+
+        To disable the lockout policy, set the `enabled` parameter to `false`. You can also update the `maximumAttempts` value as desired.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LockoutPolicyRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockoutPolicyResponse'
+        '404':
+          description: Lockout Policy not found. Try to use the Create Lockout Policy API
+      tags:
+      - Lockout Policy
+      security:
+      - bearer: []
+    get:
+      operationId: LockoutPolicyController_getLockoutPolicy
+      summary: Get Lockout Policy
+      description: Retrieve the lockout policy for all accounts (tenants) or for a specific account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockoutPolicyResponse'
+        '404':
+          description: Lockout policy is not defined
+      tags:
+      - Lockout Policy
+      security:
+      - bearer: []
+components:
+  schemas:
+    LockoutPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        enabled:
+          type: boolean
+        maxAttempts:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - enabled
+      - maxAttempts
+      - createdAt
+      - updatedAt
+    LockoutPolicyRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Determine whether the Lockout Policy is enabled
+        maxAttempts:
+          type: number
+          description: The number of the maximum login attempts user can do
+          minimum: 1
+      required:
+      - enabled
+      - maxAttempts
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

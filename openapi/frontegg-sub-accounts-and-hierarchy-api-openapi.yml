@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Sub-accounts and Hierarchy API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Sub-accounts and Hierarchy
+  x-displayName: Sub-accounts and hierarchy
+paths:
+  /resources/hierarchy/v1:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantHierarchyControllerV1_createSubTenants
+      summary: Create Sub-account (tenant)
+      description: Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubTenantRequestDto'
+      responses:
+        '400':
+          description: When:a) given parameters do not pass validationb) or parent and child account (tenant) are equal:c) or child account (tenant) is already a sub-account in other organization's hierarchy
+      tags:
+      - Sub-accounts and Hierarchy
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantHierarchyControllerV1_deleteSubTenant
+      summary: Delete Sub-account (tenant)
+      description: Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSubTenantRequestDto'
+      responses:
+        '400':
+          description: When provided parameters do not pass validation.
+        '404':
+          description: When given accounts (tenants) are not in parent-child relation.
+      tags:
+      - Sub-accounts and Hierarchy
+      security:
+      - bearer: []
+components:
+  schemas:
+    DeleteSubTenantRequestDto:
+      type: object
+      properties: {}
+    CreateSubTenantRequestDto:
+      type: object
+      properties:
+        parentTenantId:
+          type: string
+        childTenantId:
+          type: string
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

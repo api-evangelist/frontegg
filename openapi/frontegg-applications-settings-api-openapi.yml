@@ -1,4 +1,26 @@
 openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Applications Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Applications Settings
 paths:
   /resources/applications/v1:
     get:
@@ -505,33 +527,37 @@ paths:
           description: ''
       tags:
       - Applications Settings
-info:
-  title: Multi-Apps Overview
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
-  version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
-servers:
-- url: https://api.frontegg.com/applications
-  description: EU Region
-- url: https://api.us.frontegg.com/applications
-  description: US Region
-- url: https://api.ca.frontegg.com/applications
-  description: CA Region
-- url: https://api.au.frontegg.com/applications
-  description: AU Region
-- url: https://{domain}.frontegg.com/applications
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 components:
-  securitySchemes:
-    bearer:
-      scheme: bearer
-      bearerFormat: JWT
-      type: http
   schemas:
+    CreateApplicationClientRequestDto:
+      type: object
+      properties:
+        clientName:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          description: External metadata with string, number, or boolean values
+      required:
+      - clientName
+      - clientType
+    ApplicationsClientCredentialsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        sharedSecret:
+          type: string
+      required:
+      - clientSecret
+      - sharedSecret
     ApplicationsResponse:
       type: object
       properties:
@@ -591,6 +617,95 @@ components:
       - description
       - integrationFinishedAt
       - allowDcr
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        logoURL:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        isDefault:
+          type: boolean
+          default: false
+        isActive:
+          type: boolean
+          default: true
+        type:
+          type: string
+          default: web
+        frontendStack:
+          type: string
+          default: react
+        description:
+          type: string
+        metadata:
+          type: object
+        appHost:
+          type: string
+        allowDcr:
+          type: boolean
+          default: false
+    ApplicationTenantAssignmentAccessType:
+      type: object
+      properties:
+        appId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - appId
+      - accessType
+    ApplicationClientResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID (UUID)
+        appId:
+          type: string
+        clientName:
+          type: string
+        clientSecret:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          nullable: true
+          description: External metadata with string, number, or boolean values
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - appId
+      - clientName
+      - clientSecret
+      - clientType
+      - redirectURLs
+      - createdAt
+      - updatedAt
     CreateApplicationRequest:
       type: object
       properties:
@@ -647,43 +762,6 @@ components:
       - name
       - appURL
       - loginURL
-    UpdateApplicationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        appURL:
-          type: string
-        loginURL:
-          type: string
-        logoURL:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-        isDefault:
-          type: boolean
-          default: false
-        isActive:
-          type: boolean
-          default: true
-        type:
-          type: string
-          default: web
-        frontendStack:
-          type: string
-          default: react
-        description:
-          type: string
-        metadata:
-          type: object
-        appHost:
-          type: string
-        allowDcr:
-          type: boolean
-          default: false
     ApplicationsTenantAssignmentResponseV1:
       type: object
       properties:
@@ -696,6 +774,35 @@ components:
       required:
       - tenantId
       - appIds
+    UpdateApplicationClientRequestDto:
+      type: object
+      properties:
+        clientName:
+          type: string
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          description: External metadata with string, number, or boolean values
+    EditApplicationTenantRequestV1:
+      type: object
+      properties:
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - accessType
+    RegenerateApplicationClientCredentialsRequest:
+      type: object
+      properties:
+        appId:
+          type: string
+      required:
+      - appId
     ApplicationTenantsResponseV1:
       type: object
       properties:
@@ -717,29 +824,6 @@ components:
           - MANAGED_ACCESS
       required:
       - tenantId
-    EditApplicationTenantRequestV1:
-      type: object
-      properties:
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - accessType
-    ApplicationTenantAssignmentAccessType:
-      type: object
-      properties:
-        appId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - appId
-      - accessType
     ApplicationsTenantAssignmentsResponseV2:
       type: object
       properties:
@@ -752,93 +836,11 @@ components:
       required:
       - tenantId
       - assignments
-    ApplicationsClientCredentialsResponse:
-      type: object
-      properties:
-        clientSecret:
-          type: string
-        sharedSecret:
-          type: string
-      required:
-      - clientSecret
-      - sharedSecret
-    RegenerateApplicationClientCredentialsRequest:
-      type: object
-      properties:
-        appId:
-          type: string
-      required:
-      - appId
-    CreateApplicationClientRequestDto:
-      type: object
-      properties:
-        clientName:
-          type: string
-        clientType:
-          type: string
-          enum:
-          - Agent
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type: object
-          description: External metadata with string, number, or boolean values
-      required:
-      - clientName
-      - clientType
-    ApplicationClientResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID (UUID)
-        appId:
-          type: string
-        clientName:
-          type: string
-        clientSecret:
-          type: string
-        clientType:
-          type: string
-          enum:
-          - Agent
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type: object
-          nullable: true
-          description: External metadata with string, number, or boolean values
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - appId
-      - clientName
-      - clientSecret
-      - clientType
-      - redirectURLs
-      - createdAt
-      - updatedAt
-    UpdateApplicationClientRequestDto:
-      type: object
-      properties:
-        clientName:
-          type: string
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type: object
-          description: External metadata with string, number, or boolean values
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
 x-tagGroups:
 - name: Management
   tags:

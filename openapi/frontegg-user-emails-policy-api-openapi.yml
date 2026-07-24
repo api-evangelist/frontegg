@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations User Emails Policy API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: User Emails Policy
+  x-displayName: User emails policy
+paths:
+  /resources/configurations/v1/user-emails-policy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserEmailsPolicyControllerV1_getUserEmailsPolicy
+      summary: Get User Emails Policy
+      description: Get information about the user emails policy. An environment token is required for this route.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserEmailsPolicyResponseDto'
+      tags:
+      - User Emails Policy
+      security:
+      - bearer: []
+    post:
+      operationId: UserEmailsPolicyControllerV1_createOrUpdateUserEmailsPolicy
+      summary: Create or Update User Emails Policy
+      description: Enable or disable the ability to change user emails. An environment token is required for this route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEmailsPolicyRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Emails Policy
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateUserEmailsPolicyRequestDto:
+      type: object
+      properties:
+        allowEmailChange:
+          type: boolean
+          description: Used to enable or disable email change for users.
+          example: 'true'
+    GetUserEmailsPolicyResponseDto:
+      type: object
+      properties:
+        allowEmailChange:
+          type: boolean
+          description: Indicates whether email change has been enabled or disabled.
+          example: 'true'
+      required:
+      - allowEmailChange
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

@@ -1,0 +1,929 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Plans API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Plans
+  x-displayName: Plans
+paths:
+  /resources/plans/v1/tenant/{tenantId}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PlansControllerV1_getTenantPlans
+      x-tag: Plans
+      summary: Get Account (tenant) Plans
+      description: Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: Search input, searchable by `name`
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)
+        example: name
+        schema:
+          enum:
+          - name
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, ASC for ascending, DESC for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: excludeNonEntitledPlans
+        required: false
+        in: query
+        description: Boolean value to include related entities in the response
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Filter plans that contain features with these keys
+        example:
+        - feature-key-1
+        - feature-key-2
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+      security:
+      - bearer: []
+  /resources/plans/v1:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PlansControllerV1_getPlans
+      x-tag: Plans
+      summary: Get Plans
+      description: Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: Search input, searchable by `name`
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)
+        example: name
+        schema:
+          enum:
+          - name
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, ASC for ascending, DESC for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        required: false
+        in: query
+        description: Comma separated user IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: tenantIds
+        required: false
+        in: query
+        description: Comma separated account (tenant) IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+      security:
+      - bearer: []
+    post:
+      operationId: PlansControllerV1_createPlan
+      x-tag: Plans
+      summary: Create Plan
+      description: Create a new plan with features, rules, default treatment, and optional auto-assignment settings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlanDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+      security:
+      - bearer: []
+  /resources/plans/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PlansControllerV1_getSinglePlan
+      x-tag: Plans
+      summary: Get Single Plan
+      description: Retrieve a single plan by its unique identifier, including linked features and entitlements.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+      security:
+      - bearer: []
+    patch:
+      operationId: PlansControllerV1_updatePlan
+      x-tag: Plans
+      summary: Update Plan
+      description: Update an existing plan's name, features, rules, default treatment, or auto-assignment settings.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlanDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+      security:
+      - bearer: []
+    delete:
+      operationId: PlansControllerV1_deletePlan
+      x-tag: Plans
+      summary: Delete Plan
+      description: Delete an existing plan by its unique identifier.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+      security:
+      - bearer: []
+  /resources/plans/v1/{id}/features:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PlansControllerV1_getPlanFeatures
+      x-tag: Plans
+      summary: Get Plan Features
+      description: Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`)).
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: 'Search input; Searchable fields: `name`'
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Order fields by date created (`createdAt`) or expired (`expirationDate`)
+        example: key
+        schema:
+          default: createdAt
+          enum:
+          - name
+          - key
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort fields by an ascending (`ASC`) or a decending (`DESC`) order
+        example: ASC
+        schema:
+          default: DESC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs that can be used to filter the results
+        example:
+        - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: permissionKeys
+        required: false
+        in: query
+        description: Comma separated permission keys that can be used to filter the results
+        example:
+        - permission.read
+        - permission.write
+        schema:
+          type: array
+          items:
+            type: string
+      - name: hasFeatureFlag
+        required: false
+        in: query
+        description: Filter out features that are linked/not linked to feature-flag
+        example: flase
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Comma separated feature Keys that can be used to filter the results
+        example:
+        - test-feature
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanFeatureDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+      security:
+      - bearer: []
+  /resources/plans/v1/{id}/features/link:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: PlansControllerV1_linkFeaturesToPlan
+      x-tag: Plans
+      summary: Link Features to Plan
+      description: Link multiple features to an existing plan by their feature IDs.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkFeaturesDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+      security:
+      - bearer: []
+  /resources/plans/v1/{id}/features/unlink:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: PlansControllerV1_unlinkFeaturesFromPlan
+      x-tag: Plans
+      summary: Unlink Features From Plan
+      description: Unlink multiple features from an existing plan by their feature IDs.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnlinkFeaturesDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+      security:
+      - bearer: []
+components:
+  schemas:
+    LinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
+    PlanFeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - name
+      - key
+      - permissions
+    EntitlementDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was created
+          example: '2022-01-01T12:00:00'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was last updated
+          example: '2022-01-01T12:00:00'
+        plan:
+          description: Get the related plan object of the entitlement, in case `withRelations` is set to `true`
+          allOf:
+          - $ref: '#/components/schemas/EntitlementPlan'
+      required:
+      - id
+      - planId
+      - tenantId
+      - createdAt
+      - plan
+    EntitlementPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+      required:
+      - id
+      - vendorId
+      - name
+      - createdAt
+    UnlinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    UpdatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
+    PlanDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: object
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+        features:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/PlanFeatureDto'
+        entitlements:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/EntitlementDto'
+      required:
+      - id
+      - vendorId
+      - name
+      - assignOnSignup
+      - createdAt
+    CreatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+          default: false
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    ConditionDto:
+      type: object
+      properties:
+        attribute:
+          type: string
+          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
+          example: myCustomAttribute
+        attributeType:
+          type: string
+          description: Enum that represents the attribute type (`frontegg` or `custom`)
+          example: custom
+          enum:
+          - custom
+          - frontegg
+        negate:
+          type: boolean
+          description: Boolean that indicates whether the condition should negate the operation
+          example: false
+        op:
+          type: string
+          description: Enum that represents the operation applied to the condition
+          example: in_list
+          enum:
+          - in_list
+          - starts_with
+          - ends_with
+          - contains
+          - matches
+          - equal
+          - greater_than
+          - greater_than_equal
+          - lower_than
+          - lower_than_equal
+          - between_numeric
+          - is
+          - 'on'
+          - between_date
+          - on_or_after
+          - on_or_before
+        value:
+          type: object
+          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
+          example:
+            list:
+            - valueA
+            - valueB
+      required:
+      - attribute
+      - attributeType
+      - negate
+      - op
+      - value
+    PageDto:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

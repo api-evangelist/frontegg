@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Resources API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Resources
+paths:
+  /resources/tenants/v2/alias/{alias}:
+    get:
+      operationId: TenantControllerV2_getTenantByAlias
+      summary: Get Account (tenant) by Alias
+      description: Get an account (tenant) with custom login by alias. When an account (tenant) cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: alias
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Resources
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

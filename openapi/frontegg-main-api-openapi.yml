@@ -1,6 +1,42 @@
 openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Main API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Main
 paths:
   /:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     get:
       operationId: AuditsController_getAudits
       summary: Get Audits
@@ -97,6 +133,20 @@ paths:
       tags:
       - Main
   /stats:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     get:
       operationId: AuditsController_getAuditsStats
       summary: Get Audits Statistics
@@ -114,6 +164,20 @@ paths:
       tags:
       - Main
   /export/csv:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     post:
       operationId: AuditsController_exportCsv
       summary: Export CSV
@@ -194,6 +258,20 @@ paths:
       tags:
       - Main
   /export/csv/v2:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     post:
       operationId: AuditsController_exportCsvToStream
       summary: Export CSV to Stream
@@ -273,6 +351,20 @@ paths:
       tags:
       - Main
   /resources/audits/v2:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     get:
       operationId: AuditsController_V2_getAudits
       summary: Get Audits (V2)
@@ -369,6 +461,20 @@ paths:
       tags:
       - Main
   /resources/audits/v2/export/csv:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     post:
       operationId: AuditsController_V2_exportCsvToStream
       summary: Export CSV to Stream (V2)
@@ -470,84 +576,20 @@ paths:
           description: ''
       tags:
       - Main
-  /resources/metrics/v1:
-    get:
-      operationId: MetricsController_getMetrics
-      summary: Get Metrics
-      description: Retrieve audit-related metrics for your environment within a specified time range. You can use query parameters to define the time window, result limit, and aggregation frequency. The response includes top resources, top accounts (tenants), and audit event counts over time. This request requires an environment token for authentication.
-      parameters:
-      - name: from
-        required: false
-        in: query
-        schema:
-          type: number
-        description: ''
-      - name: to
-        required: false
-        in: query
-        schema:
-          type: number
-        description: ''
-      - name: limit
-        required: false
-        in: query
-        schema:
-          type: number
-        description: ''
-      - name: frequency
-        required: false
-        in: query
-        schema:
-          type: number
-        description: ''
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MetricsResponseDto'
-      tags:
-      - Metrics
-info:
-  title: Audits Overview
-  description: 'Frontegg provides automatic audit logging from the moment it’s integrated into your application, capturing key events as your customers interact with the product. User-management activities, such as logins and settings updates, are automatically logged without any additional setup required on your part.
-
-
-    Alongside Frontegg’s out-of-the-box logged events, you can add custom audit logs via the `POST` API or our backend SDKs, preserving the standard audit event structure. Custom logs will appear to your customers in their dedicated audit section within the self-service menu.
-
-
-    This section lists all relevant API endpoints, organized into Management and Self-Service categories:
-
-
-    **Management Endpoints**: Require environment-level authorization and offer comprehensive control over audits resources.
-
-    <br>
-
-
-    **Self-Service Endpoints**: Accessible with a user token (JWT), allowing users with the required permissions to create, update, and delete aduits connections on their account.'
-  version: ''
-servers:
-- url: https://api.frontegg.com/audits
-  description: EU Region
-- url: https://api.us.frontegg.com/audits
-  description: US Region
-- url: https://api.ca.frontegg.com/audits
-  description: CA Region
-- url: https://api.au.frontegg.com/audits
-  description: AU Region
-- url: https://{domain}.frontegg.com/audits
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 components:
-  securitySchemes:
-    bearer:
-      scheme: bearer
-      bearerFormat: JWT
-      type: http
   schemas:
+    Property:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: ''
+        name:
+          type: string
+          description: ''
+      required:
+      - displayName
+      - name
     AuditRequest:
       type: object
       properties:
@@ -562,18 +604,6 @@ components:
           description: ''
       required:
       - severity
-    Property:
-      type: object
-      properties:
-        displayName:
-          type: string
-          description: ''
-        name:
-          type: string
-          description: ''
-      required:
-      - displayName
-      - name
     ExportCSV:
       type: object
       properties:
@@ -584,37 +614,12 @@ components:
           description: ''
       required:
       - properties
-    TopResources:
-      type: object
-      properties: {}
-    TopTenants:
-      type: object
-      properties: {}
-    MetricsResponseDto:
-      type: object
-      properties:
-        topResources:
-          $ref: '#/components/schemas/TopResources'
-          description: ''
-        topTenants:
-          $ref: '#/components/schemas/TopTenants'
-          description: ''
-        auditsCounterByTime:
-          type: object
-          description: ''
-      required:
-      - topResources
-      - topTenants
-      - auditsCounterByTime
-security:
-- bearer: []
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
 x-tagGroups:
 - name: Management
   tags:
-  - Metrics
-- name: Self-Service
-  tags:
-  - Main
+  - Applications settings

@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Metrics API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Metrics
+paths:
+  /resources/metrics/v1:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: MetricsController_getMetrics
+      summary: Get Metrics
+      description: Retrieve audit-related metrics for your environment within a specified time range. You can use query parameters to define the time window, result limit, and aggregation frequency. The response includes top resources, top accounts (tenants), and audit event counts over time. This request requires an environment token for authentication.
+      parameters:
+      - name: from
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: to
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: frequency
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponseDto'
+      tags:
+      - Metrics
+components:
+  schemas:
+    TopResources:
+      type: object
+      properties: {}
+    MetricsResponseDto:
+      type: object
+      properties:
+        topResources:
+          $ref: '#/components/schemas/TopResources'
+          description: ''
+        topTenants:
+          $ref: '#/components/schemas/TopTenants'
+          description: ''
+        auditsCounterByTime:
+          type: object
+          description: ''
+      required:
+      - topResources
+      - topTenants
+      - auditsCounterByTime
+    TopTenants:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Delegation API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Delegation
+  x-displayName: Delegation
+paths:
+  /resources/configurations/v1/delegation:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: DelegationConfigurationControllerV1_getDelegationConfiguration
+      x-vendor-only: 'true'
+      summary: Get Delegation Configuration
+      description: 'Retrieve the delegation configuration for your environment.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDelegationConfigurationResponseDto'
+      tags:
+      - Delegation
+      security:
+      - bearer: []
+    post:
+      operationId: DelegationConfigurationControllerV1_createOrUpdateDelegationConfiguration
+      x-vendor-only: 'true'
+      summary: Create or Update Delegation Configuration
+      description: 'Enable or disable delegation in the token exchange flow.
+
+
+        Use this endpoint to update the delegation configuration by enabling or disabling delegation for the token exchange flow.
+
+
+        A valid environment token is required to call this endpoint.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDelegationConfigurationRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Delegation
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateDelegationConfigurationRequestDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Used to enable or disable delegation for access tokens created using Token Exchange.
+          example: 'true'
+    GetDelegationConfigurationResponseDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Indicates whether delegation has been enabled or disabled.
+          example: 'true'
+      required:
+      - enabled
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

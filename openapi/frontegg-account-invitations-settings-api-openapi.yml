@@ -1,0 +1,346 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Account Invitations Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Account Invitations Settings
+  x-displayName: Account invitations settings
+paths:
+  /resources/tenants/invites/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: TenantInvitesController_createTenantInvite
+      summary: Create Account (tenant) Invite
+      description: 'Create a general or account (tenant)-specific invitation token.
+
+
+        Use this endpoint to generate invitation tokens for accounts (tenants) or individual users.
+
+
+        To create a general invitation token, send the request without specifying an account (tenant) or user. To create an account (tenant)-specific token, include the account (tenant) ID in the request body. To create a token for a specific user of an account (tenant), also include the user ID in the body parameters. If a user ID is provided, you can control whether an invitation email is sent by setting the `shouldSendEmail` parameter.
+
+
+        To set a custom expiration time for the invitation, use the `expiresInMinutes` parameter to define when the token will expire.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInviteTokenRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+  /resources/tenants/invites/v1/all:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantInvitesController_getAllInvites
+      summary: Get All Account (tenant) Invites
+      description: 'Retrieve all invitation tokens across all accounts (tenants).
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InviteTokenDto'
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+  /resources/tenants/invites/v1/token/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: TenantInvitesController_deleteTenantInvite
+      summary: Delete an Account (tenant) Invite
+      description: 'Delete an invitation for an account (tenant) using the invitation ID.
+
+
+        Use this endpoint to delete a specific invitation by providing its invitation ID as a path parameter. You can obtain the invitation ID via the **Get all account (tenant) invites** API.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/activation/strategies:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ActivationStrategyControllerV1_getActivationStrategy
+      summary: Get Activation Strategies
+      parameters: []
+      responses:
+        '200':
+          description: Retrieve the current account activation strategies configured in your environment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationStrategyResponse'
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+    post:
+      operationId: ActivationStrategyControllerV1_createOrUpdateActivationStrategy
+      summary: Create or Update Activation Strategy
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateActivationStrategyRequest'
+      responses:
+        '200':
+          description: Create a new activation strategy or update the existing activation strategy for your environment.
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/invitation/strategies:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: InvitationStrategyControllerV1_getInvitationStrategy
+      summary: Get Invitation Strategies
+      parameters: []
+      responses:
+        '200':
+          description: Retrieve the current invitation strategies configured in your environment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationStrategyResponse'
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+    post:
+      operationId: InvitationStrategyControllerV1_createOrUpdateInvitationStrategy
+      summary: Create or Update Invitation Strategy
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateInvitationStrategyRequest'
+      responses:
+        '200':
+          description: Create a new invitation strategy or update the existing invitation strategy for your environment.
+      tags:
+      - Account Invitations Settings
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateOrUpdateInvitationStrategyRequest:
+      type: object
+      properties:
+        codeExpiration:
+          type: number
+    CreateInviteTokenRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+        roleIds:
+          description: Array of role IDs to assign to invited users
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
+    InvitationStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+        codeExpiration:
+          type: number
+      required:
+      - strategy
+      - codeExpiration
+    CreateOrUpdateActivationStrategyRequest:
+      type: object
+      properties:
+        codeExpiration:
+          type: number
+          minimum: 60
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+      required:
+      - strategy
+    ActivationStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+        codeExpiration:
+          type: number
+      required:
+      - strategy
+      - codeExpiration
+    InviteTokenDto:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        userId:
+          type: string
+        token:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        shouldSendEmail:
+          type: boolean
+        name:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - token
+      - expires
+      - shouldSendEmail
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

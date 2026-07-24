@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations OIDC Configurations API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: OIDC Configurations
+  x-displayName: OIDC configurations
+paths:
+  /resources/sso/v1/oidc/configurations:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: OidcControllerV1_getOidcConifguration
+      summary: Get OIDC Configuration
+      description: Retrieve the OpenID Connect (OIDC) configuration for the environment.
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigureOidcResponse'
+      tags:
+      - OIDC Configurations
+components:
+  schemas:
+    ConfigureOidcResponse:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

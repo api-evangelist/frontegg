@@ -1,0 +1,505 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Entitlements API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Entitlements
+  x-displayName: Entitlements
+paths:
+  /resources/entitlements/v2:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: EntitlementsControllerV2_getEntitlements
+      x-tag: Entitlements
+      summary: Get Entitlements
+      description: Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`).
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of results to return
+        example: '0'
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          type: number
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, `ASC` for ascending, `DESC` for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: planId
+        required: false
+        in: query
+        description: UUID string representing the plan ID
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: string
+      - name: planIds
+        required: false
+        in: query
+        description: UUIDs string array representing the plan IDs
+        example: '["e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"]'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: assignLevel
+        required: false
+        in: query
+        description: Assign level, `USER` for user-level entitlements, `TENANT` for tenant-level entitlements
+        example: User
+        schema:
+          enum:
+          - USER
+          - TENANT
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by date (`createdAt`) or expiration date (`expirationDate`)
+        example: expirationDate
+        schema:
+          enum:
+          - expirationDate
+          - createdAt
+          type: string
+      - name: userIds
+        required: false
+        in: query
+        description: Comma separated user IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: tenantIds
+        required: false
+        in: query
+        description: Comma separated account (tenant) IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: withRelations
+        required: false
+        in: query
+        description: Boolean value to include related entities in the response
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/EntitlementDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+    post:
+      operationId: EntitlementsControllerV2_createEntitlement
+      x-tag: Entitlements
+      summary: Create Entitlement
+      description: Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntitlementDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+  /resources/entitlements/v2/batch:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: EntitlementsControllerV2_createBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Create Entitlements
+      description: Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateManyEntitlementsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementIdsDto'
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+    patch:
+      operationId: EntitlementsControllerV2_updateBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Update Entitlements
+      description: Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateManyEntitlementsDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+    delete:
+      operationId: EntitlementsControllerV2_deleteBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Delete Entitlements
+      description: Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements.
+      parameters:
+      - name: ids
+        required: true
+        in: query
+        description: UUID string that represents the entitlement ID
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+  /resources/entitlements/v2/{id}:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: EntitlementsControllerV2_getSingleEntitlement
+      x-tag: Entitlements
+      summary: Get Single Entitlement
+      description: Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+    patch:
+      operationId: EntitlementsControllerV2_updateEntitlement
+      x-tag: Entitlements
+      summary: Update Entitlement
+      description: Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntitlementDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+    delete:
+      operationId: EntitlementsControllerV2_deleteEntitlement
+      x-tag: Entitlements
+      summary: Delete Entitlement
+      description: Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+      security:
+      - bearer: []
+components:
+  schemas:
+    UpdateEntitlementDto:
+      type: object
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+    EntitlementIdsDto:
+      type: object
+      properties:
+        entitlementIds:
+          description: UUID string that represents the entitlement ID
+          example:
+          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - entitlementIds
+    EntitlementDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was created
+          example: '2022-01-01T12:00:00'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was last updated
+          example: '2022-01-01T12:00:00'
+        plan:
+          description: Get the related plan object of the entitlement, in case `withRelations` is set to `true`
+          allOf:
+          - $ref: '#/components/schemas/EntitlementPlan'
+      required:
+      - id
+      - planId
+      - tenantId
+      - createdAt
+      - plan
+    UpdateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to update
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
+      required:
+      - entitlements
+    EntitlementPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+      required:
+      - id
+      - vendorId
+      - name
+      - createdAt
+    CreateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to create
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEntitlementDto'
+      required:
+      - entitlements
+    CreateEntitlementDto:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+      required:
+      - planId
+      - tenantId
+    PageDto:
+      type: object
+      properties: {}
+    UpdateEntitlementWithIdDto:
+      type: object
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+      required:
+      - id
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

@@ -1,0 +1,152 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations API Token API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: API Token
+  x-displayName: API token
+paths:
+  /resources/auth/v2/api-token:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: AuthenticationApiTokenControllerV2_authApiToken
+      summary: Authenticate Using API Token
+      description: 'Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`).
+
+
+        **Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalidated.
+
+
+        Use this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthApiTokenDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTokenAuthV2Response'
+      tags:
+      - API Token
+      security:
+      - bearer: []
+  /resources/auth/v2/api-token/token/refresh:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: AuthenticationApiTokenControllerV2_refreshToken
+      summary: Refresh API Token
+      description: 'Refreshes a JWT access token using a refresh token. If the refresh token is valid, returns a new JWT and refresh token pair. This maintains an authenticated session without requiring the user to log in again.
+
+
+        If the refresh token is invalid, expired, or has been revoked due to rotation limits, the request will fail with an authentication error.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshApiTokenDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiTokenAuthV2Response'
+      tags:
+      - API Token
+      security:
+      - bearer: []
+components:
+  schemas:
+    ApiTokenAuthV2Response:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: number
+        expires:
+          type: string
+      required:
+      - access_token
+      - refresh_token
+      - expires_in
+      - expires
+    RefreshApiTokenDto:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+      required:
+      - refreshToken
+    AuthApiTokenDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        secret:
+          type: string
+      required:
+      - clientId
+      - secret
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

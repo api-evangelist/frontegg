@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations API Access Control Configurations API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: API Access Control Configurations
+  x-displayName: API Access Control Configurations
+paths:
+  /resources/routes/v1/configuration:
+    servers:
+    - url: https://api.frontegg.com/entitlements
+      description: EU Region
+    - url: https://api.us.frontegg.com/entitlements
+      description: US Region
+    - url: https://api.ca.frontegg.com/entitlements
+      description: CA Region
+    - url: https://api.au.frontegg.com/entitlements
+      description: AU Region
+    - url: https://{domain}.frontegg.com/entitlements
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: RoutesConfigurationsControllerV1_getRoutesConfiguration
+      x-tag: API Access Control Configurations
+      summary: Get Routes Configuration
+      description: Retrieve routes configuration
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesConfigurationDto'
+      tags:
+      - API Access Control Configurations
+      security:
+      - bearer: []
+    patch:
+      operationId: RoutesConfigurationsControllerV1_updateRoutesConfiguration
+      x-tag: API Access Control Configurations
+      summary: Update Routes Configuration
+      description: Update route configurations
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoutesConfigurationDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesConfigurationDto'
+      tags:
+      - API Access Control Configurations
+      security:
+      - bearer: []
+components:
+  schemas:
+    RoutesConfigurationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        vendorId:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        accessControlMode:
+          type: string
+          readOnly: true
+          example: monitor
+          enum:
+          - guard
+          - monitor
+      required:
+      - id
+      - vendorId
+      - accessControlMode
+    UpdateRoutesConfigurationDto:
+      type: object
+      properties:
+        accessControlMode:
+          type: string
+          description: Access control mode
+          example: monitor
+          enum:
+          - guard
+          - monitor
+      required:
+      - accessControlMode
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

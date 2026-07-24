@@ -1,6 +1,36 @@
 openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Entitlements Check API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Entitlements Check
+  x-displayName: Entitlements Check
 paths:
   /v1/data/e10s/features/is_entitled_to_input_feature:
+    servers:
+    - url: http://{host}:{port}
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '8181'
     post:
       operationId: OpenApiPDPController_isEntitledToFeature
       summary: Is Entitled to Feature
@@ -28,6 +58,13 @@ paths:
       tags:
       - Entitlements Check
   /v1/data/e10s/permissions/is_entitled_to_input_permission:
+    servers:
+    - url: http://{host}:{port}
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '8181'
     post:
       operationId: OpenApiPDPController_isEntitledToPermission
       summary: Is Entitled to Permission
@@ -55,6 +92,13 @@ paths:
       tags:
       - Entitlements Check
   /v1/data/e10s/routes/is_entitled_to_input_route:
+    servers:
+    - url: http://{host}:{port}
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '8181'
     post:
       operationId: OpenApiPDPController_isEntitledToRoute
       summary: Is Entitled to Route
@@ -81,22 +125,27 @@ paths:
                 $ref: '#/components/schemas/PDPResponse'
       tags:
       - Entitlements Check
-info:
-  title: Entitlements Agent (PDP)
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
-servers:
-- url: http://{host}:{port}
-  variables:
-    host:
-      default: localhost
-    port:
-      default: '8181'
 components:
   schemas:
+    IsEntitledToRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          example: /example
+      required:
+      - method
+      - path
     IsEntitledToFeatureDto:
       type: object
       properties:
@@ -105,6 +154,28 @@ components:
           example: example-feature-key
       required:
       - featureKey
+    PDPResponse:
+      type: object
+      properties:
+        decision_id:
+          type: string
+          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
+        metrics:
+          type: object
+        result:
+          $ref: '#/components/schemas/EntitlementsResult'
+      required:
+      - decision_id
+      - metrics
+      - result
+    IsEntitledToPermissionDto:
+      type: object
+      properties:
+        permissionKey:
+          type: string
+          example: example.permission.read
+      required:
+      - permissionKey
     SubjectContext:
       type: object
       properties:
@@ -146,45 +217,12 @@ components:
           example: false
       required:
       - result
-    PDPResponse:
-      type: object
-      properties:
-        decision_id:
-          type: string
-          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
-        metrics:
-          type: object
-        result:
-          $ref: '#/components/schemas/EntitlementsResult'
-      required:
-      - decision_id
-      - metrics
-      - result
-    IsEntitledToPermissionDto:
-      type: object
-      properties:
-        permissionKey:
-          type: string
-          example: example.permission.read
-      required:
-      - permissionKey
-    IsEntitledToRouteDto:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
-          type: string
-          example: /example
-      required:
-      - method
-      - path
-x-tagGroups: []
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

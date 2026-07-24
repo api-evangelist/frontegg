@@ -1,0 +1,374 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Personal Tokens API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Personal Tokens
+  x-displayName: Personal tokens
+paths:
+  /resources/users/access-tokens/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserAccessTokensV1Controller_createUserAccessToken
+      summary: Create User Access Token
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserAccessTokenRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAccessTokenResponse'
+      tags:
+      - Personal Tokens
+      description: Create an access token for a specific user.
+      security:
+      - bearer: []
+    get:
+      operationId: UserAccessTokensV1Controller_getUserAccessTokens
+      summary: Get User Access Tokens
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserAccessTokensResponse'
+      tags:
+      - Personal Tokens
+      description: Retrieve all access tokens for a specific user.
+      security:
+      - bearer: []
+  /resources/users/access-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UserAccessTokensV1Controller_deleteUserAccessToken
+      summary: Delete User Access Token by Token ID
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Personal Tokens
+      description: Delete a user access token.
+      security:
+      - bearer: []
+  /resources/users/api-tokens/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserApiTokensV1Controller_createTenantApiToken
+      summary: Create User Client Credentials Token
+      description: Create a user-specific API token.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserApiTokenDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserApiTokenResponseDto'
+      tags:
+      - Personal Tokens
+      security:
+      - bearer: []
+    get:
+      operationId: UserApiTokensV1Controller_getApiTokens
+      summary: Get User Client Credentials Tokens
+      description: Retrieve a user-specific API token.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUserApiTokensResponseDto'
+      tags:
+      - Personal Tokens
+      security:
+      - bearer: []
+  /resources/users/api-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UserApiTokensV1Controller_deleteApiToken
+      summary: Delete User Client Credentials Token by Token ID
+      description: Delete a user-specific API token.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Personal Tokens
+      security:
+      - bearer: []
+components:
+  schemas:
+    UserAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - createdAt
+    GetUserAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccessTokenResponse'
+      required:
+      - accessTokens
+    CreateUserApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          maximum: 5256000
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    CreateUserApiTokenResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - metadata
+      - createdAt
+      - secret
+    CreateUserAccessTokenRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    GetUserApiTokensResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - metadata
+      - createdAt
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

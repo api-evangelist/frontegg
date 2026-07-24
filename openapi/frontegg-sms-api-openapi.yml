@@ -1,0 +1,591 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations SMS API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: SMS
+  x-displayName: SMS
+paths:
+  /resources/users/phone-numbers/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserPhoneNumbersControllerV1_getAllPhoneNumbers
+      summary: Get All Phone Numbers
+      description: 'Retrieve a paginated list of all user phone numbers associated with your environment.
+
+
+        This endpoint returns user phone numbers along with pagination metadata and navigation links. It supports filtering, sorting, and offset-based pagination for efficient querying.
+
+
+        Query parameters (optional):
+
+        - `_limit` (number ≥ 1): Maximum number of items to return per page.
+
+        - `_offset` (number ≥ 0): The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+
+        - `_sortBy` (string): Field to sort by. Allowed values: `userId`, `phoneNumber`.
+
+        - `_order` (string): Sort order. Allowed values: `ASC`, `DESC`.
+
+        - `_phoneNumber` (string): Filter by a specific phone number.
+
+
+        Use this endpoint to list or search user phone numbers in a paginated format, ideal for administrative tools or reporting.'
+      deprecated: true
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - userId
+          - phoneNumber
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _phoneNumber
+        required: false
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/UserPhoneNumberResponseDto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - SMS
+      security:
+      - bearer: []
+    post:
+      operationId: UserPhoneNumbersControllerV1_createUserPhoneNumber
+      summary: Set Phone Number for a User
+      description: 'Assign a new phone number to a user and optionally trigger a verification code.
+
+
+        By default, the system sends an SMS verification code to the provided phone number. To skip verification (e.g., for internal setup), set the `verify` field to `false`.
+
+
+        Request body must include:
+
+        - `phoneNumber`: The new phone number to assign to the user. Must follow international format.
+
+        - `verify` (optional): Whether to send an SMS verification code. Defaults to `true` if not provided.
+
+
+        Use this endpoint to set or update a user''s phone number, with optional control over verification.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserPhoneNumberRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberCreatedResponseDto'
+      tags:
+      - SMS
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/preverify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber
+      summary: Pre-verify User's Phone Number
+      description: 'Send a one-time code (OTC) to the specified phone number to initiate verification.
+
+
+        This endpoint is used to pre-verify a phone number before associating it with a user account. It sends an SMS-based one-time code to the provided number.
+
+
+        Request body must include:
+
+        - `phoneNumber`: The phone number to verify, in international format.
+
+
+        Use this endpoint to validate ownership of a phone number by sending a one-time code for user input during onboarding or account setup.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreVerifyUserPhoneNumberRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberCreatedResponseDto'
+      tags:
+      - SMS
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserPhoneNumbersControllerV1_verifyCreateUserPhoneNumber
+      summary: Verify Creation of Phone Number for User
+      description: 'Verify a user''s phone number using a one-time code (OTC) that was sent via SMS.
+
+
+        This is the final step in the phone number verification process. After initiating verification via the pre-verification route, use this endpoint to confirm the phone number by submitting the OTC and code.
+
+
+        Request body must include:
+
+        - `otcToken`: The token issued when the OTC was sent.
+
+        - `code`: The one-time code the user received on their phone.
+
+
+        Use this endpoint to validate the user''s ownership of the phone number and complete the verification process.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPhoneNumberOTCRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SMS
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: UserPhoneNumbersControllerV1_deleteUserPhoneNumber
+      summary: Delete User's Phone Number
+      description: 'Initiate the deletion process for a user''s phone number.
+
+
+        This endpoint begins the phone number removal workflow by sending a verification code to the user. The phone number will not be deleted until the verification step is completed.
+
+
+        Path parameters:
+
+        - `id`: The unique identifier of the phone number to be deleted.
+
+
+        Use this endpoint to trigger the secure deletion process for a user''s phone number. A follow-up verification step is required to finalize the removal.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberDeleteCodeResponseDto'
+      tags:
+      - SMS
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/{id}/delete/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UserPhoneNumbersControllerV1_verifyDeleteUserPhoneNumber
+      summary: Verify Delete User's Phone Number
+      description: 'Verify the deletion of a user''s phone number using a one-time code (OTC).
+
+
+        This is the final step in the phone number deletion process. After initiating deletion, the system sends a verification code to the user''s phone. This endpoint confirms the deletion by validating the OTC and code.
+
+
+        Path parameters:
+
+        - `id`: The unique identifier of the phone number to delete.
+
+
+        Request body must include:
+
+        - `otcToken`: The token issued during the deletion request.
+
+        - `code`: The one-time code sent to the user via SMS.
+
+
+        Use this endpoint to securely complete the deletion of a user''s phone number.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPhoneNumberOTCRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SMS
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/me:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserPhoneNumbersControllerV1_getUserOwnPhoneNumbers
+      summary: Get Current User's Phone Numbers
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      - name: frontegg-user-id
+        in: header
+        description: The user id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserPhoneNumberResponseDto'
+      tags:
+      - SMS
+      description: 'Retrieve all phone numbers associated with the current user.
+
+
+        This endpoint returns a list of phone numbers linked to the authenticated user, including verification status and timestamps.
+
+
+        The response includes metadata such as verification status and timestamps for creation and last update.
+
+
+        Use this endpoint to display or manage the user''s registered phone numbers in your application.'
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v2:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: UserPhoneNumbersControllerV2_getAllPhoneNumbers
+      summary: Get All Phone Numbers V2
+      description: This route returns all user phone numbers.
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          maximum: 250
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _sortBy
+        required: false
+        in: query
+        schema:
+          enum:
+          - userId
+          - phoneNumber
+          type: string
+      - name: _order
+        required: false
+        in: query
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: _phoneNumber
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: userIds
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/UserPhoneNumberResponseDto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - SMS
+      security:
+      - bearer: []
+components:
+  schemas:
+    PreVerifyUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+      required:
+      - phoneNumber
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    UserPhoneNumberDeleteCodeResponseDto:
+      type: object
+      properties: {}
+    CreateUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+        verify:
+          type: boolean
+          default: true
+          description: Should send verification code, default is true
+      required:
+      - phoneNumber
+    UserPhoneNumberCreatedResponseDto:
+      type: object
+      properties: {}
+    VerifyPhoneNumberOTCRequestDto:
+      type: object
+      properties:
+        otcToken:
+          type: string
+          description: OTC token
+        code:
+          type: string
+          description: Code that was sent to the user
+      required:
+      - otcToken
+      - code
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    UserPhoneNumberResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        phoneNumber:
+          type: string
+        verified:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - userId
+      - phoneNumber
+      - verified
+      - createdAt
+      - updatedAt
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

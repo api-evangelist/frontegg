@@ -1,0 +1,333 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Users-applications Management API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Users-applications Management
+  x-displayName: Users-applications management
+paths:
+  /resources/applications/v1/{appId}/users:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ApplicationsControllerV1_getUsersForApplication
+      summary: Get Users for Application
+      description: 'Retrieve users for an application.
+
+
+        Provide the application ID as a path parameter.'
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+  /resources/applications/v1/{userId}/apps:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ApplicationsControllerV1_getApplicationsForUser
+      summary: Get Applications for User
+      description: 'Retrieve applications for a user.
+
+
+        Provide the user''s ID as a path parameter'
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+  /resources/applications/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: ApplicationsControllerV1_assignUsersToApplication
+      summary: Assign Users to Application
+      description: 'Assign users to an application.
+
+
+        Provide the application ID as a path parameter and the user IDs in the request body.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignUsersToAppRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationUserTenantsResponseDto'
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+    delete:
+      operationId: ApplicationsControllerV1_unassignUsersFromApplication
+      summary: Unassign Users From Application
+      description: 'Unassign users from an application.
+
+
+        Provide the application ID as a path parameter and the user IDs in the request body.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignUsersFromAppRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+  /resources/applications/user-tenants/active/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: ApplicationsActiveUserTenantsControllerV1_getUserApplicationActiveTenants
+      summary: Get User Active Accounts (tenants) in Applications
+      description: 'Retrieve the active accounts (tenants) of a user for an application.
+
+
+        Provide the application ID and the user ID as path parameters.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserApplicationActiveTenantsResponseDto'
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+    put:
+      operationId: ApplicationsActiveUserTenantsControllerV1_switchUserApplicationActiveTenant
+      summary: Switch Users Active Account (tenant) in Applications
+      description: 'Update the active accounts (tenants) of a user for an application.
+
+
+        Provide the application ID and the user ID as path parameters and the updated list of account (tenant) IDs in the request body.'
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchApplicationActiveUserTenantsRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Users-applications Management
+      security:
+      - bearer: []
+components:
+  schemas:
+    ApplicationUserTenantsResponseDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        userTenantId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - appId
+      - userTenantId
+      - createdAt
+    UserApplicationActiveTenantResponse:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        applicationId:
+          type: string
+      required:
+      - tenantId
+      - applicationId
+    SwitchApplicationActiveUserTenantsRequestDto:
+      type: object
+      properties:
+        activeApplicationTenants:
+          description: List of applications and tenants to set as active, for user
+          type: array
+          items:
+            $ref: '#/components/schemas/SwitchApplicationActiveUserTenantDto'
+      required:
+      - activeApplicationTenants
+    UserApplicationActiveTenantsResponseDto:
+      type: object
+      properties:
+        applicationActiveTenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
+      required:
+      - applicationActiveTenants
+    AssignUsersToAppRequestDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - tenantId
+      - userIds
+    UnassignUsersFromAppRequestDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - tenantId
+      - userIds
+    SwitchApplicationActiveUserTenantDto:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          description: Desired application to set active tenant in
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user in application
+      required:
+      - applicationId
+      - tenantId
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

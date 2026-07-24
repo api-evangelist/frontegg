@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Custom Social OAuth Provider API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Custom Social OAuth Provider
+  x-displayName: Custom social OAuth provider
+paths:
+  /resources/sso/custom/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: CustomSsoV1Controller_createSsoProvider
+      summary: Create Custom Oauth Provider
+      description: 'Create a custom social login provider using the OAuth details of the identity provider.
+
+
+        Provide the required OAuth parameters in the request body.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomSsoRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Custom Social OAuth Provider
+      security:
+      - bearer: []
+    get:
+      operationId: SsoV2Controller_getSsoProviders
+      summary: Get Custom Oauth Provider
+      description: Retrieve the custom social login providers configured in your environment.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Custom Social OAuth Provider
+      security:
+      - bearer: []
+  /resources/sso/custom/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: CustomSsoV1Controller_updateSsoProvider
+      summary: Update Custom Oauth Provider
+      description: 'Update a custom social login provider in your environment by ID.
+
+
+        Provide the ID of the custom social login provider and the desired OAuth parameters in the request body.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomSsoRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Custom Social OAuth Provider
+      security:
+      - bearer: []
+    delete:
+      operationId: CustomSsoV1Controller_deleteCustomSsoConfig
+      summary: Delete Custom Oauth Provider
+      description: 'Delete a custom social login provider in your environment by ID.
+
+
+        Provide the ID of the custom social login provider to delete.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Custom Social OAuth Provider
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateCustomSsoRequestDto:
+      type: object
+      properties:
+        type:
+          type: string
+        clientId:
+          type: string
+        secret:
+          type: string
+        redirectUrl:
+          type: string
+        authorizationUrl:
+          type: string
+        tokenUrl:
+          type: string
+        userInfoUrl:
+          type: string
+        scopes:
+          type: string
+        ssoLogoUrl:
+          type: string
+        displayName:
+          type: string
+        active:
+          type: boolean
+      required:
+      - type
+      - clientId
+      - secret
+      - redirectUrl
+      - authorizationUrl
+      - tokenUrl
+      - userInfoUrl
+      - scopes
+      - ssoLogoUrl
+      - displayName
+      - active
+    UpdateCustomSsoRequestDto:
+      type: object
+      properties:
+        type:
+          type: string
+        clientId:
+          type: string
+        secret:
+          type: string
+        redirectUrl:
+          type: string
+        authorizationUrl:
+          type: string
+        tokenUrl:
+          type: string
+        userInfoUrl:
+          type: string
+        scopes:
+          type: string
+        ssoLogoUrl:
+          type: string
+        displayName:
+          type: string
+        active:
+          type: boolean
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

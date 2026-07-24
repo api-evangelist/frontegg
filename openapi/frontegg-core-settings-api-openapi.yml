@@ -1,0 +1,997 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Core Settings API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Core Settings
+  x-displayName: Core settings
+paths:
+  /resources/configurations/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: VendorConfigController_addOrUpdateConfig
+      summary: Update Identity Management Configuration
+      description: 'Update the identity management configuration for your environment.
+
+
+        Use this endpoint to add or update identity management parameters by sending the desired values in the request body.
+
+
+        Refer to the parameter documentation for the list of supported values.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorConfigRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorConfigResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    get:
+      operationId: VendorConfigController_getVendorConfig
+      summary: Get Identity Management Configuration
+      description: 'Retrieve the identity management configuration for your environment.
+
+
+        Use this endpoint to get the current identity management settings configured in your environment.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorConfigResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/captcha-policy:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: CaptchaPolicyController_createCaptchaPolicy
+      summary: Create Captcha Policy
+      description: 'Create a CAPTCHA policy for all accounts (tenants).
+
+
+        Provide the required settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaptchaPolicyRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaptchaPolicyResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    put:
+      operationId: CaptchaPolicyController_updateCaptchaPolicy
+      summary: Update Captcha Policy
+      description: 'Update the CAPTCHA policy for all accounts (tenants).
+
+
+        Provide the desired settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaptchaPolicyRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaptchaPolicyResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    get:
+      operationId: CaptchaPolicyController_getCaptchaPolicy
+      summary: Get Captcha Policy
+      description: 'Retrieve the CAPTCHA policy for your environment.
+
+
+        The response includes the policy ID, `siteKey`, `secretKey`, `minimumScore`, list of ignored emails, and whether the policy is enabled.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaptchaPolicyResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/jwt-template-targeting:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: JwtTemplateTargetingControllerV1_getJwtTemplateTargeting
+      summary: Get JWT Template Targeting Configuration
+      description: 'Retrieves the JWT template targeting configuration for your environment. Note: This feature must be enabled by request.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplateTargetingResponseDto'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    post:
+      operationId: JwtTemplateTargetingControllerV1_createJwtTemplateTargeting
+      summary: Create JWT Template Targeting Configuration
+      description: 'Creates a new JWT template targeting configuration for your environment. Note: This feature must be enabled by request.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJwtTemplateTargetingRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplateTargetingResponseDto'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    put:
+      operationId: JwtTemplateTargetingControllerV1_updateJwtTemplateTargeting
+      summary: Update or Create JWT Template Targeting Configuration
+      description: 'Updates or creates a JWT template targeting configuration for your environment. Note: This feature must be enabled by request.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJwtTemplateTargetingRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+  /resources/configurations/v1/jwt-template-targeting/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: JwtTemplateTargetingControllerV1_patchJwtTemplateTargeting
+      summary: Update JWT Template Targeting Configuration by ID
+      description: 'Updates a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJwtTemplateTargetingRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+    delete:
+      operationId: JwtTemplateTargetingControllerV1_deleteJwtTemplateTargeting
+      summary: Delete JWT Template Targeting Configuration by ID
+      description: 'Deletes a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+  /resources/jwt-templates/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: JwtTemplatesController_createJwtTemplate
+      summary: Create JWT Template
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJwtTemplateDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplateResponseDto'
+      tags:
+      - Core Settings
+      description: 'Creates a new JWT template for your environment. Note: This feature must be enabled by request.'
+      security:
+      - bearer: []
+    get:
+      operationId: JwtTemplatesController_getJwtTemplates
+      summary: Get All JWT Templates
+      parameters:
+      - name: keys
+        required: false
+        in: query
+        description: Filter by template keys
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ids
+        required: false
+        in: query
+        description: Filter by template IDs
+        schema:
+          type: array
+          items:
+            type: string
+      - name: _limit
+        required: false
+        in: query
+        description: Maximum number of items to return
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+        schema:
+          minimum: 0
+          type: number
+      - name: _sortBy
+        required: false
+        in: query
+        description: Field to sort by
+        schema:
+          enum:
+          - id
+          - key
+          - name
+          - createdAt
+          - updatedAt
+          type: string
+      - name: _order
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/JwtTemplateResponseDto'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - Core Settings
+      description: 'Retrieves all JWT templates for your environment. Note: This feature must be enabled by request.'
+      security:
+      - bearer: []
+  /resources/jwt-templates/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: JwtTemplatesController_getJwtTemplateById
+      summary: Get JWT Template by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplateResponseDto'
+      tags:
+      - Core Settings
+      description: 'Retrieves a specific JWT template by ID. Note: This feature must be enabled by request.'
+      security:
+      - bearer: []
+    put:
+      operationId: JwtTemplatesController_updateJwtTemplate
+      summary: Update JWT Template
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJwtTemplateDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplateResponseDto'
+      tags:
+      - Core Settings
+      description: 'Updates an existing JWT template. Note: This feature must be enabled by request.'
+      security:
+      - bearer: []
+    delete:
+      operationId: JwtTemplatesController_deleteJwtTemplate
+      summary: Delete JWT Template
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Core Settings
+      description: 'Deletes an existing JWT template. Note: This feature must be enabled by request.'
+      security:
+      - bearer: []
+  /resources/configurations/v1/basic:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorConfigController_getVendorConfigBasic
+      summary: Get Identity Management Configuration
+      description: Retrieve the identity management configuration for your environment.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorConfigBasicResponse'
+      tags:
+      - Core Settings
+      security:
+      - bearer: []
+components:
+  schemas:
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    IdentityRuleDto:
+      type: object
+      properties:
+        conditionLogic:
+          type: string
+          enum:
+          - and
+          description: The logic to combine conditions
+        conditions:
+          description: The conditions to evaluate
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityConditionDto'
+        treatment:
+          type: string
+          description: The treatment value (template key) if conditions match
+      required:
+      - conditionLogic
+      - conditions
+      - treatment
+    JwtTemplateResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        vendorId:
+          type: string
+          description: Vendor ID
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          nullable: true
+          description: Description of the template
+        expiration:
+          type: number
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+          description: Creation timestamp
+        updatedAt:
+          format: date-time
+          type: string
+          description: Last update timestamp
+      required:
+      - id
+      - vendorId
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
+      - createdAt
+      - updatedAt
+    CreateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
+      required:
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
+    VendorConfigBasicResponse:
+      type: object
+      properties:
+        forcePermissions:
+          type: boolean
+        machineToMachineAuthStrategy:
+          type: string
+          enum:
+          - ClientCredentials
+          - AccessToken
+      required:
+      - forcePermissions
+      - machineToMachineAuthStrategy
+    VendorConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        defaultTokenExpiration:
+          type: number
+        defaultRefreshTokenExpiration:
+          type: number
+        publicKey:
+          type: string
+        cookieSameSite:
+          enum:
+          - STRICT
+          - LAX
+          - NONE
+          type: string
+        allowSignups:
+          type: boolean
+        apiTokensEnabled:
+          type: boolean
+        allowOverridePasswordComplexity:
+          type: boolean
+        allowOverridePasswordExpiration:
+          type: boolean
+        allowOverrideEnforcePasswordHistory:
+          type: boolean
+        jwtAlgorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+        jwtSecret:
+          type: string
+        allowNotVerifiedUsersLogin:
+          type: boolean
+        forcePermissions:
+          type: boolean
+        authStrategy:
+          enum:
+          - EmailAndPassword
+          - MagicLink
+          - Code
+          - NoLocalAuthentication
+          - SmsCode
+          - UsernameAndPassword
+          - UsernameAndMagicLink
+          - UsernameAndCode
+          - UsernameAndSms
+          type: string
+        defaultPasswordlessTokenExpiration:
+          type: number
+        forceSameDeviceOnAuth:
+          type: boolean
+        allowTenantInvitations:
+          type: boolean
+        rotateRefreshTokens:
+          type: boolean
+        machineToMachineAuthStrategy:
+          enum:
+          - ClientCredentials
+          - AccessToken
+          type: string
+        addRolesToJwt:
+          type: boolean
+        addPermissionsToJwt:
+          type: boolean
+        refreshTokensRotationLimit:
+          type: number
+        addSamlAttributesToJwt:
+          type: boolean
+        allowCustomLoginTenantSwitch:
+          type: boolean
+      required:
+      - id
+      - defaultTokenExpiration
+      - defaultRefreshTokenExpiration
+      - publicKey
+      - cookieSameSite
+      - allowSignups
+      - apiTokensEnabled
+      - allowOverridePasswordComplexity
+      - allowOverridePasswordExpiration
+      - allowOverrideEnforcePasswordHistory
+      - jwtAlgorithm
+      - jwtSecret
+      - allowNotVerifiedUsersLogin
+      - forcePermissions
+      - authStrategy
+      - defaultPasswordlessTokenExpiration
+      - forceSameDeviceOnAuth
+      - allowTenantInvitations
+      - rotateRefreshTokens
+      - machineToMachineAuthStrategy
+      - addRolesToJwt
+      - addPermissionsToJwt
+      - refreshTokensRotationLimit
+      - addSamlAttributesToJwt
+      - allowCustomLoginTenantSwitch
+    VendorConfigRequest:
+      type: object
+      properties:
+        defaultTokenExpiration:
+          type: number
+        defaultRefreshTokenExpiration:
+          type: number
+          maximum: 15552000
+        cookieSameSite:
+          enum:
+          - STRICT
+          - LAX
+          - NONE
+          type: string
+        machineToMachineAuthStrategy:
+          enum:
+          - ClientCredentials
+          - AccessToken
+          type: string
+        allowSignups:
+          type: boolean
+        apiTokensEnabled:
+          type: boolean
+        allowOverridePasswordComplexity:
+          type: boolean
+        allowOverridePasswordExpiration:
+          type: boolean
+        allowOverrideEnforcePasswordHistory:
+          type: boolean
+        jwtAlgorithm:
+          enum:
+          - HS256
+          - RS256
+          type: string
+        allowNotVerifiedUsersLogin:
+          type: boolean
+        forcePermissions:
+          type: boolean
+        addSamlAttributesToJwt:
+          type: boolean
+        authStrategy:
+          enum:
+          - Code
+          - EmailAndPassword
+          - MagicLink
+          - NoLocalAuthentication
+          - SmsCode
+          type: string
+        defaultPasswordlessTokenExpiration:
+          type: number
+        forceSameDeviceOnAuth:
+          type: boolean
+        allowTenantInvitations:
+          type: boolean
+        rotateRefreshTokens:
+          type: boolean
+        skipTenantValidation:
+          type: boolean
+        addRolesToJwt:
+          type: boolean
+        addPermissionsToJwt:
+          type: boolean
+        allowCustomLoginTenantSwitch:
+          type: boolean
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    CaptchaPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        siteKey:
+          type: string
+        secretKey:
+          type: string
+        enabled:
+          type: boolean
+        minScore:
+          type: number
+        ignoredEmails:
+          type: array
+          items:
+            type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - siteKey
+      - secretKey
+      - enabled
+      - minScore
+      - ignoredEmails
+      - createdAt
+      - updatedAt
+    CaptchaPolicyRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        siteKey:
+          type: string
+        secretKey:
+          type: string
+        minScore:
+          type: number
+        ignoredEmails:
+          description: Captcha validation will be skipped for those emails.
+          type: array
+          items:
+            type: string
+      required:
+      - enabled
+      - siteKey
+      - secretKey
+      - minScore
+    UpdateJwtTemplateTargetingRequestDto:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRuleDto'
+    JwtTemplatePayloadDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    JwtTemplateTargetingResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Jwt template targeting ID
+        createdAt:
+          format: date-time
+          type: string
+          description: Created at
+        updatedAt:
+          format: date-time
+          type: string
+          description: Last updated at
+        targeting:
+          type: object
+          description: Targeting rules
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - targeting
+    UpdateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
+    JwtTemplatePayloadResponseDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    IdentityConditionDto:
+      type: object
+      properties:
+        attribute:
+          enum:
+          - userId
+          - applicationId
+          - tenantId
+          - roleIds
+          - tokenType
+          - userEmail
+          type: string
+          description: The attribute to evaluate
+        op:
+          enum:
+          - in_list
+          - contains
+          - ends_with
+          type: string
+          description: The operation to apply
+        value:
+          type: object
+          description: The value to compare against
+        negate:
+          type: boolean
+          description: The negate flag
+      required:
+      - attribute
+      - op
+      - value
+      - negate
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

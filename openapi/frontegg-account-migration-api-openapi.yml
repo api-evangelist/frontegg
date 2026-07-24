@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Account Migration API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Account Migration
+  x-displayName: Account migration
+paths:
+  /resources/migrations/v1/tenants:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: MigrationControllerV1_migrateTenants
+      summary: Migrate Accounts (tenants)
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateTenantsRequest'
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Account Migration
+      description: Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication.
+      security:
+      - bearer: []
+  /resources/migrations/v1/tenants/status/{migrationId}:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: MigrationControllerV1_getMigrateTenantsStatus
+      summary: Accounts (tenants) Migration Status
+      parameters:
+      - name: migrationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Migration
+      description: Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication.
+      security:
+      - bearer: []
+components:
+  schemas:
+    MigrateTenantsRequest:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            type: string
+      required:
+      - tenants
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

@@ -1,0 +1,404 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Roles API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Roles
+  x-displayName: Roles
+paths:
+  /resources/roles/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PermissionsControllerV1_getAllRoles
+      summary: Get Roles
+      description: 'Retrieve all roles across all accounts (tenants).
+
+
+        Each role object includes the name, permissions, and other defining information.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleResponse'
+      tags:
+      - Roles
+      security:
+      - bearer: []
+    post:
+      operationId: PermissionsControllerV1_addRoles
+      summary: Create Roles
+      description: 'Add a new role across all accounts (tenants).
+
+
+        This route does not assign permissions to the role. Use the attach permissions to role route to manage role permissions.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddRoleRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleResponse'
+      tags:
+      - Roles
+      security:
+      - bearer: []
+  /resources/roles/v1/{roleId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: PermissionsControllerV1_deleteRole
+      summary: Delete Role
+      description: 'Delete a role.
+
+
+        Provide the role ID as a path parameter to specify which role to delete.'
+      parameters:
+      - name: roleId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Roles
+      security:
+      - bearer: []
+    patch:
+      operationId: PermissionsControllerV1_updateRole
+      summary: Update Role
+      description: 'Update an existing role.
+
+
+        Provide the role ID as a path parameter to specify which role to update, and send the updated role information in the request body.
+
+
+        This route does not update permissions for the role. Use the attach permissions to role route to manage role permissions.
+
+
+        You can obtain the role ID using the **Get roles** API.'
+      parameters:
+      - name: roleId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+      tags:
+      - Roles
+      security:
+      - bearer: []
+  /resources/roles/v1/{roleId}/permissions:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: PermissionsControllerV1_setPermissionsToRole
+      summary: Assign Permissions to a Role
+      description: 'Assign permissions to a role.
+
+
+        Provide the role ID as a path parameter and include the permission IDs in the request body as an array of strings. Any pre-existing permissions will be overridden by the new permissions.
+
+
+        You can obtain role IDs using the **Get roles** API and permission IDs using the **Get permissions** API.'
+      parameters:
+      - name: roleId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPermissionToRoleRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+      tags:
+      - Roles
+      security:
+      - bearer: []
+  /resources/roles/v1/{roleId}/tenant:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: PermissionsControllerV1_updateRoleTenant
+      summary: Update Role Tenant
+      description: Updates the account (tenant) ID for a specific role. This is a management-only endpoint.
+      parameters:
+      - name: roleId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleTenantRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+      tags:
+      - Roles
+      security:
+      - bearer: []
+components:
+  schemas:
+    AddPermissionToRoleRequest:
+      type: object
+      properties:
+        permissionIds:
+          description: Set permission Ids to attach to the role
+          type: array
+          items:
+            type: string
+      required:
+      - permissionIds
+    AddRoleRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        migrateRole:
+          type: boolean
+          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
+        firstUserRole:
+          type: boolean
+          description: This role will be assigned to the first user of a tenant (new tenants only)
+        level:
+          type: number
+          minimum: 0
+          maximum: 32767
+          description: Role level for roles elevation, lower level means stronger role.
+      required:
+      - key
+      - name
+      - level
+    UpdateRoleTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+      required:
+      - tenantId
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    UpdateRoleRequest:
+      type: object
+      properties:
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        firstUserRole:
+          type: boolean
+          description: This role will be assigned to the first user of a tenant (new tenants only)
+        migrateRole:
+          type: boolean
+          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
+        level:
+          type: number
+          minimum: 0
+          maximum: 32767
+          description: Role level for roles elevation, lower level means stronger role.
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

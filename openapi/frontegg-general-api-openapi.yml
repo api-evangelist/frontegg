@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations General API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: General
+  x-displayName: General
+paths:
+  /resources/auth/v1/user:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: AuthenticatioAuthenticationControllerV1_authenticateLocalUser
+      summary: Authenticate User with Password
+      description: 'Authenticate a local user using their email and password.
+
+
+        Include the user''s login credentials in the request body. This endpoint supports optional parameters such as an invitation token (for sign-up flows via invitation) and a reCAPTCHA token (if reCAPTCHA is enabled for login).
+
+
+        If the credentials are valid, the response includes a signed JWT and a refresh token that can be used for future authenticated requests.'
+      parameters:
+      - name: frontegg-vendor-host
+        in: header
+        description: The vendor host domain
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticateUserPasswordDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+      tags:
+      - General
+      security:
+      - bearer: []
+  /resources/auth/v1/user/token/refresh:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: AuthenticatioAuthenticationControllerV1_refreshToken
+      summary: Refresh User JWT Token
+      description: 'Refresh a JWT based on the refresh token''s expiration time.
+
+
+        This endpoint returns a new JWT and refresh token if the existing refresh token is valid and not expired. The request must include the refresh token cookie for the currently logged-in user.
+
+
+        Ensure your JWT settings are properly configured in the Frontegg Portal to support this flow.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponseDto'
+      tags:
+      - General
+      security:
+      - bearer: []
+  /resources/auth/v1/logout:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: AuthenticatioAuthenticationControllerV1_logout
+      summary: Logout User
+      description: 'Log out a user by invalidating their refresh token.
+
+
+        This endpoint logs out the currently authenticated user by invalidating the refresh token provided in the refresh token cookie.
+
+
+        This route is intended for applications using Frontegg''s embedded login experience or for integrations that interact exclusively with Frontegg APIs.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ''
+      tags:
+      - General
+      security:
+      - bearer: []
+  /resources/users/v1/signUp:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersControllerV1_signUpUser
+      summary: Signup User
+      description: 'Sign up a new user and create a new account (tenant).
+
+
+        This endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.
+
+
+        Additional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).
+
+
+        This endpoint is typically used during account (tenant) onboarding or self-sign-up flows.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      - name: frontegg-application-id
+        in: header
+        description: The application id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpUserEmailDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpUserEmailDto'
+      tags:
+      - General
+      security:
+      - bearer: []
+  /resources/users/v1/signUp/username:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: UsersSignUpControllerV1_signUpUserUsername
+      summary: Signup User with Username
+      description: 'Sign up a new user and create a new account (tenant). Include the `frontegg-vendor-host` header (your domain name from Portal → Workspace Settings → Domains). Required fields: `email`, `provider` (authentication method: local, saml, google, github), `companyName`, and `metadata` (can be empty `{}`). Requires an environment authentication token.'
+      parameters:
+      - name: frontegg-vendor-host
+        required: true
+        in: header
+        schema:
+          type: string
+      - name: frontegg-application-id
+        in: header
+        description: The application ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpUserUsernameDto'
+      responses:
+        '200':
+          description: ''
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResponseDto'
+      tags:
+      - General
+      security:
+      - bearer: []
+components:
+  schemas:
+    SignUpResponseDto:
+      type: object
+      properties:
+        shouldActivate:
+          type: boolean
+        userId:
+          type: string
+        tenantId:
+          type: string
+        authResponse:
+          $ref: '#/components/schemas/AuthenticationResponseDto'
+        activationToken:
+          type: string
+    UserMFADevicesResponse:
+      type: object
+      properties:
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+      required:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    SignUpUserUsernameDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+        metadata:
+          type: string
+          description: Stringified JSON object. Use the JSON.stringify() method.
+        username:
+          type: string
+          maxLength: 255
+          pattern: /^[a-zA-Z0-9._-]+$/
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        password:
+          type: string
+        skipInviteEmail:
+          type: boolean
+        roleIds:
+          type: array
+          items:
+            type: string
+        emailMetadata:
+          type: object
+        companyName:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - provider
+      - username
+      - companyName
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        tokenType:
+          type: string
+          default: bearer
+        otcToken:
+          type: string
+        mfaRequired:
+          type: boolean
+        mfaToken:
+          type: string
+        resetPasswordToken:
+          type: string
+        passwordExpiresIn:
+          type: number
+        notificationPeriod:
+          type: number
+        mfaEnrolled:
+          type: boolean
+        mfaDevices:
+          $ref: '#/components/schemas/UserMFADevicesResponse'
+        mfaStrategies:
+          type: object
+        qrCode:
+          type: string
+        recoveryCode:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+        expires:
+          type: string
+        userId:
+          type: string
+        userEmail:
+          type: string
+        emailVerified:
+          type: boolean
+        isBreachedPassword:
+          type: boolean
+      required:
+      - mfaRequired
+      - accessToken
+      - refreshToken
+      - expiresIn
+      - expires
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    SignUpUserEmailDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+        metadata:
+          type: string
+          description: Stringified JSON object. Use the JSON.stringify() method.
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        password:
+          type: string
+        skipInviteEmail:
+          type: boolean
+        roleIds:
+          type: array
+          items:
+            type: string
+        emailMetadata:
+          type: object
+        companyName:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - provider
+      - email
+      - companyName
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    AuthenticateUserPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email. Either email or username must be provided.
+        username:
+          type: string
+          description: Username. Either email or username must be provided.
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+      required:
+      - password
+    UserMFAPhoneDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - id
+      - phoneNumber
+    RefreshTokenDto:
+      type: object
+      properties: {}
+    UserMFAWebAuthnDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
+      required:
+      - id
+      - deviceType
+      - name
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

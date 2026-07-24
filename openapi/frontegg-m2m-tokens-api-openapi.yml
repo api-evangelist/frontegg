@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations M2M Tokens API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: M2M Tokens
+  x-displayName: M2M tokens
+paths:
+  /resources/vendor-only/users/access-tokens/v1/active:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorOnlyUserAccessTokensV1Controller_getActiveAccessTokens
+      summary: Get Active Access Tokens List
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - M2M Tokens
+      description: 'Retrieve the list of active access tokens for a specified account (tenant).
+
+
+        Pass the account''s `frontegg-tenant-id` as a query parameter.'
+      security:
+      - bearer: []
+  /resources/vendor-only/users/access-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorOnlyUserAccessTokensV1Controller_getUserAccessTokenData
+      summary: Get User Access Token Data
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserAccessTokenResponse'
+      tags:
+      - M2M Tokens
+      description: 'Retrieve data for a specific user access token.
+
+
+        Pass the account''s `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter.'
+      security:
+      - bearer: []
+  /resources/vendor-only/tenants/access-tokens/v1/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorOnlyTenantAccessTokensV1Controller_getTenantAccessTokenData
+      summary: Get Account (tenant) Access Token Data
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTenantAccessTokenResponse'
+      tags:
+      - M2M Tokens
+      description: 'Retrieve data for a specific account (tenant) access token.
+
+
+        Pass the account''s `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter.'
+      security:
+      - bearer: []
+components:
+  schemas:
+    AuthTenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - tenantId
+      - permissions
+      - roles
+    AuthUserAccessTokenResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        id:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - userId
+      - id
+      - tenantId
+      - permissions
+      - roles
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

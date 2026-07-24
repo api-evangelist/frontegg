@@ -1,0 +1,309 @@
+openapi: 3.0.0
+info:
+  title: Multi-Apps Overview Account Invitations Sub-accounts API
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+tags:
+- name: Sub-accounts
+  x-displayName: Sub-accounts
+paths:
+  /resources/sub-tenants/v1:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SubTenantControllerV1_createSubTenant
+      summary: Create Sub-account
+      description: Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubTenantRequest'
+      responses:
+        '400':
+          description: When account (tenant) ID does not pass validation.
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/sub-tenants/v1/{tenantId}/management:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SubTenantControllerV1_updateSubTenantManagement
+      summary: Update Sub-account (tenant) Management
+      description: 'Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubTenantManagementRequest'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/sub-tenants/v1/{tenantId}/hierarchy-settings:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SubTenantControllerV1_updateSubTenantHierarchySettings
+      summary: Update Sub-account Hierarchy Settings
+      description: Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubTenantHierarchySettingsRequest'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/sub-tenants/v1/{tenantId}:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: SubTenantControllerV1_deleteSubTenant
+      summary: Delete a Sub-account by ID
+      description: Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/hierarchy/v1:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantHierarchyControllerV1_getSubTenants
+      summary: Get Sub-accounts (tenants)
+      description: Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/hierarchy/v1/parents:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantHierarchyControllerV1_getParentTenants
+      summary: Get Parent Accounts (tenants)
+      description: Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+  /resources/hierarchy/v1/tree:
+    servers:
+    - url: https://api.frontegg.com/tenants
+      description: EU Region
+    - url: https://api.us.frontegg.com/tenants
+      description: US Region
+    - url: https://api.ca.frontegg.com/tenants
+      description: CA Region
+    - url: https://api.au.frontegg.com/tenants
+      description: AU Region
+    - url: https://{domain}.frontegg.com/tenants
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: TenantHierarchyControllerV1_getSubTenantsTree
+      summary: Get Sub-accounts (tenanants) Hierarchy Tree
+      description: Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: When circular dependency is detected in the hierarchy
+      tags:
+      - Sub-accounts
+      security:
+      - bearer: []
+components:
+  schemas:
+    UpdateSubTenantManagementRequest:
+      type: object
+      properties: {}
+    CreateSubTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        name:
+          type: string
+        parentTenantId:
+          type: string
+        status:
+          type: string
+          description: This field can be used for custom logic, it is not enforced in Frontegg flows
+        logo:
+          type: string
+          description: Base64-encoded image to use as logo.
+        logoUrl:
+          type: string
+        creatorName:
+          type: string
+        creatorEmail:
+          type: string
+        isReseller:
+          type: boolean
+      required:
+      - tenantId
+      - name
+      - parentTenantId
+    UpdateSubTenantHierarchySettingsRequest:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings
