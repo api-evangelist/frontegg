@@ -16,7 +16,20 @@ description: >
 
   api.ca.frontegg.com).
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/frontegg.png
 tags:
   - Authentication
   - Authorization
@@ -35,252 +48,3065 @@ created: '2026-05-22'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-  - aid: frontegg:frontegg-identity
-    name: Frontegg Authentication and Identity Management API
-    description: >
-      The Frontegg Authentication and Identity Management API handles login, registration, MFA, passwordless flows,
-      social
+- aid: frontegg:frontegg-webhooks
+  name: Frontegg Webhooks
+  description: >
+    AsyncAPI 2.6 description of Frontegg's outbound webhook surface. Covers authentication, MFA, user
+    lifecycle, tenant
 
-      logins, sessions, passwords, passkeys, OAuth, OIDC, JWT, user management, roles, permissions, groups, and tenant
+    lifecycle, group, application, plan, API token, account security, and SCIM provisioning events. Frontegg
+    signs each
 
-      membership. With 232 documented operations across 305 schemas, this is the core of the Frontegg CIAM platform.
-    humanURL: https://developers.frontegg.com/ciam/api/identity
-    baseURL: https://api.frontegg.com/identity
-    tags:
-      - Authentication
-      - Identity
-      - User Management
-      - MFA
-      - Passwordless
-      - OAuth
-      - OpenID Connect
-      - JWT
-      - Sessions
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/identity
-      - type: APIReference
-        url: https://developers.frontegg.com/ciam/api/identity
-      - type: OpenAPI
-        url: openapi/frontegg-identity-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-identity-rules.yml
-  - aid: frontegg:frontegg-tenants
-    name: Frontegg Account Management API
-    description: >
-      The Frontegg Account Management (Tenants) API manages B2B accounts, tenant hierarchies, sub-accounts, tenant
-      metadata,
-
-      invitations, and tenant-scoped configuration. Multi-tenancy is a core Frontegg concept and this API is how callers
-
-      create and manage the tenant graph.
-    humanURL: https://developers.frontegg.com/ciam/api/tenants
-    baseURL: https://api.frontegg.com/tenants
-    tags:
-      - Tenants
-      - Accounts
-      - Multi-Tenancy
-      - B2B
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/tenants
-      - type: OpenAPI
-        url: openapi/frontegg-tenants-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-tenants-rules.yml
-  - aid: frontegg:frontegg-sso
-    name: Frontegg Single Sign-On API
-    description: |
-      The Frontegg Single Sign-On (Team) API manages SAML and OIDC SSO configurations, IdP metadata, JIT provisioning,
-      enterprise connections, and domain claims. Frontegg ships with 5 Enterprise Connections included on the free Pay
-      As You Go tier.
-    humanURL: https://developers.frontegg.com/ciam/api/team
-    baseURL: https://api.frontegg.com/team
-    tags:
-      - SSO
-      - SAML
-      - OIDC
-      - Enterprise
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/team
-      - type: OpenAPI
-        url: openapi/frontegg-sso-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-sso-rules.yml
-  - aid: frontegg:frontegg-scim
-    name: Frontegg SCIM Provisioning API
-    description: >
-      The Frontegg SCIM 2.0 Provisioning API implements directory provisioning for users and groups from external
-      identity
-
-      providers such as Okta, Azure AD, and Google Workspace.
-    humanURL: https://developers.frontegg.com/ciam/api/scim
-    baseURL: https://api.frontegg.com/directory
-    tags:
-      - SCIM
-      - Provisioning
-      - Directory
-      - Identity
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/scim
-      - type: OpenAPI
-        url: openapi/frontegg-scim-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-scim-rules.yml
-  - aid: frontegg:frontegg-entitlements
-    name: Frontegg Entitlements API
-    description: >
-      The Frontegg Entitlements API manages feature flags, plans, subscriptions, packages, bundles, and entitlements
-      that
-
-      determine what users and tenants are allowed to do. 29 operations across 52 schemas govern entitlement decisions
-      in
-
-      the CIAM platform.
-    humanURL: https://developers.frontegg.com/ciam/api/entitlements
-    baseURL: https://api.frontegg.com/entitlements
-    tags:
-      - Entitlements
-      - Feature Flags
-      - Authorization
-      - Plans
-      - Subscriptions
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/entitlements
-      - type: OpenAPI
-        url: openapi/frontegg-entitlements-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-entitlements-rules.yml
-  - aid: frontegg:frontegg-entitlements-agent
-    name: Frontegg Entitlements Agent (PDP)
-    description: >
-      The Frontegg Entitlements Agent is a Policy Decision Point (PDP) that runs locally inside customer infrastructure
-      to
-
-      evaluate entitlements with millisecond latency. Default listen port 8181. Java and Node.js bindings ship as
-      separate
-
-      SDKs.
-    humanURL: https://developers.frontegg.com/ciam/api/agent
-    baseURL: http://localhost:8181
-    tags:
-      - PDP
-      - Policy Decision Point
-      - Entitlements
-      - Authorization
-      - Sidecar
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/agent
-      - type: OpenAPI
-        url: openapi/frontegg-entitlements-agent-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-entitlements-agent-rules.yml
-  - aid: frontegg:frontegg-applications
-    name: Frontegg Multi-Apps API
-    description: >
-      The Frontegg Applications (Multi-Apps) API manages multiple application surfaces under a single Frontegg
-      environment,
-
-      each with its own login experience, integrations, and tenant scope. Useful for portfolio SaaS vendors.
-    humanURL: https://developers.frontegg.com/ciam/api/applications
-    baseURL: https://api.frontegg.com/applications
-    tags:
-      - Applications
-      - Multi-App
-      - Tenant Scoping
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/applications
-      - type: OpenAPI
-        url: openapi/frontegg-applications-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-applications-rules.yml
-  - aid: frontegg:frontegg-audits
-    name: Frontegg Audits API
-    description: >
-      The Frontegg Audits API exposes the audit log surface for compliance, SOC 2, and security incident response.
-      Events
-
-      are streamed and queryable by tenant.
-    humanURL: https://developers.frontegg.com/ciam/api/audits
-    baseURL: https://api.frontegg.com/audits
-    tags:
-      - Audits
-      - Logging
-      - Compliance
-      - Security
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/audits
-      - type: OpenAPI
-        url: openapi/frontegg-audits-openapi.yml
-      - type: SpectralRules
-        url: rules/frontegg-audits-rules.yml
-  - aid: frontegg:frontegg-env-auth
-    name: Frontegg Environment Authentication API
-    description: |
-      The Frontegg Environment Authentication endpoint exchanges a Client ID and API Key for an environment-scoped JWT,
-      which is then used as the Bearer token for Management APIs. Single operation at /auth/vendor.
-    humanURL: https://developers.frontegg.com/ciam/api/overview
-    baseURL: https://api.frontegg.com/auth/vendor
-    tags:
-      - Authentication
-      - Vendor
-      - Environment
-      - JWT
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/api/overview
-      - type: OpenAPI
-        url: openapi/frontegg-env-auth-openapi.yml
-  - aid: frontegg:frontegg-combined
-    name: Frontegg Combined API
-    description: >
-      The combined OpenAPI specification bundles all Frontegg public services (Identity, Tenants, SSO, SCIM,
-      Entitlements,
-
-      Applications, Audits, and Environment Authentication) into a single document for end-to-end client generation.
-    humanURL: https://github.com/frontegg/openapi-public
-    baseURL: https://api.frontegg.com
-    tags:
-      - Combined
-      - Aggregated
-      - CIAM
-    properties:
-      - type: SourceCode
-        url: https://github.com/frontegg/openapi-public
-      - type: OpenAPI
-        url: openapi/frontegg-combined-openapi.yml
-  - aid: frontegg:frontegg-webhooks
-    name: Frontegg Webhooks
-    description: >
-      AsyncAPI 2.6 description of Frontegg's outbound webhook surface. Covers authentication, MFA, user lifecycle,
-      tenant
-
-      lifecycle, group, application, plan, API token, account security, and SCIM provisioning events. Frontegg signs
-      each
-
-      delivery with an x-webhook-secret header and treats any 2XX HTTP response as a successful delivery.
-    humanURL: https://developers.frontegg.com/ciam/guides/integrations/webhooks
-    baseURL: https://api.frontegg.com
-    tags:
-      - Webhooks
-      - AsyncAPI
-      - Events
-      - Authentication
-      - User Lifecycle
-      - Tenant Lifecycle
-      - MFA
-      - SCIM
-    properties:
-      - type: Documentation
-        url: https://developers.frontegg.com/ciam/guides/integrations/webhooks
-      - type: AsyncAPI
-        url: asyncapi/frontegg-webhooks-asyncapi.yml
+    delivery with an x-webhook-secret header and treats any 2XX HTTP response as a successful delivery.
+  humanURL: https://developers.frontegg.com/ciam/guides/integrations/webhooks
+  baseURL: https://api.frontegg.com
+  tags:
+  - Webhooks
+  - AsyncAPI
+  - Events
+  - Authentication
+  - User Lifecycle
+  - Tenant Lifecycle
+  - MFA
+  - SCIM
+  properties:
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/guides/integrations/webhooks
+  - type: AsyncAPI
+    url: asyncapi/frontegg-webhooks-asyncapi.yml
+- aid: frontegg:frontegg-account-invitations-api
+  name: Frontegg Account Invitations API
+  description: The Account Invitations API from Frontegg — 4 operation(s) for account invitations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Account Invitations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-account-invitations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-account-invitations-settings-api
+  name: Frontegg Account Invitations Settings API
+  description: >-
+    The Account Invitations Settings API from Frontegg — 5 operation(s) for account invitations settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Account Invitations Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-account-invitations-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-account-migration-api
+  name: Frontegg Account Migration API
+  description: The Account Migration API from Frontegg — 2 operation(s) for account migration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Account Migration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-account-migration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-account-roles-api
+  name: Frontegg Account Roles API
+  description: The Account Roles API from Frontegg — 3 operation(s) for account roles.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Account Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-account-roles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-account-settings-api
+  name: Frontegg Account Settings API
+  description: The Account Settings API from Frontegg — 2 operation(s) for account settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Account Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-account-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-accounts-api
+  name: Frontegg Accounts API
+  description: The Accounts API from Frontegg — 6 operation(s) for accounts.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-api-access-control-api
+  name: Frontegg API Access Control API
+  description: The API Access Control API from Frontegg — 4 operation(s) for api access control.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - API Access Control
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-api-access-control-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-api-access-control-configurations-api
+  name: Frontegg API Access Control Configurations API
+  description: >-
+    The API Access Control Configurations API from Frontegg — 1 operation(s) for api access control configurations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - API Access Control Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-api-access-control-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-api-token-api
+  name: Frontegg API Token API
+  description: The API Token API from Frontegg — 2 operation(s) for api token.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - API Token
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-api-token-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-api-tokens-api
+  name: Frontegg API Tokens API
+  description: The API Tokens API from Frontegg — 5 operation(s) for api tokens.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - API Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-api-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-applications-settings-api
+  name: Frontegg Applications Settings API
+  description: The Applications Settings API from Frontegg — 13 operation(s) for applications settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Applications Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-applications-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-approval-flows-api
+  name: Frontegg Approval Flows API
+  description: The Approval Flows API from Frontegg — 6 operation(s) for approval flows.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Approval Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-approval-flows-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-authenticate-with-env-credentials-api
+  name: Frontegg Authenticate With Env Credentials API
+  description: >-
+    The Authenticate With Env Credentials API from Frontegg — 1 operation(s) for authenticate with env
+    credentials.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Authenticate With Env Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-authenticate-with-env-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-core-settings-api
+  name: Frontegg Core Settings API
+  description: The Core Settings API from Frontegg — 7 operation(s) for core settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Core Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-core-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-custom-social-oauth-provider-api
+  name: Frontegg Custom Social OAuth Provider API
+  description: >-
+    The Custom Social OAuth Provider API from Frontegg — 2 operation(s) for custom social oauth provider.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Custom Social OAuth Provider
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-custom-social-oauth-provider-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-data-migration-api
+  name: Frontegg Data Migration API
+  description: The Data Migration API from Frontegg — 5 operation(s) for data migration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Data Migration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-data-migration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-delegation-api
+  name: Frontegg Delegation API
+  description: The Delegation API from Frontegg — 1 operation(s) for delegation.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Delegation
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-delegation-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-domain-restrictions-api
+  name: Frontegg Domain Restrictions API
+  description: The Domain Restrictions API from Frontegg — 4 operation(s) for domain restrictions.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Domain Restrictions
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-domain-restrictions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-email-configuration-api
+  name: Frontegg Email Configuration API
+  description: The Email Configuration API from Frontegg — 2 operation(s) for email configuration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Email Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-email-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-email-templates-api
+  name: Frontegg Email Templates API
+  description: The Email Templates API from Frontegg — 3 operation(s) for email templates.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Email Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-email-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-entitlements-api
+  name: Frontegg Entitlements API
+  description: The Entitlements API from Frontegg — 3 operation(s) for entitlements.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-entitlements-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-entitlements-check-api
+  name: Frontegg Entitlements Check API
+  description: The Entitlements Check API from Frontegg — 3 operation(s) for entitlements check.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Entitlements Check
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-entitlements-check-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-feature-flags-api
+  name: Frontegg Feature Flags API
+  description: The Feature Flags API from Frontegg — 2 operation(s) for feature flags.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Feature Flags
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-feature-flags-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-features-api
+  name: Frontegg Features API
+  description: The Features API from Frontegg — 4 operation(s) for features.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Features
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-features-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-general-api
+  name: Frontegg General API
+  description: The General API from Frontegg — 5 operation(s) for general.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - General
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-general-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-ip-restrictions-api
+  name: Frontegg IP Restrictions API
+  description: The IP Restrictions API from Frontegg — 5 operation(s) for ip restrictions.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - IP Restrictions
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-ip-restrictions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-lockout-policy-api
+  name: Frontegg Lockout Policy API
+  description: The Lockout Policy API from Frontegg — 1 operation(s) for lockout policy.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Lockout Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-lockout-policy-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-m2m-tokens-api
+  name: Frontegg M2M Tokens API
+  description: The M2M Tokens API from Frontegg — 3 operation(s) for m2m tokens.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - M2M Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-m2m-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-main-api
+  name: Frontegg Main API
+  description: The Main API from Frontegg — 6 operation(s) for main.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Main
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-main-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-metrics-api
+  name: Frontegg Metrics API
+  description: The Metrics API from Frontegg — 1 operation(s) for metrics.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-mfa-api
+  name: Frontegg MFA API
+  description: The MFA API from Frontegg — 26 operation(s) for mfa.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - MFA
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-mfa-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-mfa-configuration-api
+  name: Frontegg MFA Configuration API
+  description: The MFA Configuration API from Frontegg — 1 operation(s) for mfa configuration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - MFA Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-mfa-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-mfa-settings-api
+  name: Frontegg MFA Settings API
+  description: The MFA Settings API from Frontegg — 2 operation(s) for mfa settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - MFA Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-mfa-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-oidc-configurations-api
+  name: Frontegg OIDC Configurations API
+  description: The OIDC Configurations API from Frontegg — 1 operation(s) for oidc configurations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - OIDC Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-oidc-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-password-settings-api
+  name: Frontegg Password Settings API
+  description: The Password Settings API from Frontegg — 11 operation(s) for password settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Password Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-password-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-passwordless-api
+  name: Frontegg Passwordless API
+  description: The Passwordless API from Frontegg — 6 operation(s) for passwordless.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Passwordless
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-passwordless-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-permissions-api
+  name: Frontegg Permissions API
+  description: The Permissions API from Frontegg — 4 operation(s) for permissions.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-permissions-categories-api
+  name: Frontegg Permissions Categories API
+  description: >-
+    The Permissions Categories API from Frontegg — 2 operation(s) for permissions categories.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Permissions Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-permissions-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-personal-tokens-api
+  name: Frontegg Personal Tokens API
+  description: The Personal Tokens API from Frontegg — 4 operation(s) for personal tokens.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Personal Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-personal-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-plans-api
+  name: Frontegg Plans API
+  description: The Plans API from Frontegg — 6 operation(s) for plans.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-rebac-api
+  name: Frontegg ReBAC API
+  description: The ReBAC API from Frontegg — 9 operation(s) for rebac.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - ReBAC
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-rebac-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-resources-api
+  name: Frontegg Resources API
+  description: The Resources API from Frontegg — 1 operation(s) for resources.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-resources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-roles-api
+  name: Frontegg Roles API
+  description: The Roles API from Frontegg — 4 operation(s) for roles.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-roles-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-saml-configurations-api
+  name: Frontegg SAML Configurations API
+  description: The SAML Configurations API from Frontegg — 2 operation(s) for saml configurations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SAML Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-saml-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-scim-configurations-api
+  name: Frontegg SCIM Configurations API
+  description: The SCIM Configurations API from Frontegg — 2 operation(s) for scim configurations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SCIM Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-scim-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-scim-settings-api
+  name: Frontegg SCIM Settings API
+  description: The SCIM Settings API from Frontegg — 1 operation(s) for scim settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SCIM Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-scim-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sessions-configuration-api
+  name: Frontegg Sessions Configuration API
+  description: >-
+    The Sessions Configuration API from Frontegg — 1 operation(s) for sessions configuration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Sessions Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sessions-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sessions-management-api
+  name: Frontegg Sessions Management API
+  description: The Sessions Management API from Frontegg — 1 operation(s) for sessions management.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Sessions Management
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sessions-management-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sms-api
+  name: Frontegg SMS API
+  description: The SMS API from Frontegg — 7 operation(s) for sms.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SMS
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sms-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sms-configuration-api
+  name: Frontegg SMS Configuration API
+  description: The SMS Configuration API from Frontegg — 1 operation(s) for sms configuration.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SMS Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sms-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sms-templates-api
+  name: Frontegg SMS Templates API
+  description: The SMS Templates API from Frontegg — 4 operation(s) for sms templates.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SMS Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sms-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sso-configurations-api
+  name: Frontegg SSO Configurations API
+  description: The SSO Configurations API from Frontegg — 12 operation(s) for sso configurations.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SSO Configurations
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sso-configurations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sso-settings-api
+  name: Frontegg SSO Settings API
+  description: The SSO Settings API from Frontegg — 6 operation(s) for sso settings.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - SSO Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sso-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sub-accounts-and-hierarchy-api
+  name: Frontegg Sub-accounts and Hierarchy API
+  description: >-
+    The Sub-accounts and Hierarchy API from Frontegg — 1 operation(s) for sub-accounts and hierarchy.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Sub-accounts and Hierarchy
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sub-accounts-and-hierarchy-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-sub-accounts-api
+  name: Frontegg Sub-accounts API
+  description: The Sub-accounts API from Frontegg — 7 operation(s) for sub-accounts.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Sub-accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-sub-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-tenants-other-api
+  name: Frontegg Tenants_other API
+  description: The Tenants_other API from Frontegg — 1 operation(s) for tenants_other.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Tenants_other
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-tenants-other-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-user-emails-policy-api
+  name: Frontegg User Emails Policy API
+  description: The User Emails Policy API from Frontegg — 1 operation(s) for user emails policy.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - User Emails Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-user-emails-policy-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-user-groups-api
+  name: Frontegg User Groups API
+  description: The User Groups API from Frontegg — 7 operation(s) for user groups.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - User Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-user-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-user-management-api
+  name: Frontegg User Management API
+  description: The User Management API from Frontegg — 42 operation(s) for user management.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-user-management-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-user-pools-api
+  name: Frontegg User Pools API
+  description: The User Pools API from Frontegg — 15 operation(s) for user pools.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - User Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-user-pools-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-user-sessions-api
+  name: Frontegg User Sessions API
+  description: The User Sessions API from Frontegg — 3 operation(s) for user sessions.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - User Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-user-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-users-api
+  name: Frontegg Users API
+  description: The Users API from Frontegg — 25 operation(s) for users.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
+- aid: frontegg:frontegg-users-applications-management-api
+  name: Frontegg Users-applications Management API
+  description: >-
+    The Users-applications Management API from Frontegg — 4 operation(s) for users-applications management.
+  humanURL: https://developers.frontegg.com/ciam/api/identity
+  baseURL: https://api.frontegg.com/identity
+  tags:
+  - Users-applications Management
+  properties:
+  - type: OpenAPI
+    url: openapi/frontegg-users-applications-management-api-openapi.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: APIReference
+    url: https://developers.frontegg.com/ciam/api/identity
+  - type: SpectralRules
+    url: rules/frontegg-identity-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/tenants
+  - type: SpectralRules
+    url: rules/frontegg-tenants-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/team
+  - type: SpectralRules
+    url: rules/frontegg-sso-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/scim
+  - type: SpectralRules
+    url: rules/frontegg-scim-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/entitlements
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/agent
+  - type: SpectralRules
+    url: rules/frontegg-entitlements-agent-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/applications
+  - type: SpectralRules
+    url: rules/frontegg-applications-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/audits
+  - type: SpectralRules
+    url: rules/frontegg-audits-rules.yml
+  - type: Documentation
+    url: https://developers.frontegg.com/ciam/api/overview
+  - type: SourceCode
+    url: https://github.com/frontegg/openapi-public
 common:
   - type: AgenticAccess
     url: agentic-access/frontegg-agentic-access.yml
