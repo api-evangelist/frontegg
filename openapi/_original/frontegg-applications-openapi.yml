@@ -1,0 +1,845 @@
+openapi: 3.0.0
+paths:
+  /resources/applications/v1:
+    get:
+      operationId: getApplications
+      summary: Get All Applications for an Environment
+      description: Retrieve a list of all applications configured within the current environment. You can optionally filter the results by access type, default status, active status, or specific application IDs. This route requires an environment token for authentication.
+      parameters:
+      - name: _accessType
+        required: false
+        in: query
+        schema:
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+          type: string
+      - name: _isDefault
+        required: false
+        in: query
+        schema:
+          type: boolean
+      - name: _isActive
+        required: false
+        in: query
+        schema:
+          type: boolean
+      - name: ids
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - web
+            - mobile-ios
+            - mobile-android
+            - agent
+            - other
+      - name: frontendStack
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - react
+            - vue
+            - angular
+            - next.js
+            - vanilla.js
+            - ionic
+            - flutter
+            - react-native
+            - kotlin
+            - swift
+      - name: name
+        required: false
+        in: query
+        description: Filter applications by name (case-insensitive partial match)
+        schema:
+          type: string
+      - name: _excludeAgents
+        required: false
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationsResponse'
+      tags:
+      - Applications Settings
+    post:
+      operationId: createApplication
+      summary: Create Application
+      description: Create a new application within the current environment. You must provide basic information such as the application's name, URLs, and access type. You can also configure optional fields like the frontend stack, logo, default status, and metadata. This route requires an environment token for authentication.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsResponse'
+      tags:
+      - Applications Settings
+  /resources/applications/v1/default:
+    get:
+      operationId: getDefaultApplication
+      summary: Get the Default Application for an Environment
+      description: Retrieve the default application configured in the current environment. The default application typically defines the primary application used for user access and authentication flows. This route requires an environment token for authentication.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsResponse'
+      tags:
+      - Applications Settings
+  /resources/applications/v1/{id}:
+    get:
+      operationId: getApplicationById
+      summary: Get Application by ID
+      description: Retrieve the details of a specific application by its unique ID within the current environment. Use this route to fetch configuration, metadata, and status information for a given application. This request requires an environment token for authentication.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsResponse'
+      tags:
+      - Applications Settings
+    patch:
+      operationId: updateApplication
+      summary: Update an Application
+      description: Update the configuration of an existing application by its ID. You can modify fields such as the name, URLs, access type, status, frontend stack, and additional metadata. This request requires an environment token for authentication.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Applications Settings
+    delete:
+      operationId: deleteApplication
+      summary: Delete an Application
+      description: Delete an existing application by its ID from the current environment. This action permanently removes the application and its associated configuration. This request requires an environment token for authentication.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Applications Settings
+  /resources/applications/tenant-assignments/v1:
+    get:
+      operationId: getApplicationsTenantsAssignments
+      summary: Get Application to Accounts (tenants) Assignments
+      description: Retrieve the list of applications assigned to specific accounts (tenants), or the list of accounts (tenants) associated with specific applications. You can filter the results using `appIds` or `tenantIds` query parameters. This request requires an environment token.
+      parameters:
+      - name: appIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: tenantIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: accessType
+        required: false
+        in: query
+        schema:
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationsTenantAssignmentResponseV1'
+      tags:
+      - Applications Settings
+  /resources/applications/tenant-assignments/v1/{appId}:
+    get:
+      operationId: getApplicationTenantsAssignmentsByAppId
+      summary: Get Account (tenant) Assignments for an Application
+      description: 'Retrieve all account (tenant) IDs currently assigned to a specific application.
+
+
+        Send the application ID as a path parameter.'
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationTenantsResponseV1'
+      tags:
+      - Applications Settings
+    post:
+      operationId: createApplicationTenantAssignment
+      summary: Create Application to Account (tenant) Assignment
+      description: 'Assign an application to a specific account (tenant).
+
+
+        Provide the application ID as a path parameter and the target account (tenant) ID in the request body.'
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationTenantRequestV1'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsTenantAssignmentResponseV1'
+      tags:
+      - Applications Settings
+  /resources/applications/tenant-assignments/v1/{appId}/{tenantId}:
+    put:
+      operationId: editApplicationTenantAssignment
+      summary: Edit Application to Tenant Assignment
+      description: Edit application to tenant assignment
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditApplicationTenantRequestV1'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Applications Settings
+    delete:
+      operationId: deleteApplicationTenantAssignment
+      summary: Delete Application to Account (tenant) Assignment
+      description: Remove the assignment of an application from a specific account (tenant).
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Applications Settings
+  /resources/applications/tenant-assignments/v2:
+    get:
+      operationId: getApplicationsTenantsAssignmentsV2
+      summary: Get Tenant Application Assignments with Per-app AccessType
+      description: Get tenant application assignments with per-app accessType
+      parameters:
+      - name: appIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: tenantIds
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: accessType
+        required: false
+        in: query
+        schema:
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationsTenantAssignmentsResponseV2'
+      tags:
+      - Applications Settings
+  /resources/applications/v1/credentials/{appId}:
+    get:
+      operationId: getApplicationClientCredentials
+      summary: Get Application Client Credentials
+      description: Retrieve the client credentials for a specific application. These credentials include both the `clientSecret` and the `sharedSecret`, which are required for authentication and secure communication with the application.
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationsClientCredentialsResponse'
+      tags:
+      - Applications Settings
+  /resources/applications/v1/credentials/regenerate:
+    post:
+      operationId: regenerateApplicationClientCredentials
+      summary: Regenerate Application Client Credentials
+      description: Regenerate the client credentials (client ID and secret) for a specific application. Use this route to issue a new set of credentials for the application. This request requires an environment token for authentication.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegenerateApplicationClientCredentialsRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Applications Settings
+  /resources/applications/v1/credentials/shared/regenerate:
+    post:
+      operationId: regenerateApplicationSharedSecretCredentials
+      summary: Regenerate Application Shared Secret Credential
+      description: Regenerate the shared secret credential for a specific application. Use this route to issue a new shared secret that the application can use for authentication. This request requires an environment token for authentication.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegenerateApplicationClientCredentialsRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Applications Settings
+  /application-clients:
+    post:
+      operationId: createApplicationClient
+      summary: Create Application Client
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationClientRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationClientResponseDto'
+      tags:
+      - Applications Settings
+  /application-clients/app/{appId}:
+    get:
+      operationId: getApplicationClientsByAppId
+      summary: Get Application Clients by App ID
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationClientResponseDto'
+      tags:
+      - Applications Settings
+  /application-clients/{id}:
+    get:
+      operationId: getApplicationClientById
+      summary: Get Application Client by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationClientResponseDto'
+      tags:
+      - Applications Settings
+    patch:
+      operationId: updateApplicationClient
+      summary: Update Application Client
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApplicationClientRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationClientResponseDto'
+      tags:
+      - Applications Settings
+    delete:
+      operationId: deleteApplicationClient
+      summary: Delete Application Client
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Applications Settings
+info:
+  title: Multi-Apps Overview
+  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  version: '1.0'
+  x-metadata:
+    note: Trigger publish artifacts job, remove this x-metadata after publishing
+servers:
+- url: https://api.frontegg.com/applications
+  description: EU Region
+- url: https://api.us.frontegg.com/applications
+  description: US Region
+- url: https://api.ca.frontegg.com/applications
+  description: CA Region
+- url: https://api.au.frontegg.com/applications
+  description: AU Region
+- url: https://{domain}.frontegg.com/applications
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    ApplicationsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        isDefault:
+          type: boolean
+        isActive:
+          type: boolean
+        name:
+          type: string
+        logoURL:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        type:
+          type: string
+        frontendStack:
+          type: string
+        description:
+          type: string
+        integrationFinishedAt:
+          type: string
+        metadata:
+          type: object
+        appHost:
+          type: string
+        allowDcr:
+          type: boolean
+      required:
+      - id
+      - vendorId
+      - accessType
+      - appURL
+      - loginURL
+      - isDefault
+      - isActive
+      - name
+      - logoURL
+      - createdAt
+      - updatedAt
+      - type
+      - frontendStack
+      - description
+      - integrationFinishedAt
+      - allowDcr
+    CreateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        logoURL:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        isDefault:
+          type: boolean
+          default: false
+        isActive:
+          type: boolean
+          default: true
+        type:
+          type: string
+          default: web
+          enum:
+          - web
+          - mobile-ios
+          - mobile-android
+          - agent
+          - other
+        frontendStack:
+          type: string
+          default: react
+          enum:
+          - react
+          - vue
+          - angular
+          - next.js
+          - vanilla.js
+          - ionic
+          - flutter
+          - react-native
+          - kotlin
+          - swift
+        description:
+          type: string
+        metadata:
+          type: object
+        allowDcr:
+          type: boolean
+          default: false
+      required:
+      - name
+      - appURL
+      - loginURL
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        logoURL:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        isDefault:
+          type: boolean
+          default: false
+        isActive:
+          type: boolean
+          default: true
+        type:
+          type: string
+          default: web
+        frontendStack:
+          type: string
+          default: react
+        description:
+          type: string
+        metadata:
+          type: object
+        appHost:
+          type: string
+        allowDcr:
+          type: boolean
+          default: false
+    ApplicationsTenantAssignmentResponseV1:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
+      - appIds
+    ApplicationTenantsResponseV1:
+      type: object
+      properties:
+        tenantIds:
+          type: array
+          items:
+            type: string
+      required:
+      - tenantIds
+    CreateApplicationTenantRequestV1:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - tenantId
+    EditApplicationTenantRequestV1:
+      type: object
+      properties:
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - accessType
+    ApplicationTenantAssignmentAccessType:
+      type: object
+      properties:
+        appId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - appId
+      - accessType
+    ApplicationsTenantAssignmentsResponseV2:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationTenantAssignmentAccessType'
+      required:
+      - tenantId
+      - assignments
+    ApplicationsClientCredentialsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        sharedSecret:
+          type: string
+      required:
+      - clientSecret
+      - sharedSecret
+    RegenerateApplicationClientCredentialsRequest:
+      type: object
+      properties:
+        appId:
+          type: string
+      required:
+      - appId
+    CreateApplicationClientRequestDto:
+      type: object
+      properties:
+        clientName:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          description: External metadata with string, number, or boolean values
+      required:
+      - clientName
+      - clientType
+    ApplicationClientResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID (UUID)
+        appId:
+          type: string
+        clientName:
+          type: string
+        clientSecret:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          nullable: true
+          description: External metadata with string, number, or boolean values
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - appId
+      - clientName
+      - clientSecret
+      - clientType
+      - redirectURLs
+      - createdAt
+      - updatedAt
+    UpdateApplicationClientRequestDto:
+      type: object
+      properties:
+        clientName:
+          type: string
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          description: External metadata with string, number, or boolean values
+x-tagGroups:
+- name: Management
+  tags:
+  - Applications settings

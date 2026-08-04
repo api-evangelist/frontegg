@@ -1,0 +1,620 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AuditsController_getAudits
+      summary: Get Audits
+      description: "This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+      deprecated: true
+      parameters:
+      - name: vendorId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: tenantId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: offset
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: count
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: paginationMode
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: filter
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          pattern: /^[a-zA-z0-9_]+$/
+          type: string
+        description: ''
+      - name: sortDirection
+        required: false
+        in: query
+        schema:
+          pattern: /^(a|de)sc$/i
+          type: string
+        description: ''
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Main
+    post:
+      operationId: AuditsController_addAudits
+      summary: Add Audits
+      description: Create a new audit entry in your account (tenant) audit trail. This endpoint allows you to log custom audit events with specified severity levels for security monitoring and compliance tracking.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditRequest'
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Main
+  /stats:
+    get:
+      operationId: AuditsController_getAuditsStats
+      summary: Get Audits Statistics
+      description: Retrieve comprehensive statistics and metrics about audit events for your account (tenant). This endpoint provides aggregated data to help you monitor audit activity, analyze security trends, and generate compliance reports.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Main
+  /export/csv:
+    post:
+      operationId: AuditsController_exportCsv
+      summary: Export CSV
+      description: Export CSV
+      deprecated: true
+      parameters:
+      - name: vendorId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: tenantId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: offset
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: count
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: paginationMode
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: filter
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          pattern: /^[a-zA-z0-9_]+$/
+          type: string
+        description: ''
+      - name: sortDirection
+        required: false
+        in: query
+        schema:
+          pattern: /^(a|de)sc$/i
+          type: string
+        description: ''
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCSV'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Main
+  /export/csv/v2:
+    post:
+      operationId: AuditsController_exportCsvToStream
+      summary: Export CSV to Stream
+      description: Export audit data as a CSV file stream with customizable columns and filtering options. This endpoint allows you to generate downloadable CSV reports of your audit trail data for compliance, analysis, or backup purposes.
+      parameters:
+      - name: vendorId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: tenantId
+        required: true
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: offset
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: count
+        required: true
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: paginationMode
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: filter
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          pattern: /^[a-zA-z0-9_]+$/
+          type: string
+        description: ''
+      - name: sortDirection
+        required: false
+        in: query
+        schema:
+          pattern: /^(a|de)sc$/i
+          type: string
+        description: ''
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCSV'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Main
+  /resources/audits/v2:
+    get:
+      operationId: AuditsController_V2_getAudits
+      summary: Get Audits (V2)
+      description: "Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+      parameters:
+      - name: created_from
+        required: false
+        in: query
+        schema:
+          format: date-time
+          type: string
+        description: ''
+      - name: created_to
+        required: false
+        in: query
+        schema:
+          format: date-time
+          type: string
+        description: ''
+      - name: tenant_ids
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: users
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: email
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: count
+        required: true
+        in: query
+        schema:
+          minimum: 1
+          maximum: 200
+          type: number
+        description: ''
+      - name: offset
+        required: true
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: ''
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          pattern: /^[a-zA-z0-9_]+$/
+          type: string
+        description: ''
+      - name: sortDirection
+        required: false
+        in: query
+        schema:
+          pattern: /^(a|de)sc$/i
+          type: string
+        description: ''
+      - name: filter
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: featureFlagId
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Main
+  /resources/audits/v2/export/csv:
+    post:
+      operationId: AuditsController_V2_exportCsvToStream
+      summary: Export CSV to Stream (V2)
+      description: Export filtered audit logs as a downloadable CSV stream with customizable columns and comprehensive filtering options. This endpoint generates CSV reports of your account (tenant) audit data for compliance reporting, data analysis, backup purposes, and integration with external systems. Features include customizable column selection through the properties array, advanced filtering by date ranges, users, emails, severity levels, and custom JSON criteria, pagination support for large datasets (1-200 records per request), sorting capabilities by any field, and streaming CSV output for efficient large file handling. The response includes proper CSV formatting with headers, comma-separated values, and UTF-8 encoding.
+      parameters:
+      - name: created_from
+        required: false
+        in: query
+        schema:
+          format: date-time
+          type: string
+        description: ''
+      - name: created_to
+        required: false
+        in: query
+        schema:
+          format: date-time
+          type: string
+        description: ''
+      - name: tenant_ids
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: users
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: email
+        required: false
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+        description: ''
+      - name: count
+        required: true
+        in: query
+        schema:
+          minimum: 1
+          maximum: 200
+          type: number
+        description: ''
+      - name: offset
+        required: true
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: ''
+      - name: sortBy
+        required: false
+        in: query
+        schema:
+          pattern: /^[a-zA-z0-9_]+$/
+          type: string
+        description: ''
+      - name: sortDirection
+        required: false
+        in: query
+        schema:
+          pattern: /^(a|de)sc$/i
+          type: string
+        description: ''
+      - name: filter
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: featureFlagId
+        required: false
+        in: query
+        schema:
+          type: string
+        description: ''
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCSV'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Main
+  /resources/metrics/v1:
+    get:
+      operationId: MetricsController_getMetrics
+      summary: Get Metrics
+      description: Retrieve audit-related metrics for your environment within a specified time range. You can use query parameters to define the time window, result limit, and aggregation frequency. The response includes top resources, top accounts (tenants), and audit event counts over time. This request requires an environment token for authentication.
+      parameters:
+      - name: from
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: to
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      - name: frequency
+        required: false
+        in: query
+        schema:
+          type: number
+        description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponseDto'
+      tags:
+      - Metrics
+info:
+  title: Audits Overview
+  description: 'Frontegg provides automatic audit logging from the moment it’s integrated into your application, capturing key events as your customers interact with the product. User-management activities, such as logins and settings updates, are automatically logged without any additional setup required on your part.
+
+
+    Alongside Frontegg’s out-of-the-box logged events, you can add custom audit logs via the `POST` API or our backend SDKs, preserving the standard audit event structure. Custom logs will appear to your customers in their dedicated audit section within the self-service menu.
+
+
+    This section lists all relevant API endpoints, organized into Management and Self-Service categories:
+
+
+    **Management Endpoints**: Require environment-level authorization and offer comprehensive control over audits resources.
+
+    <br>
+
+
+    **Self-Service Endpoints**: Accessible with a user token (JWT), allowing users with the required permissions to create, update, and delete aduits connections on their account.'
+  version: ''
+servers:
+- url: https://api.frontegg.com/audits
+  description: EU Region
+- url: https://api.us.frontegg.com/audits
+  description: US Region
+- url: https://api.ca.frontegg.com/audits
+  description: CA Region
+- url: https://api.au.frontegg.com/audits
+  description: AU Region
+- url: https://{domain}.frontegg.com/audits
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    AuditRequest:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - Info
+          - Medium
+          - High
+          - Critical
+          - Error
+          description: ''
+      required:
+      - severity
+    Property:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: ''
+        name:
+          type: string
+          description: ''
+      required:
+      - displayName
+      - name
+    ExportCSV:
+      type: object
+      properties:
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+          description: ''
+      required:
+      - properties
+    TopResources:
+      type: object
+      properties: {}
+    TopTenants:
+      type: object
+      properties: {}
+    MetricsResponseDto:
+      type: object
+      properties:
+        topResources:
+          $ref: '#/components/schemas/TopResources'
+          description: ''
+        topTenants:
+          $ref: '#/components/schemas/TopTenants'
+          description: ''
+        auditsCounterByTime:
+          type: object
+          description: ''
+      required:
+      - topResources
+      - topTenants
+      - auditsCounterByTime
+security:
+- bearer: []
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+x-tagGroups:
+- name: Management
+  tags:
+  - Metrics
+- name: Self-Service
+  tags:
+  - Main

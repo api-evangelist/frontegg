@@ -1,0 +1,681 @@
+openapi: 3.0.0
+paths:
+  /resources/tenants/v1/{tenantId}:
+    get:
+      operationId: TenantControllerV1_getTenant
+      summary: Get Account (tenant) by ID
+      description: Use the V2 route for **Get account (tenant)**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        description: The account (tenant) ID to get.
+        schema:
+          type: string
+      responses:
+        '400':
+          description: When the account (tenant) ID does not pass the validation.
+      tags:
+      - Accounts
+    put:
+      operationId: TenantControllerV1_updateTenant
+      summary: Update Account (tenant)
+      description: Use the V2 route for **update account (tenant)**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        '400':
+          description: When body doesn't contain any property to change.
+        '404':
+          description: When given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+    delete:
+      operationId: TenantControllerV1_deleteTenant
+      summary: Delete Account (tenant)
+      description: Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+  /resources/tenants/v1:
+    post:
+      operationId: TenantControllerV1_createTenant
+      summary: Create an Account (tenant)
+      description: Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '400':
+          description: When the account (tenant) ID does not pass the validation.
+      tags:
+      - Accounts
+    delete:
+      operationId: TenantControllerV1_deleteCurrentTenant
+      summary: Delete Current Account (tenant)
+      description: 'Delete the current account (tenant) and all users belonging to that account.
+
+
+        Only users with the `fe.account-settings.delete.account` permission can perform this action.
+
+
+        A user token is required for this route and can be obtained after user authentication.'
+      parameters: []
+      responses:
+        '200':
+          description: When current account (tenant) has been removed.
+      tags:
+      - Accounts
+  /resources/tenants/v1/{tenantId}/metadata:
+    post:
+      operationId: TenantControllerV1_addTenantMetadata
+      summary: Add Account (tenant) Metadata
+      description: 'Add metadata to an account (tenant).
+
+
+        If a metadata key already exists, its value is overwritten.
+
+
+        Provide the account (tenant) ID as a path parameter and the metadata object in the request body.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTenantMetadataRequest'
+      responses:
+        '400':
+          description: When the given metadata is neither a JSON, nor JSON-string.
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Accounts
+  /resources/tenants/v1/{tenantId}/metadata/{key}:
+    delete:
+      operationId: TenantControllerV1_deleteTenantMetadata
+      summary: Delete Account (tenant) Metadata
+      description: 'Remove a key-value pair from an account''s (tenant''s) metadata.
+
+
+        Provide the account (tenant) ID and the metadata key as path parameters.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: key
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the provided account (tenant) doesn't exist.
+      tags:
+      - Accounts
+  /resources/tenants/v2:
+    get:
+      operationId: TenantControllerV2_getTenants
+      summary: Get Accounts (tenants)
+      description: 'Retrieve all accounts (tenants) for an environment.
+
+
+        Supports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).
+
+
+        You can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200.'
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        description: The default limit is 50 accounts (tenants) per request, the maximum is 200
+        schema:
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: _filter
+        required: false
+        in: query
+        description: This param allows filtering the request using an account's name or tenantId
+        schema:
+          type: string
+      - name: _sortBy
+        required: false
+        in: query
+        description: This param allows sorting the results via createdAt, name, tenantId
+        schema:
+          type: string
+      - name: _order
+        required: false
+        in: query
+        description: This param can be used together with sortBy and define the order as ACS or DESC
+        schema:
+          type: string
+      - name: _tenantIds
+        required: false
+        in: query
+        description: This param allows passing specific tenantIds and getting only these accounts (tenants) data
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+  /resources/tenants/v2/alias/{alias}:
+    get:
+      operationId: TenantControllerV2_getTenantByAlias
+      summary: Get Account (tenant) by Alias
+      description: Get an account (tenant) with custom login by alias. When an account (tenant) cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: alias
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+  /resources/tenants/v2/{tenantId}:
+    get:
+      operationId: TenantControllerV2_getTenant
+      summary: Get an Account (tenant)
+      description: 'Retrieve an account (tenant) by its identifier.
+
+
+        If the account (tenant) cannot be found, an empty array is returned.
+
+
+        Provide the account (tenant) ID as a path parameter.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+    put:
+      operationId: TenantControllerV2_updateTenant
+      summary: Update an Account (tenant)
+      description: 'Update an account (tenant).
+
+
+        Provide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.
+
+
+        An environment token is required for this route and can be obtained from the environment authentication route.'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequestV2'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Accounts
+  /resources/sub-tenants/v1:
+    post:
+      operationId: SubTenantControllerV1_createSubTenant
+      summary: Create Sub-account
+      description: Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubTenantRequest'
+      responses:
+        '400':
+          description: When account (tenant) ID does not pass validation.
+      tags:
+      - Sub-accounts
+  /resources/sub-tenants/v1/{tenantId}/management:
+    put:
+      operationId: SubTenantControllerV1_updateSubTenantManagement
+      summary: Update Sub-account (tenant) Management
+      description: 'Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability'
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubTenantManagementRequest'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+  /resources/sub-tenants/v1/{tenantId}/hierarchy-settings:
+    put:
+      operationId: SubTenantControllerV1_updateSubTenantHierarchySettings
+      summary: Update Sub-account Hierarchy Settings
+      description: Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubTenantHierarchySettingsRequest'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+  /resources/sub-tenants/v1/{tenantId}:
+    delete:
+      operationId: SubTenantControllerV1_deleteSubTenant
+      summary: Delete a Sub-account by ID
+      description: Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the given account (tenant) doesn't exist.
+      tags:
+      - Sub-accounts
+  /resources/account-settings/v1:
+    get:
+      operationId: AccountSettingsControllerV1_getSettings
+      summary: Get Account Settings
+      description: Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Settings retrieved successfully
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+    put:
+      operationId: AccountSettingsControllerV1_updateSettings
+      summary: Update Account Settings
+      description: Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSettingsUpdateRequest'
+      responses:
+        '200':
+          description: Settings updated successfully
+        '400':
+          description: 'When: a) given parameters do not pass validation b) empty object is passed in request content'
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+  /resources/account-settings/v1/public:
+    get:
+      operationId: AccountSettingsControllerV1_getPublicSettings
+      summary: Get Public Settings
+      description: Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Public settings retrieved successfully
+        '404':
+          description: When an account (tenant) with given ID does not exist.
+      tags:
+      - Account Settings
+  /resources/migrations/v1/tenants:
+    post:
+      operationId: MigrationControllerV1_migrateTenants
+      summary: Migrate Accounts (tenants)
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateTenantsRequest'
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Account Migration
+      description: Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication.
+  /resources/migrations/v1/tenants/status/{migrationId}:
+    get:
+      operationId: MigrationControllerV1_getMigrateTenantsStatus
+      summary: Accounts (tenants) Migration Status
+      parameters:
+      - name: migrationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Account Migration
+      description: Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication.
+  /resources/hierarchy/v1:
+    get:
+      operationId: TenantHierarchyControllerV1_getSubTenants
+      summary: Get Sub-accounts (tenants)
+      description: Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+    post:
+      operationId: TenantHierarchyControllerV1_createSubTenants
+      summary: Create Sub-account (tenant)
+      description: Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubTenantRequestDto'
+      responses:
+        '400':
+          description: When:a) given parameters do not pass validationb) or parent and child account (tenant) are equal:c) or child account (tenant) is already a sub-account in other organization's hierarchy
+      tags:
+      - Sub-accounts and Hierarchy
+    delete:
+      operationId: TenantHierarchyControllerV1_deleteSubTenant
+      summary: Delete Sub-account (tenant)
+      description: Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSubTenantRequestDto'
+      responses:
+        '400':
+          description: When provided parameters do not pass validation.
+        '404':
+          description: When given accounts (tenants) are not in parent-child relation.
+      tags:
+      - Sub-accounts and Hierarchy
+  /resources/hierarchy/v1/parents:
+    get:
+      operationId: TenantHierarchyControllerV1_getParentTenants
+      summary: Get Parent Accounts (tenants)
+      description: Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Sub-accounts
+  /resources/hierarchy/v1/tree:
+    get:
+      operationId: TenantHierarchyControllerV1_getSubTenantsTree
+      summary: Get Sub-accounts (tenanants) Hierarchy Tree
+      description: Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: When circular dependency is detected in the hierarchy
+      tags:
+      - Sub-accounts
+info:
+  title: Account Management Overview
+  description: '
+
+    Frontegg is built with multi-tenancy in mind, allowing the creation and management of multiple accounts (tenants) within an environment. This section provides an overview of relevant API endpoints, organized into Management and Self-Service categories, supporting the creation of accounts, hierarchies, and sub-accounts.
+
+
+    **Management Endpoints**: Require environment-level authorization and offer full control over resources, including SSO (SAML and OIDC) configurations, account hierarchies, and sub-accounts.
+
+
+    **Self-Service Endpoints**: Accessible with a user token (JWT), enabling users with the appropriate permissions to create, update, and delete sub-accounts from ah hierarchy.'
+  version: '1.0'
+servers:
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CreateTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Send your own unique tenantId or Frontegg will auto-generate a UUID
+        name:
+          type: string
+        status:
+          type: string
+          description: This field can be used for custom logic, it is not enforced in Frontegg flows
+        website:
+          type: string
+        applicationUrl:
+          type: string
+        logo:
+          type: string
+          description: Base64-encoded image to use as logo.
+        logoUrl:
+          type: string
+        address:
+          type: string
+        timezone:
+          type: string
+        currency:
+          type: string
+        creatorName:
+          type: string
+        creatorEmail:
+          type: string
+        isReseller:
+          type: boolean
+        parentTenantId:
+          type: string
+    UpdateTenantRequest:
+      type: object
+      properties: {}
+    AddTenantMetadataRequest:
+      type: object
+      properties:
+        metadata:
+          oneOf:
+          - type: object
+            example:
+              maximumUsers: 50
+      required:
+      - metadata
+    UpdateTenantRequestV2:
+      type: object
+      properties: {}
+    CreateSubTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        name:
+          type: string
+        parentTenantId:
+          type: string
+        status:
+          type: string
+          description: This field can be used for custom logic, it is not enforced in Frontegg flows
+        logo:
+          type: string
+          description: Base64-encoded image to use as logo.
+        logoUrl:
+          type: string
+        creatorName:
+          type: string
+        creatorEmail:
+          type: string
+        isReseller:
+          type: boolean
+      required:
+      - tenantId
+      - name
+      - parentTenantId
+    UpdateSubTenantManagementRequest:
+      type: object
+      properties: {}
+    UpdateSubTenantHierarchySettingsRequest:
+      type: object
+      properties: {}
+    AccountSettingsUpdateRequest:
+      type: object
+      properties: {}
+    MigrateTenantsRequest:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            type: string
+      required:
+      - tenants
+    CreateSubTenantRequestDto:
+      type: object
+      properties:
+        parentTenantId:
+          type: string
+        childTenantId:
+          type: string
+    DeleteSubTenantRequestDto:
+      type: object
+      properties: {}
+security:
+- bearer: []
+x-tagGroups:
+- name: Management
+  tags:
+  - Accounts
+  - Sub-accounts and hierarchy
+  - Account migration
+- name: Self-Service
+  tags:
+  - Account settings
+  - Sub-accounts

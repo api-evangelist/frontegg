@@ -1,0 +1,2855 @@
+openapi: 3.0.0
+paths:
+  /resources/plans/v1/tenant/{tenantId}:
+    get:
+      operationId: PlansControllerV1_getTenantPlans
+      x-tag: Plans
+      summary: Get Account (tenant) Plans
+      description: Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: Search input, searchable by `name`
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)
+        example: name
+        schema:
+          enum:
+          - name
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, ASC for ascending, DESC for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: excludeNonEntitledPlans
+        required: false
+        in: query
+        description: Boolean value to include related entities in the response
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Filter plans that contain features with these keys
+        example:
+        - feature-key-1
+        - feature-key-2
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+  /resources/plans/v1:
+    get:
+      operationId: PlansControllerV1_getPlans
+      x-tag: Plans
+      summary: Get Plans
+      description: Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: Search input, searchable by `name`
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)
+        example: name
+        schema:
+          enum:
+          - name
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, ASC for ascending, DESC for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userIds
+        required: false
+        in: query
+        description: Comma separated user IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: tenantIds
+        required: false
+        in: query
+        description: Comma separated account (tenant) IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+    post:
+      operationId: PlansControllerV1_createPlan
+      x-tag: Plans
+      summary: Create Plan
+      description: Create a new plan with features, rules, default treatment, and optional auto-assignment settings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlanDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+  /resources/plans/v1/{id}:
+    get:
+      operationId: PlansControllerV1_getSinglePlan
+      x-tag: Plans
+      summary: Get Single Plan
+      description: Retrieve a single plan by its unique identifier, including linked features and entitlements.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+    patch:
+      operationId: PlansControllerV1_updatePlan
+      x-tag: Plans
+      summary: Update Plan
+      description: Update an existing plan's name, features, rules, default treatment, or auto-assignment settings.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlanDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDto'
+      tags:
+      - Plans
+    delete:
+      operationId: PlansControllerV1_deletePlan
+      x-tag: Plans
+      summary: Delete Plan
+      description: Delete an existing plan by its unique identifier.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+  /resources/plans/v1/{id}/features:
+    get:
+      operationId: PlansControllerV1_getPlanFeatures
+      x-tag: Plans
+      summary: Get Plan Features
+      description: Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`)).
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: 'Search input; Searchable fields: `name`'
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Order fields by date created (`createdAt`) or expired (`expirationDate`)
+        example: key
+        schema:
+          default: createdAt
+          enum:
+          - name
+          - key
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort fields by an ascending (`ASC`) or a decending (`DESC`) order
+        example: ASC
+        schema:
+          default: DESC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs that can be used to filter the results
+        example:
+        - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: permissionKeys
+        required: false
+        in: query
+        description: Comma separated permission keys that can be used to filter the results
+        example:
+        - permission.read
+        - permission.write
+        schema:
+          type: array
+          items:
+            type: string
+      - name: hasFeatureFlag
+        required: false
+        in: query
+        description: Filter out features that are linked/not linked to feature-flag
+        example: flase
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Comma separated feature Keys that can be used to filter the results
+        example:
+        - test-feature
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PlanFeatureDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Plans
+  /resources/plans/v1/{id}/features/link:
+    patch:
+      operationId: PlansControllerV1_linkFeaturesToPlan
+      x-tag: Plans
+      summary: Link Features to Plan
+      description: Link multiple features to an existing plan by their feature IDs.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LinkFeaturesDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+  /resources/plans/v1/{id}/features/unlink:
+    patch:
+      operationId: PlansControllerV1_unlinkFeaturesFromPlan
+      x-tag: Plans
+      summary: Unlink Features From Plan
+      description: Unlink multiple features from an existing plan by their feature IDs.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnlinkFeaturesDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Plans
+  /resources/routes/v1:
+    get:
+      operationId: RoutesControllerV1_getMany
+      x-tag: API Access Control
+      summary: Get Routes
+      description: Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+    post:
+      operationId: RoutesControllerV1_create
+      x-tag: API Access Control
+      summary: Create Route
+      description: Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRouteDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+  /resources/routes/v1/{id}:
+    get:
+      operationId: RoutesControllerV1_getSingle
+      x-tag: API Access Control
+      summary: Get Single Route
+      description: Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+    delete:
+      operationId: RoutesControllerV1_delete
+      x-tag: API Access Control
+      summary: Delete Route
+      description: Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Access Control
+    patch:
+      operationId: RoutesControllerV1_update
+      x-tag: API Access Control
+      summary: Update Route
+      description: Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRouteDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteDto'
+      tags:
+      - API Access Control
+  /resources/routes/v1/import-open-api:
+    post:
+      operationId: RoutesControllerV1_importOpenApi
+      x-tag: API Access Control
+      summary: Import Open API
+      description: Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - API Access Control
+  /resources/routes/v1/{id}/rules:
+    put:
+      operationId: RoutesControllerV1_replaceRules
+      x-tag: API Access Control
+      summary: Create or Replace Route Rules
+      description: Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceRouteRulesDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteRuleDto'
+      tags:
+      - API Access Control
+  /resources/routes/v1/configuration:
+    get:
+      operationId: RoutesConfigurationsControllerV1_getRoutesConfiguration
+      x-tag: API Access Control Configurations
+      summary: Get Routes Configuration
+      description: Retrieve routes configuration
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesConfigurationDto'
+      tags:
+      - API Access Control Configurations
+    patch:
+      operationId: RoutesConfigurationsControllerV1_updateRoutesConfiguration
+      x-tag: API Access Control Configurations
+      summary: Update Routes Configuration
+      description: Update route configurations
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoutesConfigurationDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesConfigurationDto'
+      tags:
+      - API Access Control Configurations
+  /resources/features/v1:
+    get:
+      operationId: FeaturesControllerV1_getFeatures
+      x-tag: Features
+      summary: Get Feature Flags
+      description: Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: 'Search input; Searchable fields: `name`'
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Order fields by date created (`createdAt`) or expired (`expirationDate`)
+        example: key
+        schema:
+          default: createdAt
+          enum:
+          - name
+          - key
+          - createdAt
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort fields by an ascending (`ASC`) or a decending (`DESC`) order
+        example: ASC
+        schema:
+          default: DESC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: featureIds
+        required: false
+        in: query
+        description: Comma separated feature IDs that can be used to filter the results
+        example:
+        - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: permissionKeys
+        required: false
+        in: query
+        description: Comma separated permission keys that can be used to filter the results
+        example:
+        - permission.read
+        - permission.write
+        schema:
+          type: array
+          items:
+            type: string
+      - name: hasFeatureFlag
+        required: false
+        in: query
+        description: Filter out features that are linked/not linked to feature-flag
+        example: flase
+        schema:
+          type: boolean
+      - name: featureKeys
+        required: false
+        in: query
+        description: Comma separated feature Keys that can be used to filter the results
+        example:
+        - test-feature
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FeatureDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Features
+    post:
+      operationId: FeaturesControllerV1_createFeature
+      x-tag: Features
+      summary: Create Feature
+      description: Create a new feature with a unique name and key, optional description, and associated permissions.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeatureDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureDto'
+      tags:
+      - Features
+  /resources/features/v1/{featureId}:
+    patch:
+      operationId: FeaturesControllerV1_updateFeature
+      x-tag: Features
+      summary: Update Feature
+      description: Update an existing feature's name, key, description, or associated permissions.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeatureDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+    delete:
+      operationId: FeaturesControllerV1_deleteFeature
+      x-tag: Features
+      summary: Delete Feature
+      description: Delete an existing feature by its unique identifier.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+  /resources/features/v2:
+    post:
+      operationId: FeaturesControllerV2_create
+      x-tag: Features
+      summary: Create Feature
+      description: Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeatureDtoV2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureDto'
+      tags:
+      - Features
+  /resources/features/v2/{featureId}:
+    patch:
+      operationId: FeaturesControllerV2_update
+      x-tag: Features
+      summary: Update Feature
+      description: Update an existing feature's name, key, description, associated permissions, or custom metadata.
+      parameters:
+      - name: featureId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeatureDtoV2'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Features
+  /resources/entitlements/v2:
+    get:
+      operationId: EntitlementsControllerV2_getEntitlements
+      x-tag: Entitlements
+      summary: Get Entitlements
+      description: Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`).
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of results to return
+        example: '0'
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          type: number
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, `ASC` for ascending, `DESC` for descending
+        example: DESC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - name: planId
+        required: false
+        in: query
+        description: UUID string representing the plan ID
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: string
+      - name: planIds
+        required: false
+        in: query
+        description: UUIDs string array representing the plan IDs
+        example: '["e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"]'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: assignLevel
+        required: false
+        in: query
+        description: Assign level, `USER` for user-level entitlements, `TENANT` for tenant-level entitlements
+        example: User
+        schema:
+          enum:
+          - USER
+          - TENANT
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by date (`createdAt`) or expiration date (`expirationDate`)
+        example: expirationDate
+        schema:
+          enum:
+          - expirationDate
+          - createdAt
+          type: string
+      - name: userIds
+        required: false
+        in: query
+        description: Comma separated user IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: tenantIds
+        required: false
+        in: query
+        description: Comma separated account (tenant) IDs to filter results by
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      - name: withRelations
+        required: false
+        in: query
+        description: Boolean value to include related entities in the response
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/EntitlementDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Entitlements
+    post:
+      operationId: EntitlementsControllerV2_createEntitlement
+      x-tag: Entitlements
+      summary: Create Entitlement
+      description: Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEntitlementDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+  /resources/entitlements/v2/batch:
+    post:
+      operationId: EntitlementsControllerV2_createBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Create Entitlements
+      description: Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateManyEntitlementsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementIdsDto'
+      tags:
+      - Entitlements
+    patch:
+      operationId: EntitlementsControllerV2_updateBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Update Entitlements
+      description: Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateManyEntitlementsDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+    delete:
+      operationId: EntitlementsControllerV2_deleteBatchEntitlements
+      x-tag: Entitlements
+      summary: Batch Delete Entitlements
+      description: Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements.
+      parameters:
+      - name: ids
+        required: true
+        in: query
+        description: UUID string that represents the entitlement ID
+        example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+  /resources/entitlements/v2/{id}:
+    get:
+      operationId: EntitlementsControllerV2_getSingleEntitlement
+      x-tag: Entitlements
+      summary: Get Single Entitlement
+      description: Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+    patch:
+      operationId: EntitlementsControllerV2_updateEntitlement
+      x-tag: Entitlements
+      summary: Update Entitlement
+      description: Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEntitlementDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDto'
+      tags:
+      - Entitlements
+    delete:
+      operationId: EntitlementsControllerV2_deleteEntitlement
+      x-tag: Entitlements
+      summary: Delete Entitlement
+      description: Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Entitlements
+  /resources/feature-flags/v1:
+    get:
+      operationId: FeatureFlagsControllerV1_getFeatureFlags
+      x-tag: Feature Flags
+      summary: Get Feature Flags
+      description: Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields).
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Page offset of the results to return
+        example: '0'
+        schema:
+          default: 0
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        example: '10'
+        schema:
+          default: 10
+          type: number
+      - name: filter
+        required: false
+        in: query
+        description: Search input, searchable by `name`
+        example: search-text
+        schema:
+          type: string
+      - name: orderBy
+        required: false
+        in: query
+        description: Field to order results by create date (`createdAt`) or name (`name`)
+        example: name
+        schema:
+          type: string
+      - name: sortType
+        required: false
+        in: query
+        description: Sort type, ASC for ascending, DESC for descending
+        example: ASC
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/PageDto'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FeatureFlagDto'
+                    hasNext:
+                      type: boolean
+      tags:
+      - Feature Flags
+    post:
+      operationId: FeatureFlagsControllerV1_createFeatureFlag
+      x-tag: Feature Flags
+      summary: Create Feature Flag
+      description: Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFeatureFlagDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagDto'
+      tags:
+      - Feature Flags
+  /resources/feature-flags/v1/{id}:
+    get:
+      operationId: FeatureFlagsControllerV1_getSingleFeatureFlag
+      x-tag: Feature Flags
+      summary: Get Single Feature Flag
+      description: Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagDto'
+      tags:
+      - Feature Flags
+    patch:
+      operationId: FeatureFlagsControllerV1_updateFeatureFlag
+      x-tag: Feature Flags
+      summary: Update Feature Flag
+      description: Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFeatureFlagDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagDto'
+      tags:
+      - Feature Flags
+    delete:
+      operationId: FeatureFlagsControllerV1_deleteFeatureFlag
+      x-tag: Feature Flags
+      summary: Delete Feature Flag
+      description: Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Feature Flags
+  /resources/entity-types/v1:
+    get:
+      operationId: EntityTypesV1Controller_getEntityTypes
+      summary: Get Entity Types
+      description: List all entity types in your schema.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedEntityTypesResponse'
+      tags:
+      - ReBAC
+    post:
+      operationId: EntityTypesV1Controller_createEntityType
+      summary: Create Entity Type
+      description: Create a new entity type (e.g. document, folder, project).
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeResponse'
+      tags:
+      - ReBAC
+  /resources/entity-types/v1/{key}:
+    get:
+      operationId: EntityTypesV1Controller_getEntityType
+      summary: Get Entity Type
+      description: Retrieve an entity type along with its relations and actions.
+      parameters:
+      - name: key
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeOneResponse'
+      tags:
+      - ReBAC
+    patch:
+      operationId: EntityTypesV1Controller_updateEntityType
+      summary: Update Entity Type
+      description: Update an existing entity type.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeResponse'
+      tags:
+      - ReBAC
+    delete:
+      operationId: EntityTypesV1Controller_deleteEntityType
+      summary: Delete Entity Type
+      description: Deletes an entity type and all its schema definitions.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+  /resources/entity-types/v1/{key}/actions:
+    post:
+      operationId: EntityTypesActionsV1Controller_createEntityTypeActions
+      summary: Create Entity Type Actions
+      description: Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeActionsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityTypeActionsResponse'
+      tags:
+      - ReBAC
+  /resources/entity-types/v1/{key}/actions/{actionKey}:
+    patch:
+      operationId: EntityTypesActionsV1Controller_updateEntityTypeAction
+      summary: Update Entity Type Action
+      description: Update an existing action's relation mappings.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeActionUpdateRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeActionsResponse'
+      tags:
+      - ReBAC
+    delete:
+      operationId: EntityTypesActionsV1Controller_deleteEntityTypeAction
+      summary: Delete Entity Type Action
+      description: Remove an action from an entity type.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+  /resources/entity-types/v1/{key}/relations:
+    post:
+      operationId: EntityTypesRelationsV1Controller_createEntityTypeRelations
+      summary: Create Entity Type Relations
+      description: Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRelationsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityTypeRelationResponse'
+      tags:
+      - ReBAC
+  /resources/entity-types/v1/{key}/relations/{relationKey}:
+    patch:
+      operationId: EntityTypesRelationsV1Controller_updateEntityTypeRelation
+      summary: Update Entity Type Relation
+      description: Modify a relation's allowed subject entity types.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityTypeRelationUpdateRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityTypeRelationResponse'
+      tags:
+      - ReBAC
+    delete:
+      operationId: EntityTypesRelationsV1Controller_deleteEntityTypeRelation
+      summary: Delete Entity Type Relation
+      description: Remove a relation definition from an entity type.
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+  /resources/relations/v1/assignments:
+    get:
+      operationId: RelationsV1Controller_getRelationAssignments
+      summary: Get Relation Assignments
+      description: List all instance-level relationship assignments.
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        example: 0
+        schema:
+          default: 0
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        example: 10
+        schema:
+          default: 10
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRelationAssignmentsResponse'
+      tags:
+      - ReBAC
+  /resources/relations/v1/assign:
+    post:
+      operationId: RelationsV1Controller_createRelationAssignments
+      summary: Create Relation Assignments
+      description: Create relation assignments (instance-level relationships). E.g., "User A is a reader of Document 1".
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationAssignmentsRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RelationAssignmentDto'
+      tags:
+      - ReBAC
+  /resources/relations/v1/unassign:
+    post:
+      operationId: RelationsV1Controller_deleteRelationAssignments
+      summary: Delete Relation Assignments
+      description: Remove instance-level relationship assignments.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationAssignmentsRequest'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ReBAC
+info:
+  title: Entitlements Overview
+  description: 'The Entitlements Engine is powered by the `isEntitledTo` query and is designed to manage and control user access within your application. It enables you to grant users specific roles, permissions, feature access, and more, providing a flexible framework for access management.
+
+
+    Below is an overview of API endpoints relevant to managing features, plans, feature flags, and API access control within your application. All endpoints are classified as **Management Endpoints**, requiring environment-level authorization and offering comprehensive control over entitlement resources.'
+  version: '1.0'
+servers:
+- url: https://api.frontegg.com/entitlements
+  description: EU Region
+- url: https://api.us.frontegg.com/entitlements
+  description: US Region
+- url: https://api.ca.frontegg.com/entitlements
+  description: CA Region
+- url: https://api.au.frontegg.com/entitlements
+  description: AU Region
+- url: https://{domain}.frontegg.com/entitlements
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    PageDto:
+      type: object
+      properties: {}
+    ConditionDto:
+      type: object
+      properties:
+        attribute:
+          type: string
+          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
+          example: myCustomAttribute
+        attributeType:
+          type: string
+          description: Enum that represents the attribute type (`frontegg` or `custom`)
+          example: custom
+          enum:
+          - custom
+          - frontegg
+        negate:
+          type: boolean
+          description: Boolean that indicates whether the condition should negate the operation
+          example: false
+        op:
+          type: string
+          description: Enum that represents the operation applied to the condition
+          example: in_list
+          enum:
+          - in_list
+          - starts_with
+          - ends_with
+          - contains
+          - matches
+          - equal
+          - greater_than
+          - greater_than_equal
+          - lower_than
+          - lower_than_equal
+          - between_numeric
+          - is
+          - 'on'
+          - between_date
+          - on_or_after
+          - on_or_before
+        value:
+          type: object
+          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
+          example:
+            list:
+            - valueA
+            - valueB
+      required:
+      - attribute
+      - attributeType
+      - negate
+      - op
+      - value
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
+    PlanFeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - name
+      - key
+      - permissions
+    EntitlementPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+      required:
+      - id
+      - vendorId
+      - name
+      - createdAt
+    EntitlementDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was created
+          example: '2022-01-01T12:00:00'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when entitlement was last updated
+          example: '2022-01-01T12:00:00'
+        plan:
+          description: Get the related plan object of the entitlement, in case `withRelations` is set to `true`
+          allOf:
+          - $ref: '#/components/schemas/EntitlementPlan'
+      required:
+      - id
+      - planId
+      - tenantId
+      - createdAt
+      - plan
+    PlanDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: object
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+        features:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/PlanFeatureDto'
+        entitlements:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/EntitlementDto'
+      required:
+      - id
+      - vendorId
+      - name
+      - assignOnSignup
+      - createdAt
+    CreatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+          default: false
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    UpdatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
+    LinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    UnlinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    RouteRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        routeId:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        type:
+          type: string
+          readOnly: true
+          example: feature
+          enum:
+          - feature
+          - permission
+        value:
+          type: string
+          readOnly: true
+          example: my-feature-key
+      required:
+      - id
+      - routeId
+      - type
+      - value
+    RouteDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        method:
+          type: string
+          readOnly: true
+          example: GET
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+        path:
+          type: string
+          readOnly: true
+          example: /users
+        priority:
+          type: number
+          readOnly: true
+          example: 100
+        description:
+          type: string
+          readOnly: true
+          example: This is an example route
+        policyType:
+          type: string
+          readOnly: true
+          example: allow
+          enum:
+          - allow
+          - deny
+          - ruleBased
+        rules:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteRuleDto'
+      required:
+      - id
+      - method
+      - path
+      - priority
+      - description
+      - policyType
+      - rules
+    CreateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
+    UpdateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
+    CreateRouteRuleDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type - can be either "feature" or "permission"
+          enum:
+          - feature
+          - permission
+          example: feature
+        value:
+          type: string
+          description: Rule value - represents a reference key to the rule type entity
+          example: my-feature-key
+      required:
+      - type
+      - value
+    ReplaceRouteRulesDto:
+      type: object
+      properties:
+        rules:
+          description: Set of route rules
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRouteRuleDto'
+      required:
+      - rules
+    RoutesConfigurationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        vendorId:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        accessControlMode:
+          type: string
+          readOnly: true
+          example: monitor
+          enum:
+          - guard
+          - monitor
+      required:
+      - id
+      - vendorId
+      - accessControlMode
+    UpdateRoutesConfigurationDto:
+      type: object
+      properties:
+        accessControlMode:
+          type: string
+          description: Access control mode
+          example: monitor
+          enum:
+          - guard
+          - monitor
+      required:
+      - accessControlMode
+    FeatureFlagDtoThin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the feature flag ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was created
+          example: '2022-01-01T00:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was last updated
+          example: '2022-01-01T00:00:00'
+    FeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string representing the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        metadata:
+          type: object
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        createdAt:
+          type: string
+          description: Date when a feature was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when a feature was last updated
+          example: '2022-01-01T00:00:00'
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+        featureFlag:
+          description: Related Feature-Flag
+          allOf:
+          - $ref: '#/components/schemas/FeatureFlagDtoThin'
+      required:
+      - id
+      - vendorId
+      - name
+      - key
+      - metadata
+      - createdAt
+    CreateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - key
+    UpdateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+    PermissionDto:
+      type: object
+      properties:
+        permissionKey:
+          type: string
+          description: Permission key
+          example: user.read
+        permissionId:
+          type: string
+          description: Permission identifier
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+    CreateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+      required:
+      - name
+      - key
+    UpdateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+    CreateEntitlementDto:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+      required:
+      - planId
+      - tenantId
+    CreateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to create
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEntitlementDto'
+      required:
+      - entitlements
+    EntitlementIdsDto:
+      type: object
+      properties:
+        entitlementIds:
+          description: UUID string that represents the entitlement ID
+          example:
+          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - entitlementIds
+    UpdateEntitlementWithIdDto:
+      type: object
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+      required:
+      - id
+    UpdateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to update
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
+      required:
+      - entitlements
+    UpdateEntitlementDto:
+      type: object
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+    FeatureFlagFeature:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+    FeatureFlagDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the feature flag ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        feature:
+          description: Object that represents the related feature
+          allOf:
+          - $ref: '#/components/schemas/FeatureFlagFeature'
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was created
+          example: '2022-01-01T00:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was last updated
+          example: '2022-01-01T00:00:00'
+    CreateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+      required:
+      - name
+      - 'on'
+      - offTreatment
+      - defaultTreatment
+      - featureId
+    UpdateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+    EntityTypeResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+      required:
+      - key
+      - description
+      - createdAt
+    PagedEntityTypesResponse:
+      type: object
+      properties:
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: true
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeResponse'
+      required:
+      - hasNext
+      - items
+    EntityTypeOneResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+        relations:
+          readOnly: true
+          type: array
+          items:
+            type: string
+        actions:
+          readOnly: true
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - description
+      - createdAt
+      - relations
+      - actions
+    EntityTypeRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: document
+        description:
+          type: string
+          example: Representation of a Word document file
+      required:
+      - key
+    EntityTypeActionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    EntityTypeActionsRequest:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeActionRequest'
+      required:
+      - actions
+    EntityTypeActionsResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        entityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: read
+        relationKeys:
+          readOnly: true
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - entityTypeKey
+      - key
+      - relationKeys
+    EntityTypeActionUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    EntityTypeRelationRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - subjectEntityKeys
+    EntityTypeRelationsRequest:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeRelationRequest'
+      required:
+      - relations
+    EntityTypeRelationResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: reader
+        subjectEntityTypeKeys:
+          readOnly: true
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - targetEntityTypeKey
+      - key
+      - subjectEntityTypeKeys
+    EntityTypeRelationUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - subjectEntityKeys
+    RelationAssignmentDto:
+      type: object
+      properties:
+        subjectEntityTypeKey:
+          type: string
+          readOnly: true
+          example: user
+        subjectKey:
+          type: string
+          readOnly: true
+          example: anthony@email-of.his
+        relationKey:
+          type: string
+          readOnly: true
+          example: reader
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: document
+        targetKey:
+          type: string
+          readOnly: true
+          example: document-1.doc
+        activeFrom:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+        activeUntil:
+          type: string
+          example: '2024-12-31T23:59:59Z'
+      required:
+      - subjectEntityTypeKey
+      - subjectKey
+      - relationKey
+      - targetEntityTypeKey
+      - targetKey
+    PagedRelationAssignmentsResponse:
+      type: object
+      properties:
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentDto'
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: false
+      required:
+      - items
+      - hasNext
+    RelationAssignmentRequestDto:
+      type: object
+      properties:
+        subjectEntityTypeKey:
+          type: string
+          example: user
+        subjectKey:
+          type: string
+          example: anthony@email-of.his
+        relationKey:
+          type: string
+          example: reader
+        targetEntityTypeKey:
+          type: string
+          example: document
+        targetKey:
+          type: string
+          example: document-1.doc
+        activeFrom:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+        activeUntil:
+          type: string
+          example: '2024-12-31T23:59:59Z'
+      required:
+      - subjectEntityTypeKey
+      - subjectKey
+      - relationKey
+      - targetEntityTypeKey
+      - targetKey
+    RelationAssignmentsRequest:
+      type: object
+      properties:
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentRequestDto'
+      required:
+      - assignments
+security:
+- bearer: []
+x-tagGroups:
+- name: Management
+  tags:
+  - ReBAC
+  - Features
+  - Plans
+  - Entitlements
+  - Feature Flags
+  - API Access Control
+  - API Access Control Configs
