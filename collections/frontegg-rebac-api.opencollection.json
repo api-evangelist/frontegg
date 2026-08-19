@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations ReBAC API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ReBAC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entity Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all entity types in your schema."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new entity type (e.g. document, folder, project)."
+        },
+        {
+          "info": {
+            "name": "Get Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an entity type along with its relations and actions."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing entity type."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an entity type and all its schema definitions."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/actions/:actionKey",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing action's relation mappings."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/actions/:actionKey",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove an action from an entity type."
+        },
+        {
+          "info": {
+            "name": "Create Entity Type Relations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/relations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects."
+        },
+        {
+          "info": {
+            "name": "Update Entity Type Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/relations/:relationKey",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modify a relation's allowed subject entity types."
+        },
+        {
+          "info": {
+            "name": "Delete Entity Type Relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/entity-types/v1/:key/relations/:relationKey",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a relation definition from an entity type."
+        },
+        {
+          "info": {
+            "name": "Get Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/relations/v1/assignments",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all instance-level relationship assignments."
+        },
+        {
+          "info": {
+            "name": "Create Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/relations/v1/assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create relation assignments (instance-level relationships). E.g., \"User A is a reader of Document 1\"."
+        },
+        {
+          "info": {
+            "name": "Delete Relation Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/relations/v1/unassign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove instance-level relationship assignments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

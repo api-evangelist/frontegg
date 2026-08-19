@@ -1,0 +1,1047 @@
+{
+  "item": [
+    {
+      "id": "f8842a2c-7931-41b6-8c5f-97f7ae82183c",
+      "name": "SMS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "647030e9-5eb0-42ac-93f0-4ed4f7592fea",
+          "name": "Get All Phone Numbers",
+          "request": {
+            "name": "Get All Phone Numbers",
+            "description": {
+              "content": "Retrieve a paginated list of all user phone numbers associated with your environment.\n\nThis endpoint returns user phone numbers along with pagination metadata and navigation links. It supports filtering, sorting, and offset-based pagination for efficient querying.\n\nQuery parameters (optional):\n- `_limit` (number ≥ 1): Maximum number of items to return per page.\n- `_offset` (number ≥ 0): The page number to retrieve. For example, use 0 for the first page, 1 for the second page.\n- `_sortBy` (string): Field to sort by. Allowed values: `userId`, `phoneNumber`.\n- `_order` (string): Sort order. Allowed values: `ASC`, `DESC`.\n- `_phoneNumber` (string): Filter by a specific phone number.\n\nUse this endpoint to list or search user phone numbers in a paginated format, ideal for administrative tools or reporting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "<number>",
+                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_phoneNumber",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ce64320-3416-4861-92d2-ebfb6ab5624f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_phoneNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"verified\": false,\n      \"createdAt\": \"1978-07-07T04:13:32.554Z\",\n      \"updatedAt\": \"2014-10-29T14:55:19.942Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"verified\": true,\n      \"createdAt\": \"1958-07-01T06:41:59.180Z\",\n      \"updatedAt\": \"1963-09-24T07:17:05.275Z\"\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 4029.497655339651,\n    \"totalPages\": 4507.324565406584\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fb31092-fb6d-45d0-bca4-f87c69854f66",
+          "name": "Set Phone Number for a User",
+          "request": {
+            "name": "Set Phone Number for a User",
+            "description": {
+              "content": "Assign a new phone number to a user and optionally trigger a verification code.\n\nBy default, the system sends an SMS verification code to the provided phone number. To skip verification (e.g., for internal setup), set the `verify` field to `false`.\n\nRequest body must include:\n- `phoneNumber`: The new phone number to assign to the user. Must follow international format.\n- `verify` (optional): Whether to send an SMS verification code. Defaults to `true` if not provided.\n\nUse this endpoint to set or update a user's phone number, with optional control over verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"verify\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3cebb8ef-4ab1-4b46-bab1-b2796e648df8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"verify\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a986d15-a349-4cd0-af35-010e52566aff",
+          "name": "Pre-verify User's Phone Number",
+          "request": {
+            "name": "Pre-verify User's Phone Number",
+            "description": {
+              "content": "Send a one-time code (OTC) to the specified phone number to initiate verification.\n\nThis endpoint is used to pre-verify a phone number before associating it with a user account. It sends an SMS-based one-time code to the provided number.\n\nRequest body must include:\n- `phoneNumber`: The phone number to verify, in international format.\n\nUse this endpoint to validate ownership of a phone number by sending a one-time code for user input during onboarding or account setup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                "preverify"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-preverify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2831abca-2b16-4a17-b564-9962d8683491",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    "preverify"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-preverify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d4058d5-8d46-4328-8f80-807f0c89eb9a",
+          "name": "Verify Creation of Phone Number for User",
+          "request": {
+            "name": "Verify Creation of Phone Number for User",
+            "description": {
+              "content": "Verify a user's phone number using a one-time code (OTC) that was sent via SMS.\n\nThis is the final step in the phone number verification process. After initiating verification via the pre-verification route, use this endpoint to confirm the phone number by submitting the OTC and code.\n\nRequest body must include:\n- `otcToken`: The token issued when the OTC was sent.\n- `code`: The one-time code the user received on their phone.\n\nUse this endpoint to validate the user's ownership of the phone number and complete the verification process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                "verify"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-verify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"otcToken\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa492a6e-945a-4177-9b0b-47d23c1f5acd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"otcToken\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c883b5b8-5cf1-4a5b-befc-dcde2113bc92",
+          "name": "Delete User's Phone Number",
+          "request": {
+            "name": "Delete User's Phone Number",
+            "description": {
+              "content": "Initiate the deletion process for a user's phone number.\n\nThis endpoint begins the phone number removal workflow by sending a verification code to the user. The phone number will not be deleted until the verification step is completed.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to be deleted.\n\nUse this endpoint to trigger the secure deletion process for a user's phone number. A follow-up verification step is required to finalize the removal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "28d38fb8-f658-47cf-a632-d4d24dd64323",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a89648c-010d-4aa0-ada0-d45e56b6e7b2",
+          "name": "Verify Delete User's Phone Number",
+          "request": {
+            "name": "Verify Delete User's Phone Number",
+            "description": {
+              "content": "Verify the deletion of a user's phone number using a one-time code (OTC).\n\nThis is the final step in the phone number deletion process. After initiating deletion, the system sends a verification code to the user's phone. This endpoint confirms the deletion by validating the OTC and code.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to delete.\n\nRequest body must include:\n- `otcToken`: The token issued during the deletion request.\n- `code`: The one-time code sent to the user via SMS.\n\nUse this endpoint to securely complete the deletion of a user's phone number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                ":id",
+                "delete",
+                "verify"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-id-delete-verify-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"otcToken\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be7f810e-94ea-4ca5-8c6b-26bcc0d9dedb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    ":id",
+                    "delete",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-id-delete-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"otcToken\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "160ae8e5-5535-4892-b0b4-482f8cacaf36",
+          "name": "Get Current User's Phone Numbers",
+          "request": {
+            "name": "Get Current User's Phone Numbers",
+            "description": {
+              "content": "Retrieve all phone numbers associated with the current user.\n\nThis endpoint returns a list of phone numbers linked to the authenticated user, including verification status and timestamps.\n\nThe response includes metadata such as verification status and timestamps for creation and last update.\n\nUse this endpoint to display or manage the user's registered phone numbers in your application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                "me"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-me-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The user id",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "26c1fd7e-ddc1-4edf-ab6c-0d0d70bc11e2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    "me"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-me-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user id",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"userId\": \"string\",\n    \"phoneNumber\": \"string\",\n    \"verified\": true,\n    \"createdAt\": \"1972-02-03T16:15:33.706Z\",\n    \"updatedAt\": \"1981-02-17T07:23:25.411Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"userId\": \"string\",\n    \"phoneNumber\": \"string\",\n    \"verified\": true,\n    \"createdAt\": \"2022-12-14T23:07:47.495Z\",\n    \"updatedAt\": \"2010-06-16T23:51:08.793Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b7eda5b-c9b6-4a8a-93f9-9ad87ac8281e",
+          "name": "Get All Phone Numbers V2",
+          "request": {
+            "name": "Get All Phone Numbers V2",
+            "description": {
+              "content": "This route returns all user phone numbers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v2"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "<number>",
+                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_phoneNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4e826a36-76e3-4ef9-9757-0b23c8592bc6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_phoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"verified\": false,\n      \"createdAt\": \"1978-07-07T04:13:32.554Z\",\n      \"updatedAt\": \"2014-10-29T14:55:19.942Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"verified\": true,\n      \"createdAt\": \"1958-07-01T06:41:59.180Z\",\n      \"updatedAt\": \"1963-09-24T07:17:05.275Z\"\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 4029.497655339651,\n    \"totalPages\": 4507.324565406584\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-preverify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-id-delete-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-me-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v2-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "b2d4b7c0-be5c-4632-8aac-4105cd15b984",
+    "name": "Multi-Apps Overview Account Invitations SMS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

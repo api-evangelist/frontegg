@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "76519be0-59cc-40b6-9d80-f5d86bcffc20",
+      "name": "Tenants_other",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5cc9ffe-2f61-4fe8-9285-2e65021e3e31",
+          "name": "Get Account (tenant) by Alias",
+          "request": {
+            "name": "Get Account (tenant) by Alias",
+            "description": {
+              "content": "Get an account (tenant) with custom login by alias. When an account (tenant) cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v2",
+                "alias",
+                ":alias"
+              ],
+              "host": [
+                "{{resources-tenants-v2-alias-alias-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "alias",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d8906c10-10d2-4cc5-adcb-b6790275eff5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v2",
+                    "alias",
+                    ":alias"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v2-alias-alias-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "alias",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v2-alias-alias-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "aee31629-6bb6-4ac4-a485-6bfcbf5451e5",
+    "name": "Multi-Apps Overview Account Invitations Tenants_other API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

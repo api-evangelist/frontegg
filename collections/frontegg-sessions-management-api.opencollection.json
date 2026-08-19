@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Sessions Management API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) or Vendor Default Session Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/sessions/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the session configuration for the entire environment or for a specific account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create or Update Account (tenant) or Vendor Default Session Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/sessions/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update the session configuration for the entire environment or for a specific account (tenant)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

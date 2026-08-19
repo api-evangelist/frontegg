@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations General API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate User with Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/auth/v1/user",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Authenticate a local user using their email and password.\n\nInclude the user's login credentials in the request body. This endpoint supports optional parameters such as an invitation token (for sign-up flows via invitation) and a reCAPTCHA token (if reCAPTCHA is enabled for login).\n\nIf the credentials are valid, the response includes a signed JWT and a refresh token that can be used for future authenticated requests."
+        },
+        {
+          "info": {
+            "name": "Refresh User JWT Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/auth/v1/user/token/refresh",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Refresh a JWT based on the refresh token's expiration time.\n\nThis endpoint returns a new JWT and refresh token if the existing refresh token is valid and not expired. The request must include the refresh token cookie for the currently logged-in user.\n\nEnsure your JWT settings are properly configured in the Frontegg Portal to support this flow."
+        },
+        {
+          "info": {
+            "name": "Logout User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/auth/v1/logout",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Log out a user by invalidating their refresh token.\n\nThis endpoint logs out the currently authenticated user by invalidating the refresh token provided in the refresh token cookie.\n\nThis route is intended for applications using Frontegg's embedded login experience or for integrations that interact exclusively with Frontegg APIs."
+        },
+        {
+          "info": {
+            "name": "Signup User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/signUp",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              },
+              {
+                "name": "frontegg-application-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sign up a new user and create a new account (tenant).\n\nThis endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.\n\nAdditional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).\n\nThis endpoint is typically used"
+        },
+        {
+          "info": {
+            "name": "Signup User with Username",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/signUp/username",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              },
+              {
+                "name": "frontegg-application-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Sign up a new user and create a new account (tenant). Include the `frontegg-vendor-host` header (your domain name from Portal → Workspace Settings → Domains). Required fields: `email`, `provider` (authentication method: local, saml, google, github), `companyName`, and `metadata` (can be empty `{}`). Requires an environment authentication token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

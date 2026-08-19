@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Data Migration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Migration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate From Auth0",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/auth0",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate users from Auth0 into your environment.\n\nProvide the `domain`, `clientId`, `secret`, and `tenantIdFieldName` parameters in the request body. These values can be obtained from your Auth0 account (tenant) configuration."
+        },
+        {
+          "info": {
+            "name": "Migrate a Single User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/local",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate a user into your environment.\n\nProvide the required fields: user's email, `tenantId`, and metadata. You can also include additional properties such as the user's name, phone number, hashed password, and other optional attributes."
+        },
+        {
+          "info": {
+            "name": "Migrate Users in Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/local/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate users in bulk into your environment.\n\nProvide an array of `users` in the request body. Each user object must include the user's `email` and `tenantId`, which specifies the user's parent account. You can include additional fields as needed to store more information. If you need to store custom data, use the `metadata` property."
+        },
+        {
+          "info": {
+            "name": "Check Status of Bulk Migration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/local/bulk/status/:migrationId",
+            "params": [
+              {
+                "name": "migrationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the status of a pending or completed migration.\n\nThe response includes the migration's `state`, the number of migrated users, and any errors that occurred during the migration. The response payload is limited to 1,000 users."
+        },
+        {
+          "info": {
+            "name": "Migrate Vendor Users in Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v2/local/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate users in bulk to your environment. Provide an array of user objects, each containing `email` and `tenantId`. Use the `metadata` property to store custom information for each user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

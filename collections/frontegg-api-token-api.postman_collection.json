@@ -1,0 +1,270 @@
+{
+  "item": [
+    {
+      "id": "0fe6a03f-3423-4410-b0f8-de8a89e1e9d8",
+      "name": "API Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abe9962c-31dc-4434-9d5c-43d6529b5f8d",
+          "name": "Authenticate Using API Token",
+          "request": {
+            "name": "Authenticate Using API Token",
+            "description": {
+              "content": "Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`).\n\n**Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "auth",
+                "v2",
+                "api-token"
+              ],
+              "host": [
+                "{{resources-auth-v2-api-token-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "381c3252-2ead-46c1-87ff-2c59595f8e1d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "auth",
+                    "v2",
+                    "api-token"
+                  ],
+                  "host": [
+                    "{{resources-auth-v2-api-token-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"expires_in\": 2658.150888874753,\n  \"expires\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d8f7661-f6db-4ba7-8819-6cbc5ee3629a",
+          "name": "Refresh API Token",
+          "request": {
+            "name": "Refresh API Token",
+            "description": {
+              "content": "Refreshes a JWT access token using a refresh token. If the refresh token is valid, returns a new JWT and refresh token pair. This maintains an authenticated session without requiring the user to log in again.\n\nIf the refresh token is invalid, expired, or has been revoked due to rotation limits, the request will fail with an authentication error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "auth",
+                "v2",
+                "api-token",
+                "token",
+                "refresh"
+              ],
+              "host": [
+                "{{resources-auth-v2-api-token-token-refresh-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f22f655c-1fb3-4e9a-8c77-ffffc2cec6e2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "auth",
+                    "v2",
+                    "api-token",
+                    "token",
+                    "refresh"
+                  ],
+                  "host": [
+                    "{{resources-auth-v2-api-token-token-refresh-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refreshToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"expires_in\": 2658.150888874753,\n  \"expires\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-auth-v2-api-token-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-auth-v2-api-token-token-refresh-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "aebafa6f-e6b7-4916-972d-c0248a019cd6",
+    "name": "Multi-Apps Overview Account Invitations API Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

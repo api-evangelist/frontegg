@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "41de323b-f653-4e7e-94c9-4075f1a01cf9",
+      "name": "API Access Control Configurations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b0095e2-47bc-4189-a948-bf824d5e87ce",
+          "name": "Get Routes Configuration",
+          "request": {
+            "name": "Get Routes Configuration",
+            "description": {
+              "content": "Retrieve routes configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "routes",
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{resources-routes-v1-configuration-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f691c60b-6489-42e8-8ad0-63909589cd07",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "routes",
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{resources-routes-v1-configuration-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"vendorId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"accessControlMode\": \"monitor\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "182b040c-bdbc-40f6-8a3b-ea12efb29635",
+          "name": "Update Routes Configuration",
+          "request": {
+            "name": "Update Routes Configuration",
+            "description": {
+              "content": "Update route configurations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "routes",
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{resources-routes-v1-configuration-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessControlMode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c05fe705-90e3-4bf7-90c2-b870da4cc664",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "routes",
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{resources-routes-v1-configuration-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessControlMode\": \"monitor\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"vendorId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"accessControlMode\": \"monitor\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-routes-v1-configuration-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "b868e4cf-93bb-44e4-b0e1-461cf6313813",
+    "name": "Multi-Apps Overview Account Invitations API Access Control Configurations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

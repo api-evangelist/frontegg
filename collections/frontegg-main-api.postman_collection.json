@@ -1,0 +1,1196 @@
+{
+  "item": [
+    {
+      "id": "68aac089-ae40-4060-9c8d-b67ec2a9d5ca",
+      "name": "Main",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f70ea941-a6db-4252-98c6-c79896ac156a",
+          "name": "Get Audits",
+          "request": {
+            "name": "Get Audits",
+            "description": {
+              "content": "This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "paginationMode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c2534e3-bf3d-40e8-9116-4f8308047510",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "paginationMode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8de37310-7f65-43a7-994c-2e5549d57af6",
+          "name": "Add Audits",
+          "request": {
+            "name": "Add Audits",
+            "description": {
+              "content": "Create a new audit entry in your account (tenant) audit trail. This endpoint allows you to log custom audit events with specified severity levels for security monitoring and compliance tracking.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"severity\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a99052b2-5c61-4b2d-8fbc-3b91f414af2d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"severity\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41cd07da-da66-4960-8040-9c0ba5ff6772",
+          "name": "Get Audits Statistics",
+          "request": {
+            "name": "Get Audits Statistics",
+            "description": {
+              "content": "Retrieve comprehensive statistics and metrics about audit events for your account (tenant). This endpoint provides aggregated data to help you monitor audit activity, analyze security trends, and generate compliance reports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats"
+              ],
+              "host": [
+                "{{stats-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf440d9b-7d82-4175-8756-0e0efd08c912",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{stats-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ea809c0-5af4-4139-b3e3-6bf0b41e6128",
+          "name": "Export CSV",
+          "request": {
+            "name": "Export CSV",
+            "description": {
+              "content": "Export CSV",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export",
+                "csv"
+              ],
+              "host": [
+                "{{export-csv-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "paginationMode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bb3f9ab-d9de-4145-b52d-616fa55b37a5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{export-csv-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "paginationMode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16559204-7933-4be5-97fe-2a5c03ab5686",
+          "name": "Export CSV to Stream",
+          "request": {
+            "name": "Export CSV to Stream",
+            "description": {
+              "content": "Export audit data as a CSV file stream with customizable columns and filtering options. This endpoint allows you to generate downloadable CSV reports of your audit trail data for compliance, analysis, or backup purposes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export",
+                "csv",
+                "v2"
+              ],
+              "host": [
+                "{{export-csv-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "paginationMode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd2715fd-cc4c-420c-8501-af3526d61c6a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export",
+                    "csv",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{export-csv-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "paginationMode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cff933b9-d8ec-47bb-b253-3b190fd61c8c",
+          "name": "Get Audits (V2)",
+          "request": {
+            "name": "Get Audits (V2)",
+            "description": {
+              "content": "Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "audits",
+                "v2"
+              ],
+              "host": [
+                "{{resources-audits-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "users",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "users",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureFlagId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b78e76d3-725e-46d4-bc0c-f369b8aa0e3c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "audits",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-audits-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "tenant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "users",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "users",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "featureFlagId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3db782c-1c2a-44c6-99a2-6b54df1223b6",
+          "name": "Export CSV to Stream (V2)",
+          "request": {
+            "name": "Export CSV to Stream (V2)",
+            "description": {
+              "content": "Export filtered audit logs as a downloadable CSV stream with customizable columns and comprehensive filtering options. This endpoint generates CSV reports of your account (tenant) audit data for compliance reporting, data analysis, backup purposes, and integration with external systems. Features include customizable column selection through the properties array, advanced filtering by date ranges, users, emails, severity levels, and custom JSON criteria, pagination support for large datasets (1-200 records per request), sorting capabilities by any field, and streaming CSV output for efficient large file handling. The response includes proper CSV formatting with headers, comma-separated values, and UTF-8 encoding.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "audits",
+                "v2",
+                "export",
+                "csv"
+              ],
+              "host": [
+                "{{resources-audits-v2-export-csv-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenant_ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "users",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "users",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureFlagId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4df0364b-a264-4a26-8099-f6ab8736131a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "audits",
+                    "v2",
+                    "export",
+                    "csv"
+                  ],
+                  "host": [
+                    "{{resources-audits-v2-export-csv-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "tenant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenant_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "users",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "users",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "featureFlagId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": [\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "stats-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "export-csv-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "export-csv-v2-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "resources-audits-v2-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "resources-audits-v2-export-csv-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "937796b8-03a5-4135-989f-c8ba92bd496f",
+    "name": "Multi-Apps Overview Account Invitations Main API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

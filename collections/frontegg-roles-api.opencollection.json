@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Roles API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all roles across all accounts (tenants).\n\nEach role object includes the name, permissions, and other defining information."
+        },
+        {
+          "info": {
+            "name": "Create Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new role across all accounts (tenants).\n\nThis route does not assign permissions to the role. Use the attach permissions to role route to manage role permissions."
+        },
+        {
+          "info": {
+            "name": "Update Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1/:roleId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing role.\n\nProvide the role ID as a path parameter to specify which role to update, and send the updated role information in the request body.\n\nThis route does not update permissions for the role. Use the attach permissions to role route to manage role permissions.\n\nYou can obtain the role ID using the **Get roles** API."
+        },
+        {
+          "info": {
+            "name": "Delete Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1/:roleId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a role.\n\nProvide the role ID as a path parameter to specify which role to delete."
+        },
+        {
+          "info": {
+            "name": "Assign Permissions to a Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1/:roleId/permissions",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign permissions to a role.\n\nProvide the role ID as a path parameter and include the permission IDs in the request body as an array of strings. Any pre-existing permissions will be overridden by the new permissions.\n\nYou can obtain role IDs using the **Get roles** API and permission IDs using the **Get permissions** API."
+        },
+        {
+          "info": {
+            "name": "Update Role Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/roles/v1/:roleId/tenant",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the account (tenant) ID for a specific role. This is a management-only endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

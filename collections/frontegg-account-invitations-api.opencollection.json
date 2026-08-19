@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Invitations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) Invite of User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/user",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an invitation for a specific user to join an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create Account (tenant) Invite for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/user",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create an invitation for a specific user to join an account (tenant).\n\nTo create a general invitation, use the general invitation route."
+        },
+        {
+          "info": {
+            "name": "Update Account (tenant) Invite of User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/user",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an invitation for a specific user to join an account (tenant).\n\nTo set a specific expiration time, use the `expiresInMinutes` parameter to define when the invitation will be invalidated. Use the `shouldSendEmail` Boolean parameter to control whether an invitation email is sent.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Account (tenant) Invite of User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/user",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an invitation for a specific user to join an account (tenant).\n\nTo delete a general invitation, use the general invitation route."
+        },
+        {
+          "info": {
+            "name": "Verify Account (tenant) Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify an account (tenant) invitation.\n\nPass the invitation token as the `token` parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Account (tenant) Invite Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/configuration",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check whether account (tenant) invitations are enabled and whether notifications are active for your environment.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Create Tenant Invite with Roles for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v2/user",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates an invitation with assigned roles for a specific user to join an account (tenant). Provide the user's ID via the `frontegg-user-id` header and the account ID via the `frontegg-tenant-id` header. For general invitations without a specific user, use the general invitation endpoint instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

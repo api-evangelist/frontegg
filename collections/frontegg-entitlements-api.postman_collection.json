@@ -1,0 +1,1029 @@
+{
+  "item": [
+    {
+      "id": "c53eaf7d-a644-4cdb-978f-28a20fa7d58d",
+      "name": "Entitlements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "154cbf33-c80d-4f77-ba94-9b659a526e35",
+          "name": "Get Entitlements",
+          "request": {
+            "name": "Get Entitlements",
+            "description": {
+              "content": "Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<number>",
+                  "description": "Page offset of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortType",
+                  "value": "<string>",
+                  "description": "Sort type, `ASC` for ascending, `DESC` for descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "planId",
+                  "value": "<string>",
+                  "description": "UUID string representing the plan ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "planIds",
+                  "value": "<string>",
+                  "description": "UUIDs string array representing the plan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "planIds",
+                  "value": "<string>",
+                  "description": "UUIDs string array representing the plan IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "assignLevel",
+                  "value": "<string>",
+                  "description": "Assign level, `USER` for user-level entitlements, `TENANT` for tenant-level entitlements"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Field to order results by date (`createdAt`) or expiration date (`expirationDate`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "Comma separated user IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "Comma separated user IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Comma separated account (tenant) IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Comma separated account (tenant) IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "withRelations",
+                  "value": "<boolean>",
+                  "description": "Boolean value to include related entities in the response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4aa0ac6-a22e-4baa-bbf5-bb75074a6beb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sortType",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "planId",
+                      "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+                    },
+                    {
+                      "key": "planIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "planIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assignLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "expirationDate"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "withRelations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"createdAt\": \"2022-01-01T12:00:00\",\n      \"plan\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Plan\",\n        \"createdAt\": \"2022-01-01T00:00:00\",\n        \"defaultTimeLimitation\": 8014.926707208438,\n        \"description\": \"This is a test plan\",\n        \"updatedAt\": \"2022-01-01T00:00:00\"\n      },\n      \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\",\n      \"updatedAt\": \"2022-01-01T12:00:00\"\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"createdAt\": \"2022-01-01T12:00:00\",\n      \"plan\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Plan\",\n        \"createdAt\": \"2022-01-01T00:00:00\",\n        \"defaultTimeLimitation\": 6383.736278435997,\n        \"description\": \"This is a test plan\",\n        \"updatedAt\": \"2022-01-01T00:00:00\"\n      },\n      \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\",\n      \"updatedAt\": \"2022-01-01T12:00:00\"\n    }\n  ],\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b576641-0f18-40b4-8416-7a97d7639df1",
+          "name": "Create Entitlement",
+          "request": {
+            "name": "Create Entitlement",
+            "description": {
+              "content": "Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "921ecd3b-1869-4246-a8de-d57932ced741",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"expirationDate\": \"2022-01-01T12:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"createdAt\": \"2022-01-01T12:00:00\",\n  \"plan\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Plan\",\n    \"createdAt\": \"2022-01-01T00:00:00\",\n    \"defaultTimeLimitation\": 5716.044301153389,\n    \"description\": \"This is a test plan\",\n    \"updatedAt\": \"2022-01-01T00:00:00\"\n  },\n  \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"expirationDate\": \"2022-01-01T12:00:00\",\n  \"updatedAt\": \"2022-01-01T12:00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fd665a3-c017-48f9-bf64-25225ea7060c",
+          "name": "Batch Create Entitlements",
+          "request": {
+            "name": "Batch Create Entitlements",
+            "description": {
+              "content": "Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                "batch"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-batch-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entitlements\": [\n    {\n      \"planId\": \"<string>\",\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\"\n    },\n    {\n      \"planId\": \"<string>\",\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "484a8b10-fb5f-4091-8ea0-33e77a084dc2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-batch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entitlements\": [\n    {\n      \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\"\n    },\n    {\n      \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entitlementIds\": [\n    \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15bd16f3-6b08-4f97-a961-c067cceb9d00",
+          "name": "Batch Update Entitlements",
+          "request": {
+            "name": "Batch Update Entitlements",
+            "description": {
+              "content": "Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                "batch"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-batch-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entitlements\": [\n    {\n      \"id\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"expirationDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75a1767c-da30-4f28-9ebb-37afa54fae8b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-batch-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entitlements\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\"\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"expirationDate\": \"2022-01-01T12:00:00\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98801805-c388-4a31-8b77-4a811843d89e",
+          "name": "Batch Delete Entitlements",
+          "request": {
+            "name": "Batch Delete Entitlements",
+            "description": {
+              "content": "Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                "batch"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-batch-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) UUID string that represents the entitlement ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) UUID string that represents the entitlement ID"
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "47c61dde-89f2-4ab4-a38b-126cf4b871b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-batch-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1550733-0324-450a-8585-6ee1e19d54f3",
+          "name": "Get Single Entitlement",
+          "request": {
+            "name": "Get Single Entitlement",
+            "description": {
+              "content": "Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f64f0a1b-4e17-47a4-ba7a-227114dc158f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"createdAt\": \"2022-01-01T12:00:00\",\n  \"plan\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Plan\",\n    \"createdAt\": \"2022-01-01T00:00:00\",\n    \"defaultTimeLimitation\": 5716.044301153389,\n    \"description\": \"This is a test plan\",\n    \"updatedAt\": \"2022-01-01T00:00:00\"\n  },\n  \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"expirationDate\": \"2022-01-01T12:00:00\",\n  \"updatedAt\": \"2022-01-01T12:00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1770a3f-0644-40ae-aa56-f3c3caf4d88b",
+          "name": "Update Entitlement",
+          "request": {
+            "name": "Update Entitlement",
+            "description": {
+              "content": "Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expirationDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49b1b619-5e80-4d56-ad62-9e4ea24fd984",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expirationDate\": \"2022-01-01T12:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"createdAt\": \"2022-01-01T12:00:00\",\n  \"plan\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Plan\",\n    \"createdAt\": \"2022-01-01T00:00:00\",\n    \"defaultTimeLimitation\": 5716.044301153389,\n    \"description\": \"This is a test plan\",\n    \"updatedAt\": \"2022-01-01T00:00:00\"\n  },\n  \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"expirationDate\": \"2022-01-01T12:00:00\",\n  \"updatedAt\": \"2022-01-01T12:00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5485d64d-c826-47c0-985f-0f90b50f2247",
+          "name": "Delete Entitlement",
+          "request": {
+            "name": "Delete Entitlement",
+            "description": {
+              "content": "Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entitlements",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "{{resources-entitlements-v2-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1647f1e-6aa2-4fb9-8123-99b89b774b80",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entitlements",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-entitlements-v2-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entitlements-v2-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entitlements-v2-batch-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entitlements-v2-id-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "df861f52-3cac-41b8-9717-b0b3e3f0f733",
+    "name": "Multi-Apps Overview Account Invitations Entitlements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

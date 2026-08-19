@@ -1,0 +1,407 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations User Groups API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_groupsRelations",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all user groups for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a user group for an account (tenant).\n\nProvide the group details in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Groups by Ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/bulkGet",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_groupsRelations",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve user groups by given IDs for an account (tenant).\n\nProvide the group IDs in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Group by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "_groupsRelations",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter and the updated group details in the request body."
+        },
+        {
+          "info": {
+            "name": "Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Get Groups Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/config",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the user group configuration for your environment."
+        },
+        {
+          "info": {
+            "name": "Create or Update Groups Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update the user group configuration for your environment.\n\nProvide the configuration details in the request body."
+        },
+        {
+          "info": {
+            "name": "Add Roles to Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:groupId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add roles to an existing user group.\n\nA user can assign only roles that are lower than their own."
+        },
+        {
+          "info": {
+            "name": "Remove Roles From Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:groupId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove roles from an existing user group.\n\nProvide the roles to remove in the request body."
+        },
+        {
+          "info": {
+            "name": "Add Users to Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:groupId/users",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add users to an existing user group.\n\nOnly users with higher roles than the group's roles are allowed to perform this action."
+        },
+        {
+          "info": {
+            "name": "Remove Users From Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/groups/v1/:groupId/users",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove users from an existing user group.\n\nProvide the users to remove in the request body."
+        },
+        {
+          "info": {
+            "name": "Get All Groups Paginated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/groups/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_groupsRelations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all user groups for an account (tenant), with pagination.\n\nUse query parameters to control pagination and optionally include related group data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1379 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations User Management API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Disable User Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/users/v1/:userId/disable",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Disable a user for an account (tenant).\n\nA disabled user cannot log in to the account (tenant) or use the system.\n\nProvide the user's ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Enable User Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/users/v1/:userId/enable",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable a disabled user for an account (tenant).\n\nAn enabled user can log in and use the system.\n\nProvide the user's ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Sets a Permanent User to Temporary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/temporary/v1/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the settings for temporary users.\n\nUse this route to enable or disable temporary users for your environment"
+        },
+        {
+          "info": {
+            "name": "Sets a Temporary User to Permanent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/temporary/v1/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set an existing temporary user as permanent.\n\nProvide the user's ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Gets Temporary Users Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/temporary/v1/configuration",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the settings for temporary users.\n\nUse this endpoint to check whether the policy is enabled or disabled."
+        },
+        {
+          "info": {
+            "name": "Get All User Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route returns all user emails. "
+        },
+        {
+          "info": {
+            "name": "Create a User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route creates a user email."
+        },
+        {
+          "info": {
+            "name": "Verify User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/verify",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route verifies a user email."
+        },
+        {
+          "info": {
+            "name": "Delete a User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/:emailId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "emailId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route deletes a user email."
+        },
+        {
+          "info": {
+            "name": "Create a User Email for Vendor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/vendor/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new email address for a user."
+        },
+        {
+          "info": {
+            "name": "Delete a User Email for Vendor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/vendor/:userId/:emailId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "emailId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route deletes a user email."
+        },
+        {
+          "info": {
+            "name": "Mark Email as Primary for Vendor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/vendor/:userId/primary",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route marks an email as primary."
+        },
+        {
+          "info": {
+            "name": "Mark Email as Primary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/me/primary",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route marks an email as primary."
+        },
+        {
+          "info": {
+            "name": "Get Current User`s Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/emails/v1/me",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route returns all user emails for the current user."
+        },
+        {
+          "info": {
+            "name": "Set Sub-account Access for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/sub-tenants/users/v1/:userId/access",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set sub-account access for a user.\n\nUse this endpoint to enable or disable sub-account access by setting the value to `true` or `false`."
+        },
+        {
+          "info": {
+            "name": "Reset User Activation Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/activate/reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset the activation token for a user and trigger a new activation email.\n\nProvide the user's ID as a path parameter."
+        },
+        {
+          "info": {
+            "name": "Reset Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/invitation/reset",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset an invitation for a user to join a specific account (tenant).\n\nThe response includes a new invitation link with a new token."
+        },
+        {
+          "info": {
+            "name": "Reset All Invitation Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/invitation/reset/all",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Reset all invitations for a user to join all sub-accounts (tenants) that currently have an invitation token.\n\nThe response includes new invitation links with new tokens."
+        },
+        {
+          "info": {
+            "name": "Get Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v3",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "The default limit is 50 users per request, the maximum is 200"
+              },
+              {
+                "name": "_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by username prefix match. Must be provided together with _identifierType"
+              },
+              {
+                "name": "_identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by username. Must be provided together with _identifier"
+              },
+              {
+                "name": "_includeSubTenants",
+                "value": "",
+                "type": "query",
+                "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users"
+              },
+              {
+                "name": "_namePrefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by prefix name match"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_externalIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all users for an account (tenant) or for the entire environment."
+        },
+        {
+          "info": {
+            "name": "Get Users Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v3/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all user roles for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Get Users Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v3/groups",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all user groups for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Unlock User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v3/me/unlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Unlock your user account.\n\nProvide the required information in the request body to unlock the account."
+        },
+        {
+          "info": {
+            "name": "Invite User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a user for a specific account (tenant).\n\nInclude the user's information in the request body. The `email` and `metadata` fields are required. The `metadata` field can be empty (e.g., `{}`)."
+        },
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v2/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Update User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v2/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the profile of a logged-in user.\n\nProvide the updated values in the request body.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use the V2 route for Invite User. This route is no longer relevant."
+        },
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "TUpdate a user's information for a specific account (tenant).\n\nInclude the updated user information in the request body."
+        },
+        {
+          "info": {
+            "name": "Remove User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a user globally or from a specific account (tenant).\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Assign Roles to User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Associate roles to a specific user for a specific account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Unassign Roles From User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/roles",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Disassociate roles from a specific user for a specific account (tenant).\n\nInclude the role IDs in the request body as an array of strings."
+        },
+        {
+          "info": {
+            "name": "Update User's Active Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/tenant",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the current account (tenant) for a logged-in user.\n\nUse this endpoint when a user belongs to multiple accounts (tenants) and wants to change the active account (tenant).\n\nInclude the target account (tenant) ID in the request body."
+        },
+        {
+          "info": {
+            "name": "Get Users with Fuzzy Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/query/phrase",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "The default limit is 50 users per request, the maximum is 200"
+              },
+              {
+                "name": "_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by username prefix match. Must be provided together with _identifierType"
+              },
+              {
+                "name": "_identifierType",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by username. Must be provided together with _identifier"
+              },
+              {
+                "name": "_includeSubTenants",
+                "value": "",
+                "type": "query",
+                "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users"
+              },
+              {
+                "name": "_namePrefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by prefix name match"
+              },
+              {
+                "name": "_phraseSearchContains",
+                "value": "",
+                "type": "query",
+                "description": "Pass a list of strings, separated by comma, to search for users that contain all of the strings in the list"
+              },
+              {
+                "name": "_phraseSearchExcludes",
+                "value": "",
+                "type": "query",
+                "description": "Pass a list of strings, separated by comma, to search for users that do not contain any of the strings in the list"
+              },
+              {
+                "name": "_phraseSearchOptional",
+                "value": "",
+                "type": "query",
+                "description": "Pass a list of strings, separated by comma, to search for users that contain at least one of the strings in the list"
+              },
+              {
+                "name": "_phraseSearchApproximate",
+                "value": "",
+                "type": "query",
+                "description": "When true, the search will be approximate (fuzzy), meaning it will include similar characters to the ones in the search string"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_externalIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all users for a specific account (tenant) or for the entire environment.\n\nIn addition to all standard Get users query parameters, this route supports phrase search, enabling complex queries with options such as `contains`, `excludes`, `optional`, and approximate matching."
+        },
+        {
+          "info": {
+            "name": "Get Usernames for Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/usernames/v1",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_usernamePrefix",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "usernames",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route gets usernames for users."
+        },
+        {
+          "info": {
+            "name": "Create a Username for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/usernames/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route creates a username for a user."
+        },
+        {
+          "info": {
+            "name": "Delete a Username for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/usernames/v1/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route deletes a username for a user."
+        },
+        {
+          "info": {
+            "name": "Get Authenticated User's Username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/usernames/v1/me",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Authenticated User's Username"
+        },
+        {
+          "info": {
+            "name": "Update User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/email/me",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route updates the email for a user."
+        },
+        {
+          "info": {
+            "name": "Verify User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/email/me/verify",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route verifies the email for a user."
+        },
+        {
+          "info": {
+            "name": "Activate User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/activate",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Activate a non-activated user.\n\nInclude the `userId` and `activationToken` in the request body. If required by your environment's sign-in flow, also include the user's password and reCAPTCHA values.\n\nYou can generate an activation token using the route under Users → Generate Activation Token.\n\nAlternatively, you can use the built-in email template for user activation."
+        },
+        {
+          "info": {
+            "name": "Activate User with Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/activate/code",
+            "headers": [
+              {
+                "name": "frontegg-vendor-host",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Activate a non-activated user.\n\nUse this endpoint to implement a custom activation flow.\n\nInclude the `userId`, `activationToken`, and `code` in the request body. If required by your environment's sign-in flow, also include the user's password and reCAPTCHA values.\n\nYou can generate an activation token using the route under Users → Generate Activation Token.\n\nAlternatively, you can use the built-in email template for user activation."
+        },
+        {
+          "info": {
+            "name": "Get User Activation Strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/activate/strategy",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a user's activation strategy.\n\nThe activation strategy indicates whether the user needs to set a password.\n\nInclude the `userId` and `activationToken` in the request body. You can generate an activation token using the route under Users → Generate Activation Token.\n\nThe response returns a Boolean field `shouldSetPassword`. If `true`, the user needs to set a password. If `false`, the user does not need to set a password (for example, SSO users do not set passwords)."
+        },
+        {
+          "info": {
+            "name": "Accept Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/invitation/accept",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Accept an invitation for a user to join a specific account (tenant).\n\nInclude the `userId` and `invitationToken` in the request body. These values appear as query parameters in the URL that Frontegg sends to the user in the activation email."
+        },
+        {
+          "info": {
+            "name": "Accept Invitation with Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/invitation/accept/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Accept an invitation to join a specific account (tenant) using an invitation code.\n\nInclude the required `userId`, `invitationToken`, and `code` in the request body."
+        },
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v3/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get User Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v2/me/tenants",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the list of accounts (tenants) that a logged-in user belongs to.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get User Accounts (tenants) Hierarchy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v2/me/hierarchy",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the list of accounts (tenants) with hierarchy metadata that a logged-in user belongs to.\n\nIf the user is a member of multiple accounts (tenants) in a hierarchy, some entries may be reduced based on the hierarchy structure.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get User Permissions and Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/me/authorization",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the list of permissions and roles that a logged-in user has.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get User Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/me/tenants",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the list of accounts (tenants) that a logged-in user belongs to.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

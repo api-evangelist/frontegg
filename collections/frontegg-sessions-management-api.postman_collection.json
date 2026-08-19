@@ -1,0 +1,248 @@
+{
+  "item": [
+    {
+      "id": "0441b652-71b1-44d7-9f9a-7b64d5faf787",
+      "name": "Sessions Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "807bfa68-c046-475c-b31b-0d80f8bd9d86",
+          "name": "Get Account (tenant) or Vendor Default Session Configuration",
+          "request": {
+            "name": "Get Account (tenant) or Vendor Default Session Configuration",
+            "description": {
+              "content": "Retrieve the session configuration for the entire environment or for a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "sessions",
+                "v1"
+              ],
+              "host": [
+                "{{resources-configurations-sessions-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "913717a5-d929-43aa-9df8-77d7d98d9a82",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "sessions",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-configurations-sessions-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f00f9fd-e2da-4f3a-8525-7ed410b2f5bb",
+          "name": "Create or Update Account (tenant) or Vendor Default Session Configuration",
+          "request": {
+            "name": "Create or Update Account (tenant) or Vendor Default Session Configuration",
+            "description": {
+              "content": "Create or update the session configuration for the entire environment or for a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "sessions",
+                "v1"
+              ],
+              "host": [
+                "{{resources-configurations-sessions-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionIdleTimeoutConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"timeout\": \"<number>\"\n  },\n  \"sessionTimeoutConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"timeout\": \"<number>\"\n  },\n  \"sessionConcurrentConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"maxSessions\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de741cec-8e8e-4039-98d0-8110c95774b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "sessions",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-configurations-sessions-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionIdleTimeoutConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"timeout\": \"<number>\"\n  },\n  \"sessionTimeoutConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"timeout\": \"<number>\"\n  },\n  \"sessionConcurrentConfiguration\": {\n    \"isActive\": \"<boolean>\",\n    \"maxSessions\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-configurations-sessions-v1-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0c3eac3-9e4a-4cc9-8394-1c557cb4774f",
+    "name": "Multi-Apps Overview Account Invitations Sessions Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

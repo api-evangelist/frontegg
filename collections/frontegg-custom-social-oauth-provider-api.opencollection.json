@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Custom Social OAuth Provider API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Social OAuth Provider",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Custom Oauth Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/sso/custom/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the custom social login providers configured in your environment."
+        },
+        {
+          "info": {
+            "name": "Create Custom Oauth Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/sso/custom/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a custom social login provider using the OAuth details of the identity provider.\n\nProvide the required OAuth parameters in the request body."
+        },
+        {
+          "info": {
+            "name": "Update Custom Oauth Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/sso/custom/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider and the desired OAuth parameters in the request body."
+        },
+        {
+          "info": {
+            "name": "Delete Custom Oauth Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/sso/custom/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider to delete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

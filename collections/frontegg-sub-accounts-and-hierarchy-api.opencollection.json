@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Sub-accounts and Hierarchy API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sub-accounts and Hierarchy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Sub-account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/hierarchy/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Sub-account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/hierarchy/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

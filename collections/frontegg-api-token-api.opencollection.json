@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations API Token API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate Using API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/auth/v2/api-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`).\n\n**Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalid"
+        },
+        {
+          "info": {
+            "name": "Refresh API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/auth/v2/api-token/token/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Refreshes a JWT access token using a refresh token. If the refresh token is valid, returns a new JWT and refresh token pair. This maintains an authenticated session without requiring the user to log in again.\n\nIf the refresh token is invalid, expired, or has been revoked due to rotation limits, the request will fail with an authentication error."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

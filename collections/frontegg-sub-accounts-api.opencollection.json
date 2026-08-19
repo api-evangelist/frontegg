@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Sub-accounts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sub-accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Sub-account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/sub-tenants/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Update Sub-account (tenant) Management",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/sub-tenants/v1/:tenantId/management",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability"
+        },
+        {
+          "info": {
+            "name": "Update Sub-account Hierarchy Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/sub-tenants/v1/:tenantId/hierarchy-settings",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users."
+        },
+        {
+          "info": {
+            "name": "Delete a Sub-account by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/sub-tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Get Sub-accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/hierarchy/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Parent Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/hierarchy/v1/parents",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Sub-accounts (tenanants) Hierarchy Tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/hierarchy/v1/tree",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Email Configuration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configurations",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Create or Update Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configurations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure your SendGrid account to send emails from your environment.\n\nProvide your SendGrid secret key in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configurations",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Create or Update Configuration V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/mail/v2/configurations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Configure email settings for your environment, supporting SES, Mailgun, and SendGrid.\n\nProvide the email provider, sender details, and any additional parameters in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

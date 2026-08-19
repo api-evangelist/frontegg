@@ -1,0 +1,448 @@
+{
+  "item": [
+    {
+      "id": "5b07a84e-586d-49ff-9108-d758c4e2390e",
+      "name": "Custom Social OAuth Provider",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ce1f73a3-41d8-4c9d-b54f-7ef34ffff6c9",
+          "name": "Create Custom Oauth Provider",
+          "request": {
+            "name": "Create Custom Oauth Provider",
+            "description": {
+              "content": "Create a custom social login provider using the OAuth details of the identity provider.\n\nProvide the required OAuth parameters in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "custom",
+                "v1"
+              ],
+              "host": [
+                "{{resources-sso-custom-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"redirectUrl\": \"<string>\",\n  \"authorizationUrl\": \"<string>\",\n  \"tokenUrl\": \"<string>\",\n  \"userInfoUrl\": \"<string>\",\n  \"scopes\": \"<string>\",\n  \"ssoLogoUrl\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f0c69e4-89dc-40b7-9b19-f6b36c6e399b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "custom",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-sso-custom-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"redirectUrl\": \"<string>\",\n  \"authorizationUrl\": \"<string>\",\n  \"tokenUrl\": \"<string>\",\n  \"userInfoUrl\": \"<string>\",\n  \"scopes\": \"<string>\",\n  \"ssoLogoUrl\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "499f535e-e152-4897-b87a-8aa8a7df2689",
+          "name": "Get Custom Oauth Provider",
+          "request": {
+            "name": "Get Custom Oauth Provider",
+            "description": {
+              "content": "Retrieve the custom social login providers configured in your environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "custom",
+                "v1"
+              ],
+              "host": [
+                "{{resources-sso-custom-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e773208-593e-4bb5-9400-58d44a3ab939",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "custom",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-sso-custom-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f348da7-4c08-4e52-ab2d-832c3d69cece",
+          "name": "Update Custom Oauth Provider",
+          "request": {
+            "name": "Update Custom Oauth Provider",
+            "description": {
+              "content": "Update a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider and the desired OAuth parameters in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "custom",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-sso-custom-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"redirectUrl\": \"<string>\",\n  \"authorizationUrl\": \"<string>\",\n  \"tokenUrl\": \"<string>\",\n  \"userInfoUrl\": \"<string>\",\n  \"scopes\": \"<string>\",\n  \"ssoLogoUrl\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3884cd34-b550-4610-8f92-394ab76a80e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "custom",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-sso-custom-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"redirectUrl\": \"<string>\",\n  \"authorizationUrl\": \"<string>\",\n  \"tokenUrl\": \"<string>\",\n  \"userInfoUrl\": \"<string>\",\n  \"scopes\": \"<string>\",\n  \"ssoLogoUrl\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a5cba00-d5f4-4924-9719-d876a761b287",
+          "name": "Delete Custom Oauth Provider",
+          "request": {
+            "name": "Delete Custom Oauth Provider",
+            "description": {
+              "content": "Delete a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider to delete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "custom",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-sso-custom-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e7a3373-9f98-4c97-879c-5720e42679f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "custom",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-sso-custom-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-sso-custom-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-sso-custom-v1-id-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "9028f335-e074-4da2-9627-156d6b880ef9",
+    "name": "Multi-Apps Overview Account Invitations Custom Social OAuth Provider API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

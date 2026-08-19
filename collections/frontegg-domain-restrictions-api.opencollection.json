@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Domain Restrictions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domain Restrictions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Domain Restrictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the domain restrictions for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create Domain Restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new email domain restriction for an account (tenant). Provide the restriction configuration in the request body. See the schema below for available parameters and values."
+        },
+        {
+          "info": {
+            "name": "Get Domain Restrictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain/config",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the domain restrictions for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Change Domain Restrictions Config List Type and Toggle It Off/on",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain/config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the domain restrictions configuration.\n\nYou can toggle the domain restriction check on or off."
+        },
+        {
+          "info": {
+            "name": "Delete Domain Restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a domain restriction."
+        },
+        {
+          "info": {
+            "name": "Replace Bulk Domain Restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/restrictions/v1/email-domain/replace-bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Replace all domain restrictions with the domains provided in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

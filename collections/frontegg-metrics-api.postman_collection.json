@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "id": "31111ed4-f4fc-4d88-ba69-1d8f3b3f7b4c",
+      "name": "Metrics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "464f9fd6-68e8-4f1b-922a-d2af400ee817",
+          "name": "Get Metrics",
+          "request": {
+            "name": "Get Metrics",
+            "description": {
+              "content": "Retrieve audit-related metrics for your environment within a specified time range. You can use query parameters to define the time window, result limit, and aggregation frequency. The response includes top resources, top accounts (tenants), and audit event counts over time. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "metrics",
+                "v1"
+              ],
+              "host": [
+                "{{resources-metrics-v1-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<number>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f9a6925-12ef-4e88-be4f-af6bc0a16b22",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "metrics",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-metrics-v1-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"topResources\": {},\n  \"topTenants\": {},\n  \"auditsCounterByTime\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/audits",
+      "key": "resources-metrics-v1-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "38d4d7f0-762c-4b7a-b0a4-a168631c38f5",
+    "name": "Multi-Apps Overview Account Invitations Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

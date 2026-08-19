@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "c1a1e859-509d-411a-acfc-efb9962ee0c4",
+      "name": "MFA Configuration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f7e395e-ae39-4162-997a-3d4fb3446809",
+          "name": "Update MFA Configuration",
+          "request": {
+            "name": "Update MFA Configuration",
+            "description": {
+              "content": "Update the MFA configuration for your environment.\n\nProvide the desired configuration values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "mfa"
+              ],
+              "host": [
+                "{{resources-configurations-v1-mfa-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authenticationApp\": {\n    \"active\": \"<boolean>\",\n    \"serviceName\": \"<string>\"\n  },\n  \"sms\": {\n    \"active\": \"<boolean>\",\n    \"tokenLifetimeSeconds\": \"<number>\"\n  },\n  \"email\": {\n    \"active\": \"<boolean>\",\n    \"tokenLifetimeSeconds\": \"<number>\",\n    \"sender\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b06313f7-4db6-454c-8715-cf518ca68d0b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "mfa"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-mfa-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authenticationApp\": {\n    \"active\": \"<boolean>\",\n    \"serviceName\": \"<string>\"\n  },\n  \"sms\": {\n    \"active\": \"<boolean>\",\n    \"tokenLifetimeSeconds\": \"<number>\"\n  },\n  \"email\": {\n    \"active\": \"<boolean>\",\n    \"tokenLifetimeSeconds\": \"<number>\",\n    \"sender\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationApp\": {\n    \"active\": false,\n    \"serviceName\": \"string\"\n  },\n  \"sms\": {\n    \"active\": true,\n    \"tokenLifetimeSeconds\": 3907.0232027081365\n  },\n  \"email\": {\n    \"active\": true,\n    \"tokenLifetimeSeconds\": 8744.315033908508,\n    \"sender\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "add65e46-6c83-4ba4-bb9f-1f96381bf4bf",
+          "name": "Get MFA Configuration",
+          "request": {
+            "name": "Get MFA Configuration",
+            "description": {
+              "content": "Retrieve the MFA configuration for your environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "mfa"
+              ],
+              "host": [
+                "{{resources-configurations-v1-mfa-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0406f9a3-1fd8-4883-b9fa-9d28de9ca789",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "mfa"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-mfa-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authenticationApp\": {\n    \"active\": false,\n    \"serviceName\": \"string\"\n  },\n  \"sms\": {\n    \"active\": true,\n    \"tokenLifetimeSeconds\": 3907.0232027081365\n  },\n  \"email\": {\n    \"active\": true,\n    \"tokenLifetimeSeconds\": 8744.315033908508,\n    \"sender\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-configurations-v1-mfa-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "86c76e1b-b44f-43b1-850f-d30c446f99e8",
+    "name": "Multi-Apps Overview Account Invitations MFA Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

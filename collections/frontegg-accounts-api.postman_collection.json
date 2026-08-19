@@ -1,0 +1,1285 @@
+{
+  "item": [
+    {
+      "id": "c0e643bd-c18a-42a1-a2e4-dd5c034f3fdd",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6b3c90a-8ac8-466c-9eb5-1e084ccbd86b",
+          "name": "Get Account (tenant) by ID",
+          "request": {
+            "name": "Get Account (tenant) by ID",
+            "description": {
+              "content": "Use the V2 route for **Get account (tenant)**. This route is no longer relevant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-tenants-v1-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) The account (tenant) ID to get."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ae207e9-0005-4b2e-b37f-fafac0ba374a",
+              "name": "When the account (tenant) ID does not pass the validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) The account (tenant) ID to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "530eab2f-5dce-4b58-b25d-ab4175ae2ea7",
+          "name": "Update Account (tenant)",
+          "request": {
+            "name": "Update Account (tenant)",
+            "description": {
+              "content": "Use the V2 route for **update account (tenant)**. This route is no longer relevant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-tenants-v1-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80979a8c-9a4c-48dc-b641-f5e0ab065465",
+              "name": "When body doesn't contain any property to change.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0078003-21f2-471c-8d6e-9a9de14af00b",
+              "name": "When given account (tenant) doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe41c1f8-3e85-4dfb-a376-afa350b837fd",
+          "name": "Delete Account (tenant)",
+          "request": {
+            "name": "Delete Account (tenant)",
+            "description": {
+              "content": "Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-tenants-v1-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0620a8ac-edae-4814-9b4c-284741d9509e",
+              "name": "When the given account (tenant) doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b3da32a-4278-4353-bcaf-87f4e569d6a2",
+          "name": "Create an Account (tenant)",
+          "request": {
+            "name": "Create an Account (tenant)",
+            "description": {
+              "content": "Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1"
+              ],
+              "host": [
+                "{{resources-tenants-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"website\": \"<string>\",\n  \"applicationUrl\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"address\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\",\n  \"parentTenantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b855eef-3e6f-4324-922f-29b541901363",
+              "name": "When the account (tenant) ID does not pass the validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"website\": \"<string>\",\n  \"applicationUrl\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"address\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\",\n  \"parentTenantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77d3bc1a-5a01-4142-8bb0-b87824ea3017",
+          "name": "Delete Current Account (tenant)",
+          "request": {
+            "name": "Delete Current Account (tenant)",
+            "description": {
+              "content": "Delete the current account (tenant) and all users belonging to that account.\n\nOnly users with the `fe.account-settings.delete.account` permission can perform this action.\n\nA user token is required for this route and can be obtained after user authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1"
+              ],
+              "host": [
+                "{{resources-tenants-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "94748ad5-9403-42a8-aff5-82b7a015d25c",
+              "name": "When current account (tenant) has been removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71ede971-8cf1-430a-8813-0726333db396",
+          "name": "Add Account (tenant) Metadata",
+          "request": {
+            "name": "Add Account (tenant) Metadata",
+            "description": {
+              "content": "Add metadata to an account (tenant).\n\nIf a metadata key already exists, its value is overwritten.\n\nProvide the account (tenant) ID as a path parameter and the metadata object in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1",
+                ":tenantId",
+                "metadata"
+              ],
+              "host": [
+                "{{resources-tenants-v1-tenantId-metadata-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d291d784-ab2f-419c-886e-fe45c03849b8",
+              "name": "When the given metadata is neither a JSON, nor JSON-string.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-metadata-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata\": {\n    \"maximumUsers\": 50\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fdfbd26a-ec59-48d4-8dd9-9e4f350ae900",
+              "name": "When the given account (tenant) doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-metadata-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata\": {\n    \"maximumUsers\": 50\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1630522d-226e-4379-a52d-2c9d3886f811",
+          "name": "Delete Account (tenant) Metadata",
+          "request": {
+            "name": "Delete Account (tenant) Metadata",
+            "description": {
+              "content": "Remove a key-value pair from an account's (tenant's) metadata.\n\nProvide the account (tenant) ID and the metadata key as path parameters.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v1",
+                ":tenantId",
+                "metadata",
+                ":key"
+              ],
+              "host": [
+                "{{resources-tenants-v1-tenantId-metadata-key-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd1e4f16-3d3c-43be-b464-14e87a78d2ce",
+              "name": "When the provided account (tenant) doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v1",
+                    ":tenantId",
+                    "metadata",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v1-tenantId-metadata-key-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4230fe1-48d7-40ee-aa84-43116c810660",
+          "name": "Get Accounts (tenants)",
+          "request": {
+            "name": "Get Accounts (tenants)",
+            "description": {
+              "content": "Retrieve all accounts (tenants) for an environment.\n\nSupports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).\n\nYou can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v2"
+              ],
+              "host": [
+                "{{resources-tenants-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "<number>",
+                  "description": "The default limit is 50 accounts (tenants) per request, the maximum is 200"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_filter",
+                  "value": "<string>",
+                  "description": "This param allows filtering the request using an account's name or tenantId"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortBy",
+                  "value": "<string>",
+                  "description": "This param allows sorting the results via createdAt, name, tenantId"
+                },
+                {
+                  "disabled": false,
+                  "key": "_order",
+                  "value": "<string>",
+                  "description": "This param can be used together with sortBy and define the order as ACS or DESC"
+                },
+                {
+                  "disabled": false,
+                  "key": "_tenantIds",
+                  "value": "<string>",
+                  "description": "This param allows passing specific tenantIds and getting only these accounts (tenants) data"
+                },
+                {
+                  "disabled": false,
+                  "key": "_tenantIds",
+                  "value": "<string>",
+                  "description": "This param allows passing specific tenantIds and getting only these accounts (tenants) data"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8088f04e-c4a4-4ce9-bf77-57dd3e879e2d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_tenantIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3bb6dad-f33b-4b87-9f46-5f151fc4cf38",
+          "name": "Get an Account (tenant)",
+          "request": {
+            "name": "Get an Account (tenant)",
+            "description": {
+              "content": "Retrieve an account (tenant) by its identifier.\n\nIf the account (tenant) cannot be found, an empty array is returned.\n\nProvide the account (tenant) ID as a path parameter.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v2",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-tenants-v2-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98a5c2d5-8482-4d2d-9534-5d280b98f625",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v2",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v2-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef488f0b-ad8f-4e45-b13b-e25b402aa170",
+          "name": "Update an Account (tenant)",
+          "request": {
+            "name": "Update an Account (tenant)",
+            "description": {
+              "content": "Update an account (tenant).\n\nProvide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "v2",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-tenants-v2-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a343715e-df26-4be5-97cc-bdf8a55b7d97",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "v2",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-tenants-v2-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v1-tenantId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v1-tenantId-metadata-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v1-tenantId-metadata-key-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v2-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-tenants-v2-tenantId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "dd160c59-8752-4923-82e1-c9ca054e0d37",
+    "name": "Multi-Apps Overview Account Invitations Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

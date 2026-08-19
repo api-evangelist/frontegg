@@ -1,0 +1,3182 @@
+{
+  "item": [
+    {
+      "id": "00dbdc9a-603c-4689-a89b-28d42d9555c4",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b514e84-c0ec-47a9-bb4a-bf7350d35d01",
+          "name": "Set Temporary Users Configuration",
+          "request": {
+            "name": "Set Temporary Users Configuration",
+            "description": {
+              "content": "This route updates the settings for temporary users, use it to enable or disable it for an environment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "temporary",
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{resources-users-temporary-v1-configuration-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fda1f0ac-e28f-422a-8ef7-097c48d8b3a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "temporary",
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{resources-users-temporary-v1-configuration-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e2248c5-b4d5-496b-8f55-caf334f328c8",
+          "name": "Update User (global)",
+          "request": {
+            "name": "Update User (global)",
+            "description": {
+              "content": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or `phones`, new items are added instead of replacing existing ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"vendorMetadata\": \"<string>\",\n  \"mfaBypass\": \"<boolean>\",\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d602f57d-c711-428c-816e-d97bf5ac28c9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"metadata\": \"{}\",\n  \"vendorMetadata\": \"<string>\",\n  \"mfaBypass\": \"<boolean>\",\n  \"externalId\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": true,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 8702.445712149574,\n      \"createdAt\": \"1968-08-26T12:56:00.235Z\",\n      \"updatedAt\": \"1967-02-13T19:52:59.095Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": false,\n      \"level\": 4195.876564517163,\n      \"createdAt\": \"2007-08-04T07:37:21.848Z\",\n      \"updatedAt\": \"1966-11-13T12:28:12.066Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2005-12-18T23:59:42.138Z\",\n      \"updatedAt\": \"2014-02-03T23:47:57.470Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": true\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1963-11-12T12:37:45.951Z\",\n      \"updatedAt\": \"1951-02-04T10:48:18.415Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 3747.011997472521,\n          \"createdAt\": \"1969-08-25T02:51:30.675Z\",\n          \"updatedAt\": \"2020-01-14T14:18:42.426Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 3816.349076768393,\n          \"createdAt\": \"1965-03-30T21:44:09.678Z\",\n          \"updatedAt\": \"2018-11-02T10:56:07.325Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1959-10-22T11:38:31.839Z\",\n      \"isDisabled\": false\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 5769.7148470006905,\n          \"createdAt\": \"2011-06-25T04:39:24.168Z\",\n          \"updatedAt\": \"2015-02-01T21:26:28.555Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 9156.450350560292,\n          \"createdAt\": \"1979-03-05T14:31:55.180Z\",\n          \"updatedAt\": \"1975-10-10T11:50:08.072Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1967-07-06T17:27:05.250Z\",\n      \"isDisabled\": true\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1967-02-01T05:55:32.467Z\",\n  \"lastLogin\": \"1960-06-11T14:00:19.133Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": false,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": true,\n  \"isLocked\": false,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"external\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f95f5408-35c3-4598-9523-8d069d8904cc",
+          "name": "Get User",
+          "request": {
+            "name": "Get User",
+            "description": {
+              "content": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for management use only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1",
+                ":userId"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-userId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f317a7e7-89f7-4e20-9d62-dee971bbb330",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-userId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7a6db7c-e820-4f15-8de5-71d9e39b9d41",
+          "name": "Unenroll User From MFA Globally",
+          "request": {
+            "name": "Unenroll User From MFA Globally",
+            "description": {
+              "content": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for manag use only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1",
+                ":userId",
+                "mfa",
+                "unenroll"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-userId-mfa-unenroll-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "230d48cc-1d6d-44cf-b1db-b55a30486cc9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "mfa",
+                    "unenroll"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-userId-mfa-unenroll-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0db6df6-0785-40d7-a4c9-512645427e31",
+          "name": "Verify User's Password",
+          "request": {
+            "name": "Verify User's Password",
+            "description": {
+              "content": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for management use only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1",
+                "passwords",
+                "verify"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-passwords-verify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "117accbb-b3b6-4471-a208-129df77ef57f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1",
+                    "passwords",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-passwords-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bc3b52d-003d-4a76-ab53-22f68df90928",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for management use only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"vendorMetadata\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expirationInSeconds\": \"<number>\",\n  \"mfaBypass\": \"<boolean>\",\n  \"externalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16f5e65e-aaab-45af-b8eb-25b565022f9d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"vendorMetadata\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expirationInSeconds\": \"<number>\",\n  \"mfaBypass\": \"<boolean>\",\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ed393f9-7e8c-4b83-87f8-d67171f92996",
+          "name": "Get Users Account (tenant) Statuses",
+          "request": {
+            "name": "Get Users Account (tenant) Statuses",
+            "description": {
+              "content": "Retrieve the account (tenant) statuses of vendor users.\n\nProvide an array of `userIds` (maximum 200) and optionally an array of `userTenantStatuses` as query parameters. There is a limit of 2000 account (tenant) statuses per user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "users",
+                "v1",
+                "statuses"
+              ],
+              "host": [
+                "{{resources-tenants-users-v1-statuses-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "(Required) User IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "(Required) User IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "userTenantStatuses",
+                  "value": "<string>",
+                  "description": "Account (tenant) Statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "userTenantStatuses",
+                  "value": "<string>",
+                  "description": "Account (tenant) Statuses"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7237a4d1-29aa-4620-8034-9d4ba1dd0aa0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "users",
+                    "v1",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{resources-tenants-users-v1-statuses-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userTenantStatuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userTenantStatuses",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"string\",\n  \"tenantsStatuses\": [\n    {\n      \"tenantId\": \"string\",\n      \"status\": \"PendingInvitation\"\n    },\n    {\n      \"tenantId\": \"string\",\n      \"status\": \"Activated\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e54418f8-8952-4187-a523-cabb33cd3b09",
+          "name": "Create User Phone Number Verified by Default",
+          "request": {
+            "name": "Create User Phone Number Verified by Default",
+            "description": {
+              "content": "Creates a new phone number for a user. Phone numbers added via this management endpoint are automatically verified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                "vendor",
+                ":userId"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-vendor-userId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf7aa757-59e4-473b-8c25-0dce66cd94ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    "vendor",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-vendor-userId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "272c4737-1d45-46da-b6de-a488d6fb74c5",
+          "name": "Delete User Phone Number on an Environment",
+          "request": {
+            "name": "Delete User Phone Number on an Environment",
+            "description": {
+              "content": "Delete a user phone number without verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "phone-numbers",
+                "v1",
+                "vendor",
+                ":userId",
+                ":phoneId"
+              ],
+              "host": [
+                "{{resources-users-phone-numbers-v1-vendor-userId-phoneId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "phoneId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d9653766-5a05-4272-a895-ea6519154a8c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "phone-numbers",
+                    "v1",
+                    "vendor",
+                    ":userId",
+                    ":phoneId"
+                  ],
+                  "host": [
+                    "{{resources-users-phone-numbers-v1-vendor-userId-phoneId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "phoneId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb5ba571-830a-40db-9608-bd534ab8c4c6",
+          "name": "Invite Users to an Account (tenant) in Bulk",
+          "request": {
+            "name": "Invite Users to an Account (tenant) in Bulk",
+            "description": {
+              "content": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "bulk",
+                "v1",
+                "invite"
+              ],
+              "host": [
+                "{{resources-users-bulk-v1-invite-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<email>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"password\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"skipInviteEmail\": \"<boolean>\",\n      \"roleIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"emailMetadata\": \"<object>\",\n      \"expirationInSeconds\": \"<number>\",\n      \"verified\": \"<boolean>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"password\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"skipInviteEmail\": \"<boolean>\",\n      \"roleIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"emailMetadata\": \"<object>\",\n      \"expirationInSeconds\": \"<number>\",\n      \"verified\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fa85284-0890-4ff6-b2d5-5c55bc3f81a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "bulk",
+                    "v1",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{resources-users-bulk-v1-invite-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"email\": \"<email>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"password\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"{}\",\n      \"skipInviteEmail\": \"<boolean>\",\n      \"roleIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"emailMetadata\": \"<object>\",\n      \"expirationInSeconds\": \"<number>\",\n      \"verified\": \"<boolean>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"username\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"password\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"{}\",\n      \"skipInviteEmail\": \"<boolean>\",\n      \"roleIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"emailMetadata\": \"<object>\",\n      \"expirationInSeconds\": \"<number>\",\n      \"verified\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82f59123-4ebd-4f4b-b2ce-76e9897f3836",
+          "name": "Get Status of Bulk Invite Task",
+          "request": {
+            "name": "Get Status of Bulk Invite Task",
+            "description": {
+              "content": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "bulk",
+                "v1",
+                "status",
+                ":id"
+              ],
+              "host": [
+                "{{resources-users-bulk-v1-status-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a56413e-39c6-47f6-b187-9f2d73465da2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "bulk",
+                    "v1",
+                    "status",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-users-bulk-v1-status-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ae37f5f-bd7d-4d93-8ce5-38823ce91fdc",
+          "name": "Bulk Update User Roles Across All Tenants",
+          "request": {
+            "name": "Bulk Update User Roles Across All Tenants",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1",
+                ":userId",
+                "roles",
+                "bulk"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-userId-roles-bulk-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addRoleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"removeRoleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91084003-1bbc-49f6-b3b1-b8934f53926b",
+              "name": "Roles updated successfully (sync) or task queued (async)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "roles",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-userId-roles-bulk-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addRoleIds\": [\n    \"role-uuid-1\",\n    \"role-uuid-2\"\n  ],\n  \"removeRoleIds\": [\n    \"role-uuid-3\"\n  ],\n  \"tenantIds\": [\n    \"tenant-uuid-1\",\n    \"tenant-uuid-2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"user-uuid\",\n  \"affectedTenants\": 15,\n  \"rolesAdded\": [\n    \"role-uuid-1\"\n  ],\n  \"rolesRemoved\": [\n    \"role-uuid-2\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34914791-497d-4273-b2b9-a9568b5bbdcb",
+          "name": "Get Status of Bulk Roles Update Task",
+          "request": {
+            "name": "Get Status of Bulk Roles Update Task",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "v1",
+                "bulk-roles",
+                "status",
+                ":taskId"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-v1-bulk-roles-status-taskId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c075ce0f-c473-4c43-8ed7-06bb178664bf",
+              "name": "Task status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "v1",
+                    "bulk-roles",
+                    "status",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-v1-bulk-roles-status-taskId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"task-uuid\",\n  \"userId\": \"user-uuid\",\n  \"status\": \"InProgress\",\n  \"totalTenants\": 500,\n  \"processedTenants\": 150,\n  \"addedRoleIds\": [\n    \"role-uuid-1\"\n  ],\n  \"removedRoleIds\": [\n    \"role-uuid-2\"\n  ],\n  \"errors\": [\n    {\n      \"message\": \"Failed to update roles for tenant\",\n      \"tenantId\": \"string\",\n      \"details\": \"string\",\n      \"tenantIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"message\": \"Failed to update roles for tenant\",\n      \"tenantId\": \"string\",\n      \"details\": \"string\",\n      \"tenantIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "511d80ff-e97f-4842-9e34-c205cc60f565",
+          "name": "Get User by Email",
+          "request": {
+            "name": "Get User by Email",
+            "description": {
+              "content": "Retrieve a user by email.\n\nProvide the user's `email` as a query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                "email"
+              ],
+              "host": [
+                "{{resources-users-v1-email-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a98bf9b-2cfe-485d-be8b-24300c8eb902",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "email"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-email-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 5933.484882246604,\n          \"createdAt\": \"1964-06-12T14:04:36.716Z\",\n          \"updatedAt\": \"1949-01-26T15:46:45.625Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 2935.4489446917455,\n          \"createdAt\": \"1999-04-28T03:10:21.262Z\",\n          \"updatedAt\": \"1948-05-02T02:33:36.988Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1955-09-19T05:09:37.483Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 4693.611016375623,\n          \"createdAt\": \"2025-02-24T12:13:24.262Z\",\n          \"updatedAt\": \"1981-01-14T01:39:52.796Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 2962.2958231282782,\n          \"createdAt\": \"2001-01-04T10:30:41.208Z\",\n          \"updatedAt\": \"2025-04-27T09:28:12.669Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1947-03-20T04:47:41.115Z\",\n      \"isDisabled\": true\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1969-04-18T13:06:03.004Z\",\n  \"lastLogin\": \"1989-06-14T08:07:01.946Z\",\n  \"subAccountAccessAllowed\": false,\n  \"mfaBypass\": false,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": false,\n  \"invisible\": false,\n  \"superUser\": true,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac8c5d59-6fa4-46bf-ae5f-d2b44ea8b165",
+          "name": "Get User by ID",
+          "request": {
+            "name": "Get User by ID",
+            "description": {
+              "content": "Retrieve a specific user from an account (tenant).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-users-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5926c032-4943-4d08-a109-105f285e3560",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c4f6c3-7863-49c4-951b-e6af7f3ff760",
+          "name": "Verify User",
+          "request": {
+            "name": "Verify User",
+            "description": {
+              "content": "Mark a user as verified.\n\nProvide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "verify"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-verify-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "22c7853c-5534-4b77-87ec-665ea644e45e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a53a532-2027-47c3-8636-5e1ffcc1d651",
+          "name": "Make User Invisible",
+          "request": {
+            "name": "Make User Invisible",
+            "description": {
+              "content": "Set whether a user is invisible or visible.\n\nAn invisible user remains part of the account (tenant) but will not appear in the list of users in the admin box. The user data remains in the system.\n\nProvide the user's ID as a path parameter and a Boolean `invisible` value in the request body (`true` for invisible, `false` for visible).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "invisible"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-invisible-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invisible\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7abeb4ca-1f66-4949-b761-ec0e4d268d96",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "invisible"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-invisible-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invisible\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f937c790-c733-4d1c-a0bc-3d0e7f4ca563",
+          "name": "Make User Super-user",
+          "request": {
+            "name": "Make User Super-user",
+            "description": {
+              "content": "Set a user as a super-user.\n\nSuper-user functionality is no longer maintained due to incompatibility with newer features. A super-user has access to all accounts (tenants) within the workspace.\n\nProvide the user's ID as a path parameter and a Boolean `superUser` value in the request body (`true` for super-user, `false` for regular user).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "superuser"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-superuser-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"superUser\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5339bb2-b5fd-4283-a7e0-6f602a8fec41",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "superuser"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-superuser-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"superUser\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9ceabab-7dd7-4635-b2a0-ed17ba597305",
+          "name": "Set User's Account (tenant)",
+          "request": {
+            "name": "Set User's Account (tenant)",
+            "description": {
+              "content": "Set the active account (tenant) of a user.\n\nThe active account (tenant) is the account (tenant) the user will see in their admin portal and the account (tenant) used by default for account (tenant)-specific API routes.\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. If a non-existing account (tenant) ID is provided, an account (tenant) will be created for that ID.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "tenant"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-tenant-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"validateTenantExist\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa2b4679-bb79-4690-9745-19df7775901a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "tenant"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-tenant-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"validateTenantExist\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffc665e7-62a2-47a6-bc86-ec06e218ef68",
+          "name": "Add User to Account (tenant)",
+          "request": {
+            "name": "Add User to Account (tenant)",
+            "description": {
+              "content": "Add a user to an account (tenant).\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. To skip sending an invite email, include the optional `skipInviteEmail` parameter in the request body and set it to `true`.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "tenant"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-tenant-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"validateTenantExist\": \"<boolean>\",\n  \"skipInviteEmail\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5bba6ec-9469-4189-be66-e5238e9f6ccc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "tenant"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-tenant-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"validateTenantExist\": \"<boolean>\",\n  \"skipInviteEmail\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a49e2538-6a69-43ce-b304-2330ce1f7154",
+          "name": "Update User Email",
+          "request": {
+            "name": "Update User Email",
+            "description": {
+              "content": "Update a user's email address globally, regardless of account (tenant).\n\nProvide the user's ID as a path parameter and the new email address as an `email` value in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "email"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-email-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db397354-75e5-45d0-ad4e-db3cfbfa3926",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "email"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-email-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": true,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 7467.400381108138,\n      \"createdAt\": \"1986-12-12T00:07:47.888Z\",\n      \"updatedAt\": \"2004-02-09T10:21:34.937Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": false,\n      \"level\": 7334.672102864709,\n      \"createdAt\": \"1963-03-30T01:46:47.535Z\",\n      \"updatedAt\": \"2000-08-21T14:08:57.349Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2021-02-06T10:47:18.913Z\",\n      \"updatedAt\": \"1972-09-01T09:35:04.986Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1987-04-15T10:40:13.075Z\",\n      \"updatedAt\": \"1984-07-16T21:02:18.733Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4479.150926830869,\n          \"createdAt\": \"1971-06-27T15:31:26.047Z\",\n          \"updatedAt\": \"1997-07-09T02:17:42.622Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 9221.144621005024,\n          \"createdAt\": \"1954-05-27T11:30:45.489Z\",\n          \"updatedAt\": \"1958-07-25T08:36:01.772Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1958-10-15T16:52:24.533Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4775.188238133819,\n          \"createdAt\": \"1994-06-19T05:12:48.927Z\",\n          \"updatedAt\": \"2003-09-17T00:51:06.130Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 6495.234718538594,\n          \"createdAt\": \"1978-08-30T20:41:28.781Z\",\n          \"updatedAt\": \"1947-04-30T09:02:25.776Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"2017-03-26T23:26:25.565Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"1999-03-02T16:21:05.410Z\",\n  \"lastLogin\": \"2026-05-15T17:01:11.723Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": false,\n  \"isLocked\": true,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3068944-c599-4bf9-b4e8-c9f37cb08aea",
+          "name": "Generate Activation Token",
+          "request": {
+            "name": "Generate Activation Token",
+            "description": {
+              "content": "Generate a new activation token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the activation email but returns the activation link and token. It can be used in combination with the routes under **Users Activation**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "links",
+                "generate-activation-token"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-links-generate-activation-token-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "88d2ec6d-089a-4aa1-8892-5ec7e075675d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "links",
+                    "generate-activation-token"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-links-generate-activation-token-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"link\": \"string\",\n  \"token\": \"string\",\n  \"userId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03ec2324-7d1c-42a5-b197-95ba1c6b4ad5",
+          "name": "Generate Password Reset Token",
+          "request": {
+            "name": "Generate Password Reset Token",
+            "description": {
+              "content": "Generate a password reset token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the reset password email but returns the reset link and token. It can be used in combination with the routes under **Users Passwords**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "links",
+                "generate-password-reset-token"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-links-generate-password-reset-token-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e469f52-0f7c-447a-a699-0cfbd21865b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "links",
+                    "generate-password-reset-token"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-links-generate-password-reset-token-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"link\": \"string\",\n  \"token\": \"string\",\n  \"userId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6cfbc1e-7a0f-4a43-8b22-9ece59b2513a",
+          "name": "Unlock User",
+          "request": {
+            "name": "Unlock User",
+            "description": {
+              "content": "Unlock a locked user.\n\nAn unlocked user can sign in and use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "unlock"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-unlock-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99b747cc-a808-444b-aa40-1e7259f193d1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-unlock-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35d3a754-890b-48c2-96d5-8d6b822a09f1",
+          "name": "Lock User",
+          "request": {
+            "name": "Lock User",
+            "description": {
+              "content": "Lock a user.\n\nA locked user cannot sign in or use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                ":userId",
+                "lock"
+              ],
+              "host": [
+                "{{resources-users-v1-userId-lock-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e38fa0d7-7e4c-437d-8b82-ff943cd8c06a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    ":userId",
+                    "lock"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-userId-lock-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3cea641-130c-48b9-88f4-4f9a1cddb84a",
+          "name": "Move All Users From One Account (tenant) to Another",
+          "request": {
+            "name": "Move All Users From One Account (tenant) to Another",
+            "description": {
+              "content": "Migrate all users from a source account (tenant) to a target account (tenant).\n\nSpecify `srcTenantId` (source account (tenant) ID) and `targetTenantId` (target account (tenant) ID) in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                "tenants",
+                "migrate"
+              ],
+              "host": [
+                "{{resources-users-v1-tenants-migrate-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"srcTenantId\": \"<string>\",\n  \"targetTenantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d468365-982a-4907-90cd-6486328c1878",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "tenants",
+                    "migrate"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-tenants-migrate-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"srcTenantId\": \"<string>\",\n  \"targetTenantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-temporary-v1-configuration-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-userId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-userId-mfa-unenroll-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-passwords-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-users-v1-statuses-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-vendor-userId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-phone-numbers-v1-vendor-userId-phoneId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-bulk-v1-invite-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-bulk-v1-status-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-userId-roles-bulk-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-v1-bulk-roles-status-taskId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-email-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-invisible-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-superuser-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-tenant-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-email-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-links-generate-activation-token-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-links-generate-password-reset-token-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-unlock-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-userId-lock-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-tenants-migrate-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "9dd9978a-e150-434d-821f-07e50d3907c9",
+    "name": "Multi-Apps Overview Account Invitations Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

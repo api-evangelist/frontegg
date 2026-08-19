@@ -1,0 +1,631 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Users API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set Temporary Users Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/temporary/v1/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route updates the settings for temporary users, use it to enable or disable it for an environment"
+        },
+        {
+          "info": {
+            "name": "Update User (global)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or `phones`, new items are added instead of replacing existing ones."
+        },
+        {
+          "info": {
+            "name": "Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for management use only."
+        },
+        {
+          "info": {
+            "name": "Unenroll User From MFA Globally",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1/:userId/mfa/unenroll",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for manag use only."
+        },
+        {
+          "info": {
+            "name": "Verify User's Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1/passwords/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for management use only."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for management use only."
+        },
+        {
+          "info": {
+            "name": "Get Users Account (tenant) Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/users/v1/statuses",
+            "params": [
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query",
+                "description": "User IDs"
+              },
+              {
+                "name": "userTenantStatuses",
+                "value": "",
+                "type": "query",
+                "description": "Account (tenant) Statuses"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the account (tenant) statuses of vendor users.\n\nProvide an array of `userIds` (maximum 200) and optionally an array of `userTenantStatuses` as query parameters. There is a limit of 2000 account (tenant) statuses per user."
+        },
+        {
+          "info": {
+            "name": "Create User Phone Number Verified by Default",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/vendor/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new phone number for a user. Phone numbers added via this management endpoint are automatically verified."
+        },
+        {
+          "info": {
+            "name": "Delete User Phone Number on an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/vendor/:userId/:phoneId",
+            "params": [
+              {
+                "name": "phoneId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a user phone number without verification."
+        },
+        {
+          "info": {
+            "name": "Invite Users to an Account (tenant) in Bulk",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/bulk/v1/invite",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`."
+        },
+        {
+          "info": {
+            "name": "Get Status of Bulk Invite Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/bulk/v1/status/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`."
+        },
+        {
+          "info": {
+            "name": "Bulk Update User Roles Across All Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1/:userId/roles/bulk",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk Update User Roles Across All Tenants"
+        },
+        {
+          "info": {
+            "name": "Get Status of Bulk Roles Update Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/vendor-only/users/v1/bulk-roles/status/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Status of Bulk Roles Update Task"
+        },
+        {
+          "info": {
+            "name": "Get User by Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a user by email.\n\nProvide the user's `email` as a query parameter."
+        },
+        {
+          "info": {
+            "name": "Get User by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific user from an account (tenant).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Verify User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/verify",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Mark a user as verified.\n\nProvide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Make User Invisible",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/invisible",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set whether a user is invisible or visible.\n\nAn invisible user remains part of the account (tenant) but will not appear in the list of users in the admin box. The user data remains in the system.\n\nProvide the user's ID as a path parameter and a Boolean `invisible` value in the request body (`true` for invisible, `false` for visible).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Make User Super-user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/superuser",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set a user as a super-user.\n\nSuper-user functionality is no longer maintained due to incompatibility with newer features. A super-user has access to all accounts (tenants) within the workspace.\n\nProvide the user's ID as a path parameter and a Boolean `superUser` value in the request body (`true` for super-user, `false` for regular user).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Add User to Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/tenant",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a user to an account (tenant).\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. To skip sending an invite email, include the optional `skipInviteEmail` parameter in the request body and set it to `true`.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Set User's Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/tenant",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Set the active account (tenant) of a user.\n\nThe active account (tenant) is the account (tenant) the user will see in their admin portal and the account (tenant) used by default for account (tenant)-specific API routes.\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. If a non-existing account (tenant) ID is provided, an account (tenant) will be created for that ID.\n\nA valid environment token is required to call this endpoint. You c"
+        },
+        {
+          "info": {
+            "name": "Update User Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/email",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a user's email address globally, regardless of account (tenant).\n\nProvide the user's ID as a path parameter and the new email address as an `email` value in the request body."
+        },
+        {
+          "info": {
+            "name": "Generate Activation Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/links/generate-activation-token",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a new activation token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the activation email but returns the activation link and token. It can be used in combination with the routes under **Users Activation**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Generate Password Reset Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/links/generate-password-reset-token",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a password reset token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the reset password email but returns the reset link and token. It can be used in combination with the routes under **Users Passwords**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Unlock User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/unlock",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Unlock a locked user.\n\nAn unlocked user can sign in and use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Lock User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/:userId/lock",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Lock a user.\n\nA locked user cannot sign in or use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Move All Users From One Account (tenant) to Another",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/users/v1/tenants/migrate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate all users from a source account (tenant) to a target account (tenant).\n\nSpecify `srcTenantId` (source account (tenant) ID) and `targetTenantId` (target account (tenant) ID) in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

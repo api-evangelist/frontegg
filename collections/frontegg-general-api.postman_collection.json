@@ -1,0 +1,801 @@
+{
+  "item": [
+    {
+      "id": "d27ea6ff-dc96-4921-bf52-b82f561dfa25",
+      "name": "General",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e679b92b-f5ed-45e3-bb6e-699dc483dbb6",
+          "name": "Authenticate User with Password",
+          "request": {
+            "name": "Authenticate User with Password",
+            "description": {
+              "content": "Authenticate a local user using their email and password.\n\nInclude the user's login credentials in the request body. This endpoint supports optional parameters such as an invitation token (for sign-up flows via invitation) and a reCAPTCHA token (if reCAPTCHA is enabled for login).\n\nIf the credentials are valid, the response includes a signed JWT and a refresh token that can be used for future authenticated requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "auth",
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{resources-auth-v1-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The vendor host domain",
+                "key": "frontegg-vendor-host",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\",\n  \"email\": \"<string>\",\n  \"username\": \"<string>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "495ddd58-1e21-472a-b283-0ce64a2fdc99",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "auth",
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-auth-v1-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The vendor host domain",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\",\n  \"email\": \"<string>\",\n  \"username\": \"<string>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mfaRequired\": true,\n  \"accessToken\": \"string\",\n  \"refreshToken\": \"string\",\n  \"expiresIn\": 9987.787577818612,\n  \"expires\": \"string\",\n  \"tokenType\": \"bearer\",\n  \"otcToken\": \"string\",\n  \"mfaToken\": \"string\",\n  \"resetPasswordToken\": \"string\",\n  \"passwordExpiresIn\": 1219.022790314842,\n  \"notificationPeriod\": 9469.86280587852,\n  \"mfaEnrolled\": false,\n  \"mfaDevices\": {\n    \"webauthn\": [\n      {\n        \"id\": \"string\",\n        \"deviceType\": \"Platform\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"deviceType\": \"CrossPlatform\",\n        \"name\": \"string\"\n      }\n    ],\n    \"phones\": [\n      {\n        \"id\": \"string\",\n        \"phoneNumber\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"phoneNumber\": \"string\"\n      }\n    ],\n    \"authenticators\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"email\": \"string\"\n      },\n      {\n        \"email\": \"string\"\n      }\n    ]\n  },\n  \"mfaStrategies\": {},\n  \"qrCode\": \"string\",\n  \"recoveryCode\": \"string\",\n  \"userId\": \"string\",\n  \"userEmail\": \"string\",\n  \"emailVerified\": true,\n  \"isBreachedPassword\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6190ab89-aa3c-4ed2-a05e-26c5186dde45",
+          "name": "Refresh User JWT Token",
+          "request": {
+            "name": "Refresh User JWT Token",
+            "description": {
+              "content": "Refresh a JWT based on the refresh token's expiration time.\n\nThis endpoint returns a new JWT and refresh token if the existing refresh token is valid and not expired. The request must include the refresh token cookie for the currently logged-in user.\n\nEnsure your JWT settings are properly configured in the Frontegg Portal to support this flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "auth",
+                "v1",
+                "user",
+                "token",
+                "refresh"
+              ],
+              "host": [
+                "{{resources-auth-v1-user-token-refresh-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "frontegg-vendor-host",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb85509a-9a27-4d2c-ae8f-5be97577661f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "auth",
+                    "v1",
+                    "user",
+                    "token",
+                    "refresh"
+                  ],
+                  "host": [
+                    "{{resources-auth-v1-user-token-refresh-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mfaRequired\": false,\n  \"accessToken\": \"string\",\n  \"refreshToken\": \"string\",\n  \"expiresIn\": 6085.1260756138045,\n  \"expires\": \"string\",\n  \"tokenType\": \"bearer\",\n  \"otcToken\": \"string\",\n  \"mfaToken\": \"string\",\n  \"resetPasswordToken\": \"string\",\n  \"passwordExpiresIn\": 2263.8113566832485,\n  \"notificationPeriod\": 6279.522655744465,\n  \"mfaEnrolled\": true,\n  \"mfaDevices\": {\n    \"webauthn\": [\n      {\n        \"id\": \"string\",\n        \"deviceType\": \"CrossPlatform\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"deviceType\": \"Platform\",\n        \"name\": \"string\"\n      }\n    ],\n    \"phones\": [\n      {\n        \"id\": \"string\",\n        \"phoneNumber\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"phoneNumber\": \"string\"\n      }\n    ],\n    \"authenticators\": [\n      {\n        \"id\": \"string\"\n      },\n      {\n        \"id\": \"string\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"email\": \"string\"\n      },\n      {\n        \"email\": \"string\"\n      }\n    ]\n  },\n  \"mfaStrategies\": {},\n  \"qrCode\": \"string\",\n  \"recoveryCode\": \"string\",\n  \"userId\": \"string\",\n  \"userEmail\": \"string\",\n  \"emailVerified\": false,\n  \"isBreachedPassword\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8819c4e-8759-4172-8434-8d1e642c70ec",
+          "name": "Logout User",
+          "request": {
+            "name": "Logout User",
+            "description": {
+              "content": "Log out a user by invalidating their refresh token.\n\nThis endpoint logs out the currently authenticated user by invalidating the refresh token provided in the refresh token cookie.\n\nThis route is intended for applications using Frontegg's embedded login experience or for integrations that interact exclusively with Frontegg APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "auth",
+                "v1",
+                "logout"
+              ],
+              "host": [
+                "{{resources-auth-v1-logout-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "frontegg-vendor-host",
+                "value": "<string>"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a62999cd-aed0-4f75-ac6e-a39fcb018b86",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "auth",
+                    "v1",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{resources-auth-v1-logout-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "065299a0-149b-4855-8a94-2af0c7e01fb3",
+          "name": "Signup User",
+          "request": {
+            "name": "Signup User",
+            "description": {
+              "content": "Sign up a new user and create a new account (tenant).\n\nThis endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.\n\nAdditional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).\n\nThis endpoint is typically used during account (tenant) onboarding or self-sign-up flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                "signUp"
+              ],
+              "host": [
+                "{{resources-users-v1-signUp-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "frontegg-vendor-host",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The application id",
+                "key": "frontegg-application-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69995f6d-660d-4ca5-bf27-cb40130fecb7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "signUp"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-signUp-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The application id",
+                    "key": "frontegg-application-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5fe9323-b70e-4d4e-9b1c-961f5583ef51",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "signUp"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-signUp-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The application id",
+                    "key": "frontegg-application-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"provider\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c2bbf6d-f3e2-4ecd-8ffb-126bbacd059f",
+          "name": "Signup User with Username",
+          "request": {
+            "name": "Signup User with Username",
+            "description": {
+              "content": "Sign up a new user and create a new account (tenant). Include the `frontegg-vendor-host` header (your domain name from Portal → Workspace Settings → Domains). Required fields: `email`, `provider` (authentication method: local, saml, google, github), `companyName`, and `metadata` (can be empty `{}`). Requires an environment authentication token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "v1",
+                "signUp",
+                "username"
+              ],
+              "host": [
+                "{{resources-users-v1-signUp-username-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "frontegg-vendor-host",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The application ID",
+                "key": "frontegg-application-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85c0aee7-1f4b-4b49-acd2-e1ee21f94187",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "signUp",
+                    "username"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-signUp-username-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The application ID",
+                    "key": "frontegg-application-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc2c0adb-ddc4-4c9d-99f0-63de462b516d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "v1",
+                    "signUp",
+                    "username"
+                  ],
+                  "host": [
+                    "{{resources-users-v1-signUp-username-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "frontegg-vendor-host",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The application ID",
+                    "key": "frontegg-application-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"provider\": \"<string>\",\n  \"username\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"password\": \"<string>\",\n  \"skipInviteEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"emailMetadata\": \"<object>\",\n  \"recaptchaToken\": \"<string>\",\n  \"invitationToken\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shouldActivate\": true,\n  \"userId\": \"string\",\n  \"tenantId\": \"string\",\n  \"authResponse\": {\n    \"mfaRequired\": true,\n    \"accessToken\": \"string\",\n    \"refreshToken\": \"string\",\n    \"expiresIn\": 4164.495267390289,\n    \"expires\": \"string\",\n    \"tokenType\": \"bearer\",\n    \"otcToken\": \"string\",\n    \"mfaToken\": \"string\",\n    \"resetPasswordToken\": \"string\",\n    \"passwordExpiresIn\": 2070.9377421803433,\n    \"notificationPeriod\": 9802.051721882546,\n    \"mfaEnrolled\": true,\n    \"mfaDevices\": {\n      \"webauthn\": [\n        {\n          \"id\": \"string\",\n          \"deviceType\": \"Platform\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"deviceType\": \"Platform\",\n          \"name\": \"string\"\n        }\n      ],\n      \"phones\": [\n        {\n          \"id\": \"string\",\n          \"phoneNumber\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"phoneNumber\": \"string\"\n        }\n      ],\n      \"authenticators\": [\n        {\n          \"id\": \"string\"\n        },\n        {\n          \"id\": \"string\"\n        }\n      ],\n      \"emails\": [\n        {\n          \"email\": \"string\"\n        },\n        {\n          \"email\": \"string\"\n        }\n      ]\n    },\n    \"mfaStrategies\": {},\n    \"qrCode\": \"string\",\n    \"recoveryCode\": \"string\",\n    \"userId\": \"string\",\n    \"userEmail\": \"string\",\n    \"emailVerified\": false,\n    \"isBreachedPassword\": true\n  },\n  \"activationToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-auth-v1-user-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-auth-v1-user-token-refresh-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-auth-v1-logout-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-signUp-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-v1-signUp-username-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "6395d405-6f12-43cd-8bd4-b908aa03479e",
+    "name": "Multi-Apps Overview Account Invitations General API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

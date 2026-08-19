@@ -1,0 +1,366 @@
+{
+  "item": [
+    {
+      "id": "73b15a74-52ca-4c5f-8e8e-5338f3c0283e",
+      "name": "User Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34f7d93c-9be3-4b7e-8e24-21127353d2d0",
+          "name": "Get User's Active Sessions",
+          "request": {
+            "name": "Get User's Active Sessions",
+            "description": {
+              "content": "Retrieve all active sessions for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "sessions",
+                "v1",
+                "me"
+              ],
+              "host": [
+                "{{resources-users-sessions-v1-me-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "85e30bd4-6441-4eb6-b7a0-2c6056fa16a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "sessions",
+                    "v1",
+                    "me"
+                  ],
+                  "host": [
+                    "{{resources-users-sessions-v1-me-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b51dbef-3e42-413d-bb1a-a546286c2ab6",
+          "name": "Delete All User Sessions",
+          "request": {
+            "name": "Delete All User Sessions",
+            "description": {
+              "content": "Delete all active sessions for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "sessions",
+                "v1",
+                "me",
+                "all"
+              ],
+              "host": [
+                "{{resources-users-sessions-v1-me-all-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd9a58f3-7fb7-4dd6-86d7-ff05ee1728a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "sessions",
+                    "v1",
+                    "me",
+                    "all"
+                  ],
+                  "host": [
+                    "{{resources-users-sessions-v1-me-all-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27ab0317-74f2-4fc5-a310-456b2c5e1a26",
+          "name": "Delete Single User's Session",
+          "request": {
+            "name": "Delete Single User's Session",
+            "description": {
+              "content": "Delete a specific active session for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "users",
+                "sessions",
+                "v1",
+                "me",
+                ":id"
+              ],
+              "host": [
+                "{{resources-users-sessions-v1-me-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afa6cc29-1dbc-4747-b7a1-efcabe6c834f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "users",
+                    "sessions",
+                    "v1",
+                    "me",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-users-sessions-v1-me-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-sessions-v1-me-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-sessions-v1-me-all-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-users-sessions-v1-me-id-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b3d7ecf-90ae-41cf-8a87-dd00d1efc435",
+    "name": "Multi-Apps Overview Account Invitations User Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

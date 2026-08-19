@@ -1,0 +1,961 @@
+{
+  "item": [
+    {
+      "id": "fd480bb5-1315-4a03-804f-136dbcfcd380",
+      "name": "Account Invitations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae37bf98-16c2-4a93-ba9c-c188e8bef229",
+          "name": "Get Account (tenant) Invite of User",
+          "request": {
+            "name": "Get Account (tenant) Invite of User",
+            "description": {
+              "content": "Retrieve an invitation for a specific user to join an account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f5f09fc-31ca-41dd-bcab-762c5ed4045e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"1967-07-16T22:19:42.838Z\",\n  \"shouldSendEmail\": true,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51200129-13ad-471f-b939-32af538a28b7",
+          "name": "Create Account (tenant) Invite for User",
+          "request": {
+            "name": "Create Account (tenant) Invite for User",
+            "description": {
+              "content": "Create an invitation for a specific user to join an account (tenant).\n\nTo create a general invitation, use the general invitation route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39197c54-7f7b-4f81-9668-92cca5b706b6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"1985-11-27T01:46:40.754Z\",\n  \"shouldSendEmail\": true,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6d3cac8-9304-4826-99f1-8e6cffb87a18",
+          "name": "Delete Account (tenant) Invite of User",
+          "request": {
+            "name": "Delete Account (tenant) Invite of User",
+            "description": {
+              "content": "Delete an invitation for a specific user to join an account (tenant).\n\nTo delete a general invitation, use the general invitation route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c6236da0-434d-4e2b-9100-6bca95a1a1cd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "083b32cf-dd07-4bc7-9bff-eab6f0c228f2",
+          "name": "Update Account (tenant) Invite of User",
+          "request": {
+            "name": "Update Account (tenant) Invite of User",
+            "description": {
+              "content": "Update an invitation for a specific user to join an account (tenant).\n\nTo set a specific expiration time, use the `expiresInMinutes` parameter to define when the invitation will be invalidated. Use the `shouldSendEmail` Boolean parameter to control whether an invitation email is sent.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "user"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e07bb39b-7384-4776-bef4-eb9bcac0ff2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"1985-11-27T01:46:40.754Z\",\n  \"shouldSendEmail\": true,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9820014-4a30-423b-8d4f-32849937bb36",
+          "name": "Verify Account (tenant) Invite",
+          "request": {
+            "name": "Verify Account (tenant) Invite",
+            "description": {
+              "content": "Verify an account (tenant) invitation.\n\nPass the invitation token as the `token` parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "verify"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-verify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bffa1e37-4e69-457c-ab3a-840ec75c69c4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"1985-11-27T01:46:40.754Z\",\n  \"shouldSendEmail\": true,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "493ef93a-2e30-4254-8f87-c131f643ed8a",
+          "name": "Get Account (tenant) Invite Configuration",
+          "request": {
+            "name": "Get Account (tenant) Invite Configuration",
+            "description": {
+              "content": "Check whether account (tenant) invitations are enabled and whether notifications are active for your environment.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "configuration"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-configuration-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4c1a7f67-8db9-4dbf-a9ce-d05c02b09bc5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-configuration-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantInvitationsAllowed\": true,\n  \"emailsEnabled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f506f42-7757-41b7-88d0-df2a7f810eb9",
+          "name": "Create Tenant Invite with Roles for User",
+          "request": {
+            "name": "Create Tenant Invite with Roles for User",
+            "description": {
+              "content": "Creates an invitation with assigned roles for a specific user to join an account (tenant). Provide the user's ID via the `frontegg-user-id` header and the account ID via the `frontegg-tenant-id` header. For general invitations without a specific user, use the general invitation endpoint instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v2",
+                "user"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v2-user-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af8df4fe-5b61-4735-b960-70c4b8890b07",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v2",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v2-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"role1\",\n    \"role2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66c53dc4-bf9e-4d0b-86af-3ca19055beb1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v2",
+                    "user"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v2-user-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"role1\",\n    \"role2\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"1985-11-27T01:46:40.754Z\",\n  \"shouldSendEmail\": true,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-user-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-configuration-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v2-user-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "20f929a2-8801-486a-aec0-bb59cf286834",
+    "name": "Multi-Apps Overview Account Invitations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

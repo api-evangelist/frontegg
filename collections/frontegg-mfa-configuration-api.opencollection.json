@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations MFA Configuration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MFA Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get MFA Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/mfa",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the MFA configuration for your environment."
+        },
+        {
+          "info": {
+            "name": "Update MFA Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/mfa",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the MFA configuration for your environment.\n\nProvide the desired configuration values as objects in the request body. Refer to the parameter documentation for the list of supported values."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

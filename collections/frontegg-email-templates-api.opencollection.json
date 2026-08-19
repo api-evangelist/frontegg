@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Email Templates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configs/templates",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all email templates for your environment.\n\nTo retrieve a specific template, pass its `type` as a query parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Add or Update Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configs/templates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update an email template for your environment.\n\nSpecify the email template using the `type` parameter. The value of `type` must match one of the predefined Frontegg email templates. Set the sender using the `senderEmail` parameter, and optionally include values for the other available body parameters. Provide the template information in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configs/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specified email template.\n\nProvide the ID of the template to delete. You can obtain the template ID via the **Get template** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Default Template by Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/mail/v1/configs/:type/default",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The email template type"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the default email template by type.\n\nPass the required `type` as a query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1533 @@
+{
+  "item": [
+    {
+      "id": "56669dd3-6c9a-441d-9060-18283906483a",
+      "name": "ReBAC",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7dd33d7-a5d9-40a3-ad4b-8fda37589504",
+          "name": "Get Entity Types",
+          "request": {
+            "name": "Get Entity Types",
+            "description": {
+              "content": "List all entity types in your schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9cfe7581-035c-414a-a3a4-43a898685e11",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hasNext\": true,\n  \"items\": [\n    {\n      \"key\": \"document\",\n      \"description\": \"Representation of a Word document file\",\n      \"createdAt\": \"2021-06-02T14:00:00.000Z\"\n    },\n    {\n      \"key\": \"document\",\n      \"description\": \"Representation of a Word document file\",\n      \"createdAt\": \"2021-06-02T14:00:00.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a920e1f-7268-402b-8f79-18ff0235a7f6",
+          "name": "Create Entity Type",
+          "request": {
+            "name": "Create Entity Type",
+            "description": {
+              "content": "Create a new entity type (e.g. document, folder, project).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b4358d9-5ca3-49b3-8c3e-37b65706e887",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"document\",\n  \"description\": \"Representation of a Word document file\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"document\",\n  \"description\": \"Representation of a Word document file\",\n  \"createdAt\": \"2021-06-02T14:00:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1cf3ffb1-8301-45f8-a6da-80703a30bb6c",
+          "name": "Get Entity Type",
+          "request": {
+            "name": "Get Entity Type",
+            "description": {
+              "content": "Retrieve an entity type along with its relations and actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "key",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bfa7c4fa-7a00-4ce5-87b6-8ad96500e4e6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "key",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"document\",\n  \"description\": \"Representation of a Word document file\",\n  \"createdAt\": \"2021-06-02T14:00:00.000Z\",\n  \"relations\": [\n    \"string\",\n    \"string\"\n  ],\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2df93e6-48de-465f-b102-adb0ad712e7e",
+          "name": "Update Entity Type",
+          "request": {
+            "name": "Update Entity Type",
+            "description": {
+              "content": "Update an existing entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a015762-8c78-45f2-b8ec-6d63c2e3ad27",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"document\",\n  \"description\": \"Representation of a Word document file\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"document\",\n  \"description\": \"Representation of a Word document file\",\n  \"createdAt\": \"2021-06-02T14:00:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a585229c-e45c-44bd-89fb-65269a691a63",
+          "name": "Delete Entity Type",
+          "request": {
+            "name": "Delete Entity Type",
+            "description": {
+              "content": "Deletes an entity type and all its schema definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "71c9fdc6-2edd-4bed-bff0-504f88403099",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2711936e-816a-4524-b8ca-a3e1f80a2dff",
+          "name": "Create Entity Type Actions",
+          "request": {
+            "name": "Create Entity Type Actions",
+            "description": {
+              "content": "Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "actions"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-actions-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actions\": [\n    {\n      \"key\": \"<string>\",\n      \"relationKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"relationKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "977e02e2-aff6-4e93-9b31-0394e6f660c2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-actions-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"actions\": [\n    {\n      \"key\": \"read\",\n      \"relationKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"key\": \"read\",\n      \"relationKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"entityTypeKey\": \"book\",\n    \"key\": \"read\",\n    \"relationKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"entityTypeKey\": \"book\",\n    \"key\": \"read\",\n    \"relationKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0105d4a3-64d5-4843-bedc-f3b57eb344a3",
+          "name": "Update Entity Type Action",
+          "request": {
+            "name": "Update Entity Type Action",
+            "description": {
+              "content": "Update an existing action's relation mappings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "actions",
+                ":actionKey"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-actions-actionKey-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"relationKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cb29d18-a388-48fd-b536-4c5aeea43055",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "actions",
+                    ":actionKey"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-actions-actionKey-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"read\",\n  \"relationKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"entityTypeKey\": \"book\",\n  \"key\": \"read\",\n  \"relationKeys\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7e4e2b9-de98-46fb-9fe9-0e3325faf957",
+          "name": "Delete Entity Type Action",
+          "request": {
+            "name": "Delete Entity Type Action",
+            "description": {
+              "content": "Remove an action from an entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "actions",
+                ":actionKey"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-actions-actionKey-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ffb70c7d-b139-466d-859b-a976423f6aa3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "actions",
+                    ":actionKey"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-actions-actionKey-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1a9f6e3-b784-4820-a8f4-e87919a7994c",
+          "name": "Create Entity Type Relations",
+          "request": {
+            "name": "Create Entity Type Relations",
+            "description": {
+              "content": "Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "relations"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-relations-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"relations\": [\n    {\n      \"key\": \"<string>\",\n      \"subjectEntityKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"subjectEntityKeys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d93494d-91ac-4f44-a249-55883c7657db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "relations"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-relations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"relations\": [\n    {\n      \"key\": \"reader\",\n      \"subjectEntityKeys\": [\n        \"copywriter\",\n        \"customer\"\n      ]\n    },\n    {\n      \"key\": \"reader\",\n      \"subjectEntityKeys\": [\n        \"copywriter\",\n        \"customer\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"targetEntityTypeKey\": \"book\",\n    \"key\": \"reader\",\n    \"subjectEntityTypeKeys\": [\n      \"copywriter\",\n      \"customer\"\n    ]\n  },\n  {\n    \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"targetEntityTypeKey\": \"book\",\n    \"key\": \"reader\",\n    \"subjectEntityTypeKeys\": [\n      \"copywriter\",\n      \"customer\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c86dce5b-b7ef-45d0-858e-4e9a2f0384b6",
+          "name": "Update Entity Type Relation",
+          "request": {
+            "name": "Update Entity Type Relation",
+            "description": {
+              "content": "Modify a relation's allowed subject entity types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "relations",
+                ":relationKey"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-relations-relationKey-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"subjectEntityKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9928063e-b71c-4783-bfe6-b9f422465aa9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "relations",
+                    ":relationKey"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-relations-relationKey-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"reader\",\n  \"subjectEntityKeys\": [\n    \"copywriter\",\n    \"customer\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"targetEntityTypeKey\": \"book\",\n  \"key\": \"reader\",\n  \"subjectEntityTypeKeys\": [\n    \"copywriter\",\n    \"customer\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c429e3a-9af3-4b1c-982b-a14470ce23aa",
+          "name": "Delete Entity Type Relation",
+          "request": {
+            "name": "Delete Entity Type Relation",
+            "description": {
+              "content": "Remove a relation definition from an entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "entity-types",
+                "v1",
+                ":key",
+                "relations",
+                ":relationKey"
+              ],
+              "host": [
+                "{{resources-entity-types-v1-key-relations-relationKey-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d07c09a6-f7ce-42e3-a4fb-7e51edb5114e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "entity-types",
+                    "v1",
+                    ":key",
+                    "relations",
+                    ":relationKey"
+                  ],
+                  "host": [
+                    "{{resources-entity-types-v1-key-relations-relationKey-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f35410d-f0bf-4284-8d70-2685eb5d7123",
+          "name": "Get Relation Assignments",
+          "request": {
+            "name": "Get Relation Assignments",
+            "description": {
+              "content": "List all instance-level relationship assignments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "relations",
+                "v1",
+                "assignments"
+              ],
+              "host": [
+                "{{resources-relations-v1-assignments-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6fbeaa72-3bbb-4f71-820c-2af019953e1c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "relations",
+                    "v1",
+                    "assignments"
+                  ],
+                  "host": [
+                    "{{resources-relations-v1-assignments-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    },\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    }\n  ],\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43b069f1-cf33-40e8-b6ab-30c10798b254",
+          "name": "Create Relation Assignments",
+          "request": {
+            "name": "Create Relation Assignments",
+            "description": {
+              "content": "Create relation assignments (instance-level relationships). E.g., \"User A is a reader of Document 1\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "relations",
+                "v1",
+                "assign"
+              ],
+              "host": [
+                "{{resources-relations-v1-assign-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignments\": [\n    {\n      \"subjectEntityTypeKey\": \"<string>\",\n      \"subjectKey\": \"<string>\",\n      \"relationKey\": \"<string>\",\n      \"targetEntityTypeKey\": \"<string>\",\n      \"targetKey\": \"<string>\",\n      \"activeFrom\": \"<string>\",\n      \"activeUntil\": \"<string>\"\n    },\n    {\n      \"subjectEntityTypeKey\": \"<string>\",\n      \"subjectKey\": \"<string>\",\n      \"relationKey\": \"<string>\",\n      \"targetEntityTypeKey\": \"<string>\",\n      \"targetKey\": \"<string>\",\n      \"activeFrom\": \"<string>\",\n      \"activeUntil\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e389300-1a3b-4232-aff4-50aa194ce295",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "relations",
+                    "v1",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{resources-relations-v1-assign-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignments\": [\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    },\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"subjectEntityTypeKey\": \"user\",\n    \"subjectKey\": \"anthony@email-of.his\",\n    \"relationKey\": \"reader\",\n    \"targetEntityTypeKey\": \"document\",\n    \"targetKey\": \"document-1.doc\",\n    \"activeFrom\": \"2024-01-01T00:00:00Z\",\n    \"activeUntil\": \"2024-12-31T23:59:59Z\"\n  },\n  {\n    \"subjectEntityTypeKey\": \"user\",\n    \"subjectKey\": \"anthony@email-of.his\",\n    \"relationKey\": \"reader\",\n    \"targetEntityTypeKey\": \"document\",\n    \"targetKey\": \"document-1.doc\",\n    \"activeFrom\": \"2024-01-01T00:00:00Z\",\n    \"activeUntil\": \"2024-12-31T23:59:59Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9a276f8-7043-46be-94cd-a76cad48c0bb",
+          "name": "Delete Relation Assignments",
+          "request": {
+            "name": "Delete Relation Assignments",
+            "description": {
+              "content": "Remove instance-level relationship assignments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "relations",
+                "v1",
+                "unassign"
+              ],
+              "host": [
+                "{{resources-relations-v1-unassign-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignments\": [\n    {\n      \"subjectEntityTypeKey\": \"<string>\",\n      \"subjectKey\": \"<string>\",\n      \"relationKey\": \"<string>\",\n      \"targetEntityTypeKey\": \"<string>\",\n      \"targetKey\": \"<string>\",\n      \"activeFrom\": \"<string>\",\n      \"activeUntil\": \"<string>\"\n    },\n    {\n      \"subjectEntityTypeKey\": \"<string>\",\n      \"subjectKey\": \"<string>\",\n      \"relationKey\": \"<string>\",\n      \"targetEntityTypeKey\": \"<string>\",\n      \"targetKey\": \"<string>\",\n      \"activeFrom\": \"<string>\",\n      \"activeUntil\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85b91096-6546-410f-b2cd-a9a237b95b7e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "relations",
+                    "v1",
+                    "unassign"
+                  ],
+                  "host": [
+                    "{{resources-relations-v1-unassign-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assignments\": [\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    },\n    {\n      \"subjectEntityTypeKey\": \"user\",\n      \"subjectKey\": \"anthony@email-of.his\",\n      \"relationKey\": \"reader\",\n      \"targetEntityTypeKey\": \"document\",\n      \"targetKey\": \"document-1.doc\",\n      \"activeFrom\": \"2024-01-01T00:00:00Z\",\n      \"activeUntil\": \"2024-12-31T23:59:59Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-key-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-key-actions-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-key-actions-actionKey-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-key-relations-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-entity-types-v1-key-relations-relationKey-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-relations-v1-assignments-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-relations-v1-assign-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-relations-v1-unassign-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c943eee-1258-443e-be5b-0760f8b7dc23",
+    "name": "Multi-Apps Overview Account Invitations ReBAC API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

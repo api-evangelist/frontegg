@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations API Access Control API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Access Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating."
+        },
+        {
+          "info": {
+            "name": "Create Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management."
+        },
+        {
+          "info": {
+            "name": "Get Single Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules."
+        },
+        {
+          "info": {
+            "name": "Update Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management."
+        },
+        {
+          "info": {
+            "name": "Delete Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules."
+        },
+        {
+          "info": {
+            "name": "Import Open API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1/import-open-api",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition."
+        },
+        {
+          "info": {
+            "name": "Create or Replace Route Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/routes/v1/:id/rules",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

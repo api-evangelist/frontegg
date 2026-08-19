@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Account Roles API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Roles V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/roles/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_levels",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_tenantIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all roles for your environment.\n\nEach role object includes the name, permissions, and other defining information."
+        },
+        {
+          "info": {
+            "name": "Create a New Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/roles/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new role for a specific account (tenant).\n\nInclude the required permissions in the request body to customize the role."
+        },
+        {
+          "info": {
+            "name": "Get Distinct Levels of Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/roles/v2/distinct-levels",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all role levels for your environment."
+        },
+        {
+          "info": {
+            "name": "Get Distinct Assigned Accounts (tenants) of Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/roles/v2/distinct-tenants",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all assigned account (tenant) IDs from roles for your environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

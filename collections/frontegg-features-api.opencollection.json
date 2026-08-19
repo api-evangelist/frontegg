@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Features API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Features",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/features/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input; Searchable fields: `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "key",
+                "type": "query",
+                "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs that can be used to filter the results"
+              },
+              {
+                "name": "permissionKeys",
+                "value": "permission.read,permission.write",
+                "type": "query",
+                "description": "Comma separated permission keys that can be used to filter the results"
+              },
+              {
+                "name": "hasFeatureFlag",
+                "value": "flase",
+                "type": "query",
+                "description": "Filter out features that are linked/not linked to feature-flag"
+              },
+              {
+                "name": "featureKeys",
+                "value": "test-feature",
+                "type": "query",
+                "description": "Comma separated feature Keys that can be used to filter the results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date."
+        },
+        {
+          "info": {
+            "name": "Create Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/features/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new feature with a unique name and key, optional description, and associated permissions."
+        },
+        {
+          "info": {
+            "name": "Update Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/features/v1/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing feature's name, key, description, or associated permissions."
+        },
+        {
+          "info": {
+            "name": "Delete Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/features/v1/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing feature by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Create Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/features/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata."
+        },
+        {
+          "info": {
+            "name": "Update Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/features/v2/:featureId",
+            "params": [
+              {
+                "name": "featureId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing feature's name, key, description, associated permissions, or custom metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

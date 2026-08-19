@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Account Settings API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/account-settings/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Update Account Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/account-settings/v1",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Public Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/account-settings/v1/public",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

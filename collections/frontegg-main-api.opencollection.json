@@ -1,0 +1,408 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Main API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Main",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vendorId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paginationMode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+        },
+        {
+          "info": {
+            "name": "Add Audits",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new audit entry in your account (tenant) audit trail. This endpoint allows you to log custom audit events with specified severity levels for security monitoring and compliance tracking."
+        },
+        {
+          "info": {
+            "name": "Get Audits Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/stats",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve comprehensive statistics and metrics about audit events for your account (tenant). This endpoint provides aggregated data to help you monitor audit activity, analyze security trends, and generate compliance reports."
+        },
+        {
+          "info": {
+            "name": "Export CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/export/csv",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vendorId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paginationMode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export CSV"
+        },
+        {
+          "info": {
+            "name": "Export CSV to Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/export/csv/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vendorId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paginationMode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export audit data as a CSV file stream with customizable columns and filtering options. This endpoint allows you to generate downloadable CSV reports of your audit trail data for compliance, analysis, or backup purposes."
+        },
+        {
+          "info": {
+            "name": "Get Audits (V2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/audits/v2",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "created_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "users",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "featureFlagId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+        },
+        {
+          "info": {
+            "name": "Export CSV to Stream (V2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/audits/v2/export/csv",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "created_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tenant_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "users",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "featureFlagId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export filtered audit logs as a downloadable CSV stream with customizable columns and comprehensive filtering options. This endpoint generates CSV reports of your account (tenant) audit data for compliance reporting, data analysis, backup purposes, and integration with external systems. Features include customizable column selection through the properties array, advanced filtering by date ranges, users, emails, severity levels, and custom JSON criteria, pagination support for large datasets (1-2"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,798 @@
+{
+  "item": [
+    {
+      "id": "751fd2e3-88e5-49d2-8822-5777ba191508",
+      "name": "Roles",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37f2db48-da3b-40d5-884a-9e9eb629351c",
+          "name": "Get Roles",
+          "request": {
+            "name": "Get Roles",
+            "description": {
+              "content": "Retrieve all roles across all accounts (tenants).\n\nEach role object includes the name, permissions, and other defining information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1"
+              ],
+              "host": [
+                "{{resources-roles-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54e25e38-ef1c-4343-bd5a-2f3861882be4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isDefault\": true,\n    \"firstUserRole\": false,\n    \"level\": 1469.4568124945029,\n    \"createdAt\": \"1954-04-08T05:36:48.790Z\",\n    \"updatedAt\": \"2002-07-10T22:36:13.022Z\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isDefault\": true,\n    \"firstUserRole\": false,\n    \"level\": 9766.78721473661,\n    \"createdAt\": \"2021-10-28T17:39:17.130Z\",\n    \"updatedAt\": \"2016-10-31T03:20:40.015Z\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faca0d0a-3ebd-41b8-a7dc-0fca1076c7a2",
+          "name": "Create Roles",
+          "request": {
+            "name": "Create Roles",
+            "description": {
+              "content": "Add a new role across all accounts (tenants).\n\nThis route does not assign permissions to the role. Use the attach permissions to role route to manage role permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1"
+              ],
+              "host": [
+                "{{resources-roles-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"level\": \"<number>\",\n    \"description\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"migrateRole\": \"<boolean>\",\n    \"firstUserRole\": \"<boolean>\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"level\": \"<number>\",\n    \"description\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"migrateRole\": \"<boolean>\",\n    \"firstUserRole\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccde6920-d0ef-43e4-a353-bb472ca141ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"level\": \"<number>\",\n    \"description\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"migrateRole\": \"<boolean>\",\n    \"firstUserRole\": \"<boolean>\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"level\": \"<number>\",\n    \"description\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"migrateRole\": \"<boolean>\",\n    \"firstUserRole\": \"<boolean>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isDefault\": true,\n    \"firstUserRole\": false,\n    \"level\": 9594.15648699962,\n    \"createdAt\": \"2009-12-26T03:09:36.725Z\",\n    \"updatedAt\": \"1966-06-19T15:09:01.080Z\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isDefault\": true,\n    \"firstUserRole\": false,\n    \"level\": 3080.8404023718695,\n    \"createdAt\": \"1968-12-16T09:54:17.263Z\",\n    \"updatedAt\": \"2023-02-08T10:47:48.496Z\",\n    \"permissions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edf46022-88d7-442c-ab87-0923259022f0",
+          "name": "Delete Role",
+          "request": {
+            "name": "Delete Role",
+            "description": {
+              "content": "Delete a role.\n\nProvide the role ID as a path parameter to specify which role to delete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1",
+                ":roleId"
+              ],
+              "host": [
+                "{{resources-roles-v1-roleId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f94566d6-850e-4d84-8469-99aa36b762f3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-roleId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e1e01f6-0689-4853-b9ef-3f0cadd91218",
+          "name": "Update Role",
+          "request": {
+            "name": "Update Role",
+            "description": {
+              "content": "Update an existing role.\n\nProvide the role ID as a path parameter to specify which role to update, and send the updated role information in the request body.\n\nThis route does not update permissions for the role. Use the attach permissions to role route to manage role permissions.\n\nYou can obtain the role ID using the **Get roles** API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1",
+                ":roleId"
+              ],
+              "host": [
+                "{{resources-roles-v1-roleId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isDefault\": \"<boolean>\",\n  \"firstUserRole\": \"<boolean>\",\n  \"migrateRole\": \"<boolean>\",\n  \"level\": \"<number>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea53ce3e-8654-426d-8308-8806623e2bcb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-roleId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isDefault\": \"<boolean>\",\n  \"firstUserRole\": \"<boolean>\",\n  \"migrateRole\": \"<boolean>\",\n  \"level\": \"<number>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isDefault\": false,\n  \"firstUserRole\": true,\n  \"level\": 5656.162171723469,\n  \"createdAt\": \"1992-01-16T16:04:51.886Z\",\n  \"updatedAt\": \"2012-03-10T11:13:40.939Z\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cfc8588-eb7f-46d0-a0cd-cb000f950c09",
+          "name": "Assign Permissions to a Role",
+          "request": {
+            "name": "Assign Permissions to a Role",
+            "description": {
+              "content": "Assign permissions to a role.\n\nProvide the role ID as a path parameter and include the permission IDs in the request body as an array of strings. Any pre-existing permissions will be overridden by the new permissions.\n\nYou can obtain role IDs using the **Get roles** API and permission IDs using the **Get permissions** API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1",
+                ":roleId",
+                "permissions"
+              ],
+              "host": [
+                "{{resources-roles-v1-roleId-permissions-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d12399c-b8d6-47c7-a520-1bb391109b22",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1",
+                    ":roleId",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-roleId-permissions-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isDefault\": false,\n  \"firstUserRole\": true,\n  \"level\": 5656.162171723469,\n  \"createdAt\": \"1992-01-16T16:04:51.886Z\",\n  \"updatedAt\": \"2012-03-10T11:13:40.939Z\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59729248-3d1a-4772-a73c-0e89303e6a29",
+          "name": "Update Role Tenant",
+          "request": {
+            "name": "Update Role Tenant",
+            "description": {
+              "content": "Updates the account (tenant) ID for a specific role. This is a management-only endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "roles",
+                "v1",
+                ":roleId",
+                "tenant"
+              ],
+              "host": [
+                "{{resources-roles-v1-roleId-tenant-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cec6389-fa54-4949-abc1-3c7ed079151c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "roles",
+                    "v1",
+                    ":roleId",
+                    "tenant"
+                  ],
+                  "host": [
+                    "{{resources-roles-v1-roleId-tenant-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isDefault\": false,\n  \"firstUserRole\": true,\n  \"level\": 5656.162171723469,\n  \"createdAt\": \"1992-01-16T16:04:51.886Z\",\n  \"updatedAt\": \"2012-03-10T11:13:40.939Z\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-roles-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-roles-v1-roleId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-roles-v1-roleId-permissions-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-roles-v1-roleId-tenant-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "75810558-52d4-40a1-b864-aa7a0e5bed7a",
+    "name": "Multi-Apps Overview Account Invitations Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

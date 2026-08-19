@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Permissions Categories API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Permissions Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/categories",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all permission categories for your environment. Each category includes its name, description, associated permissions, and metadata."
+        },
+        {
+          "info": {
+            "name": "Create Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new permissions category.\n\nProvide the category information in the request body. Note that categories are not associated with permissions in this route — you can associate permissions by sending the category ID in the add or update permission routes."
+        },
+        {
+          "info": {
+            "name": "Update Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing permissions category.\n\nProvide the category ID as a path parameter to specify which category to update, and send the updated category information in the request body.\n\nThis route does not update the permissions associated with the category. Use the add or update permissions routes to manage permission associations."
+        },
+        {
+          "info": {
+            "name": "Delete Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a permissions category.\n\nProvide the category ID as a path parameter to specify which category to delete. You can obtain the category ID using the **Get categories** API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

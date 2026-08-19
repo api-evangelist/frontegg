@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Account Migration API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Migration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Migrate Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/tenants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication."
+        },
+        {
+          "info": {
+            "name": "Accounts (tenants) Migration Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/migrations/v1/tenants/status/:migrationId",
+            "params": [
+              {
+                "name": "migrationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

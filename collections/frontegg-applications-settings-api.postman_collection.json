@@ -1,0 +1,2000 @@
+{
+  "item": [
+    {
+      "id": "acbb4d68-1339-47e1-b566-bda85497c585",
+      "name": "Applications Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63b753a6-fe5d-4378-be9b-b50f42c6399d",
+          "name": "Get All Applications for an Environment",
+          "request": {
+            "name": "Get All Applications for an Environment",
+            "description": {
+              "content": "Retrieve a list of all applications configured within the current environment. You can optionally filter the results by access type, default status, active status, or specific application IDs. This route requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_accessType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_isDefault",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_isActive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "frontendStack",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "frontendStack",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter applications by name (case-insensitive partial match)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_excludeAgents",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f91bac2a-6e6d-40f1-807e-94c1f42a5eee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_accessType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_isDefault",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "_isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frontendStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frontendStack",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_excludeAgents",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"accessType\": \"MANAGED_ACCESS\",\n    \"appURL\": \"string\",\n    \"loginURL\": \"string\",\n    \"isDefault\": false,\n    \"isActive\": true,\n    \"name\": \"string\",\n    \"logoURL\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"type\": \"string\",\n    \"frontendStack\": \"string\",\n    \"description\": \"string\",\n    \"integrationFinishedAt\": \"string\",\n    \"allowDcr\": false,\n    \"metadata\": {},\n    \"appHost\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"accessType\": \"MANAGED_ACCESS\",\n    \"appURL\": \"string\",\n    \"loginURL\": \"string\",\n    \"isDefault\": false,\n    \"isActive\": true,\n    \"name\": \"string\",\n    \"logoURL\": \"string\",\n    \"createdAt\": \"string\",\n    \"updatedAt\": \"string\",\n    \"type\": \"string\",\n    \"frontendStack\": \"string\",\n    \"description\": \"string\",\n    \"integrationFinishedAt\": \"string\",\n    \"allowDcr\": false,\n    \"metadata\": {},\n    \"appHost\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c10531f-1fd2-4904-8593-65166b1ce82f",
+          "name": "Create Application",
+          "request": {
+            "name": "Create Application",
+            "description": {
+              "content": "Create a new application within the current environment. You must provide basic information such as the application's name, URLs, and access type. You can also configure optional fields like the frontend stack, logo, default status, and metadata. This route requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"appURL\": \"<string>\",\n  \"loginURL\": \"<string>\",\n  \"logoURL\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"isDefault\": false,\n  \"isActive\": true,\n  \"type\": \"web\",\n  \"frontendStack\": \"react\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"allowDcr\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "afb6294d-7ecf-4600-981b-2c793524a4f2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"appURL\": \"<string>\",\n  \"loginURL\": \"<string>\",\n  \"logoURL\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"isDefault\": false,\n  \"isActive\": true,\n  \"type\": \"web\",\n  \"frontendStack\": \"react\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"allowDcr\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"accessType\": \"MANAGED_ACCESS\",\n  \"appURL\": \"string\",\n  \"loginURL\": \"string\",\n  \"isDefault\": false,\n  \"isActive\": false,\n  \"name\": \"string\",\n  \"logoURL\": \"string\",\n  \"createdAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"type\": \"string\",\n  \"frontendStack\": \"string\",\n  \"description\": \"string\",\n  \"integrationFinishedAt\": \"string\",\n  \"allowDcr\": true,\n  \"metadata\": {},\n  \"appHost\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "090bdcbd-b002-435d-9381-a5801c82cbb9",
+          "name": "Get the Default Application for an Environment",
+          "request": {
+            "name": "Get the Default Application for an Environment",
+            "description": {
+              "content": "Retrieve the default application configured in the current environment. The default application typically defines the primary application used for user access and authentication flows. This route requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "445f8d72-3135-4b48-ad17-ad0e67c91f25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"accessType\": \"MANAGED_ACCESS\",\n  \"appURL\": \"string\",\n  \"loginURL\": \"string\",\n  \"isDefault\": false,\n  \"isActive\": false,\n  \"name\": \"string\",\n  \"logoURL\": \"string\",\n  \"createdAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"type\": \"string\",\n  \"frontendStack\": \"string\",\n  \"description\": \"string\",\n  \"integrationFinishedAt\": \"string\",\n  \"allowDcr\": true,\n  \"metadata\": {},\n  \"appHost\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8b92212-51a7-4314-a32e-63e41235c89a",
+          "name": "Get Application by ID",
+          "request": {
+            "name": "Get Application by ID",
+            "description": {
+              "content": "Retrieve the details of a specific application by its unique ID within the current environment. Use this route to fetch configuration, metadata, and status information for a given application. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97952b8c-bd21-4ede-ba82-8d26905c4f5d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"accessType\": \"MANAGED_ACCESS\",\n  \"appURL\": \"string\",\n  \"loginURL\": \"string\",\n  \"isDefault\": false,\n  \"isActive\": false,\n  \"name\": \"string\",\n  \"logoURL\": \"string\",\n  \"createdAt\": \"string\",\n  \"updatedAt\": \"string\",\n  \"type\": \"string\",\n  \"frontendStack\": \"string\",\n  \"description\": \"string\",\n  \"integrationFinishedAt\": \"string\",\n  \"allowDcr\": true,\n  \"metadata\": {},\n  \"appHost\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "975dc31d-e58b-4102-9306-84330b5f82fc",
+          "name": "Update an Application",
+          "request": {
+            "name": "Update an Application",
+            "description": {
+              "content": "Update the configuration of an existing application by its ID. You can modify fields such as the name, URLs, access type, status, frontend stack, and additional metadata. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"appURL\": \"<string>\",\n  \"loginURL\": \"<string>\",\n  \"logoURL\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"isDefault\": false,\n  \"isActive\": true,\n  \"type\": \"web\",\n  \"frontendStack\": \"react\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"appHost\": \"<string>\",\n  \"allowDcr\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16a56142-3cdf-4cec-bad8-512329957e4e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"appURL\": \"<string>\",\n  \"loginURL\": \"<string>\",\n  \"logoURL\": \"<string>\",\n  \"accessType\": \"<string>\",\n  \"isDefault\": false,\n  \"isActive\": true,\n  \"type\": \"web\",\n  \"frontendStack\": \"react\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"appHost\": \"<string>\",\n  \"allowDcr\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2b4944e-c287-426a-9c16-425e312cd7ff",
+          "name": "Delete an Application",
+          "request": {
+            "name": "Delete an Application",
+            "description": {
+              "content": "Delete an existing application by its ID from the current environment. This action permanently removes the application and its associated configuration. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c5d85e5-4818-46f9-9b36-65f203c91f54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d0ec1da-fb67-442d-8544-ea4532b87e09",
+          "name": "Get Application to Accounts (tenants) Assignments",
+          "request": {
+            "name": "Get Application to Accounts (tenants) Assignments",
+            "description": {
+              "content": "Retrieve the list of applications assigned to specific accounts (tenants), or the list of accounts (tenants) associated with specific applications. You can filter the results using `appIds` or `tenantIds` query parameters. This request requires an environment token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The tenant ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb0088ee-395a-426d-b5e9-906fdec23c30",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accessType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The tenant ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tenantId\": \"string\",\n    \"appIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"tenantId\": \"string\",\n    \"appIds\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e7c7c58-c617-4873-9987-d3f9262bee0a",
+          "name": "Get Account (tenant) Assignments for an Application",
+          "request": {
+            "name": "Get Account (tenant) Assignments for an Application",
+            "description": {
+              "content": "Retrieve all account (tenant) IDs currently assigned to a specific application.\n\nSend the application ID as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v1",
+                ":appId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa73aaf8-e01e-42b7-ba14-c5b1c5272f2e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v1",
+                    ":appId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5be152e-70d3-422c-8ee8-0bf753938d28",
+          "name": "Create Application to Account (tenant) Assignment",
+          "request": {
+            "name": "Create Application to Account (tenant) Assignment",
+            "description": {
+              "content": "Assign an application to a specific account (tenant).\n\nProvide the application ID as a path parameter and the target account (tenant) ID in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v1",
+                ":appId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"accessType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8578ab67-e1c4-46de-bfd2-8d9e89460989",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v1",
+                    ":appId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"accessType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"string\",\n  \"appIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f9bdd1d-f68e-45f0-bc35-13bb95635066",
+          "name": "Edit Application to Tenant Assignment",
+          "request": {
+            "name": "Edit Application to Tenant Assignment",
+            "description": {
+              "content": "Edit application to tenant assignment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v1",
+                ":appId",
+                ":tenantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "776c0dd2-123c-4207-ba91-a4126aac054b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v1",
+                    ":appId",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3aac2332-4fee-42e9-93a6-cc789986e95f",
+          "name": "Delete Application to Account (tenant) Assignment",
+          "request": {
+            "name": "Delete Application to Account (tenant) Assignment",
+            "description": {
+              "content": "Remove the assignment of an application from a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v1",
+                ":appId",
+                ":tenantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7da2753b-fa95-4dea-a5a7-256ca3716c25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v1",
+                    ":appId",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecaf33e5-a1b1-4be9-b082-fa34ed9422b0",
+          "name": "Get Tenant Application Assignments with Per-app AccessType",
+          "request": {
+            "name": "Get Tenant Application Assignments with Per-app AccessType",
+            "description": {
+              "content": "Get tenant application assignments with per-app accessType",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "tenant-assignments",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The tenant ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91a5cba3-25b8-439f-a2f0-0cc91dd862d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "tenant-assignments",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accessType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The tenant ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tenantId\": \"string\",\n    \"assignments\": [\n      {\n        \"appId\": \"string\",\n        \"accessType\": \"MANAGED_ACCESS\"\n      },\n      {\n        \"appId\": \"string\",\n        \"accessType\": \"FREE_ACCESS\"\n      }\n    ]\n  },\n  {\n    \"tenantId\": \"string\",\n    \"assignments\": [\n      {\n        \"appId\": \"string\",\n        \"accessType\": \"FREE_ACCESS\"\n      },\n      {\n        \"appId\": \"string\",\n        \"accessType\": \"MANAGED_ACCESS\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00d81ffa-f2b5-441b-bc8b-21bb175cfc81",
+          "name": "Get Application Client Credentials",
+          "request": {
+            "name": "Get Application Client Credentials",
+            "description": {
+              "content": "Retrieve the client credentials for a specific application. These credentials include both the `clientSecret` and the `sharedSecret`, which are required for authentication and secure communication with the application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                "credentials",
+                ":appId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6c946c7-7740-484e-bfb8-0fd1cbfbe6b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    "credentials",
+                    ":appId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientSecret\": \"string\",\n  \"sharedSecret\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f776b712-fd54-473a-8032-9f10772c54d8",
+          "name": "Regenerate Application Client Credentials",
+          "request": {
+            "name": "Regenerate Application Client Credentials",
+            "description": {
+              "content": "Regenerate the client credentials (client ID and secret) for a specific application. Use this route to issue a new set of credentials for the application. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                "credentials",
+                "regenerate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be5f3822-10dd-49c6-af50-3aeb6f654615",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    "credentials",
+                    "regenerate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16f7ed55-e92e-425c-8526-bb80e88b96f6",
+          "name": "Regenerate Application Shared Secret Credential",
+          "request": {
+            "name": "Regenerate Application Shared Secret Credential",
+            "description": {
+              "content": "Regenerate the shared secret credential for a specific application. Use this route to issue a new shared secret that the application can use for authentication. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                "credentials",
+                "shared",
+                "regenerate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9e66e36-e436-4934-9ff5-5622507f1dbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    "credentials",
+                    "shared",
+                    "regenerate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c954a20a-3cba-49e4-8e24-db3a1b966b61",
+          "name": "Create Application Client",
+          "request": {
+            "name": "Create Application Client",
+            "description": {},
+            "url": {
+              "path": [
+                "application-clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientName\": \"<string>\",\n  \"clientType\": \"<string>\",\n  \"redirectURLs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"externalMetadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8fd2f17-0355-4c27-ab59-e61bf4bb545b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application-clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientName\": \"<string>\",\n  \"clientType\": \"<string>\",\n  \"redirectURLs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"externalMetadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"appId\": \"string\",\n  \"clientName\": \"string\",\n  \"clientSecret\": \"string\",\n  \"clientType\": \"Agent\",\n  \"redirectURLs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"2000-12-14T01:44:28.672Z\",\n  \"updatedAt\": \"1951-07-18T07:05:31.271Z\",\n  \"externalMetadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bba197a-04e0-49f4-809e-b8d667edc472",
+          "name": "Get Application Clients by App ID",
+          "request": {
+            "name": "Get Application Clients by App ID",
+            "description": {},
+            "url": {
+              "path": [
+                "application-clients",
+                "app",
+                ":appId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d98ce84-662f-46ae-8cbe-58567ff98b00",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application-clients",
+                    "app",
+                    ":appId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"appId\": \"string\",\n    \"clientName\": \"string\",\n    \"clientSecret\": \"string\",\n    \"clientType\": \"Agent\",\n    \"redirectURLs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdAt\": \"2023-06-23T04:20:11.912Z\",\n    \"updatedAt\": \"1969-05-06T09:57:00.053Z\",\n    \"externalMetadata\": {}\n  },\n  {\n    \"id\": \"string\",\n    \"appId\": \"string\",\n    \"clientName\": \"string\",\n    \"clientSecret\": \"string\",\n    \"clientType\": \"Agent\",\n    \"redirectURLs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdAt\": \"1965-07-04T17:46:19.740Z\",\n    \"updatedAt\": \"1998-07-06T06:57:11.545Z\",\n    \"externalMetadata\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27cb90ab-d796-4cea-a336-93b7098b3b4e",
+          "name": "Get Application Client by ID",
+          "request": {
+            "name": "Get Application Client by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "application-clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e39f60a5-07c0-40ea-9300-e20382ef635a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application-clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"appId\": \"string\",\n  \"clientName\": \"string\",\n  \"clientSecret\": \"string\",\n  \"clientType\": \"Agent\",\n  \"redirectURLs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1992-12-18T06:37:00.312Z\",\n  \"updatedAt\": \"2003-02-10T04:58:47.551Z\",\n  \"externalMetadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3b9adc9-e7a9-4ff3-bb1c-696cd39fd8a6",
+          "name": "Update Application Client",
+          "request": {
+            "name": "Update Application Client",
+            "description": {},
+            "url": {
+              "path": [
+                "application-clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientName\": \"<string>\",\n  \"redirectURLs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"externalMetadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "807d542a-4b4e-477c-a3e1-46b602326280",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application-clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientName\": \"<string>\",\n  \"redirectURLs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"externalMetadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"appId\": \"string\",\n  \"clientName\": \"string\",\n  \"clientSecret\": \"string\",\n  \"clientType\": \"Agent\",\n  \"redirectURLs\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1992-12-18T06:37:00.312Z\",\n  \"updatedAt\": \"2003-02-10T04:58:47.551Z\",\n  \"externalMetadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66d3f395-378d-4349-93e3-4a5d4779b1ee",
+          "name": "Delete Application Client",
+          "request": {
+            "name": "Delete Application Client",
+            "description": {},
+            "url": {
+              "path": [
+                "application-clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6888f102-79e6-4bb2-8990-508c578c7b31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "application-clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fd8a3fb6-cc49-44a9-a551-bb751f41d6e7",
+    "name": "Multi-Apps Overview Account Invitations Applications Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

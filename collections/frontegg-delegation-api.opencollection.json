@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Delegation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delegation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Delegation Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/delegation",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the delegation configuration for your environment.\n\nA valid environment token is required to call this endpoint."
+        },
+        {
+          "info": {
+            "name": "Create or Update Delegation Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/delegation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Enable or disable delegation in the token exchange flow.\n\nUse this endpoint to update the delegation configuration by enabling or disabling delegation for the token exchange flow.\n\nA valid environment token is required to call this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

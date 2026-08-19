@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations User Sessions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User's Active Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/sessions/v1/me",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all active sessions for a user."
+        },
+        {
+          "info": {
+            "name": "Delete All User Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/sessions/v1/me/all",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete all active sessions for a user."
+        },
+        {
+          "info": {
+            "name": "Delete Single User's Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/sessions/v1/me/:id",
+            "headers": [
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific active session for a user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

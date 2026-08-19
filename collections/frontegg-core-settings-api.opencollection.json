@@ -1,0 +1,363 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Core Settings API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Core Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Identity Management Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the identity management configuration for your environment.\n\nUse this endpoint to get the current identity management settings configured in your environment."
+        },
+        {
+          "info": {
+            "name": "Update Identity Management Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the identity management configuration for your environment.\n\nUse this endpoint to add or update identity management parameters by sending the desired values in the request body.\n\nRefer to the parameter documentation for the list of supported values."
+        },
+        {
+          "info": {
+            "name": "Get Captcha Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/captcha-policy",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the CAPTCHA policy for your environment.\n\nThe response includes the policy ID, `siteKey`, `secretKey`, `minimumScore`, list of ignored emails, and whether the policy is enabled."
+        },
+        {
+          "info": {
+            "name": "Create Captcha Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/captcha-policy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a CAPTCHA policy for all accounts (tenants).\n\nProvide the required settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold."
+        },
+        {
+          "info": {
+            "name": "Update Captcha Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/captcha-policy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update the CAPTCHA policy for all accounts (tenants).\n\nProvide the desired settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold."
+        },
+        {
+          "info": {
+            "name": "Get JWT Template Targeting Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/jwt-template-targeting",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the JWT template targeting configuration for your environment. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Create JWT Template Targeting Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/jwt-template-targeting",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new JWT template targeting configuration for your environment. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Update or Create JWT Template Targeting Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/jwt-template-targeting",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates or creates a JWT template targeting configuration for your environment. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Update JWT Template Targeting Configuration by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/jwt-template-targeting/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Delete JWT Template Targeting Configuration by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/jwt-template-targeting/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Get All JWT Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/jwt-templates/v1",
+            "params": [
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template keys"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by template IDs"
+              },
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all JWT templates for your environment. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Create JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/jwt-templates/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new JWT template for your environment. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Get JWT Template by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/jwt-templates/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a specific JWT template by ID. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Update JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/jwt-templates/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates an existing JWT template. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Delete JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/jwt-templates/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an existing JWT template. Note: This feature must be enabled by request."
+        },
+        {
+          "info": {
+            "name": "Get Identity Management Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/basic",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the identity management configuration for your environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

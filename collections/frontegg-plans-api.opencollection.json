@@ -1,0 +1,364 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Plans API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/tenant/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              },
+              {
+                "name": "excludeNonEntitledPlans",
+                "value": "",
+                "type": "query",
+                "description": "Boolean value to include related entities in the response"
+              },
+              {
+                "name": "featureKeys",
+                "value": "feature-key-1,feature-key-2",
+                "type": "query",
+                "description": "Filter plans that contain features with these keys"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans."
+        },
+        {
+          "info": {
+            "name": "Get Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs to filter results by"
+              },
+              {
+                "name": "userIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated user IDs to filter results by"
+              },
+              {
+                "name": "tenantIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated account (tenant) IDs to filter results by"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs."
+        },
+        {
+          "info": {
+            "name": "Create Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new plan with features, rules, default treatment, and optional auto-assignment settings."
+        },
+        {
+          "info": {
+            "name": "Get Single Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a single plan by its unique identifier, including linked features and entitlements."
+        },
+        {
+          "info": {
+            "name": "Update Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing plan's name, features, rules, default treatment, or auto-assignment settings."
+        },
+        {
+          "info": {
+            "name": "Delete Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing plan by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Get Plan Features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id/features",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input; Searchable fields: `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "key",
+                "type": "query",
+                "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
+              },
+              {
+                "name": "featureIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated feature IDs that can be used to filter the results"
+              },
+              {
+                "name": "permissionKeys",
+                "value": "permission.read,permission.write",
+                "type": "query",
+                "description": "Comma separated permission keys that can be used to filter the results"
+              },
+              {
+                "name": "hasFeatureFlag",
+                "value": "flase",
+                "type": "query",
+                "description": "Filter out features that are linked/not linked to feature-flag"
+              },
+              {
+                "name": "featureKeys",
+                "value": "test-feature",
+                "type": "query",
+                "description": "Comma separated feature Keys that can be used to filter the results"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`))."
+        },
+        {
+          "info": {
+            "name": "Link Features to Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id/features/link",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Link multiple features to an existing plan by their feature IDs."
+        },
+        {
+          "info": {
+            "name": "Unlink Features From Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/plans/v1/:id/features/unlink",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Unlink multiple features from an existing plan by their feature IDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

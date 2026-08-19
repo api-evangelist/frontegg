@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "64a28f4a-35a0-4ed5-9972-497e7743e6de",
+      "name": "Users-applications Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aeb5edcd-f12a-4462-b87f-fdbc78006b78",
+          "name": "Get Users for Application",
+          "request": {
+            "name": "Get Users for Application",
+            "description": {
+              "content": "Retrieve users for an application.\n\nProvide the application ID as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                ":appId",
+                "users"
+              ],
+              "host": [
+                "{{resources-applications-v1-appId-users-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dad9e699-d42a-452c-99ad-3ba48041ee2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    ":appId",
+                    "users"
+                  ],
+                  "host": [
+                    "{{resources-applications-v1-appId-users-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d2b5fb7-f361-4d38-ba3f-49243ba4cfcd",
+          "name": "Get Applications for User",
+          "request": {
+            "name": "Get Applications for User",
+            "description": {
+              "content": "Retrieve applications for a user.\n\nProvide the user's ID as a path parameter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1",
+                ":userId",
+                "apps"
+              ],
+              "host": [
+                "{{resources-applications-v1-userId-apps-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ee8b76c6-35f6-4a2f-ac17-078f553b9bc5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1",
+                    ":userId",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{resources-applications-v1-userId-apps-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "714f559f-f257-4f55-9f65-0182cc2fb62a",
+          "name": "Assign Users to Application",
+          "request": {
+            "name": "Assign Users to Application",
+            "description": {
+              "content": "Assign users to an application.\n\nProvide the application ID as a path parameter and the user IDs in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1"
+              ],
+              "host": [
+                "{{resources-applications-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c6982f4-fef6-4b9b-aba8-c157bfae3b8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-applications-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"appId\": \"string\",\n    \"userTenantId\": \"string\",\n    \"createdAt\": \"1950-10-17T12:18:12.636Z\"\n  },\n  {\n    \"appId\": \"string\",\n    \"userTenantId\": \"string\",\n    \"createdAt\": \"1965-04-20T03:43:27.896Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24f6dfcb-20b7-4c97-9b2d-d6cca690ff6d",
+          "name": "Unassign Users From Application",
+          "request": {
+            "name": "Unassign Users From Application",
+            "description": {
+              "content": "Unassign users from an application.\n\nProvide the application ID as a path parameter and the user IDs in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "v1"
+              ],
+              "host": [
+                "{{resources-applications-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2214c3da-ae2d-4aa5-b2b2-ccb9007c7446",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-applications-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c03ca37-42e2-4b05-951a-93ecc3d7be75",
+          "name": "Get User Active Accounts (tenants) in Applications",
+          "request": {
+            "name": "Get User Active Accounts (tenants) in Applications",
+            "description": {
+              "content": "Retrieve the active accounts (tenants) of a user for an application.\n\nProvide the application ID and the user ID as path parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "user-tenants",
+                "active",
+                "v1"
+              ],
+              "host": [
+                "{{resources-applications-user-tenants-active-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2963d793-8c5b-45c2-8f22-7821eda2a38a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "user-tenants",
+                    "active",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-applications-user-tenants-active-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"applicationActiveTenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"applicationId\": \"string\"\n    },\n    {\n      \"tenantId\": \"string\",\n      \"applicationId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b0da95f-f9b3-41c6-bf32-365e310e4901",
+          "name": "Switch Users Active Account (tenant) in Applications",
+          "request": {
+            "name": "Switch Users Active Account (tenant) in Applications",
+            "description": {
+              "content": "Update the active accounts (tenants) of a user for an application.\n\nProvide the application ID and the user ID as path parameters and the updated list of account (tenant) IDs in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "applications",
+                "user-tenants",
+                "active",
+                "v1"
+              ],
+              "host": [
+                "{{resources-applications-user-tenants-active-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The user ID identifier",
+                "key": "frontegg-user-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activeApplicationTenants\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d547585-1014-4cd3-8485-f4a5f6606b4a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "applications",
+                    "user-tenants",
+                    "active",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-applications-user-tenants-active-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The user ID identifier",
+                    "key": "frontegg-user-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"activeApplicationTenants\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-applications-v1-appId-users-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-applications-v1-userId-apps-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-applications-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-applications-user-tenants-active-v1-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "d75b025d-a9eb-4e2e-8de7-eafa0d1288da",
+    "name": "Multi-Apps Overview Account Invitations Users-applications Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

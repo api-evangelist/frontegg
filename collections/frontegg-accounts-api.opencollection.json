@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Accounts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account (tenant) by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "The account (tenant) ID to get."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use the V2 route for **Get account (tenant)**. This route is no longer relevant."
+        },
+        {
+          "info": {
+            "name": "Update Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Use the V2 route for **update account (tenant)**. This route is no longer relevant."
+        },
+        {
+          "info": {
+            "name": "Delete Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Create an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Current Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete the current account (tenant) and all users belonging to that account.\n\nOnly users with the `fe.account-settings.delete.account` permission can perform this action.\n\nA user token is required for this route and can be obtained after user authentication."
+        },
+        {
+          "info": {
+            "name": "Add Account (tenant) Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1/:tenantId/metadata",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add metadata to an account (tenant).\n\nIf a metadata key already exists, its value is overwritten.\n\nProvide the account (tenant) ID as a path parameter and the metadata object in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete Account (tenant) Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v1/:tenantId/metadata/:key",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Remove a key-value pair from an account's (tenant's) metadata.\n\nProvide the account (tenant) ID and the metadata key as path parameters.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Accounts (tenants)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v2",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query",
+                "description": "The default limit is 50 accounts (tenants) per request, the maximum is 200"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_filter",
+                "value": "",
+                "type": "query",
+                "description": "This param allows filtering the request using an account's name or tenantId"
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query",
+                "description": "This param allows sorting the results via createdAt, name, tenantId"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query",
+                "description": "This param can be used together with sortBy and define the order as ACS or DESC"
+              },
+              {
+                "name": "_tenantIds",
+                "value": "",
+                "type": "query",
+                "description": "This param allows passing specific tenantIds and getting only these accounts (tenants) data"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all accounts (tenants) for an environment.\n\nSupports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).\n\nYou can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200."
+        },
+        {
+          "info": {
+            "name": "Get an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v2/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an account (tenant) by its identifier.\n\nIf the account (tenant) cannot be found, an empty array is returned.\n\nProvide the account (tenant) ID as a path parameter.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Update an Account (tenant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/tenants/v2/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an account (tenant).\n\nProvide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

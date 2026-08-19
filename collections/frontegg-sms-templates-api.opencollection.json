@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations SMS Templates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets Vendor SMS Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the SMS templates configured for your environment."
+        },
+        {
+          "info": {
+            "name": "Gets Vendor SMS Template by Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to retrieve."
+        },
+        {
+          "info": {
+            "name": "Create or Update a Vendor SMS Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update an SMS template by type.\n\nProvide the `type` as a path parameter and include the SMS template details in the request body."
+        },
+        {
+          "info": {
+            "name": "Deletes Vendor SMS Template by Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to delete."
+        },
+        {
+          "info": {
+            "name": "Gets Vendor Default SMS Template by Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates/:type/default",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the default SMS template by type.\n\nProvide the `type` as a path parameter to specify which default SMS template to retrieve."
+        },
+        {
+          "info": {
+            "name": "Gets All Vendor Default SMS Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/sms/templates/default/all",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets All Vendor Default SMS Templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

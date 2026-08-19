@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "3ba80301-8872-48a9-a01b-36840d7de39f",
+      "name": "Account Migration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91b13a5a-3901-466a-8898-7e08197a2f51",
+          "name": "Migrate Accounts (tenants)",
+          "request": {
+            "name": "Migrate Accounts (tenants)",
+            "description": {
+              "content": "Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "tenants"
+              ],
+              "host": [
+                "{{resources-migrations-v1-tenants-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenants\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ef76f44-a994-407a-b63b-ab11f992f770",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-tenants-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenants\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db11e9b9-a09d-4b53-8ccd-b6189caede42",
+          "name": "Accounts (tenants) Migration Status",
+          "request": {
+            "name": "Accounts (tenants) Migration Status",
+            "description": {
+              "content": "Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "tenants",
+                "status",
+                ":migrationId"
+              ],
+              "host": [
+                "{{resources-migrations-v1-tenants-status-migrationId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "migrationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dabe62f8-0db8-4866-b1a2-bb0aa5fab537",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "tenants",
+                    "status",
+                    ":migrationId"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-tenants-status-migrationId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "migrationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-migrations-v1-tenants-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-migrations-v1-tenants-status-migrationId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "2105d377-d028-4a82-98e7-a042b202a7b8",
+    "name": "Multi-Apps Overview Account Invitations Account Migration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

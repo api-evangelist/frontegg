@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Feature Flags API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feature Flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/feature-flags/v1",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of the results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "filter",
+                "value": "search-text",
+                "type": "query",
+                "description": "Search input, searchable by `name`"
+              },
+              {
+                "name": "orderBy",
+                "value": "name",
+                "type": "query",
+                "description": "Field to order results by create date (`createdAt`) or name (`name`)"
+              },
+              {
+                "name": "sortType",
+                "value": "ASC",
+                "type": "query",
+                "description": "Sort type, ASC for ascending, DESC for descending"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields)."
+        },
+        {
+          "info": {
+            "name": "Create Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/feature-flags/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts."
+        },
+        {
+          "info": {
+            "name": "Get Single Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details."
+        },
+        {
+          "info": {
+            "name": "Update Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata."
+        },
+        {
+          "info": {
+            "name": "Delete Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/feature-flags/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Entitlements API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2",
+            "params": [
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Page offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sortType",
+                "value": "DESC",
+                "type": "query",
+                "description": "Sort type, `ASC` for ascending, `DESC` for descending"
+              },
+              {
+                "name": "planId",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "UUID string representing the plan ID"
+              },
+              {
+                "name": "planIds",
+                "value": "[\"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"]",
+                "type": "query",
+                "description": "UUIDs string array representing the plan IDs"
+              },
+              {
+                "name": "assignLevel",
+                "value": "User",
+                "type": "query",
+                "description": "Assign level, `USER` for user-level entitlements, `TENANT` for tenant-level entitlements"
+              },
+              {
+                "name": "orderBy",
+                "value": "expirationDate",
+                "type": "query",
+                "description": "Field to order results by date (`createdAt`) or expiration date (`expirationDate`)"
+              },
+              {
+                "name": "userIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated user IDs to filter results by"
+              },
+              {
+                "name": "tenantIds",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "Comma separated account (tenant) IDs to filter results by"
+              },
+              {
+                "name": "withRelations",
+                "value": "",
+                "type": "query",
+                "description": "Boolean value to include related entities in the response"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`)."
+        },
+        {
+          "info": {
+            "name": "Create Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings."
+        },
+        {
+          "info": {
+            "name": "Batch Create Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users."
+        },
+        {
+          "info": {
+            "name": "Batch Update Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties."
+        },
+        {
+          "info": {
+            "name": "Batch Delete Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/batch",
+            "params": [
+              {
+                "name": "ids",
+                "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
+                "type": "query",
+                "description": "UUID string that represents the entitlement ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements."
+        },
+        {
+          "info": {
+            "name": "Get Single Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata."
+        },
+        {
+          "info": {
+            "name": "Update Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify."
+        },
+        {
+          "info": {
+            "name": "Delete Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/entitlements/v2/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

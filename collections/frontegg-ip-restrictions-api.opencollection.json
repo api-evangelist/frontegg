@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations IP Restrictions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IP Restrictions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IP Restriction Configuration (ALLOW/BLOCK)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip/config",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the IP restriction configuration for an account (tenant).\n\nThe configuration defines whether IP restrictions are set to ALLOW or BLOCK."
+        },
+        {
+          "info": {
+            "name": "Create or Update IP Restriction Configuration (ALLOW/BLOCK)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip/config",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update the IP restriction configuration.\n\nYou can configure IP restrictions as either ALLOW or BLOCK."
+        },
+        {
+          "info": {
+            "name": "Get All IP Restrictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve the IP restrictions for an account (tenant)."
+        },
+        {
+          "info": {
+            "name": "Create IP Restriction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or update an IP restriction for an account (tenant).\n\nProvide the required values as objects in the request body. Refer to the parameter documentation for the list of supported values."
+        },
+        {
+          "info": {
+            "name": "Test Current IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip/verify",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check if the current IP is allowed based on the IP restriction configuration."
+        },
+        {
+          "info": {
+            "name": "Test Current IP Is in Allow List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip/verify/allow",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verifies if the current IP address is in the allow list for your environment."
+        },
+        {
+          "info": {
+            "name": "Delete IP Restriction by IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/restrictions/ip/:id",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an IP restriction.\n\nProvide the IP restriction ID as a path parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1697 @@
+{
+  "item": [
+    {
+      "id": "fc3fd880-aaba-48a5-a7c6-9521a0383e3b",
+      "name": "User Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32683f25-1e9e-4837-ba91-be054ff4c26d",
+          "name": "Get All Groups",
+          "request": {
+            "name": "Get All Groups",
+            "description": {
+              "content": "Retrieve all user groups for an account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1"
+              ],
+              "host": [
+                "{{resources-groups-v1-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_groupsRelations",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2af02c2d-fa99-49b3-8af0-652a6899ab8b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_groupsRelations",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 4344.3528185635405,\n          \"createdAt\": \"1958-05-28T08:36:44.289Z\",\n          \"updatedAt\": \"1961-08-22T12:32:41.427Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 404.0372993449215,\n          \"createdAt\": \"1978-12-17T00:35:46.331Z\",\n          \"updatedAt\": \"2025-07-04T16:52:43.622Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1985-05-31T21:04:36.576Z\",\n          \"activatedForTenant\": true\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1949-10-31T22:21:25.868Z\",\n          \"activatedForTenant\": true\n        }\n      ],\n      \"managedBy\": \"scim2\",\n      \"createdAt\": \"2025-06-27T23:04:16.576Z\",\n      \"updatedAt\": \"1977-02-17T03:28:40.733Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 3608.210917771272,\n          \"createdAt\": \"1960-11-23T16:10:55.086Z\",\n          \"updatedAt\": \"2008-04-02T01:47:55.244Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 4253.797225358531,\n          \"createdAt\": \"2017-06-23T16:30:01.912Z\",\n          \"updatedAt\": \"1983-02-03T16:47:24.041Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1998-10-11T21:40:34.440Z\",\n          \"activatedForTenant\": true\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2022-03-18T06:28:25.107Z\",\n          \"activatedForTenant\": false\n        }\n      ],\n      \"managedBy\": \"frontegg\",\n      \"createdAt\": \"2021-11-21T00:21:29.222Z\",\n      \"updatedAt\": \"1960-09-25T01:29:58.793Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e02db69d-f9f0-499d-abd0-fe153854d4cb",
+          "name": "Create Group",
+          "request": {
+            "name": "Create Group",
+            "description": {
+              "content": "Create a user group for an account (tenant).\n\nProvide the group details in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1"
+              ],
+              "host": [
+                "{{resources-groups-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4ecba28-2117-43df-9072-570907f1c363",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"{}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"color\": \"string\",\n  \"description\": \"string\",\n  \"metadata\": \"string\",\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 9194.104070439611,\n      \"createdAt\": \"1966-08-25T09:27:16.475Z\",\n      \"updatedAt\": \"1992-11-12T11:56:32.479Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 2068.283934109402,\n      \"createdAt\": \"1976-02-12T01:10:24.711Z\",\n      \"updatedAt\": \"1955-10-11T21:36:59.478Z\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"2003-08-06T01:15:54.191Z\",\n      \"activatedForTenant\": true\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"1996-06-19T22:04:46.694Z\",\n      \"activatedForTenant\": true\n    }\n  ],\n  \"managedBy\": \"frontegg\",\n  \"createdAt\": \"1993-11-09T15:14:45.461Z\",\n  \"updatedAt\": \"1983-02-25T14:00:59.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "198ee123-7070-43ab-80ac-4d9945c7431a",
+          "name": "Get Groups by Ids",
+          "request": {
+            "name": "Get Groups by Ids",
+            "description": {
+              "content": "Retrieve user groups by given IDs for an account (tenant).\n\nProvide the group IDs in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                "bulkGet"
+              ],
+              "host": [
+                "{{resources-groups-v1-bulkGet-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_groupsRelations",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupsIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4d090ee-9a63-4c59-9f60-aef25571393e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    "bulkGet"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-bulkGet-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_groupsRelations",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupsIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 3592.5639750220785,\n          \"createdAt\": \"2001-02-12T15:13:20.441Z\",\n          \"updatedAt\": \"1962-04-24T14:42:51.243Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 6498.577365283704,\n          \"createdAt\": \"2009-10-31T10:14:42.459Z\",\n          \"updatedAt\": \"1980-01-22T07:56:48.759Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1973-03-14T05:26:37.268Z\",\n          \"activatedForTenant\": false\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2007-07-17T20:59:09.378Z\",\n          \"activatedForTenant\": true\n        }\n      ],\n      \"managedBy\": \"scim2\",\n      \"createdAt\": \"1974-11-13T13:12:29.912Z\",\n      \"updatedAt\": \"1959-09-20T19:50:05.405Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 8087.581801543728,\n          \"createdAt\": \"1971-12-30T08:31:35.819Z\",\n          \"updatedAt\": \"1992-01-14T21:45:00.857Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 6141.1972227458755,\n          \"createdAt\": \"2024-05-21T08:40:00.592Z\",\n          \"updatedAt\": \"1987-11-08T08:01:09.055Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2019-11-15T22:29:54.494Z\",\n          \"activatedForTenant\": false\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1957-12-18T06:34:22.597Z\",\n          \"activatedForTenant\": true\n        }\n      ],\n      \"managedBy\": \"frontegg\",\n      \"createdAt\": \"1950-04-23T10:20:37.767Z\",\n      \"updatedAt\": \"2012-11-11T01:10:16.023Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b93f53-520b-4533-adde-756d8d778b0f",
+          "name": "Update Group",
+          "request": {
+            "name": "Update Group",
+            "description": {
+              "content": "Update a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter and the updated group details in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-groups-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c580bf3b-db51-4c78-b137-9b0fbca966d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"color\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"{}\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"color\": \"string\",\n  \"description\": \"string\",\n  \"metadata\": \"string\",\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 9194.104070439611,\n      \"createdAt\": \"1966-08-25T09:27:16.475Z\",\n      \"updatedAt\": \"1992-11-12T11:56:32.479Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 2068.283934109402,\n      \"createdAt\": \"1976-02-12T01:10:24.711Z\",\n      \"updatedAt\": \"1955-10-11T21:36:59.478Z\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"2003-08-06T01:15:54.191Z\",\n      \"activatedForTenant\": true\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"1996-06-19T22:04:46.694Z\",\n      \"activatedForTenant\": true\n    }\n  ],\n  \"managedBy\": \"frontegg\",\n  \"createdAt\": \"1993-11-09T15:14:45.461Z\",\n  \"updatedAt\": \"1983-02-25T14:00:59.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91e5fca1-a4fd-4ebb-8d28-1921ffaec616",
+          "name": "Delete Group",
+          "request": {
+            "name": "Delete Group",
+            "description": {
+              "content": "Delete a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-groups-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "28b2257c-e942-436c-bcea-3b153f9a89d2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ef63ccc-605d-44bf-b9ae-98cb9308804e",
+          "name": "Get Group by ID",
+          "request": {
+            "name": "Get Group by ID",
+            "description": {
+              "content": "Retrieve a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-groups-v1-id-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_groupsRelations",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1580238-3d07-4c65-9f85-4197f610723f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_groupsRelations",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"color\": \"string\",\n  \"description\": \"string\",\n  \"metadata\": \"string\",\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 9194.104070439611,\n      \"createdAt\": \"1966-08-25T09:27:16.475Z\",\n      \"updatedAt\": \"1992-11-12T11:56:32.479Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 2068.283934109402,\n      \"createdAt\": \"1976-02-12T01:10:24.711Z\",\n      \"updatedAt\": \"1955-10-11T21:36:59.478Z\"\n    }\n  ],\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"2003-08-06T01:15:54.191Z\",\n      \"activatedForTenant\": true\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"name\": \"string\",\n      \"profilePictureUrl\": \"string\",\n      \"createdAt\": \"1996-06-19T22:04:46.694Z\",\n      \"activatedForTenant\": true\n    }\n  ],\n  \"managedBy\": \"frontegg\",\n  \"createdAt\": \"1993-11-09T15:14:45.461Z\",\n  \"updatedAt\": \"1983-02-25T14:00:59.640Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96373f6f-3c00-462b-91e7-35ed1577c2ff",
+          "name": "Get Groups Configuration",
+          "request": {
+            "name": "Get Groups Configuration",
+            "description": {
+              "content": "Retrieve the user group configuration for your environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                "config"
+              ],
+              "host": [
+                "{{resources-groups-v1-config-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d4bcadd7-f3b9-44a0-8930-a090d4fab1c2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    "config"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-config-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"rolesEnabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8dbeeb9-6cbe-4c26-b258-85215ed0e8d9",
+          "name": "Create or Update Groups Configuration",
+          "request": {
+            "name": "Create or Update Groups Configuration",
+            "description": {
+              "content": "Create or update the user group configuration for your environment.\n\nProvide the configuration details in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                "config"
+              ],
+              "host": [
+                "{{resources-groups-v1-config-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": true,\n  \"rolesEnabled\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffc1ce4a-c1ff-40b8-b485-46f7c958a299",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    "config"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-config-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": true,\n  \"rolesEnabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5788df1-d571-4e16-8ca4-066f5de897cd",
+          "name": "Add Roles to Group",
+          "request": {
+            "name": "Add Roles to Group",
+            "description": {
+              "content": "Add roles to an existing user group.\n\nA user can assign only roles that are lower than their own.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":groupId",
+                "roles"
+              ],
+              "host": [
+                "{{resources-groups-v1-groupId-roles-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4619122e-b3a4-475b-ada0-ae710f9eda49",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":groupId",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-groupId-roles-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleIds\": [\n    \"5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae\",\n    \"8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff294958-23c3-4c95-adcc-cf3d928ac352",
+          "name": "Remove Roles From Group",
+          "request": {
+            "name": "Remove Roles From Group",
+            "description": {
+              "content": "Remove roles from an existing user group.\n\nProvide the roles to remove in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":groupId",
+                "roles"
+              ],
+              "host": [
+                "{{resources-groups-v1-groupId-roles-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "70ec26be-d3c8-49dc-a261-ecf95ee7a697",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":groupId",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-groupId-roles-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roleIds\": [\n    \"5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae\",\n    \"8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3431f112-5fc3-4fa7-86f3-da27c410e991",
+          "name": "Add Users to Group",
+          "request": {
+            "name": "Add Users to Group",
+            "description": {
+              "content": "Add users to an existing user group.\n\nOnly users with higher roles than the group's roles are allowed to perform this action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":groupId",
+                "users"
+              ],
+              "host": [
+                "{{resources-groups-v1-groupId-users-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9855457f-5528-43c7-8b81-ec916ef2cf51",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":groupId",
+                    "users"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-groupId-users-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userIds\": [\n    \"262io276-3c5v-9y31-ba03-281674a89d4c\",\n    \"eeooc819-87dd-1cdd-b81d-e8829vm9d684\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ea988f4-2671-44c1-a8c2-c7044031e565",
+          "name": "Remove Users From Group",
+          "request": {
+            "name": "Remove Users From Group",
+            "description": {
+              "content": "Remove users from an existing user group.\n\nProvide the users to remove in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v1",
+                ":groupId",
+                "users"
+              ],
+              "host": [
+                "{{resources-groups-v1-groupId-users-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7d9c77d-c9b7-441c-97b5-c46ed5bd725b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v1",
+                    ":groupId",
+                    "users"
+                  ],
+                  "host": [
+                    "{{resources-groups-v1-groupId-users-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userIds\": [\n    \"262io276-3c5v-9y31-ba03-281674a89d4c\",\n    \"eeooc819-87dd-1cdd-b81d-e8829vm9d684\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f3c89c9-9130-4524-a1f1-73b1c8040374",
+          "name": "Get All Groups Paginated",
+          "request": {
+            "name": "Get All Groups Paginated",
+            "description": {
+              "content": "Retrieve all user groups for an account (tenant), with pagination.\n\nUse query parameters to control pagination and optionally include related group data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "groups",
+                "v2"
+              ],
+              "host": [
+                "{{resources-groups-v2-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_groupsRelations",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "<number>",
+                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "_order",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "edaee39c-104b-431b-9a52-c3e50d2e5dc8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "groups",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{resources-groups-v2-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_groupsRelations",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "_sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_order",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 4756.642726306473,\n          \"createdAt\": \"2017-02-13T19:25:07.815Z\",\n          \"updatedAt\": \"1969-03-15T18:38:35.925Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 3476.986212288089,\n          \"createdAt\": \"1962-12-02T03:27:34.794Z\",\n          \"updatedAt\": \"1955-03-21T11:21:00.793Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2026-06-05T08:22:16.584Z\",\n          \"activatedForTenant\": true\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2004-03-21T01:54:10.644Z\",\n          \"activatedForTenant\": true\n        }\n      ],\n      \"managedBy\": \"frontegg\",\n      \"createdAt\": \"1970-06-01T08:47:27.126Z\",\n      \"updatedAt\": \"1950-08-05T04:32:55.075Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"color\": \"string\",\n      \"description\": \"string\",\n      \"metadata\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": false,\n          \"level\": 2058.8187559752223,\n          \"createdAt\": \"2019-12-23T03:34:51.107Z\",\n          \"updatedAt\": \"1955-08-16T09:32:49.999Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 5348.254271704048,\n          \"createdAt\": \"1984-04-26T08:06:38.352Z\",\n          \"updatedAt\": \"1960-09-15T14:42:45.942Z\"\n        }\n      ],\n      \"users\": [\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"1949-08-23T19:40:33.360Z\",\n          \"activatedForTenant\": true\n        },\n        {\n          \"id\": \"string\",\n          \"email\": \"string\",\n          \"name\": \"string\",\n          \"profilePictureUrl\": \"string\",\n          \"createdAt\": \"2025-02-06T19:03:16.304Z\",\n          \"activatedForTenant\": true\n        }\n      ],\n      \"managedBy\": \"frontegg\",\n      \"createdAt\": \"1995-09-07T03:49:08.167Z\",\n      \"updatedAt\": \"1996-08-25T06:19:25.260Z\"\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 4150.25335813913,\n    \"totalPages\": 1219.096083410537\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-bulkGet-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-config-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-groupId-roles-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v1-groupId-users-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-groups-v2-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c43458f-2afa-4dc7-bb76-79e19d25b720",
+    "name": "Multi-Apps Overview Account Invitations User Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "239bcc1b-f17e-4fdf-9aa0-c8e7f7b2d090",
+      "name": "Data Migration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e75e375b-c026-4dfe-9c1e-c9a02eb4fc18",
+          "name": "Migrate From Auth0",
+          "request": {
+            "name": "Migrate From Auth0",
+            "description": {
+              "content": "Migrate users from Auth0 into your environment.\n\nProvide the `domain`, `clientId`, `secret`, and `tenantIdFieldName` parameters in the request body. These values can be obtained from your Auth0 account (tenant) configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "auth0"
+              ],
+              "host": [
+                "{{resources-migrations-v1-auth0-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"tenantIdFieldName\": \"<string>\",\n  \"isTenantIdOnUserMetadata\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b19ba52c-2bc0-4f6c-832b-254d4bed7fcb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "auth0"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-auth0-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"tenantIdFieldName\": \"<string>\",\n  \"isTenantIdOnUserMetadata\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9bea7e5-16e4-4b37-98b2-97217b927050",
+          "name": "Migrate a Single User",
+          "request": {
+            "name": "Migrate a Single User",
+            "description": {
+              "content": "Migrate a user into your environment.\n\nProvide the required fields: user's email, `tenantId`, and metadata. You can also include additional properties such as the user's name, phone number, hashed password, and other optional attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "local"
+              ],
+              "host": [
+                "{{resources-migrations-v1-local-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"passwordHash\": \"<string>\",\n  \"passwordHashType\": \"<string>\",\n  \"passwordHashConfig\": \"<string>\",\n  \"authenticatorAppMfaSecret\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"phoneNumberType\": \"<string>\",\n  \"provider\": \"local\",\n  \"metadata\": \"<string>\",\n  \"vendorMetadata\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"username\": \"<string>\",\n  \"verifyUser\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20e30faa-6f14-4cca-af78-88f81551f66d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "local"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-local-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"profilePictureUrl\": \"<string>\",\n  \"passwordHash\": \"<string>\",\n  \"passwordHashType\": \"<string>\",\n  \"passwordHashConfig\": \"<string>\",\n  \"authenticatorAppMfaSecret\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"phoneNumberType\": \"<string>\",\n  \"provider\": \"local\",\n  \"metadata\": \"<string>\",\n  \"vendorMetadata\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"username\": \"<string>\",\n  \"verifyUser\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"name\": \"string\",\n  \"profilePictureUrl\": \"string\",\n  \"sub\": \"string\",\n  \"verified\": false,\n  \"mfaEnrolled\": false,\n  \"roles\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": true,\n      \"level\": 5731.174038215165,\n      \"createdAt\": \"1966-01-28T12:15:21.497Z\",\n      \"updatedAt\": \"1968-05-10T07:47:52.440Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 3025.814472654108,\n      \"createdAt\": \"1984-01-13T23:24:35.928Z\",\n      \"updatedAt\": \"1974-08-26T11:53:50.088Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"permissions\": [\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2004-12-30T05:26:12.375Z\",\n      \"updatedAt\": \"2021-06-09T02:21:02.471Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    },\n    {\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1959-02-16T15:32:22.804Z\",\n      \"updatedAt\": \"1964-10-21T13:06:59.100Z\",\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"categoryId\": \"string\",\n      \"fePermission\": false\n    }\n  ],\n  \"provider\": \"string\",\n  \"tenantId\": \"string\",\n  \"tenantIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tenants\": [\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 1978.457313379558,\n          \"createdAt\": \"1977-06-30T12:26:54.935Z\",\n          \"updatedAt\": \"1999-12-09T22:04:35.028Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": true,\n          \"firstUserRole\": true,\n          \"level\": 7537.481081597516,\n          \"createdAt\": \"1952-02-01T22:33:17.731Z\",\n          \"updatedAt\": \"2013-05-23T05:55:09.738Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1964-12-20T20:55:58.667Z\",\n      \"isDisabled\": true\n    },\n    {\n      \"tenantId\": \"string\",\n      \"roles\": [\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": false,\n          \"level\": 6121.681619997549,\n          \"createdAt\": \"1968-03-31T13:46:19.361Z\",\n          \"updatedAt\": \"1948-05-23T14:34:29.295Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"vendorId\": \"string\",\n          \"tenantId\": \"string\",\n          \"key\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"isDefault\": false,\n          \"firstUserRole\": true,\n          \"level\": 4564.789446877437,\n          \"createdAt\": \"1960-08-08T09:55:51.986Z\",\n          \"updatedAt\": \"1960-02-03T07:23:59.540Z\",\n          \"permissions\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"temporaryExpirationDate\": \"1970-11-11T13:22:15.234Z\",\n      \"isDisabled\": false\n    }\n  ],\n  \"metadata\": \"string\",\n  \"vendorMetadata\": \"string\",\n  \"createdAt\": \"2003-02-19T09:19:39.495Z\",\n  \"lastLogin\": \"2019-12-07T04:11:39.794Z\",\n  \"subAccountAccessAllowed\": true,\n  \"mfaBypass\": true,\n  \"phoneNumber\": \"string\",\n  \"activatedForTenant\": true,\n  \"isLocked\": false,\n  \"invisible\": true,\n  \"superUser\": false,\n  \"externalId\": \"string\",\n  \"managedBy\": \"frontegg\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4348c143-79bd-414a-bf90-3cc0b40f1891",
+          "name": "Migrate Users in Bulk",
+          "request": {
+            "name": "Migrate Users in Bulk",
+            "description": {
+              "content": "Migrate users in bulk into your environment.\n\nProvide an array of `users` in the request body. Each user object must include the user's `email` and `tenantId`, which specifies the user's parent account. You can include additional fields as needed to store more information. If you need to store custom data, use the `metadata` property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "local",
+                "bulk"
+              ],
+              "host": [
+                "{{resources-migrations-v1-local-bulk-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"tenantId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"verifyUser\": false\n    },\n    {\n      \"tenantId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"verifyUser\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3f56905-5145-4d77-9da3-87aa467910d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "local",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-local-bulk-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"tenantId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"verifyUser\": false\n    },\n    {\n      \"tenantId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"verifyUser\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"migrationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2f13d28-0b44-45bd-8206-5e0331da8e28",
+          "name": "Check Status of Bulk Migration",
+          "request": {
+            "name": "Check Status of Bulk Migration",
+            "description": {
+              "content": "Retrieve the status of a pending or completed migration.\n\nThe response includes the migration's `state`, the number of migrated users, and any errors that occurred during the migration. The response payload is limited to 1,000 users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v1",
+                "local",
+                "bulk",
+                "status",
+                ":migrationId"
+              ],
+              "host": [
+                "{{resources-migrations-v1-local-bulk-status-migrationId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "migrationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "85062d9d-5a55-4f24-90ab-aa4efdb3b1d3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v1",
+                    "local",
+                    "bulk",
+                    "status",
+                    ":migrationId"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v1-local-bulk-status-migrationId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "migrationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e43d333d-39cc-4470-80c4-b5c62f48a2c8",
+          "name": "Migrate Vendor Users in Bulk",
+          "request": {
+            "name": "Migrate Vendor Users in Bulk",
+            "description": {
+              "content": "Migrate users in bulk to your environment. Provide an array of user objects, each containing `email` and `tenantId`. Use the `metadata` property to store custom information for each user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "migrations",
+                "v2",
+                "local",
+                "bulk"
+              ],
+              "host": [
+                "{{resources-migrations-v2-local-bulk-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"emails\": [\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"emails\": [\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d48c3b87-0106-44fd-a114-685617fe67f4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "migrations",
+                    "v2",
+                    "local",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{resources-migrations-v2-local-bulk-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"emails\": [\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"tenantId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"profilePictureUrl\": \"<string>\",\n      \"passwordHash\": \"<string>\",\n      \"passwordHashType\": \"<string>\",\n      \"passwordHashConfig\": \"<string>\",\n      \"authenticatorAppMfaSecret\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneNumberType\": \"<string>\",\n      \"provider\": \"local\",\n      \"metadata\": \"<string>\",\n      \"vendorMetadata\": \"<string>\",\n      \"externalId\": \"<string>\",\n      \"username\": \"<string>\",\n      \"emails\": [\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        },\n        {\n          \"email\": \"<email>\",\n          \"primary\": \"<boolean>\",\n          \"verified\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"migrationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-migrations-v1-auth0-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-migrations-v1-local-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-migrations-v1-local-bulk-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-migrations-v1-local-bulk-status-migrationId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-migrations-v2-local-bulk-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "bb494c28-34b3-493e-b33a-312f4de13315",
+    "name": "Multi-Apps Overview Account Invitations Data Migration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

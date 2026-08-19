@@ -1,0 +1,1367 @@
+{
+  "item": [
+    {
+      "id": "2377cc2b-4b7e-40ab-b504-843b659fe144",
+      "name": "Plans",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d47bbab9-ac8e-490f-9dbe-84ac256f3bd0",
+          "name": "Get Account (tenant) Plans",
+          "request": {
+            "name": "Get Account (tenant) Plans",
+            "description": {
+              "content": "Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                "tenant",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-plans-v1-tenant-tenantId-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Page offset of the results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search input, searchable by `name`"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortType",
+                  "value": "<string>",
+                  "description": "Sort type, ASC for ascending, DESC for descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeNonEntitledPlans",
+                  "value": "<boolean>",
+                  "description": "Boolean value to include related entities in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureKeys",
+                  "value": "<string>",
+                  "description": "Filter plans that contain features with these keys"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureKeys",
+                  "value": "<string>",
+                  "description": "Filter plans that contain features with these keys"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ac11379-852c-4603-af3e-b499f7fe4641",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    "tenant",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-tenant-tenantId-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "search-text"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "name"
+                    },
+                    {
+                      "key": "sortType",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "excludeNonEntitledPlans",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "featureKeys",
+                      "value": "feature-key-1"
+                    },
+                    {
+                      "key": "featureKeys",
+                      "value": "feature-key-2"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"assignOnSignup\": false,\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTreatment\": \"true\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"description\": \"This is a test plan\",\n      \"metadata\": {},\n      \"defaultTimeLimitation\": 6553.29318587395,\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"features\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature\",\n        \"key\": \"test-feature\",\n        \"permissions\": [\n          \"permission.read\",\n          \"permission.write\"\n        ]\n      },\n      \"entitlements\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"createdAt\": \"2022-01-01T12:00:00\",\n        \"plan\": {\n          \"description\": \"Get the related plan object of the entitlement, in case `withRelations` is set to `true`\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"expirationDate\": \"2022-01-01T12:00:00\",\n        \"updatedAt\": \"2022-01-01T12:00:00\"\n      }\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"assignOnSignup\": false,\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTreatment\": \"true\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"description\": \"This is a test plan\",\n      \"metadata\": {},\n      \"defaultTimeLimitation\": 5521.093905431824,\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"features\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature\",\n        \"key\": \"test-feature\",\n        \"permissions\": [\n          \"permission.read\",\n          \"permission.write\"\n        ]\n      },\n      \"entitlements\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"createdAt\": \"2022-01-01T12:00:00\",\n        \"plan\": {\n          \"description\": \"Get the related plan object of the entitlement, in case `withRelations` is set to `true`\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"expirationDate\": \"2022-01-01T12:00:00\",\n        \"updatedAt\": \"2022-01-01T12:00:00\"\n      }\n    }\n  ],\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "869fff90-fcab-4a96-9029-badbf25e2f61",
+          "name": "Get Plans",
+          "request": {
+            "name": "Get Plans",
+            "description": {
+              "content": "Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1"
+              ],
+              "host": [
+                "{{resources-plans-v1-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Page offset of the results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search input, searchable by `name`"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortType",
+                  "value": "<string>",
+                  "description": "Sort type, ASC for ascending, DESC for descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureIds",
+                  "value": "<string>",
+                  "description": "Comma separated feature IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureIds",
+                  "value": "<string>",
+                  "description": "Comma separated feature IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "Comma separated user IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "userIds",
+                  "value": "<string>",
+                  "description": "Comma separated user IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Comma separated account (tenant) IDs to filter results by"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenantIds",
+                  "value": "<string>",
+                  "description": "Comma separated account (tenant) IDs to filter results by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ca7b56d7-1aa2-4441-b56e-4071790a9457",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "search-text"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "name"
+                    },
+                    {
+                      "key": "sortType",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "featureIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "featureIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenantIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"assignOnSignup\": true,\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTreatment\": \"true\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"description\": \"This is a test plan\",\n      \"metadata\": {},\n      \"defaultTimeLimitation\": 4832.701756637304,\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"features\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature\",\n        \"key\": \"test-feature\",\n        \"permissions\": [\n          \"permission.read\",\n          \"permission.write\"\n        ]\n      },\n      \"entitlements\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"createdAt\": \"2022-01-01T12:00:00\",\n        \"plan\": {\n          \"description\": \"Get the related plan object of the entitlement, in case `withRelations` is set to `true`\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"expirationDate\": \"2022-01-01T12:00:00\",\n        \"updatedAt\": \"2022-01-01T12:00:00\"\n      }\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"assignOnSignup\": false,\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTreatment\": \"true\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"description\": \"This is a test plan\",\n      \"metadata\": {},\n      \"defaultTimeLimitation\": 1295.3079249060406,\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"features\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature\",\n        \"key\": \"test-feature\",\n        \"permissions\": [\n          \"permission.read\",\n          \"permission.write\"\n        ]\n      },\n      \"entitlements\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"createdAt\": \"2022-01-01T12:00:00\",\n        \"plan\": {\n          \"description\": \"Get the related plan object of the entitlement, in case `withRelations` is set to `true`\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"expirationDate\": \"2022-01-01T12:00:00\",\n        \"updatedAt\": \"2022-01-01T12:00:00\"\n      }\n    }\n  ],\n  \"hasNext\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ce41636-48f5-46c3-90a9-5cb3d9ebb92f",
+          "name": "Create Plan",
+          "request": {
+            "name": "Create Plan",
+            "description": {
+              "content": "Create a new plan with features, rules, default treatment, and optional auto-assignment settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1"
+              ],
+              "host": [
+                "{{resources-plans-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"defaultTreatment\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"defaultTimeLimitation\": \"<number>\",\n  \"assignOnSignup\": false,\n  \"featureKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "845f9928-6ca2-41c9-87e0-5da2e75264bd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Test Plan\",\n  \"defaultTreatment\": \"true\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"description\": \"This is a test plan\",\n  \"metadata\": \"{ \\\"some-key\\\": \\\"some-value\\\" }\",\n  \"defaultTimeLimitation\": \"<number>\",\n  \"assignOnSignup\": false,\n  \"featureKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Plan\",\n  \"assignOnSignup\": false,\n  \"createdAt\": \"2022-01-01T00:00:00\",\n  \"defaultTreatment\": \"true\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"description\": \"This is a test plan\",\n  \"metadata\": {},\n  \"defaultTimeLimitation\": 357.50082332240527,\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"features\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Feature\",\n    \"key\": \"test-feature\",\n    \"permissions\": [\n      \"permission.read\",\n      \"permission.write\"\n    ]\n  },\n  \"entitlements\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"createdAt\": \"2022-01-01T12:00:00\",\n    \"plan\": {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTimeLimitation\": 9702.387552256707,\n      \"description\": \"This is a test plan\",\n      \"updatedAt\": \"2022-01-01T00:00:00\"\n    },\n    \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"expirationDate\": \"2022-01-01T12:00:00\",\n    \"updatedAt\": \"2022-01-01T12:00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1726f19d-9553-4009-a910-8b5c998bccae",
+          "name": "Get Single Plan",
+          "request": {
+            "name": "Get Single Plan",
+            "description": {
+              "content": "Retrieve a single plan by its unique identifier, including linked features and entitlements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2cdc0888-08f4-441e-ac20-2783c23be141",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Plan\",\n  \"assignOnSignup\": false,\n  \"createdAt\": \"2022-01-01T00:00:00\",\n  \"defaultTreatment\": \"true\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"description\": \"This is a test plan\",\n  \"metadata\": {},\n  \"defaultTimeLimitation\": 357.50082332240527,\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"features\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Feature\",\n    \"key\": \"test-feature\",\n    \"permissions\": [\n      \"permission.read\",\n      \"permission.write\"\n    ]\n  },\n  \"entitlements\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"createdAt\": \"2022-01-01T12:00:00\",\n    \"plan\": {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTimeLimitation\": 9702.387552256707,\n      \"description\": \"This is a test plan\",\n      \"updatedAt\": \"2022-01-01T00:00:00\"\n    },\n    \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"expirationDate\": \"2022-01-01T12:00:00\",\n    \"updatedAt\": \"2022-01-01T12:00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f87e3c3-7135-46d2-b218-0f91610b2bd3",
+          "name": "Update Plan",
+          "request": {
+            "name": "Update Plan",
+            "description": {
+              "content": "Update an existing plan's name, features, rules, default treatment, or auto-assignment settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"defaultTreatment\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"defaultTimeLimitation\": \"<number>\",\n  \"assignOnSignup\": \"<boolean>\",\n  \"featureKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73c649b6-26ac-4503-8c77-4607d67057f6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Test Plan\",\n  \"defaultTreatment\": \"true\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"description\": \"This is a test plan\",\n  \"metadata\": \"{ \\\"some-key\\\": \\\"some-value\\\" }\",\n  \"defaultTimeLimitation\": \"<number>\",\n  \"assignOnSignup\": \"<boolean>\",\n  \"featureKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Plan\",\n  \"assignOnSignup\": false,\n  \"createdAt\": \"2022-01-01T00:00:00\",\n  \"defaultTreatment\": \"true\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"description\": \"This is a test plan\",\n  \"metadata\": {},\n  \"defaultTimeLimitation\": 357.50082332240527,\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"features\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Feature\",\n    \"key\": \"test-feature\",\n    \"permissions\": [\n      \"permission.read\",\n      \"permission.write\"\n    ]\n  },\n  \"entitlements\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"planId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"tenantId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"createdAt\": \"2022-01-01T12:00:00\",\n    \"plan\": {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Plan\",\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"defaultTimeLimitation\": 9702.387552256707,\n      \"description\": \"This is a test plan\",\n      \"updatedAt\": \"2022-01-01T00:00:00\"\n    },\n    \"userId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"expirationDate\": \"2022-01-01T12:00:00\",\n    \"updatedAt\": \"2022-01-01T12:00:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82c3a4af-e44b-498e-973a-a32375c24f1d",
+          "name": "Delete Plan",
+          "request": {
+            "name": "Delete Plan",
+            "description": {
+              "content": "Delete an existing plan by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "962d23f0-be11-4914-a5c0-8df8abcd4a48",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77769914-2581-4a73-a713-f66882b24834",
+          "name": "Get Plan Features",
+          "request": {
+            "name": "Get Plan Features",
+            "description": {
+              "content": "Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`)).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id",
+                "features"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-features-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Page offset of the results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Search input; Searchable fields: `name`"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "createdAt",
+                  "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortType",
+                  "value": "DESC",
+                  "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureIds",
+                  "value": "<string>",
+                  "description": "Comma separated feature IDs that can be used to filter the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureIds",
+                  "value": "<string>",
+                  "description": "Comma separated feature IDs that can be used to filter the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "permissionKeys",
+                  "value": "<string>",
+                  "description": "Comma separated permission keys that can be used to filter the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "permissionKeys",
+                  "value": "<string>",
+                  "description": "Comma separated permission keys that can be used to filter the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasFeatureFlag",
+                  "value": "<boolean>",
+                  "description": "Filter out features that are linked/not linked to feature-flag"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureKeys",
+                  "value": "<string>",
+                  "description": "Comma separated feature Keys that can be used to filter the results"
+                },
+                {
+                  "disabled": false,
+                  "key": "featureKeys",
+                  "value": "<string>",
+                  "description": "Comma separated feature Keys that can be used to filter the results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f5eacd1c-df8c-44e2-8ee7-bbb4ea1ebe9d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id",
+                    "features"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-features-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "search-text"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "key"
+                    },
+                    {
+                      "key": "sortType",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "featureIds",
+                      "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+                    },
+                    {
+                      "key": "permissionKeys",
+                      "value": "permission.read"
+                    },
+                    {
+                      "key": "permissionKeys",
+                      "value": "permission.write"
+                    },
+                    {
+                      "key": "hasFeatureFlag",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "featureKeys",
+                      "value": "test-feature"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature\",\n      \"key\": \"test-feature\",\n      \"permissions\": [\n        \"permission.read\",\n        \"permission.write\"\n      ]\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature\",\n      \"key\": \"test-feature\",\n      \"permissions\": [\n        \"permission.read\",\n        \"permission.write\"\n      ]\n    }\n  ],\n  \"hasNext\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23cb236d-ca20-4a9b-be3c-e68d0910724e",
+          "name": "Link Features to Plan",
+          "request": {
+            "name": "Link Features to Plan",
+            "description": {
+              "content": "Link multiple features to an existing plan by their feature IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id",
+                "features",
+                "link"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-features-link-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featuresIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d5332f6-d1bf-4583-9a06-868f230eafb4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id",
+                    "features",
+                    "link"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-features-link-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"featuresIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0caee0f3-8b59-4b76-bb39-e5a66584e0b2",
+          "name": "Unlink Features From Plan",
+          "request": {
+            "name": "Unlink Features From Plan",
+            "description": {
+              "content": "Unlink multiple features from an existing plan by their feature IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "plans",
+                "v1",
+                ":id",
+                "features",
+                "unlink"
+              ],
+              "host": [
+                "{{resources-plans-v1-id-features-unlink-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"featuresIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa61e737-81d7-4f0d-b962-f8ad5b2c513d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "plans",
+                    "v1",
+                    ":id",
+                    "features",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{resources-plans-v1-id-features-unlink-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"featuresIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-tenant-tenantId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-id-features-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-id-features-link-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/entitlements",
+      "key": "resources-plans-v1-id-features-unlink-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "ee85947e-eb27-4e66-966b-c89eedb56ca9",
+    "name": "Multi-Apps Overview Account Invitations Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

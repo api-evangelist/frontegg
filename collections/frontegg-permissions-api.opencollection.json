@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Permissions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all permissions configured for your environment.\n\nEach permission object includes the name, description, assigned roles, categories, and other defining information."
+        },
+        {
+          "info": {
+            "name": "Create Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new permission.\n\nProvide the permission information in the request body.\n\nThis route does not associate permissions with roles. Use the associate permission to roles route to manage role associations."
+        },
+        {
+          "info": {
+            "name": "Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/:permissionId",
+            "params": [
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing permission.\n\nProvide the permission ID as a path parameter to specify which permission to update, and send the updated permission information in the request body.\n\nThis route does not update role associations for the permission. Use the associate permission to roles route to manage role associations."
+        },
+        {
+          "info": {
+            "name": "Delete Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/:permissionId",
+            "params": [
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a permission.\n\nProvide the permission ID as a path parameter to specify which permission to delete. You can obtain the permission ID using the **Get permissions** API."
+        },
+        {
+          "info": {
+            "name": "Set a Permission to Multiple Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/:permissionId/roles",
+            "params": [
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Associate a permission with multiple roles.\n\nProvide the permission ID as a path parameter and include the role IDs in the request body as an array of strings. Any pre-existing role associations will remain.\n\nYou can obtain role IDs using the **Get roles** API."
+        },
+        {
+          "info": {
+            "name": "Set Permissions Classification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.frontegg.com/applications/resources/permissions/v1/classification",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Classify permissions for self-service usage.\n\nProvide an array of `permissionIds` and the classification `type` in the request body. This allows you to segregate which permissions will be used for self-service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

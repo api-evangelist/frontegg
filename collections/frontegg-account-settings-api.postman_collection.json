@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "20d0f3a1-681d-4377-bec7-7961ad300dbc",
+      "name": "Account Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f43318b-0edc-4fc0-8430-a0eee7f9b01e",
+          "name": "Get Account Settings",
+          "request": {
+            "name": "Get Account Settings",
+            "description": {
+              "content": "Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "account-settings",
+                "v1"
+              ],
+              "host": [
+                "{{resources-account-settings-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "17eee91e-bed3-44f3-b3a7-52cf8aa6be3a",
+              "name": "Settings retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6e8aaec-3906-45c8-98da-b24f0bd69c15",
+              "name": "When an account (tenant) with given ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2617b7f7-7ccb-42c7-9afa-051df1f23e43",
+          "name": "Update Account Settings",
+          "request": {
+            "name": "Update Account Settings",
+            "description": {
+              "content": "Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "account-settings",
+                "v1"
+              ],
+              "host": [
+                "{{resources-account-settings-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc0f2977-43a5-448a-90fc-c4ca110762e1",
+              "name": "Settings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b1c8b16-e88c-4c27-86f6-73ad7be4ff02",
+              "name": "When: a) given parameters do not pass validation b) empty object is passed in request content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "040fe42a-0ec7-42de-a8c2-9a1fbc7bd236",
+              "name": "When an account (tenant) with given ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5ecd694-4ac9-454f-b61d-4ea9ea03a65b",
+          "name": "Get Public Settings",
+          "request": {
+            "name": "Get Public Settings",
+            "description": {
+              "content": "Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "account-settings",
+                "v1",
+                "public"
+              ],
+              "host": [
+                "{{resources-account-settings-v1-public-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9909522f-255f-4ba7-a661-f4f22735e59a",
+              "name": "Public settings retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1",
+                    "public"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-public-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71ca71ed-214a-42a6-a666-c03d3f65ae6d",
+              "name": "When an account (tenant) with given ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "account-settings",
+                    "v1",
+                    "public"
+                  ],
+                  "host": [
+                    "{{resources-account-settings-v1-public-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-account-settings-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-account-settings-v1-public-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "468c409f-b3c9-40f9-b6a3-149e773bbb02",
+    "name": "Multi-Apps Overview Account Invitations Account Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

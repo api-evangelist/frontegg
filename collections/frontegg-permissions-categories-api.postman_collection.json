@@ -1,0 +1,466 @@
+{
+  "item": [
+    {
+      "id": "46043441-c85c-44ae-985c-e4e78920c25c",
+      "name": "Permissions Categories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b6077dc-e12b-4141-93e9-66bf74572e8b",
+          "name": "Get Permissions Categories",
+          "request": {
+            "name": "Get Permissions Categories",
+            "description": {
+              "content": "Retrieves all permission categories for your environment. Each category includes its name, description, associated permissions, and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "permissions",
+                "v1",
+                "categories"
+              ],
+              "host": [
+                "{{resources-permissions-v1-categories-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5fbc4126-f79e-458b-88e3-c3d81372567b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "permissions",
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{resources-permissions-v1-categories-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"2009-02-07T22:26:46.798Z\",\n    \"feCategory\": false\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"1992-12-02T11:04:28.054Z\",\n    \"feCategory\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd96a81e-dd57-455d-8ca9-57742fc0b9a4",
+          "name": "Create Category",
+          "request": {
+            "name": "Create Category",
+            "description": {
+              "content": "Add a new permissions category.\n\nProvide the category information in the request body. Note that categories are not associated with permissions in this route — you can associate permissions by sending the category ID in the add or update permission routes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "permissions",
+                "v1",
+                "categories"
+              ],
+              "host": [
+                "{{resources-permissions-v1-categories-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53259038-7a31-470c-910f-217efa239613",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "permissions",
+                    "v1",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{resources-permissions-v1-categories-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1958-10-12T20:14:08.256Z\",\n  \"feCategory\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f6f170f-f2c7-422d-acad-a60a1532d5a5",
+          "name": "Update Category",
+          "request": {
+            "name": "Update Category",
+            "description": {
+              "content": "Update an existing permissions category.\n\nProvide the category ID as a path parameter to specify which category to update, and send the updated category information in the request body.\n\nThis route does not update the permissions associated with the category. Use the add or update permissions routes to manage permission associations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "permissions",
+                "v1",
+                "categories",
+                ":categoryId"
+              ],
+              "host": [
+                "{{resources-permissions-v1-categories-categoryId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e18bf01-e157-43b7-a165-d6534d336e65",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "permissions",
+                    "v1",
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "host": [
+                    "{{resources-permissions-v1-categories-categoryId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6b9858f-b2e5-4391-b8a5-e34d5bb82d06",
+          "name": "Delete Category",
+          "request": {
+            "name": "Delete Category",
+            "description": {
+              "content": "Delete a permissions category.\n\nProvide the category ID as a path parameter to specify which category to delete. You can obtain the category ID using the **Get categories** API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "permissions",
+                "v1",
+                "categories",
+                ":categoryId"
+              ],
+              "host": [
+                "{{resources-permissions-v1-categories-categoryId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "categoryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab3b9b0f-08c0-4d83-9edc-c82628fe103b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "permissions",
+                    "v1",
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "host": [
+                    "{{resources-permissions-v1-categories-categoryId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "categoryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-permissions-v1-categories-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-permissions-v1-categories-categoryId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "8223855a-53ee-4774-9aba-6cdeec15309f",
+    "name": "Multi-Apps Overview Account Invitations Permissions Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations SMS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Phone Numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_phoneNumber",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a paginated list of all user phone numbers associated with your environment.\n\nThis endpoint returns user phone numbers along with pagination metadata and navigation links. It supports filtering, sorting, and offset-based pagination for efficient querying.\n\nQuery parameters (optional):\n- `_limit` (number ≥ 1): Maximum number of items to return per page.\n- `_offset` (number ≥ 0): The page number to retrieve. For example, use 0 for the first page, 1 for the second page.\n- `_sortBy` (string"
+        },
+        {
+          "info": {
+            "name": "Set Phone Number for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign a new phone number to a user and optionally trigger a verification code.\n\nBy default, the system sends an SMS verification code to the provided phone number. To skip verification (e.g., for internal setup), set the `verify` field to `false`.\n\nRequest body must include:\n- `phoneNumber`: The new phone number to assign to the user. Must follow international format.\n- `verify` (optional): Whether to send an SMS verification code. Defaults to `true` if not provided.\n\nUse this endpoint to set o"
+        },
+        {
+          "info": {
+            "name": "Pre-verify User's Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/preverify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Send a one-time code (OTC) to the specified phone number to initiate verification.\n\nThis endpoint is used to pre-verify a phone number before associating it with a user account. It sends an SMS-based one-time code to the provided number.\n\nRequest body must include:\n- `phoneNumber`: The phone number to verify, in international format.\n\nUse this endpoint to validate ownership of a phone number by sending a one-time code for user input during onboarding or account setup."
+        },
+        {
+          "info": {
+            "name": "Verify Creation of Phone Number for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify a user's phone number using a one-time code (OTC) that was sent via SMS.\n\nThis is the final step in the phone number verification process. After initiating verification via the pre-verification route, use this endpoint to confirm the phone number by submitting the OTC and code.\n\nRequest body must include:\n- `otcToken`: The token issued when the OTC was sent.\n- `code`: The one-time code the user received on their phone.\n\nUse this endpoint to validate the user's ownership of the phone numbe"
+        },
+        {
+          "info": {
+            "name": "Delete User's Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate the deletion process for a user's phone number.\n\nThis endpoint begins the phone number removal workflow by sending a verification code to the user. The phone number will not be deleted until the verification step is completed.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to be deleted.\n\nUse this endpoint to trigger the secure deletion process for a user's phone number. A follow-up verification step is required to finalize the removal."
+        },
+        {
+          "info": {
+            "name": "Verify Delete User's Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/:id/delete/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Verify the deletion of a user's phone number using a one-time code (OTC).\n\nThis is the final step in the phone number deletion process. After initiating deletion, the system sends a verification code to the user's phone. This endpoint confirms the deletion by validating the OTC and code.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to delete.\n\nRequest body must include:\n- `otcToken`: The token issued during the deletion request.\n- `code`: The one-time code sent to the user"
+        },
+        {
+          "info": {
+            "name": "Get Current User's Phone Numbers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v1/me",
+            "headers": [
+              {
+                "name": "frontegg-tenant-id",
+                "value": ""
+              },
+              {
+                "name": "frontegg-user-id",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all phone numbers associated with the current user.\n\nThis endpoint returns a list of phone numbers linked to the authenticated user, including verification status and timestamps.\n\nThe response includes metadata such as verification status and timestamps for creation and last update.\n\nUse this endpoint to display or manage the user's registered phone numbers in your application."
+        },
+        {
+          "info": {
+            "name": "Get All Phone Numbers V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/users/phone-numbers/v2",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
+              },
+              {
+                "name": "_sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "_phoneNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This route returns all user phone numbers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

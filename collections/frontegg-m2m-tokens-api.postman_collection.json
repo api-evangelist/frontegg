@@ -1,0 +1,400 @@
+{
+  "item": [
+    {
+      "id": "1a6a0094-f819-45a6-81eb-96314b124764",
+      "name": "M2M Tokens",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d59c853-5b0c-442a-9b3a-1f9353939e21",
+          "name": "Get Active Access Tokens List",
+          "request": {
+            "name": "Get Active Access Tokens List",
+            "description": {
+              "content": "Retrieve the list of active access tokens for a specified account (tenant).\n\nPass the account's `frontegg-tenant-id` as a query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "access-tokens",
+                "v1",
+                "active"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-access-tokens-v1-active-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60a78a15-61ea-4731-bf47-7c5ef8a069b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "access-tokens",
+                    "v1",
+                    "active"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-access-tokens-v1-active-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fd4d9ae-e6bc-419a-95c2-b2a98a024ffc",
+          "name": "Get User Access Token Data",
+          "request": {
+            "name": "Get User Access Token Data",
+            "description": {
+              "content": "Retrieve data for a specific user access token.\n\nPass the account's `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "users",
+                "access-tokens",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-vendor-only-users-access-tokens-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "148b3e23-b41f-4c2d-9bb7-15ed57182a73",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "users",
+                    "access-tokens",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-users-access-tokens-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"string\",\n  \"id\": \"string\",\n  \"tenantId\": \"string\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"expires\": \"2021-03-04T09:21:05.977Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee3343f6-7b01-4d58-83ce-7c63de400f69",
+          "name": "Get Account (tenant) Access Token Data",
+          "request": {
+            "name": "Get Account (tenant) Access Token Data",
+            "description": {
+              "content": "Retrieve data for a specific account (tenant) access token.\n\nPass the account's `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "vendor-only",
+                "tenants",
+                "access-tokens",
+                "v1",
+                ":id"
+              ],
+              "host": [
+                "{{resources-vendor-only-tenants-access-tokens-v1-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fcbf6741-cbfe-43b3-bfca-192c672e8851",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "vendor-only",
+                    "tenants",
+                    "access-tokens",
+                    "v1",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-vendor-only-tenants-access-tokens-v1-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"tenantId\": \"string\",\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"roles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"expires\": \"1975-10-30T19:16:29.697Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-access-tokens-v1-active-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-users-access-tokens-v1-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-vendor-only-tenants-access-tokens-v1-id-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "df3cc6ff-38da-4845-a840-84398ecc10c3",
+    "name": "Multi-Apps Overview Account Invitations M2M Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

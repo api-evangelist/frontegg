@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Account Invitations Settings API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Invitations Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Account (tenant) Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a general or account (tenant)-specific invitation token.\n\nUse this endpoint to generate invitation tokens for accounts (tenants) or individual users.\n\nTo create a general invitation token, send the request without specifying an account (tenant) or user. To create an account (tenant)-specific token, include the account (tenant) ID in the request body. To create a token for a specific user of an account (tenant), also include the user ID in the body parameters. If a user ID is provided, you"
+        },
+        {
+          "info": {
+            "name": "Get All Account (tenant) Invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/all",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve all invitation tokens across all accounts (tenants).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Delete an Account (tenant) Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.frontegg.com/applications/resources/tenants/invites/v1/token/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an invitation for an account (tenant) using the invitation ID.\n\nUse this endpoint to delete a specific invitation by providing its invitation ID as a path parameter. You can obtain the invitation ID via the **Get all account (tenant) invites** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route."
+        },
+        {
+          "info": {
+            "name": "Get Activation Strategies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/activation/strategies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Activation Strategies"
+        },
+        {
+          "info": {
+            "name": "Create or Update Activation Strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/activation/strategies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or Update Activation Strategy"
+        },
+        {
+          "info": {
+            "name": "Get Invitation Strategies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/invitation/strategies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Invitation Strategies"
+        },
+        {
+          "info": {
+            "name": "Create or Update Invitation Strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/resources/configurations/v1/invitation/strategies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create or Update Invitation Strategy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

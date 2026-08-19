@@ -1,0 +1,753 @@
+{
+  "item": [
+    {
+      "id": "c999476f-b447-46f1-96cd-c34ec02e9165",
+      "name": "Account Invitations Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b2e0395-a5b5-489d-bac7-c9698b8bbbdc",
+          "name": "Create Account (tenant) Invite",
+          "request": {
+            "name": "Create Account (tenant) Invite",
+            "description": {
+              "content": "Create a general or account (tenant)-specific invitation token.\n\nUse this endpoint to generate invitation tokens for accounts (tenants) or individual users.\n\nTo create a general invitation token, send the request without specifying an account (tenant) or user. To create an account (tenant)-specific token, include the account (tenant) ID in the request body. To create a token for a specific user of an account (tenant), also include the user ID in the body parameters. If a user ID is provided, you can control whether an invitation email is sent by setting the `shouldSendEmail` parameter.\n\nTo set a custom expiration time for the invitation, use the `expiresInMinutes` parameter to define when the token will expire.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bb297c15-c664-4c9e-b674-bb7c02b6dcc9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\",\n  \"shouldSendEmail\": \"<boolean>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"token\": \"string\",\n  \"expires\": \"2009-06-02T05:53:08.288Z\",\n  \"shouldSendEmail\": false,\n  \"userId\": \"string\",\n  \"name\": \"string\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d3b254b-fe40-4f84-87e9-8be43665ba4c",
+          "name": "Get All Account (tenant) Invites",
+          "request": {
+            "name": "Get All Account (tenant) Invites",
+            "description": {
+              "content": "Retrieve all invitation tokens across all accounts (tenants).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "all"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-all-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb1ea487-c46c-4cf9-aa8d-75408218ed1e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "all"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-all-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"token\": \"string\",\n    \"expires\": \"1965-02-17T20:19:52.464Z\",\n    \"shouldSendEmail\": true,\n    \"userId\": \"string\",\n    \"name\": \"string\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"vendorId\": \"string\",\n    \"tenantId\": \"string\",\n    \"token\": \"string\",\n    \"expires\": \"1983-12-21T21:26:41.533Z\",\n    \"shouldSendEmail\": true,\n    \"userId\": \"string\",\n    \"name\": \"string\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7a4f02c-1a3c-43c3-88e6-60f390b99c78",
+          "name": "Delete an Account (tenant) Invite",
+          "request": {
+            "name": "Delete an Account (tenant) Invite",
+            "description": {
+              "content": "Delete an invitation for an account (tenant) using the invitation ID.\n\nUse this endpoint to delete a specific invitation by providing its invitation ID as a path parameter. You can obtain the invitation ID via the **Get all account (tenant) invites** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "tenants",
+                "invites",
+                "v1",
+                "token",
+                ":id"
+              ],
+              "host": [
+                "{{resources-tenants-invites-v1-token-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a07eecc9-d942-492d-90f8-9e06e8cb7bdf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "tenants",
+                    "invites",
+                    "v1",
+                    "token",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{resources-tenants-invites-v1-token-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3f28fc5-98be-40d1-92ef-af8ab2334330",
+          "name": "Get Activation Strategies",
+          "request": {
+            "name": "Get Activation Strategies",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "activation",
+                "strategies"
+              ],
+              "host": [
+                "{{resources-configurations-v1-activation-strategies-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9925faaf-ec26-4ad2-a4d7-46953a7313ad",
+              "name": "Retrieve the current account activation strategies configured in your environment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "activation",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-activation-strategies-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"strategy\": \"code\",\n  \"codeExpiration\": 6195.513136720291\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8cd692a-8aab-4734-af3b-aa28895a89a5",
+          "name": "Create or Update Activation Strategy",
+          "request": {
+            "name": "Create or Update Activation Strategy",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "activation",
+                "strategies"
+              ],
+              "host": [
+                "{{resources-configurations-v1-activation-strategies-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"strategy\": \"<string>\",\n  \"codeExpiration\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb9de195-81bf-464a-bacc-b531c02c74cb",
+              "name": "Create a new activation strategy or update the existing activation strategy for your environment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "activation",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-activation-strategies-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"strategy\": \"<string>\",\n  \"codeExpiration\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00739617-7e95-41aa-82c5-718108e6f0d6",
+          "name": "Get Invitation Strategies",
+          "request": {
+            "name": "Get Invitation Strategies",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "invitation",
+                "strategies"
+              ],
+              "host": [
+                "{{resources-configurations-v1-invitation-strategies-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a6909b7-b80a-4c2c-b13f-2c9c7dab078f",
+              "name": "Retrieve the current invitation strategies configured in your environment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "invitation",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-invitation-strategies-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"strategy\": \"code\",\n  \"codeExpiration\": 6195.513136720291\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b443285b-2cf3-4645-90a4-c6f6fe431a08",
+          "name": "Create or Update Invitation Strategy",
+          "request": {
+            "name": "Create or Update Invitation Strategy",
+            "description": {},
+            "url": {
+              "path": [
+                "resources",
+                "configurations",
+                "v1",
+                "invitation",
+                "strategies"
+              ],
+              "host": [
+                "{{resources-configurations-v1-invitation-strategies-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codeExpiration\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fd79a6f-29bd-4753-94b5-bac32f8ae102",
+              "name": "Create a new invitation strategy or update the existing invitation strategy for your environment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "configurations",
+                    "v1",
+                    "invitation",
+                    "strategies"
+                  ],
+                  "host": [
+                    "{{resources-configurations-v1-invitation-strategies-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"codeExpiration\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-all-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-tenants-invites-v1-token-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-configurations-v1-activation-strategies-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-configurations-v1-invitation-strategies-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "484ec0da-ca5d-44c9-9338-4a3e09314e4e",
+    "name": "Multi-Apps Overview Account Invitations Account Invitations Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

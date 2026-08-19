@@ -1,0 +1,730 @@
+{
+  "item": [
+    {
+      "id": "5b1c77ca-7aca-400e-8e91-20bcafedee5e",
+      "name": "SSO Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57f90e7b-1227-4b7d-a6d2-975c46c1f63a",
+          "name": "Get Service Provider Metadata",
+          "request": {
+            "name": "Get Service Provider Metadata",
+            "description": {
+              "content": "Retrieve the service provider metadata for a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "saml",
+                "configurations",
+                "sp-metadata"
+              ],
+              "host": [
+                "{{resources-sso-v1-saml-configurations-sp-metadata-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cc002eb-7675-4297-b571-332d6db1d79f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "saml",
+                    "configurations",
+                    "sp-metadata"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-saml-configurations-sp-metadata-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b6bbe6-acb1-47dd-8a9f-f69d6491fd46",
+          "name": "Exclude Email From SSO",
+          "request": {
+            "name": "Exclude Email From SSO",
+            "description": {
+              "content": "Exclude an email address from SSO enforcement.\n\nProvide the email address to exclude in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "excluded-emails"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-excluded-emails-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "56c886fe-869a-4463-96ed-6dbeec430992",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "excluded-emails"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-excluded-emails-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8c784ce-d88d-4168-894d-2353ec54d559",
+          "name": "Get SSO Excluded Emails",
+          "request": {
+            "name": "Get SSO Excluded Emails",
+            "description": {
+              "content": "Retrieve the list of email addresses excluded from SSO enforcement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "excluded-emails"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-excluded-emails-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec5be429-4e16-4753-a736-f36a766536ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "excluded-emails"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-excluded-emails-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cb83498-ed94-42fc-b265-056fbfed3123",
+          "name": "Delete SSO Excluded Email",
+          "request": {
+            "name": "Delete SSO Excluded Email",
+            "description": {
+              "content": "Remove an email address from the list of SSO-excluded emails.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "excluded-emails",
+                ":email"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-excluded-emails-email-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "email",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8b5b4d3-2128-4d9f-88c6-8e27f010982a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "excluded-emails",
+                    ":email"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-excluded-emails-email-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "email",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6df5ffc6-82a1-4ea0-ba58-e4680516da5b",
+          "name": "Vendor Only - Force SSO Domain Validation",
+          "request": {
+            "name": "Vendor Only - Force SSO Domain Validation",
+            "description": {
+              "content": "Force domain validation for SSO configuration in the environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "domains",
+                ":domain",
+                "force-validate"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-domains-domain-force-validate-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f119ef7-147d-4624-875c-81b08b1bff57",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "domains",
+                    ":domain",
+                    "force-validate"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-domains-domain-force-validate-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b574a30f-23bc-4692-8898-37e65e8cdcdb",
+          "name": "Get SSO per Account (tenant) Configuration",
+          "request": {
+            "name": "Get SSO per Account (tenant) Configuration",
+            "description": {
+              "content": "Retrieve the SSO configuration for a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "multiple-sso-per-domain"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-multiple-sso-per-domain-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "344b99b9-33a5-4acb-939f-ce8008fa7dc5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "multiple-sso-per-domain"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-multiple-sso-per-domain-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30e3d8aa-6195-4465-a090-6904ff58fed9",
+          "name": "Create or Update SSO per Account (tenant) Configuration",
+          "request": {
+            "name": "Create or Update SSO per Account (tenant) Configuration",
+            "description": {
+              "content": "Create or update the SSO configuration for a specific account (tenant).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "configurations",
+                "multiple-sso-per-domain"
+              ],
+              "host": [
+                "{{resources-sso-v1-configurations-multiple-sso-per-domain-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unspecifiedTenantStrategy\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"useActiveTenant\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "363154c7-c09a-4e59-adb4-13c3b59333d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "configurations",
+                    "multiple-sso-per-domain"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-configurations-multiple-sso-per-domain-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unspecifiedTenantStrategy\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"useActiveTenant\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "265e1971-f286-4afc-9699-973eb6da9fbe",
+          "name": "Configure OIDC",
+          "request": {
+            "name": "Configure OIDC",
+            "description": {
+              "content": "Configure or update an OpenID Connect (OIDC) identity provider for the environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sso",
+                "v1",
+                "oidc",
+                "configurations"
+              ],
+              "host": [
+                "{{resources-sso-v1-oidc-configurations-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"active\": \"<boolean>\",\n  \"redirectUri\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71c917ce-ad76-4b06-9572-1f3fe6da401a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sso",
+                    "v1",
+                    "oidc",
+                    "configurations"
+                  ],
+                  "host": [
+                    "{{resources-sso-v1-oidc-configurations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"redirectUri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-saml-configurations-sp-metadata-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-configurations-excluded-emails-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-configurations-excluded-emails-email-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-configurations-domains-domain-force-validate-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-configurations-multiple-sso-per-domain-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/team",
+      "key": "resources-sso-v1-oidc-configurations-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "f2b31d21-5737-46cc-9e71-273df8ac8b40",
+    "name": "Multi-Apps Overview Account Invitations SSO Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

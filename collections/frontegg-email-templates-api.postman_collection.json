@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "21a11eca-b228-468f-81f4-5d1cab10bc14",
+      "name": "Email Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac19006a-2bb1-4d09-92dd-31f82e484834",
+          "name": "Add or Update Template",
+          "request": {
+            "name": "Add or Update Template",
+            "description": {
+              "content": "Create or update an email template for your environment.\n\nSpecify the email template using the `type` parameter. The value of `type` must match one of the predefined Frontegg email templates. Set the sender using the `senderEmail` parameter, and optionally include values for the other available body parameters. Provide the template information in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "mail",
+                "v1",
+                "configs",
+                "templates"
+              ],
+              "host": [
+                "{{resources-mail-v1-configs-templates-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"senderEmail\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"fromName\": \"<string>\",\n  \"redirectURL\": \"<string>\",\n  \"htmlTemplate\": \"<string>\",\n  \"successRedirectUrl\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b524ade-21e4-42f1-b7ac-adae44aff69e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "mail",
+                    "v1",
+                    "configs",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{resources-mail-v1-configs-templates-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"senderEmail\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"fromName\": \"<string>\",\n  \"redirectURL\": \"<string>\",\n  \"htmlTemplate\": \"<string>\",\n  \"successRedirectUrl\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1206676-ea65-4062-b28e-2f9d759d9639",
+          "name": "Get Template",
+          "request": {
+            "name": "Get Template",
+            "description": {
+              "content": "Retrieve all email templates for your environment.\n\nTo retrieve a specific template, pass its `type` as a query parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "mail",
+                "v1",
+                "configs",
+                "templates"
+              ],
+              "host": [
+                "{{resources-mail-v1-configs-templates-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aa0f49bc-38da-47b4-9f1a-e8efc9cb582f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "mail",
+                    "v1",
+                    "configs",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{resources-mail-v1-configs-templates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"htmlTemplate\": \"string\",\n    \"senderEmail\": \"string\",\n    \"redirectURL\": \"string\",\n    \"successRedirectUrl\": \"string\",\n    \"subject\": \"string\",\n    \"fromName\": \"string\",\n    \"active\": false,\n    \"type\": {},\n    \"redirectURLPattern\": \"string\",\n    \"successRedirectUrlPattern\": \"string\"\n  },\n  {\n    \"htmlTemplate\": \"string\",\n    \"senderEmail\": \"string\",\n    \"redirectURL\": \"string\",\n    \"successRedirectUrl\": \"string\",\n    \"subject\": \"string\",\n    \"fromName\": \"string\",\n    \"active\": true,\n    \"type\": {},\n    \"redirectURLPattern\": \"string\",\n    \"successRedirectUrlPattern\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f48c42f-9301-4172-b673-cfdb01cda3c9",
+          "name": "Delete Template",
+          "request": {
+            "name": "Delete Template",
+            "description": {
+              "content": "Delete a specified email template.\n\nProvide the ID of the template to delete. You can obtain the template ID via the **Get template** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "mail",
+                "v1",
+                "configs",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{resources-mail-v1-configs-templates-templateId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed39fd1d-02e4-4193-b55b-9096dc27600a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "mail",
+                    "v1",
+                    "configs",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{resources-mail-v1-configs-templates-templateId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "941cfb1c-c011-4fe6-8f73-dd575c30b340",
+          "name": "Get Default Template by Type",
+          "request": {
+            "name": "Get Default Template by Type",
+            "description": {
+              "content": "Retrieve the default email template by type.\n\nPass the required `type` as a query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "mail",
+                "v1",
+                "configs",
+                ":type",
+                "default"
+              ],
+              "host": [
+                "{{resources-mail-v1-configs-type-default-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) The email template type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c8a00ce2-d944-450a-8cc2-9c5f0b121ee1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "mail",
+                    "v1",
+                    "configs",
+                    ":type",
+                    "default"
+                  ],
+                  "host": [
+                    "{{resources-mail-v1-configs-type-default-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) The email template type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"htmlTemplate\": \"string\",\n  \"senderEmail\": \"string\",\n  \"redirectURL\": \"string\",\n  \"successRedirectUrl\": \"string\",\n  \"subject\": \"string\",\n  \"fromName\": \"string\",\n  \"active\": false,\n  \"type\": {},\n  \"redirectURLPattern\": \"string\",\n  \"successRedirectUrlPattern\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-mail-v1-configs-templates-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-mail-v1-configs-templates-templateId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/identity",
+      "key": "resources-mail-v1-configs-type-default-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "87ab6a74-5fd4-425e-938f-212db6f4c56e",
+    "name": "Multi-Apps Overview Account Invitations Email Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

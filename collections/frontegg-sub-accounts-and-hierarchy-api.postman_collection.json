@@ -1,0 +1,292 @@
+{
+  "item": [
+    {
+      "id": "5d0e402a-8514-4f3f-99ea-8508537ea497",
+      "name": "Sub-accounts and Hierarchy",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77f690f0-9b3a-4397-ac47-1b441c66d4f5",
+          "name": "Create Sub-account (tenant)",
+          "request": {
+            "name": "Create Sub-account (tenant)",
+            "description": {
+              "content": "Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "hierarchy",
+                "v1"
+              ],
+              "host": [
+                "{{resources-hierarchy-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parentTenantId\": \"<string>\",\n  \"childTenantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2c463da-0f15-4d8f-a969-6433d2f16d52",
+              "name": "When:a) given parameters do not pass validationb) or parent and child account (tenant) are equal:c) or child account (tenant) is already a sub-account in other organization's hierarchy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parentTenantId\": \"<string>\",\n  \"childTenantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cf5152a-e16f-45ff-89a3-49c1f68bf37b",
+          "name": "Delete Sub-account (tenant)",
+          "request": {
+            "name": "Delete Sub-account (tenant)",
+            "description": {
+              "content": "Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "hierarchy",
+                "v1"
+              ],
+              "host": [
+                "{{resources-hierarchy-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98234ff2-7b4f-4afe-85c1-ce36f110f5c6",
+              "name": "When provided parameters do not pass validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e004f8c-269c-465a-a9be-afb1a4e2592f",
+              "name": "When given accounts (tenants) are not in parent-child relation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-hierarchy-v1-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "d42a74a0-6fd0-451b-8bb5-f595aad1fcf2",
+    "name": "Multi-Apps Overview Account Invitations Sub-accounts and Hierarchy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

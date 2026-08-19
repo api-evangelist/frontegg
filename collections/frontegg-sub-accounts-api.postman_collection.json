@@ -1,0 +1,796 @@
+{
+  "item": [
+    {
+      "id": "ae1ec7c4-8013-46d2-8da9-9fcbaa734f8d",
+      "name": "Sub-accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13061954-ebd6-457b-b96b-7ec6bc2d0c1e",
+          "name": "Create Sub-account",
+          "request": {
+            "name": "Create Sub-account",
+            "description": {
+              "content": "Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sub-tenants",
+                "v1"
+              ],
+              "host": [
+                "{{resources-sub-tenants-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentTenantId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9d4a7af-1212-4a2b-bde0-e2e4f8bd1402",
+              "name": "When account (tenant) ID does not pass validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sub-tenants",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-sub-tenants-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"parentTenantId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2baab48-9a4b-485c-99fc-bdf75da6cebe",
+          "name": "Update Sub-account (tenant) Management",
+          "request": {
+            "name": "Update Sub-account (tenant) Management",
+            "description": {
+              "content": "Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sub-tenants",
+                "v1",
+                ":tenantId",
+                "management"
+              ],
+              "host": [
+                "{{resources-sub-tenants-v1-tenantId-management-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f36fa03-9915-46bb-92fa-703603fc8b70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sub-tenants",
+                    "v1",
+                    ":tenantId",
+                    "management"
+                  ],
+                  "host": [
+                    "{{resources-sub-tenants-v1-tenantId-management-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2d6be89-8926-44b8-b996-a940c3371bff",
+          "name": "Update Sub-account Hierarchy Settings",
+          "request": {
+            "name": "Update Sub-account Hierarchy Settings",
+            "description": {
+              "content": "Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sub-tenants",
+                "v1",
+                ":tenantId",
+                "hierarchy-settings"
+              ],
+              "host": [
+                "{{resources-sub-tenants-v1-tenantId-hierarchy-settings-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de1bcbc9-fc01-4c6b-a976-8aec8f13bd12",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sub-tenants",
+                    "v1",
+                    ":tenantId",
+                    "hierarchy-settings"
+                  ],
+                  "host": [
+                    "{{resources-sub-tenants-v1-tenantId-hierarchy-settings-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "941b0d27-8c14-4f4f-9f29-bdcbe37e6b86",
+          "name": "Delete a Sub-account by ID",
+          "request": {
+            "name": "Delete a Sub-account by ID",
+            "description": {
+              "content": "Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "sub-tenants",
+                "v1",
+                ":tenantId"
+              ],
+              "host": [
+                "{{resources-sub-tenants-v1-tenantId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c6415c1-ae2e-4f67-b717-bd74a97d9727",
+              "name": "When the given account (tenant) doesn't exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "sub-tenants",
+                    "v1",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{resources-sub-tenants-v1-tenantId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5095af09-5eb1-42d8-93f6-6514e61869bc",
+          "name": "Get Sub-accounts (tenants)",
+          "request": {
+            "name": "Get Sub-accounts (tenants)",
+            "description": {
+              "content": "Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "hierarchy",
+                "v1"
+              ],
+              "host": [
+                "{{resources-hierarchy-v1-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "63a4a74a-8402-4c18-b60d-75232aed57f8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f67355a-5af7-4d37-9309-4244ddefc334",
+          "name": "Get Parent Accounts (tenants)",
+          "request": {
+            "name": "Get Parent Accounts (tenants)",
+            "description": {
+              "content": "Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "hierarchy",
+                "v1",
+                "parents"
+              ],
+              "host": [
+                "{{resources-hierarchy-v1-parents-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6858eaa-19ff-4cda-a12d-460d1ddd9829",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1",
+                    "parents"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-parents-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccf6d374-10a5-4f44-838a-b669ceb6334a",
+          "name": "Get Sub-accounts (tenanants) Hierarchy Tree",
+          "request": {
+            "name": "Get Sub-accounts (tenanants) Hierarchy Tree",
+            "description": {
+              "content": "Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resources",
+                "hierarchy",
+                "v1",
+                "tree"
+              ],
+              "host": [
+                "{{resources-hierarchy-v1-tree-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account (tenant) ID identifier",
+                "key": "frontegg-tenant-id",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1242879e-2de4-4ee7-8337-e56a4e00f227",
+              "name": "When circular dependency is detected in the hierarchy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resources",
+                    "hierarchy",
+                    "v1",
+                    "tree"
+                  ],
+                  "host": [
+                    "{{resources-hierarchy-v1-tree-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account (tenant) ID identifier",
+                    "key": "frontegg-tenant-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/applications",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-sub-tenants-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-sub-tenants-v1-tenantId-management-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-sub-tenants-v1-tenantId-hierarchy-settings-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-sub-tenants-v1-tenantId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-hierarchy-v1-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-hierarchy-v1-parents-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.frontegg.com/tenants",
+      "key": "resources-hierarchy-v1-tree-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "a96613b1-c136-4909-a4c0-d544f6c2b941",
+    "name": "Multi-Apps Overview Account Invitations Sub-accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
+      "type": "text/plain"
+    }
+  }
+}

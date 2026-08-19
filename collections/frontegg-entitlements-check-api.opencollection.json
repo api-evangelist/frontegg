@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Multi-Apps Overview Account Invitations Entitlements Check API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entitlements Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Is Entitled to Feature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/v1/data/e10s/features/is_entitled_to_input_feature",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether a specific account (tenant) or user is entitled to access a requested feature based on their permissions, attributes, and entitlement configuration."
+        },
+        {
+          "info": {
+            "name": "Is Entitled to Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/v1/data/e10s/permissions/is_entitled_to_input_permission",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether a specific user is entitled to access a requested permission based on their role assignments and account (tenant) configuration."
+        },
+        {
+          "info": {
+            "name": "Is Entitled to Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.frontegg.com/applications/v1/data/e10s/routes/is_entitled_to_input_route",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether a specific account (tenant) or user is entitled to access a requested route based on the HTTP method, path, and their associated permissions or feature entitlements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
