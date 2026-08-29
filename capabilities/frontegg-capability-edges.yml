@@ -1,0 +1,350 @@
+slug: frontegg
+provider: Frontegg
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 34
+edges:
+- tag: MFA
+  spec_file: frontegg-mfa-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '"Enroll MFA Using Authenticator App", "Verify MFA Using Email Code", "Disable SMS MFA"'
+  reason: Multi-factor authentication enrolment, verification and recovery is squarely identity and access
+    management.
+- tag: User Management
+  spec_file: frontegg-user-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: '"Disable User Account (tenant)", "Verify User Email", schemas UserMFADevicesResponse, AssignUserToRolesResponseDto,
+    UnlockUserRequestDto'
+  reason: Enable/disable users, manage emails, MFA devices, roles and tenant memberships — user account
+    provisioning and access administration (joiners-movers-leavers) in a CIAM platform, not HR employee
+    records.
+- tag: Feature Flags
+  spec_file: frontegg-feature-flags-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.85
+  evidence: 'POST /resources/feature-flags/v1  FeatureFlagsControllerV1_createFeatureFlag; schemas: FeatureFlagDto,
+    ConditionDto, RuleDto'
+  reason: Full lifecycle CRUD over feature flags with targeting rules/conditions — directly Feature Flag
+    Management.
+- tag: General
+  spec_file: frontegg-general-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /resources/auth/v1/user "Authenticate User with Password", "Refresh User JWT Token",
+    "Logout User", "Signup User"
+  reason: Operations are core end-user authentication, token refresh and sign-up — identity and access
+    management, not a business-domain capability.
+- tag: MFA Configuration
+  spec_file: frontegg-mfa-configuration-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Update MFA Configuration", "Get MFA Configuration", schemas MfaAuthAppConfig, MfaSmsConfig'
+  reason: Configuration of MFA channels for authentication — an IAM control configuration surface.
+- tag: MFA Settings
+  spec_file: frontegg-mfa-settings-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Create MFA Policy", "Get Security Policy", "Create or Update MFA Strategy"'
+  reason: MFA/security policies and strategies governing authentication are identity and access management
+    controls.
+- tag: Password Settings
+  spec_file: frontegg-password-settings-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Create or Update Password Configuration", "Create Password History Policy", "Reset Password
+    via Email", "Change Password"'
+  reason: Password policy configuration plus credential reset/change flows are core identity and access
+    management operations.
+- tag: Permissions
+  spec_file: frontegg-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: PUT /resources/permissions/v1/{permissionId}/roles  Set a Permission to Multiple Roles
+  reason: CRUD over permissions and their assignment to roles is role-based access control administration,
+    squarely Identity & Access Management.
+- tag: Plans
+  spec_file: frontegg-plans-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.85
+  evidence: 'PATCH /resources/plans/v1/{id}/features/link  Link Features to Plan; schemas: EntitlementPlan,
+    PlanFeatureDto'
+  reason: Operations define plans and link/unlink feature entitlements to them, matching 'Definition of
+    plans, feature entitlements' rather than any access-control capability.
+- tag: Roles
+  spec_file: frontegg-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: PUT /resources/roles/v1/{roleId}/permissions  Assign Permissions to a Role
+  reason: Role CRUD and permission-to-role assignment is core RBAC administration, i.e. Identity & Access
+    Management.
+- tag: User Groups
+  spec_file: frontegg-user-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Add Roles to Group", "Remove Roles From Group", "Add Users to Group"; schemas RoleDto, UpdateRolesOnGroupDto,
+    GroupUserDto'
+  reason: Group lifecycle with role assignment and user membership — role-based access control administration,
+    squarely Identity & Access Management.
+- tag: Account Roles
+  spec_file: frontegg-account-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /resources/roles/v2  RolesControllerV2_addRole  Create a New Role; AddRoleWithPermissionsRequest
+  reason: Creating and listing roles with permissions and their tenant assignments is role-based access
+    control — squarely Identity & Access Management. Not an HR job-role capability.
+- tag: Entitlements Check
+  spec_file: frontegg-entitlements-check-api-openapi.yml
+  capability_id: BC-4240.70
+  capability_id_l1: BC-4240
+  capability_name: Entitlement Enforcement
+  confidence: 0.8
+  evidence: POST /v1/data/e10s/features/is_entitled_to_input_feature  OpenApiPDPController_isEntitledToFeature  Is
+    Entitled to Feature
+  reason: Runtime policy-decision-point calls resolving whether a subject is entitled to a feature, permission
+    or route — this is entitlement resolution and runtime enforcement.
+- tag: Passwordless
+  spec_file: frontegg-passwordless-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /resources/auth/v1/passwordless/magiclink/prelogin  Magic Link Prelogin; AuthenticateUserPasswordlessDto
+  reason: Operations authenticate end users via SMS codes, magic links and one-time codes — authentication/credential
+    verification, i.e. identity & access management. No other capability covers login flows.
+- tag: ReBAC
+  spec_file: frontegg-rebac-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /resources/relations/v1/assignments  Get Relation Assignments; EntityTypesActionsV1Controller_createEntityTypeActions
+  reason: 'Relationship-based access control: entity types, permitted actions and relation assignments
+    constitute an authorisation model — Identity & Access Management.'
+- tag: SCIM Configurations
+  spec_file: frontegg-scim-configurations-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.8
+  evidence: POST /resources/v1/configurations/scim2  Create a SCIM Configuration
+  reason: SCIM connection configuration lifecycle directly realises tenant user-account provisioning via
+    SCIM as named in the sub-capability definition.
+- tag: Sub-accounts
+  spec_file: frontegg-sub-accounts-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.8
+  evidence: POST /resources/sub-tenants/v1 "Create Sub-account"; "Delete a Sub-account by ID"; "Get Sub-accounts
+    (tenanants) Hierarchy Tree"
+  reason: Creation, update, deletion and hierarchy of sub-tenants in the multi-tenant fleet — tenant provisioning
+    and lifecycle for a B2B SaaS platform.
+- tag: Users
+  spec_file: frontegg-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Create User", "Unenroll User From MFA Globally", "Verify User''s Password", "Bulk Update
+    User Roles Across All Tenants"'
+  reason: User account lifecycle, credential verification, MFA enrolment and role assignment across tenants
+    — squarely identity and access management, not HR employee records (these are end-user identities
+    in a CIAM product).
+- tag: Accounts
+  spec_file: frontegg-accounts-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.78
+  evidence: POST /resources/tenants/v1  TenantControllerV1_createTenant  Create an Account (tenant); DELETE
+    /resources/tenants/v1/{tenantId}  Delete Account (tenant)
+  reason: Full CRUD plus metadata over tenants in a multi-tenant B2B SaaS identity platform is tenant
+    creation/decommissioning — Tenant Provisioning & Lifecycle. 'Accounts' here explicitly means tenants,
+    not financial accounts or CRM accounts.
+- tag: Lockout Policy
+  spec_file: frontegg-lockout-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: '"Create Lockout Policy", "Update Lockout Policy", schema LockoutPolicyRequest'
+  reason: Account lockout policy after failed authentication attempts is an authentication/access control
+    setting, part of identity and access management.
+- tag: Sub-accounts and Hierarchy
+  spec_file: frontegg-sub-accounts-and-hierarchy-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.78
+  evidence: POST /resources/hierarchy/v1 "Create Sub-account (tenant)"; DELETE "Delete Sub-account (tenant)"
+  reason: Create and delete sub-tenants within the tenant hierarchy — tenant provisioning and lifecycle
+    in the multi-tenant service.
+- tag: Permissions Categories
+  spec_file: frontegg-permissions-categories-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /resources/permissions/v1/categories  Get Permissions Categories
+  reason: Categorisation of permissions is a structuring device within the RBAC permission model, part
+    of access administration; slightly thinner evidence than the Permissions tag itself.
+- tag: API Token
+  spec_file: frontegg-api-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /resources/auth/v2/api-token  AuthenticationApiTokenControllerV2_authApiToken  Authenticate
+    Using API Token
+  reason: Operations authenticate a caller with an API token and refresh it (ApiTokenAuthV2Response, RefreshApiTokenDto).
+    This is machine authentication issued by an identity platform, mapping to Identity & Access Management
+    rather than any business-domain capability.
+- tag: Account Migration
+  spec_file: frontegg-account-migration-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.72
+  evidence: POST /resources/migrations/v1/tenants  MigrationControllerV1_migrateTenants  Migrate Accounts
+    (tenants)
+  reason: Bulk migration of tenants with a migration status endpoint matches Tenant Provisioning & Lifecycle,
+    which explicitly covers migration of tenants in the multi-tenant fleet.
+- tag: SSO Configurations
+  spec_file: frontegg-sso-configurations-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.72
+  evidence: '"Create SSO Configuration Using Metadata", "Create SSO Domain", "Validate SSO Domain by Email",
+    "Set SSO Default Roles"; schema CreateSSOConfigurationRequestDto'
+  reason: Operations configure per-tenant SAML/OIDC identity providers, verified domains and default roles
+    for federated users — exactly Tenant Identity Federation for a multi-tenant SaaS. (Generic BC-620.20
+    IAM is the alternative reading; the tenant-scoped framing favours BC-4230.50.)
+- tag: Core Settings
+  spec_file: frontegg-core-settings-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /resources/configurations/v1  VendorConfigController_addOrUpdateConfig  Update Identity
+    Management Configuration
+  reason: Operations configure identity management behaviour — captcha policy, JWT templates and JWT template
+    targeting rules — which is configuration of the authentication/access layer. Mapped to Identity &
+    Access Management, though much of it is product configuration, hence moderate confidence.
+- tag: Custom Social OAuth Provider
+  spec_file: frontegg-custom-social-oauth-provider-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /resources/sso/custom/v1  CustomSsoV1Controller_createSsoProvider  Create Custom Oauth
+    Provider
+  reason: CRUD over custom SSO/OAuth identity providers is federation configuration, squarely Identity
+    & Access Management. Some ambiguity with tenant-level identity federation (BC-4230.50) since these
+    are environment-level provider configs.
+- tag: Entitlements
+  spec_file: frontegg-entitlements-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.7
+  evidence: 'POST /resources/entitlements/v2  EntitlementsControllerV2_createEntitlement; schemas: EntitlementPlan,
+    CreateEntitlementDto'
+  reason: Administrative CRUD defining which plans/features a customer is entitled to — plan and entitlement
+    design in the SaaS commercial lifecycle. Some ambiguity between design (BC-4240.10) and enforcement,
+    but these are definition/management operations.
+- tag: M2M Tokens
+  spec_file: frontegg-m2m-tokens-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Get Active Access Tokens List", "Get User Access Token Data", "Get Account (tenant) Access
+    Token Data"'
+  reason: Machine-to-machine access token issuance and inspection is credential/access management; overlaps
+    with developer credential management but IAM is the safer fit for a CIAM vendor.
+- tag: Personal Tokens
+  spec_file: frontegg-personal-tokens-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /resources/users/access-tokens/v1  Create User Access Token; UserApiTokensV1Controller_createTenantApiToken  Create
+    User Client Credentials Token
+  reason: Issuance and revocation of per-user access and client-credential tokens is credential lifecycle
+    management under IAM. Could alternatively be read as developer credential management, hence moderate
+    confidence.
+- tag: SAML Configurations
+  spec_file: frontegg-saml-configurations-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.7
+  evidence: GET /resources/sso/v1/saml/configurations/vendor-config  Get Vendor's SAML Config
+  reason: Retrieves SAML/SSO service-provider configuration for federating an identity provider into the
+    multi-tenant SaaS app, matching 'Federation of tenant identity providers ... via single sign-on'.
+    Only two read operations, hence moderate confidence; generic IAM is an alternative reading.
+- tag: SCIM Settings
+  spec_file: frontegg-scim-settings-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.7
+  evidence: GET /resources/v1/configurations/scim2  Get All SCIM Configurations
+  reason: Single listing of SCIM connection configurations — same federation/provisioning capability as
+    SCIM Configurations, but thin single-operation evidence.
+- tag: SSO Settings
+  spec_file: frontegg-sso-settings-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.7
+  evidence: '"Get Service Provider Metadata", "Configure OIDC", "Get SSO per Account (tenant) Configuration",
+    "Exclude Email From SSO"'
+  reason: Settings governing SAML/OIDC single sign-on per tenant, including SP metadata and per-account
+    SSO enablement — tenant identity federation. Some ambiguity versus generic Identity & Access Management.
+- tag: Users-applications Management
+  spec_file: frontegg-users-applications-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Assign Users to Application", "Unassign Users From Application", "Get User Active Accounts
+    (tenants) in Applications"'
+  reason: Grants and revokes user access to applications and switches active tenant context — access assignment,
+    an IAM function. Not application portfolio management despite the tag wording.
