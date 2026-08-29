@@ -1,24 +1,32 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Resources API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Account Management Overview Resources API
+  description: '
+
+    Frontegg is built with multi-tenancy in mind, allowing the creation and management of multiple accounts (tenants) within an environment. This section provides an overview of relevant API endpoints, organized into Management and Self-Service categories, supporting the creation of accounts, hierarchies, and sub-accounts.
+
+
+    **Management Endpoints**: Require environment-level authorization and offer full control over resources, including SSO (SAML and OIDC) configurations, account hierarchies, and sub-accounts.
+
+
+    **Self-Service Endpoints**: Accessible with a user token (JWT), enabling users with the appropriate permissions to create, update, and delete sub-accounts from ah hierarchy.'
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/tenants
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/tenants
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/tenants
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/tenants
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/tenants
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
       default: app-xxx
+security:
+- bearer: []
 tags:
 - name: Resources
 paths:
@@ -47,4 +55,10 @@ components:
 x-tagGroups:
 - name: Management
   tags:
-  - Applications settings
+  - Accounts
+  - Sub-accounts and hierarchy
+  - Account migration
+- name: Self-Service
+  tags:
+  - Account settings
+  - Sub-accounts

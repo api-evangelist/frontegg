@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations User Management API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg User Management API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged User Management across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/identity
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/identity
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/identity
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/identity
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/identity
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -2265,99 +2263,23 @@ paths:
       - bearer: []
 components:
   schemas:
-    AcceptInvitationWithCodeDto:
+    CreateUsernameRequestDto:
       type: object
       properties:
-        userId:
+        username:
           type: string
-        token:
-          type: string
-        code:
-          type: string
+          description: 'The username to create. Allowed characters: alphanumeric (a-z, 0-9), ^, $, ., !, -, #, +, '', ~, _ (no spaces, no accents, automatically converted to lowercase). Max length: 128 characters.'
+          example: john.doe$!#-+'~_
       required:
-      - userId
-      - token
-      - code
-    TemporaryUsersConfigurationDto:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-      required:
-      - enabled
-    CreateUserEmailVendorRequestDto:
+      - username
+    CreateUserEmailRequestDto:
       type: object
       properties:
         email:
           type: string
           description: New email
-        isVerified:
-          type: boolean
-          description: Is user email verified
       required:
       - email
-    MeAuthorizationResponseDto:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleResponse'
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionResponse'
-      required:
-      - roles
-      - permissions
-    UserTenantDataDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        name:
-          type: string
-      required:
-      - tenantId
-      - name
-    UserMFAAuthenticatorAppResponse:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    GetUserGroupsResponse:
-      type: object
-      properties: {}
-    AssignUserToRolesDto:
-      type: object
-      properties:
-        roleIds:
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
-    GetUserRolesResponse:
-      type: object
-      properties: {}
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
     CreateUserDto:
       type: object
       properties:
@@ -2408,43 +2330,6 @@ components:
           type: number
           minimum: 300
           description: Temporary user expiration in seconds
-    UserEmailResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-        userId:
-          type: string
-        email:
-          type: string
-        verified:
-          type: boolean
-        isPrimary:
-          type: boolean
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - userId
-      - email
-      - verified
-      - isPrimary
-      - createdAt
-      - updatedAt
-    UserMFAPhoneDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - id
-      - phoneNumber
     SelfEmailUpdateRequestDto:
       type: object
       properties:
@@ -2453,287 +2338,6 @@ components:
           description: The email to update to
       required:
       - email
-    AcceptInvitationDto:
-      type: object
-      properties:
-        userId:
-          type: string
-        token:
-          type: string
-      required:
-      - userId
-      - token
-    ActivateUserWithCodeDto:
-      type: object
-      properties:
-        userId:
-          type: string
-        token:
-          type: string
-        password:
-          type: string
-        recaptchaToken:
-          type: string
-        lastTermsCheck:
-          type: string
-        code:
-          type: string
-      required:
-      - userId
-      - token
-      - code
-    UserV3Dto:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-        sub:
-          type: string
-        verified:
-          type: boolean
-        mfaEnrolled:
-          type: boolean
-        mfaBypass:
-          type: boolean
-        phoneNumber:
-          type: string
-        provider:
-          type: string
-        tenantId:
-          type: string
-        tenantIds:
-          type: array
-          items:
-            type: string
-        activatedForTenant:
-          type: boolean
-        isLocked:
-          type: boolean
-        tenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserTenantDto'
-        invisible:
-          type: boolean
-        superUser:
-          type: boolean
-        metadata:
-          type: string
-        vendorMetadata:
-          type: string
-        externalId:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        lastLogin:
-          format: date-time
-          type: string
-        subAccountAccessAllowed:
-          type: boolean
-        managedBy:
-          enum:
-          - frontegg
-          - scim2
-          - external
-          type: string
-      required:
-      - id
-      - email
-      - name
-      - profilePictureUrl
-      - sub
-      - verified
-      - mfaEnrolled
-      - provider
-      - tenantId
-      - tenantIds
-      - tenants
-      - metadata
-      - vendorMetadata
-      - createdAt
-      - lastLogin
-      - subAccountAccessAllowed
-    ResetActivationTokenDto:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        emailMetadata:
-          type: object
-      required:
-      - email
-      - emailMetadata
-    TemporaryUserDto:
-      type: object
-      properties:
-        expirationInSeconds:
-          type: number
-          minimum: 300
-      required:
-      - expirationInSeconds
-    UserCreatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        verified:
-          type: boolean
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        permissions:
-          type: array
-          items:
-            type: string
-        metadata:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        lastLogin:
-          format: date-time
-          type: string
-        activatedForTenant:
-          type: boolean
-        temporaryExpirationDate:
-          format: date-time
-          type: string
-    UnlockUserRequestDto:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
-    GetUserTenantsHierarchyResponseDto:
-      type: object
-      properties: {}
-    GetActivateStrategyResponseDto:
-      type: object
-      properties:
-        shouldSetPassword:
-          type: boolean
-      required:
-      - shouldSetPassword
-    AssignUserToRolesResponseDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/IRole'
-      required:
-      - tenantId
-      - userId
-      - roles
-    PermissionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-        categoryId:
-          type: string
-        fePermission:
-          type: boolean
-      required:
-      - id
-      - key
-      - name
-      - description
-      - createdAt
-      - updatedAt
-      - roleIds
-      - categoryId
-      - fePermission
-    MarkEmailAsPrimaryRequestDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Email to mark as primary
-      required:
-      - email
-    ActivateUserDto:
-      type: object
-      properties:
-        userId:
-          type: string
-        token:
-          type: string
-        password:
-          type: string
-        recaptchaToken:
-          type: string
-        lastTermsCheck:
-          type: string
-      required:
-      - userId
-      - token
-    CreateUserEmailVerifyRequestDto:
-      type: object
-      properties:
-        code:
-          type: string
-          description: The code for the user to verify their email
-        email:
-          type: string
-          description: The email for the user to verify their email
-      required:
-      - code
-      - email
-    CreateUsernameRequestDto:
-      type: object
-      properties:
-        username:
-          type: string
-          description: 'The username to create. Allowed characters: alphanumeric (a-z, 0-9), ^, $, ., !, -, #, +, '', ~, _ (no spaces, no accents, automatically converted to lowercase). Max length: 128 characters.'
-          example: john.doe$!#-+'~_
-      required:
-      - username
-    UnassignUserFromRolesDto:
-      type: object
-      properties:
-        roleIds:
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
     FronteggPaginationMetadata:
       type: object
       properties:
@@ -2744,65 +2348,24 @@ components:
       required:
       - totalItems
       - totalPages
-    DeleteUserToRolesResponseDto:
+    ResetTenantInvitationDto:
       type: object
       properties:
-        tenantId:
+        email:
           type: string
-        userId:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/IRole'
       required:
-      - tenantId
-      - userId
-      - roles
-    RoleResponse:
+      - email
+    CreateUserEmailVendorRequestDto:
       type: object
       properties:
-        id:
+        email:
           type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
+          description: New email
+        isVerified:
           type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        permissions:
-          type: array
-          items:
-            type: string
+          description: Is user email verified
       required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - firstUserRole
-      - level
-      - createdAt
-      - updatedAt
-      - permissions
+      - email
     UserDto:
       type: object
       properties:
@@ -2895,30 +2458,36 @@ components:
       - createdAt
       - lastLogin
       - subAccountAccessAllowed
-    ResetTenantInvitationDto:
+    ActivateUserWithCodeDto:
       type: object
       properties:
-        email:
+        userId:
+          type: string
+        token:
+          type: string
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        lastTermsCheck:
+          type: string
+        code:
           type: string
       required:
-      - email
-    UpdateUserDto:
+      - userId
+      - token
+      - code
+    GetActivateStrategyResponseDto:
       type: object
       properties:
-        phoneNumber:
-          type: string
-          pattern: ^\+[1-9]{1}(\-?)(([0-9])(\-?)){5,13}(([0-9]$){1})
-        profilePictureUrl:
-          type: string
-          nullable: true
-          maxLength: 4095
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        name:
-          type: string
-    FronteggPaginationWrapper:
+        shouldSetPassword:
+          type: boolean
+      required:
+      - shouldSetPassword
+    GetUserTenantsResponseDto:
+      type: object
+      properties: {}
+    GetUserGroupsResponse:
       type: object
       properties: {}
     UserMFADevicesResponse:
@@ -2945,6 +2514,173 @@ components:
       - phones
       - authenticators
       - emails
+    ResetActivationTokenDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        emailMetadata:
+          type: object
+      required:
+      - email
+      - emailMetadata
+    UserV3Dto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        sub:
+          type: string
+        verified:
+          type: boolean
+        mfaEnrolled:
+          type: boolean
+        mfaBypass:
+          type: boolean
+        phoneNumber:
+          type: string
+        provider:
+          type: string
+        tenantId:
+          type: string
+        tenantIds:
+          type: array
+          items:
+            type: string
+        activatedForTenant:
+          type: boolean
+        isLocked:
+          type: boolean
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTenantDto'
+        invisible:
+          type: boolean
+        superUser:
+          type: boolean
+        metadata:
+          type: string
+        vendorMetadata:
+          type: string
+        externalId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        subAccountAccessAllowed:
+          type: boolean
+        managedBy:
+          enum:
+          - frontegg
+          - scim2
+          - external
+          type: string
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - sub
+      - verified
+      - mfaEnrolled
+      - provider
+      - tenantId
+      - tenantIds
+      - tenants
+      - metadata
+      - vendorMetadata
+      - createdAt
+      - lastLogin
+      - subAccountAccessAllowed
+    CreateUserEmailVerifyRequestDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code for the user to verify their email
+        email:
+          type: string
+          description: The email for the user to verify their email
+      required:
+      - code
+      - email
+    UserTenantDataDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        name:
+          type: string
+      required:
+      - tenantId
+      - name
+    AcceptInvitationDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+      required:
+      - userId
+      - token
+    GetUserRolesResponse:
+      type: object
+      properties: {}
+    UserCreatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        verified:
+          type: boolean
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        metadata:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        activatedForTenant:
+          type: boolean
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+    AssignUserToRolesDto:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
     IRole:
       type: object
       properties:
@@ -2971,6 +2707,40 @@ components:
       - isDefault
       - level
       - createdAt
+    AssignUserToRolesResponseDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/IRole'
+      required:
+      - tenantId
+      - userId
+      - roles
+    GetUserTenantsHierarchyResponseDto:
+      type: object
+      properties: {}
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
     AuthenticationResponseDto:
       type: object
       properties:
@@ -3021,28 +2791,60 @@ components:
       - refreshToken
       - expiresIn
       - expires
-    GetUserTenantsResponseDto:
-      type: object
-      properties: {}
-    UpdateSubAccountAccessRequestDto:
+    UpdateUserTenantDto:
       type: object
       properties:
-        allowAccess:
-          type: boolean
-      required:
-      - allowAccess
-    SelfEmailUpdateVerifyRequestDto:
-      type: object
-      properties:
-        code:
+        tenantId:
           type: string
-          description: The code for the user to verify their email
+          description: Desired tenant to set as active tenant for user
+      required:
+      - tenantId
+    MarkEmailAsPrimaryRequestDto:
+      type: object
+      properties:
         email:
           type: string
-          description: The email for the user to verify their email
+          description: Email to mark as primary
       required:
-      - code
       - email
+    TemporaryUserDto:
+      type: object
+      properties:
+        expirationInSeconds:
+          type: number
+          minimum: 300
+      required:
+      - expirationInSeconds
+    UsernameResponseDto:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The username value
+          example: user.name
+        userId:
+          type: string
+          description: The user id value
+          example: user-id
+      required:
+      - username
+      - userId
+    UnlockUserRequestDto:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    UnassignUserFromRolesDto:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
     UserTenantDto:
       type: object
       properties:
@@ -3060,43 +2862,6 @@ components:
       required:
       - tenantId
       - roles
-    CreateUserEmailRequestDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: New email
-      required:
-      - email
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    UpdateUserTenantDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-          description: Desired tenant to set as active tenant for user
-      required:
-      - tenantId
-    UsernameResponseDto:
-      type: object
-      properties:
-        username:
-          type: string
-          description: The username value
-          example: user.name
-        userId:
-          type: string
-          description: The user id value
-          example: user-id
-      required:
-      - username
-      - userId
     UserMFAWebAuthnDeviceResponse:
       type: object
       properties:
@@ -3113,11 +2878,248 @@ components:
       - id
       - deviceType
       - name
+    UpdateSubAccountAccessRequestDto:
+      type: object
+      properties:
+        allowAccess:
+          type: boolean
+      required:
+      - allowAccess
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    UserEmailResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        email:
+          type: string
+        verified:
+          type: boolean
+        isPrimary:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - userId
+      - email
+      - verified
+      - isPrimary
+      - createdAt
+      - updatedAt
+    PermissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        categoryId:
+          type: string
+        fePermission:
+          type: boolean
+      required:
+      - id
+      - key
+      - name
+      - description
+      - createdAt
+      - updatedAt
+      - roleIds
+      - categoryId
+      - fePermission
+    UserMFAPhoneDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - id
+      - phoneNumber
+    SelfEmailUpdateVerifyRequestDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code for the user to verify their email
+        email:
+          type: string
+          description: The email for the user to verify their email
+      required:
+      - code
+      - email
+    MeAuthorizationResponseDto:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionResponse'
+      required:
+      - roles
+      - permissions
+    UpdateUserDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9]{1}(\-?)(([0-9])(\-?)){5,13}(([0-9]$){1})
+        profilePictureUrl:
+          type:
+          - string
+          - 'null'
+          maxLength: 4095
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    TemporaryUsersConfigurationDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
+    ActivateUserDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        lastTermsCheck:
+          type: string
+      required:
+      - userId
+      - token
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    DeleteUserToRolesResponseDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/IRole'
+      required:
+      - tenantId
+      - userId
+      - roles
+    AcceptInvitationWithCodeDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        token:
+          type: string
+        code:
+          type: string
+      required:
+      - userId
+      - token
+      - code
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-identity-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

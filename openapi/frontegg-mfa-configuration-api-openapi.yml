@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations MFA Configuration API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg MFA Configuration API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged MFA Configuration across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/identity
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/identity
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/identity
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/identity
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/identity
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -81,15 +79,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    MfaConfigRequest:
-      type: object
-      properties:
-        authenticationApp:
-          $ref: '#/components/schemas/MfaAuthAppConfig'
-        sms:
-          $ref: '#/components/schemas/MfaSmsConfig'
-        email:
-          $ref: '#/components/schemas/MfaEmailConfig'
     MfaConfigResponse:
       type: object
       properties:
@@ -103,6 +92,16 @@ components:
       - authenticationApp
       - sms
       - email
+    AuthenticationAppConfiguration:
+      type: object
+      properties:
+        active:
+          type: boolean
+        serviceName:
+          type: string
+      required:
+      - active
+      - serviceName
     MfaSmsConfig:
       type: object
       properties:
@@ -124,19 +123,6 @@ components:
       required:
       - active
       - serviceName
-    EmailConfiguration:
-      type: object
-      properties:
-        active:
-          type: boolean
-        tokenLifetimeSeconds:
-          type: number
-        sender:
-          type: string
-      required:
-      - active
-      - tokenLifetimeSeconds
-      - sender
     MfaEmailConfig:
       type: object
       properties:
@@ -151,16 +137,6 @@ components:
       - active
       - tokenLifetimeSeconds
       - sender
-    AuthenticationAppConfiguration:
-      type: object
-      properties:
-        active:
-          type: boolean
-        serviceName:
-          type: string
-      required:
-      - active
-      - serviceName
     SmsConfiguration:
       type: object
       properties:
@@ -171,11 +147,36 @@ components:
       required:
       - active
       - tokenLifetimeSeconds
+    EmailConfiguration:
+      type: object
+      properties:
+        active:
+          type: boolean
+        tokenLifetimeSeconds:
+          type: number
+        sender:
+          type: string
+      required:
+      - active
+      - tokenLifetimeSeconds
+      - sender
+    MfaConfigRequest:
+      type: object
+      properties:
+        authenticationApp:
+          $ref: '#/components/schemas/MfaAuthAppConfig'
+        sms:
+          $ref: '#/components/schemas/MfaSmsConfig'
+        email:
+          $ref: '#/components/schemas/MfaEmailConfig'
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-identity-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

@@ -1,24 +1,15 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Entitlements Check API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Entitlements Check API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged Entitlements Check across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-agent-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
-  description: EU Region
-- url: https://api.us.frontegg.com/applications
-  description: US Region
-- url: https://api.ca.frontegg.com/applications
-  description: CA Region
-- url: https://api.au.frontegg.com/applications
-  description: AU Region
-- url: https://{domain}.frontegg.com/applications
-  description: Frontegg sub-domain for use with user tokens
+- url: http://{host}:{port}
   variables:
-    domain:
-      default: app-xxx
+    host:
+      default: localhost
+    port:
+      default: '8181'
 tags:
 - name: Entitlements Check
   x-displayName: Entitlements Check
@@ -127,6 +118,61 @@ paths:
       - Entitlements Check
 components:
   schemas:
+    EntitlementsResult:
+      type: object
+      properties:
+        justification:
+          type: string
+          enum:
+          - MISSING_FEATURE
+          - MISSING_PERMISSION
+          - PLAN_EXPIRED
+          - MISSING_ROUTE
+          - ROUTE_DENIED
+          example: MISSING_FEATURE
+        monitoring:
+          type: boolean
+        result:
+          type: boolean
+          example: false
+      required:
+      - result
+    PDPResponse:
+      type: object
+      properties:
+        decision_id:
+          type: string
+          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
+        metrics:
+          type: object
+        result:
+          $ref: '#/components/schemas/EntitlementsResult'
+      required:
+      - decision_id
+      - metrics
+      - result
+    SubjectContext:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: 6c2ce177-66cd-4163-a012-b7833255a490
+        tenantId:
+          type: string
+          example: f21ca66c-d23b-496f-b805-121ed37eb46a
+        permissions:
+          example:
+          - example.permission.read
+          - example.permission.write
+          type: array
+          items:
+            type: string
+        attributes:
+          type: object
+          example:
+            exampleAttribute: example-value
+      required:
+      - tenantId
     IsEntitledToRouteDto:
       type: object
       properties:
@@ -154,20 +200,6 @@ components:
           example: example-feature-key
       required:
       - featureKey
-    PDPResponse:
-      type: object
-      properties:
-        decision_id:
-          type: string
-          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
-        metrics:
-          type: object
-        result:
-          $ref: '#/components/schemas/EntitlementsResult'
-      required:
-      - decision_id
-      - metrics
-      - result
     IsEntitledToPermissionDto:
       type: object
       properties:
@@ -176,52 +208,14 @@ components:
           example: example.permission.read
       required:
       - permissionKey
-    SubjectContext:
-      type: object
-      properties:
-        userId:
-          type: string
-          example: 6c2ce177-66cd-4163-a012-b7833255a490
-        tenantId:
-          type: string
-          example: f21ca66c-d23b-496f-b805-121ed37eb46a
-        permissions:
-          example:
-          - example.permission.read
-          - example.permission.write
-          type: array
-          items:
-            type: string
-        attributes:
-          type: object
-          example:
-            exampleAttribute: example-value
-      required:
-      - tenantId
-    EntitlementsResult:
-      type: object
-      properties:
-        justification:
-          type: string
-          enum:
-          - MISSING_FEATURE
-          - MISSING_PERMISSION
-          - PLAN_EXPIRED
-          - MISSING_ROUTE
-          - ROUTE_DENIED
-          example: MISSING_FEATURE
-        monitoring:
-          type: boolean
-        result:
-          type: boolean
-          example: false
-      required:
-      - result
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-entitlements-agent-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

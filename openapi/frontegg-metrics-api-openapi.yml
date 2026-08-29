@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Metrics API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Metrics API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged Metrics across 2 of this provider''s published API definitions: frontegg-audits-openapi.yml, frontegg-combined-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/audits
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/audits
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/audits
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/audits
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/audits
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -23,20 +21,6 @@ tags:
 - name: Metrics
 paths:
   /resources/metrics/v1:
-    servers:
-    - url: https://api.frontegg.com/audits
-      description: EU Region
-    - url: https://api.us.frontegg.com/audits
-      description: US Region
-    - url: https://api.ca.frontegg.com/audits
-      description: CA Region
-    - url: https://api.au.frontegg.com/audits
-      description: AU Region
-    - url: https://{domain}.frontegg.com/audits
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: MetricsController_getMetrics
       summary: Get Metrics
@@ -75,8 +59,27 @@ paths:
                 $ref: '#/components/schemas/MetricsResponseDto'
       tags:
       - Metrics
+      security:
+      - bearer: []
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
 components:
   schemas:
+    TopTenants:
+      type: object
+      properties: {}
     TopResources:
       type: object
       properties: {}
@@ -96,14 +99,14 @@ components:
       - topResources
       - topTenants
       - auditsCounterByTime
-    TopTenants:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-audits-openapi.yml
+- frontegg-combined-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

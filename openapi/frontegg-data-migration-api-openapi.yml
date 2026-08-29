@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Data Migration API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Data Migration API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged Data Migration across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/identity
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/identity
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/identity
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/identity
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/identity
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -217,6 +215,197 @@ paths:
       - bearer: []
 components:
   schemas:
+    UserTenantDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+        isDisabled:
+          type: boolean
+      required:
+      - tenantId
+      - roles
+    PhoneNumberType:
+      type: string
+      enum:
+      - auth
+      - mfa
+    EmailObjectDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email address
+          format: email
+        primary:
+          type: boolean
+          description: Whether this is the primary email
+        verified:
+          type: boolean
+          description: Whether this email is verified
+      required:
+      - email
+      - primary
+      - verified
+    MigrateUserRequestV2:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: The tenant id of the user
+        name:
+          type: string
+          description: The name of the user
+        profilePictureUrl:
+          type: string
+          description: The profile picture url of the user
+          maxLength: 4095
+        passwordHash:
+          type: string
+          description: The password hash. For SCrypt should include the salt and key seperated by the salt separator
+        passwordHashType:
+          $ref: '#/components/schemas/PasswordHashingType'
+        passwordHashConfig:
+          type: string
+          maxLength: 4095
+          description: Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }
+        authenticatorAppMfaSecret:
+          type: string
+          description: The authenticator app MFA secret
+        phoneNumber:
+          type: string
+          description: 'phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: "+16037184056" The number must be unique'
+        phoneNumberType:
+          $ref: '#/components/schemas/PhoneNumberType'
+        provider:
+          type: string
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+          default: local
+        metadata:
+          type: string
+          description: Stringified JSON object
+        roleIds:
+          default: []
+          description: Role ids of the migrated users. If not provided, the user will be assigned the default roles
+          type: array
+          items:
+            type: string
+        vendorMetadata:
+          type: string
+          description: Extra vendor-only data. stringified JSON object
+        externalId:
+          type: string
+          description: The external id of the user
+        username:
+          type: string
+          description: The username of the user. If not provided, the email is required. Maximum length is 128 characters.
+          maxLength: 128
+        emails:
+          description: The emails of the user. If not provided, the username is required
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailObjectDto'
+      required:
+      - tenantId
+    MigrationObject:
+      type: object
+      properties: {}
+    Auth0Configuration:
+      type: object
+      properties:
+        domain:
+          type: string
+        clientId:
+          type: string
+        secret:
+          type: string
+        tenantIdFieldName:
+          type: string
+          description: The field name that the tenant ID will be taken from under app metadata
+        isTenantIdOnUserMetadata:
+          type: boolean
+          description: If you would like to take tenant ID from user metadata, set this field to true
+      required:
+      - domain
+      - clientId
+      - secret
+      - tenantIdFieldName
+    MigrateUsersRequestV1:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MigrateUserRequestV1'
+      required:
+      - users
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    MigrationContext:
+      type: object
+      properties:
+        migrationId:
+          type: string
+      required:
+      - migrationId
     UserDto:
       type: object
       properties:
@@ -318,45 +507,6 @@ components:
             $ref: '#/components/schemas/MigrateUserRequestV2'
       required:
       - users
-    UserTenantDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleResponse'
-        temporaryExpirationDate:
-          format: date-time
-          type: string
-        isDisabled:
-          type: boolean
-      required:
-      - tenantId
-      - roles
-    PhoneNumberType:
-      type: string
-      enum:
-      - auth
-      - mfa
-    EmailObjectDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: The email address
-          format: email
-        primary:
-          type: boolean
-          description: Whether this is the primary email
-        verified:
-          type: boolean
-          description: Whether this email is verified
-      required:
-      - email
-      - primary
-      - verified
     MigrateUserRequestV1:
       type: object
       properties:
@@ -429,48 +579,6 @@ components:
       required:
       - tenantId
       - email
-    MigrateUsersRequestV1:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MigrateUserRequestV1'
-      required:
-      - users
-    MigrationObject:
-      type: object
-      properties: {}
-    Auth0Configuration:
-      type: object
-      properties:
-        domain:
-          type: string
-        clientId:
-          type: string
-        secret:
-          type: string
-        tenantIdFieldName:
-          type: string
-          description: The field name that the tenant ID will be taken from under app metadata
-        isTenantIdOnUserMetadata:
-          type: boolean
-          description: If you would like to take tenant ID from user metadata, set this field to true
-      required:
-      - domain
-      - clientId
-      - secret
-      - tenantIdFieldName
-    PasswordHashingType:
-      type: string
-      enum:
-      - bcrypt
-      - scrypt
-      - firebase-scrypt
-      - pbkdf2
-      - argon2
-      - sha256
-      - sha1
     PermissionResponse:
       type: object
       properties:
@@ -506,131 +614,24 @@ components:
       - roleIds
       - categoryId
       - fePermission
-    MigrationContext:
-      type: object
-      properties:
-        migrationId:
-          type: string
-      required:
-      - migrationId
-    RoleResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        permissions:
-          type: array
-          items:
-            type: string
-      required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - firstUserRole
-      - level
-      - createdAt
-      - updatedAt
-      - permissions
-    MigrateUserRequestV2:
-      type: object
-      properties:
-        tenantId:
-          type: string
-          description: The tenant id of the user
-        name:
-          type: string
-          description: The name of the user
-        profilePictureUrl:
-          type: string
-          description: The profile picture url of the user
-          maxLength: 4095
-        passwordHash:
-          type: string
-          description: The password hash. For SCrypt should include the salt and key seperated by the salt separator
-        passwordHashType:
-          $ref: '#/components/schemas/PasswordHashingType'
-        passwordHashConfig:
-          type: string
-          maxLength: 4095
-          description: Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }
-        authenticatorAppMfaSecret:
-          type: string
-          description: The authenticator app MFA secret
-        phoneNumber:
-          type: string
-          description: 'phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: "+16037184056" The number must be unique'
-        phoneNumberType:
-          $ref: '#/components/schemas/PhoneNumberType'
-        provider:
-          type: string
-          enum:
-          - local
-          - saml
-          - google
-          - github
-          - facebook
-          - microsoft
-          - scim2
-          - slack
-          - apple
-          default: local
-        metadata:
-          type: string
-          description: Stringified JSON object
-        roleIds:
-          default: []
-          description: Role ids of the migrated users. If not provided, the user will be assigned the default roles
-          type: array
-          items:
-            type: string
-        vendorMetadata:
-          type: string
-          description: Extra vendor-only data. stringified JSON object
-        externalId:
-          type: string
-          description: The external id of the user
-        username:
-          type: string
-          description: The username of the user. If not provided, the email is required. Maximum length is 128 characters.
-          maxLength: 128
-        emails:
-          description: The emails of the user. If not provided, the username is required
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailObjectDto'
-      required:
-      - tenantId
+    PasswordHashingType:
+      type: string
+      enum:
+      - bcrypt
+      - scrypt
+      - firebase-scrypt
+      - pbkdf2
+      - argon2
+      - sha256
+      - sha1
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-identity-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

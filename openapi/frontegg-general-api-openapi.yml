@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations General API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg General API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged General across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/identity
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/identity
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/identity
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/identity
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/identity
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -282,30 +280,22 @@ components:
           $ref: '#/components/schemas/AuthenticationResponseDto'
         activationToken:
           type: string
-    UserMFADevicesResponse:
+    UserMFAWebAuthnDeviceResponse:
       type: object
       properties:
-        webauthn:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
-        authenticators:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
       required:
-      - webauthn
-      - phones
-      - authenticators
-      - emails
+      - id
+      - deviceType
+      - name
     SignUpUserUsernameDto:
       type: object
       properties:
@@ -357,56 +347,23 @@ components:
       - provider
       - username
       - companyName
-    AuthenticationResponseDto:
+    AuthenticateUserPasswordDto:
       type: object
       properties:
-        tokenType:
+        email:
           type: string
-          default: bearer
-        otcToken:
+          description: User email. Either email or username must be provided.
+        username:
           type: string
-        mfaRequired:
-          type: boolean
-        mfaToken:
+          description: Username. Either email or username must be provided.
+        password:
           type: string
-        resetPasswordToken:
+        recaptchaToken:
           type: string
-        passwordExpiresIn:
-          type: number
-        notificationPeriod:
-          type: number
-        mfaEnrolled:
-          type: boolean
-        mfaDevices:
-          $ref: '#/components/schemas/UserMFADevicesResponse'
-        mfaStrategies:
-          type: object
-        qrCode:
+        invitationToken:
           type: string
-        recoveryCode:
-          type: string
-        accessToken:
-          type: string
-        refreshToken:
-          type: string
-        expiresIn:
-          type: number
-        expires:
-          type: string
-        userId:
-          type: string
-        userEmail:
-          type: string
-        emailVerified:
-          type: boolean
-        isBreachedPassword:
-          type: boolean
       required:
-      - mfaRequired
-      - accessToken
-      - refreshToken
-      - expiresIn
-      - expires
+      - password
     UserMFAAuthenticatorAppResponse:
       type: object
       properties:
@@ -470,23 +427,83 @@ components:
           type: string
       required:
       - email
-    AuthenticateUserPasswordDto:
+    RefreshTokenDto:
+      type: object
+      properties: {}
+    UserMFADevicesResponse:
       type: object
       properties:
-        email:
-          type: string
-          description: User email. Either email or username must be provided.
-        username:
-          type: string
-          description: Username. Either email or username must be provided.
-        password:
-          type: string
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
       required:
-      - password
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        tokenType:
+          type: string
+          default: bearer
+        otcToken:
+          type: string
+        mfaRequired:
+          type: boolean
+        mfaToken:
+          type: string
+        resetPasswordToken:
+          type: string
+        passwordExpiresIn:
+          type: number
+        notificationPeriod:
+          type: number
+        mfaEnrolled:
+          type: boolean
+        mfaDevices:
+          $ref: '#/components/schemas/UserMFADevicesResponse'
+        mfaStrategies:
+          type: object
+        qrCode:
+          type: string
+        recoveryCode:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+        expires:
+          type: string
+        userId:
+          type: string
+        userEmail:
+          type: string
+        emailVerified:
+          type: boolean
+        isBreachedPassword:
+          type: boolean
+      required:
+      - mfaRequired
+      - accessToken
+      - refreshToken
+      - expiresIn
+      - expires
     UserMFAPhoneDeviceResponse:
       type: object
       properties:
@@ -497,30 +514,14 @@ components:
       required:
       - id
       - phoneNumber
-    RefreshTokenDto:
-      type: object
-      properties: {}
-    UserMFAWebAuthnDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-        name:
-          type: string
-      required:
-      - id
-      - deviceType
-      - name
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-identity-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

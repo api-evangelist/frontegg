@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Core Settings API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Core Settings API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged Core Settings across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/identity
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/identity
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/identity
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/identity
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/identity
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -522,29 +520,129 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    IdentityRuleDto:
+    CaptchaPolicyRequest:
       type: object
       properties:
-        conditionLogic:
+        enabled:
+          type: boolean
+        siteKey:
           type: string
-          enum:
-          - and
-          description: The logic to combine conditions
-        conditions:
-          description: The conditions to evaluate
+        secretKey:
+          type: string
+        minScore:
+          type: number
+        ignoredEmails:
+          description: Captcha validation will be skipped for those emails.
           type: array
           items:
-            $ref: '#/components/schemas/IdentityConditionDto'
-        treatment:
-          type: string
-          description: The treatment value (template key) if conditions match
+            type: string
       required:
-      - conditionLogic
-      - conditions
-      - treatment
+      - enabled
+      - siteKey
+      - secretKey
+      - minScore
+    IdentityConditionDto:
+      type: object
+      properties:
+        attribute:
+          enum:
+          - userId
+          - applicationId
+          - tenantId
+          - roleIds
+          - tokenType
+          - userEmail
+          type: string
+          description: The attribute to evaluate
+        op:
+          enum:
+          - in_list
+          - contains
+          - ends_with
+          type: string
+          description: The operation to apply
+        value:
+          type: object
+          description: The value to compare against
+        negate:
+          type: boolean
+          description: The negate flag
+      required:
+      - attribute
+      - op
+      - value
+      - negate
+    JwtTemplateTargetingResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Jwt template targeting ID
+        createdAt:
+          format: date-time
+          type: string
+          description: Created at
+        updatedAt:
+          format: date-time
+          type: string
+          description: Last updated at
+        targeting:
+          type: object
+          description: Targeting rules
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - targeting
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    CaptchaPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        siteKey:
+          type: string
+        secretKey:
+          type: string
+        enabled:
+          type: boolean
+        minScore:
+          type: number
+        ignoredEmails:
+          type: array
+          items:
+            type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - siteKey
+      - secretKey
+      - enabled
+      - minScore
+      - ignoredEmails
+      - createdAt
+      - updatedAt
+    UpdateJwtTemplateTargetingRequestDto:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRuleDto'
     JwtTemplateResponseDto:
       type: object
       properties:
@@ -561,8 +659,9 @@ components:
           type: string
           description: Name of the template
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of the template
         expiration:
           type: number
@@ -595,39 +694,6 @@ components:
       - templateSchema
       - createdAt
       - updatedAt
-    CreateJwtTemplateDto:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type: string
-          description: Description of the template
-        expiration:
-          type: number
-          minimum: 10
-          maximum: 15552000
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
-      required:
-      - key
-      - name
-      - expiration
-      - algorithm
-      - templateSchema
     VendorConfigBasicResponse:
       type: object
       properties:
@@ -740,6 +806,88 @@ components:
       - refreshTokensRotationLimit
       - addSamlAttributesToJwt
       - allowCustomLoginTenantSwitch
+    JwtTemplatePayloadResponseDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    JwtTemplatePayloadDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    UpdateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    IdentityRuleDto:
+      type: object
+      properties:
+        conditionLogic:
+          type: string
+          enum:
+          - and
+          description: The logic to combine conditions
+        conditions:
+          description: The conditions to evaluate
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityConditionDto'
+        treatment:
+          type: string
+          description: The treatment value (template key) if conditions match
+      required:
+      - conditionLogic
+      - conditions
+      - treatment
     VendorConfigRequest:
       type: object
       properties:
@@ -804,123 +952,7 @@ components:
           type: boolean
         allowCustomLoginTenantSwitch:
           type: boolean
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
-    CaptchaPolicyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        siteKey:
-          type: string
-        secretKey:
-          type: string
-        enabled:
-          type: boolean
-        minScore:
-          type: number
-        ignoredEmails:
-          type: array
-          items:
-            type: string
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - siteKey
-      - secretKey
-      - enabled
-      - minScore
-      - ignoredEmails
-      - createdAt
-      - updatedAt
-    CaptchaPolicyRequest:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        siteKey:
-          type: string
-        secretKey:
-          type: string
-        minScore:
-          type: number
-        ignoredEmails:
-          description: Captcha validation will be skipped for those emails.
-          type: array
-          items:
-            type: string
-      required:
-      - enabled
-      - siteKey
-      - secretKey
-      - minScore
-    UpdateJwtTemplateTargetingRequestDto:
-      type: object
-      properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityRuleDto'
-    JwtTemplatePayloadDto:
-      type: object
-      properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
-      required:
-      - claims
-    JwtTemplateTargetingResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Jwt template targeting ID
-        createdAt:
-          format: date-time
-          type: string
-          description: Created at
-        updatedAt:
-          format: date-time
-          type: string
-          description: Last updated at
-        targeting:
-          type: object
-          description: Targeting rules
-      required:
-      - id
-      - createdAt
-      - updatedAt
-      - targeting
-    UpdateJwtTemplateDto:
+    CreateJwtTemplateDto:
       type: object
       properties:
         key:
@@ -947,50 +979,20 @@ components:
           description: JWT template schema
           allOf:
           - $ref: '#/components/schemas/JwtTemplatePayloadDto'
-    JwtTemplatePayloadResponseDto:
-      type: object
-      properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
       required:
-      - claims
-    IdentityConditionDto:
-      type: object
-      properties:
-        attribute:
-          enum:
-          - userId
-          - applicationId
-          - tenantId
-          - roleIds
-          - tokenType
-          - userEmail
-          type: string
-          description: The attribute to evaluate
-        op:
-          enum:
-          - in_list
-          - contains
-          - ends_with
-          type: string
-          description: The operation to apply
-        value:
-          type: object
-          description: The value to compare against
-        negate:
-          type: boolean
-          description: The negate flag
-      required:
-      - attribute
-      - op
-      - value
-      - negate
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-identity-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

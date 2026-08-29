@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations ReBAC API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Re BAC API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged ReBAC across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/entitlements
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/entitlements
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/entitlements
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/entitlements
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/entitlements
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -441,7 +439,72 @@ paths:
       - bearer: []
 components:
   schemas:
-    EntityTypeRelationRequest:
+    EntityTypeRelationResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: reader
+        subjectEntityTypeKeys:
+          readOnly: true
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - targetEntityTypeKey
+      - key
+      - subjectEntityTypeKeys
+    EntityTypeActionsRequest:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeActionRequest'
+      required:
+      - actions
+    EntityTypeActionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    RelationAssignmentsRequest:
+      type: object
+      properties:
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentRequestDto'
+      required:
+      - assignments
+    EntityTypeRelationUpdateRequest:
       type: object
       properties:
         key:
@@ -457,6 +520,97 @@ components:
       required:
       - key
       - subjectEntityKeys
+    EntityTypeRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: document
+        description:
+          type: string
+          example: Representation of a Word document file
+      required:
+      - key
+    RelationAssignmentRequestDto:
+      type: object
+      properties:
+        subjectEntityTypeKey:
+          type: string
+          example: user
+        subjectKey:
+          type: string
+          example: anthony@email-of.his
+        relationKey:
+          type: string
+          example: reader
+        targetEntityTypeKey:
+          type: string
+          example: document
+        targetKey:
+          type: string
+          example: document-1.doc
+        activeFrom:
+          type: string
+          example: '2024-01-01T00:00:00Z'
+        activeUntil:
+          type: string
+          example: '2024-12-31T23:59:59Z'
+      required:
+      - subjectEntityTypeKey
+      - subjectKey
+      - relationKey
+      - targetEntityTypeKey
+      - targetKey
+    EntityTypeActionsResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        entityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: read
+        relationKeys:
+          readOnly: true
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - entityTypeKey
+      - key
+      - relationKeys
+    EntityTypeResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+      required:
+      - key
+      - description
+      - createdAt
     EntityTypeRelationsRequest:
       type: object
       properties:
@@ -498,216 +652,6 @@ components:
       - createdAt
       - relations
       - actions
-    PagedRelationAssignmentsResponse:
-      type: object
-      properties:
-        items:
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationAssignmentDto'
-        hasNext:
-          type: boolean
-          readOnly: true
-          example: false
-      required:
-      - items
-      - hasNext
-    RelationAssignmentRequestDto:
-      type: object
-      properties:
-        subjectEntityTypeKey:
-          type: string
-          example: user
-        subjectKey:
-          type: string
-          example: anthony@email-of.his
-        relationKey:
-          type: string
-          example: reader
-        targetEntityTypeKey:
-          type: string
-          example: document
-        targetKey:
-          type: string
-          example: document-1.doc
-        activeFrom:
-          type: string
-          example: '2024-01-01T00:00:00Z'
-        activeUntil:
-          type: string
-          example: '2024-12-31T23:59:59Z'
-      required:
-      - subjectEntityTypeKey
-      - subjectKey
-      - relationKey
-      - targetEntityTypeKey
-      - targetKey
-    EntityTypeRelationResponse:
-      type: object
-      properties:
-        vendorId:
-          type: string
-          readOnly: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-        targetEntityTypeKey:
-          type: string
-          readOnly: true
-          example: book
-        key:
-          type: string
-          readOnly: true
-          example: reader
-        subjectEntityTypeKeys:
-          readOnly: true
-          example:
-          - copywriter
-          - customer
-          type: array
-          items:
-            type: string
-      required:
-      - vendorId
-      - targetEntityTypeKey
-      - key
-      - subjectEntityTypeKeys
-    EntityTypeResponse:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-          example: document
-        description:
-          type: string
-          readOnly: true
-          example: Representation of a Word document file
-        createdAt:
-          type: string
-          readOnly: true
-          example: '2021-06-02T14:00:00.000Z'
-          format: date-time
-      required:
-      - key
-      - description
-      - createdAt
-    EntityTypeRelationUpdateRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          example: reader
-        subjectEntityKeys:
-          example:
-          - copywriter
-          - customer
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - subjectEntityKeys
-    RelationAssignmentsRequest:
-      type: object
-      properties:
-        assignments:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationAssignmentRequestDto'
-      required:
-      - assignments
-    PagedEntityTypesResponse:
-      type: object
-      properties:
-        hasNext:
-          type: boolean
-          readOnly: true
-          example: true
-        items:
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityTypeResponse'
-      required:
-      - hasNext
-      - items
-    EntityTypeActionsResponse:
-      type: object
-      properties:
-        vendorId:
-          type: string
-          readOnly: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-        entityTypeKey:
-          type: string
-          readOnly: true
-          example: book
-        key:
-          type: string
-          readOnly: true
-          example: read
-        relationKeys:
-          readOnly: true
-          example:
-          - reader
-          - writer
-          - fromRelation: parent
-            toAction: read
-          type: array
-          items:
-            type: string
-      required:
-      - vendorId
-      - entityTypeKey
-      - key
-      - relationKeys
-    EntityTypeActionRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          example: read
-        relationKeys:
-          example:
-          - reader
-          - writer
-          - fromRelation: parent
-            toAction: read
-          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - relationKeys
-    EntityTypeActionUpdateRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          example: read
-        relationKeys:
-          example:
-          - reader
-          - writer
-          - fromRelation: parent
-            toAction: read
-          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - relationKeys
-    EntityTypeActionsRequest:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityTypeActionRequest'
-      required:
-      - actions
     RelationAssignmentDto:
       type: object
       properties:
@@ -743,22 +687,79 @@ components:
       - relationKey
       - targetEntityTypeKey
       - targetKey
-    EntityTypeRequest:
+    PagedEntityTypesResponse:
+      type: object
+      properties:
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: true
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeResponse'
+      required:
+      - hasNext
+      - items
+    EntityTypeRelationRequest:
       type: object
       properties:
         key:
           type: string
-          example: document
-        description:
-          type: string
-          example: Representation of a Word document file
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
       required:
       - key
+      - subjectEntityKeys
+    EntityTypeActionUpdateRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: read
+        relationKeys:
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          description: Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - relationKeys
+    PagedRelationAssignmentsResponse:
+      type: object
+      properties:
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentDto'
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: false
+      required:
+      - items
+      - hasNext
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-entitlements-openapi.yml
 x-tagGroups:
 - name: Management
   tags:

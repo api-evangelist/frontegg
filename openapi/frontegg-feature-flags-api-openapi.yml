@@ -1,20 +1,18 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Multi-Apps Overview Account Invitations Feature Flags API
-  description: Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.
+  title: Frontegg Feature Flags API
   version: '1.0'
-  x-metadata:
-    note: Trigger publish artifacts job, remove this x-metadata after publishing
+  description: 'Operations tagged Feature Flags across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.frontegg.com/applications
+- url: https://api.frontegg.com/entitlements
   description: EU Region
-- url: https://api.us.frontegg.com/applications
+- url: https://api.us.frontegg.com/entitlements
   description: US Region
-- url: https://api.ca.frontegg.com/applications
+- url: https://api.ca.frontegg.com/entitlements
   description: CA Region
-- url: https://api.au.frontegg.com/applications
+- url: https://api.au.frontegg.com/entitlements
   description: AU Region
-- url: https://{domain}.frontegg.com/applications
+- url: https://{domain}.frontegg.com/entitlements
   description: Frontegg sub-domain for use with user tokens
   variables:
     domain:
@@ -211,51 +209,9 @@ paths:
       - bearer: []
 components:
   schemas:
-    FeatureFlagFeature:
+    PageDto:
       type: object
-      properties:
-        id:
-          type: string
-          description: UUID string representing the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-    RuleDto:
-      type: object
-      properties:
-        description:
-          type: string
-          description: String that represents the description of the rule
-          example: This is the first rule
-        conditionLogic:
-          type: string
-          description: Enum that represents the rule conditions logic
-          example: and
-          enum:
-          - and
-        conditions:
-          description: Array of conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDto'
-        treatment:
-          type: string
-          description: String that represents the treatment for this rule
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-      required:
-      - description
-      - conditionLogic
-      - conditions
-      - treatment
+      properties: {}
     UpdateFeatureFlagDto:
       type: object
       properties:
@@ -298,6 +254,151 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RuleDto'
+    ConditionDto:
+      type: object
+      properties:
+        attribute:
+          type: string
+          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
+          example: myCustomAttribute
+        attributeType:
+          type: string
+          description: Enum that represents the attribute type (`frontegg` or `custom`)
+          example: custom
+          enum:
+          - custom
+          - frontegg
+        negate:
+          type: boolean
+          description: Boolean that indicates whether the condition should negate the operation
+          example: false
+        op:
+          type: string
+          description: Enum that represents the operation applied to the condition
+          example: in_list
+          enum:
+          - in_list
+          - starts_with
+          - ends_with
+          - contains
+          - matches
+          - equal
+          - greater_than
+          - greater_than_equal
+          - lower_than
+          - lower_than_equal
+          - between_numeric
+          - is
+          - 'on'
+          - between_date
+          - on_or_after
+          - on_or_before
+        value:
+          type: object
+          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
+          example:
+            list:
+            - valueA
+            - valueB
+      required:
+      - attribute
+      - attributeType
+      - negate
+      - op
+      - value
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
+    CreateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+      required:
+      - name
+      - 'on'
+      - offTreatment
+      - defaultTreatment
+      - featureId
+    FeatureFlagFeature:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
     FeatureFlagDto:
       type: object
       properties:
@@ -354,114 +455,14 @@ components:
           type: string
           description: Date when feature flag was last updated
           example: '2022-01-01T00:00:00'
-    CreateFeatureFlagDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
-          type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
-          enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        featureId:
-          type: string
-          description: UUID string that represents the related feature ID
-          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
-        description:
-          type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        metadata:
-          type: string
-          description: JSON String that represents additional custom metadata to the feature flag entity
-          example: '{}'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the feature
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-      required:
-      - name
-      - 'on'
-      - offTreatment
-      - defaultTreatment
-      - featureId
-    ConditionDto:
-      type: object
-      properties:
-        attribute:
-          type: string
-          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
-          example: myCustomAttribute
-        attributeType:
-          type: string
-          description: Enum that represents the attribute type (`frontegg` or `custom`)
-          example: custom
-          enum:
-          - custom
-          - frontegg
-        negate:
-          type: boolean
-          description: Boolean that indicates whether the condition should negate the operation
-          example: false
-        op:
-          type: string
-          description: Enum that represents the operation applied to the condition
-          example: in_list
-          enum:
-          - in_list
-          - starts_with
-          - ends_with
-          - contains
-          - matches
-          - equal
-          - greater_than
-          - greater_than_equal
-          - lower_than
-          - lower_than_equal
-          - between_numeric
-          - is
-          - 'on'
-          - between_date
-          - on_or_after
-          - on_or_before
-        value:
-          type: object
-          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
-          example:
-            list:
-            - valueA
-            - valueB
-      required:
-      - attribute
-      - attributeType
-      - negate
-      - op
-      - value
-    PageDto:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
+x-refined-from:
+- frontegg-combined-openapi.yml
+- frontegg-entitlements-openapi.yml
 x-tagGroups:
 - name: Management
   tags:
