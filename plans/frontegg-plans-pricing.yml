@@ -1,90 +1,34 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Frontegg
-providerId: frontegg
-created: '2026-05-22'
-modified: '2026-05-22'
-reconciled: true
-tags:
-  - CIAM
-  - Identity
-  - B2B SaaS
-  - Authentication
-description: >-
-  Frontegg pricing as published on https://frontegg.com/pricing. Two tiers:
-  a free "Pay as you go" tier including 7,500 MAU and 5 Enterprise Connections,
-  and an Enterprise tier with custom pricing and 99.99% uptime SLA.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://frontegg.com/pricing
 sources:
-  - https://frontegg.com/pricing
+- https://frontegg.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: usage-other
+published: true
+note: Page has a usage calculator (monthly active users, enterprise SSO/SCIM connections, M2M tokens)
+  but shows only $0/month for the Pay as you go tier; Enterprise is quote-based. Free tier up to 7,500
+  users.
+plan_count: 2
+currency: USD
 plans:
-  - id: frontegg-pay-as-you-go
-    name: Pay as you go
-    type: freemium
-    description: >-
-      "Start free. Scale as you grow." Pay only for what you use, starting free
-      up to 7,500 monthly active users. Always includes fully customized hosted
-      login, 5 Enterprise Connections (SSO/SCIM), unlimited organizations, and
-      a custom domain.
-    entries:
-      - label: Monthly Active Users included
-        name: mau_included
-        type: quota
-        metric: MAU
-        limit: 7500
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Enterprise Connections (SSO/SCIM)
-        name: enterprise_connections
-        type: quota
-        metric: connection
-        limit: 5
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Fully Customized Hosted Login
-      - name: Unlimited Organizations
-      - name: Custom Domain
-      - name: Password and Passwordless Authentication
-      - name: Social Logins
-      - name: Multi-Factor Authentication
-      - name: Passkeys
-      - name: Roles, Permissions, and RBAC
-      - name: Feature Flags
-      - name: Subscription Management
-      - name: Machine-to-Machine (M2M) Tokens
-      - name: User Invitations and Groups
-      - name: Tenant-Level Policies
-      - name: Self-Service Portal
-  - id: frontegg-enterprise
-    name: Enterprise
-    type: enterprise
-    description: >-
-      Custom pricing with multiple environments, advanced fraud protection,
-      99.99% uptime SLA, premium support, and add-ons available. Contact sales.
-    entries:
-      - label: Annual (custom)
-        name: annual
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Multiple Environments
-      - name: Advanced Fraud Protection
-      - name: Identity Protection (Bot Detection, Risk Analytics)
-      - name: 99.99% Uptime SLA
-      - name: Premium Support
-      - name: Add-ons Available
-      - name: Multi-app and Hierarchies (Federation, External Pools)
-      - name: Advanced B2B Features
+- name: Pay as you go
+  price_text: $ 0 /month
+  price: 0
+  currency: USD
+  period: month
+  unit: monthly active users
+  included_quota: Fully Customized Hosted Login, 7,500 Monthly Active Users, 5 Enterprise Connections
+    (SSO/SCIM), Unlimited Organizations, Custom Domain
+- name: Enterprise
+  price_text: Contact sales
+  period: none
+  included_quota: Includes everything from PAYG, plus Add-ons Available, Multiple Environments, Advanced
+    Fraud Protection, 99.99% Uptime SLA, Premium Support
+rate_limit_statements:
+- Rate limit configuration
