@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg MFA API
+  title: Entitlements Agent (PDP) MFA API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged MFA across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: MFA
   x-displayName: MFA
@@ -882,7 +871,36 @@ paths:
                 $ref: '#/components/schemas/AuthenticationResponseDto'
       tags:
       - MFA
-      description: "Complete enrollment in multi-factor authentication (MFA) using WebAuthn.\n\nThis endpoint verifies and registers a WebAuthn device, such as a biometric sensor (Platform) or hardware security key (CrossPlatform), finalizing the setup after the initial challenge.\n\nThe request must include:\n- `deviceType`: Type of device being enrolled. Accepts `Platform` (e.g., fingerprint scanner) or `CrossPlatform` (e.g., USB security key).\n- `webauthnToken`: Token received during the WebAuthn pre-enrollment step.\n- `options`: WebAuthn attestation data collected from the client.\n  - `id`: Device identifier.\n  - `response`: WebAuthn attestation response.\n    - `clientDataJSON`: Base64-encoded client data from the browser.\n    - `attestationObject`: Base64-encoded attestation object from the authenticator.\n  - `deviceType` (optional): May repeat the selected device type.\n- `mfaToken`: Token used to authorize MFA enrollment.\n- `rememberDevice` (optional): Set to `true` to remember the device and reduce MFA prompts on future logins.\n\nUse this endpoint to complete WebAuthn-based MFA enrollment and register the user's trusted device."
+      description: 'Complete enrollment in multi-factor authentication (MFA) using WebAuthn.
+
+
+        This endpoint verifies and registers a WebAuthn device, such as a biometric sensor (Platform) or hardware security key (CrossPlatform), finalizing the setup after the initial challenge.
+
+
+        The request must include:
+
+        - `deviceType`: Type of device being enrolled. Accepts `Platform` (e.g., fingerprint scanner) or `CrossPlatform` (e.g., USB security key).
+
+        - `webauthnToken`: Token received during the WebAuthn pre-enrollment step.
+
+        - `options`: WebAuthn attestation data collected from the client.
+
+        - `id`: Device identifier.
+
+        - `response`: WebAuthn attestation response.
+
+        - `clientDataJSON`: Base64-encoded client data from the browser.
+
+        - `attestationObject`: Base64-encoded attestation object from the authenticator.
+
+        - `deviceType` (optional): May repeat the selected device type.
+
+        - `mfaToken`: Token used to authorize MFA enrollment.
+
+        - `rememberDevice` (optional): Set to `true` to remember the device and reduce MFA prompts on future logins.
+
+
+        Use this endpoint to complete WebAuthn-based MFA enrollment and register the user''s trusted device.'
       security:
       - bearer: []
   /resources/auth/v1/user/mfa/webauthn/{deviceId}:
@@ -982,7 +1000,45 @@ paths:
                 $ref: '#/components/schemas/AuthenticationResponseDto'
       tags:
       - MFA
-      description: "Verify a multi-factor authentication (MFA) challenge using a WebAuthn device.\n\nThis endpoint completes MFA verification using a previously registered WebAuthn device such as a biometric sensor or hardware security key.\n\nPath parameters:\n- `deviceId`: The unique identifier of the registered WebAuthn device to be verified.\n\nRequest body must include:\n- `webauthnToken`: Token received from the server to initiate the WebAuthn challenge.\n- `options`: WebAuthn authentication response returned by the browser.\n  - `id`: The credential ID of the WebAuthn device.\n  - `response`: Object containing attestation data from the authenticator.\n    - `clientDataJSON`: Base64-encoded client data.\n    - `authenticatorData`: Base64-encoded data from the authenticator.\n    - `signature`: Signature from the authenticator, proving user presence.\n    - `userHandle`: The user's handle used during registration.\n  - `recaptchaToken` (optional): Token to verify human interaction, if reCAPTCHA is enabled.\n  - `invitationToken` (optional): Used when completing an MFA challenge as part of an invitation flow.\n- `mfaToken`: Token issued during the initial authentication step.\n- `rememberDevice` (optional): If set to `true`, this device will be remembered for future logins to reduce MFA prompts.\n\nUse this endpoint to complete WebAuthn-based MFA verification and confirm the user's identity using a secure hardware or platform authenticator."
+      description: 'Verify a multi-factor authentication (MFA) challenge using a WebAuthn device.
+
+
+        This endpoint completes MFA verification using a previously registered WebAuthn device such as a biometric sensor or hardware security key.
+
+
+        Path parameters:
+
+        - `deviceId`: The unique identifier of the registered WebAuthn device to be verified.
+
+
+        Request body must include:
+
+        - `webauthnToken`: Token received from the server to initiate the WebAuthn challenge.
+
+        - `options`: WebAuthn authentication response returned by the browser.
+
+        - `id`: The credential ID of the WebAuthn device.
+
+        - `response`: Object containing attestation data from the authenticator.
+
+        - `clientDataJSON`: Base64-encoded client data.
+
+        - `authenticatorData`: Base64-encoded data from the authenticator.
+
+        - `signature`: Signature from the authenticator, proving user presence.
+
+        - `userHandle`: The user''s handle used during registration.
+
+        - `recaptchaToken` (optional): Token to verify human interaction, if reCAPTCHA is enabled.
+
+        - `invitationToken` (optional): Used when completing an MFA challenge as part of an invitation flow.
+
+        - `mfaToken`: Token issued during the initial authentication step.
+
+        - `rememberDevice` (optional): If set to `true`, this device will be remembered for future logins to reduce MFA prompts.
+
+
+        Use this endpoint to complete WebAuthn-based MFA verification and confirm the user''s identity using a secure hardware or platform authenticator.'
       security:
       - bearer: []
   /resources/configurations/v1/mfa-policy/allow-remember-device:
@@ -1339,6 +1395,185 @@ paths:
       - bearer: []
 components:
   schemas:
+    WebAuthNResponse:
+      type: object
+      properties:
+        clientDataJSON:
+          type: string
+        authenticatorData:
+          type: string
+        signature:
+          type: string
+        userHandle:
+          type: string
+      required:
+      - clientDataJSON
+      - authenticatorData
+      - signature
+      - userHandle
+    UserMFAWebAuthnDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
+      required:
+      - id
+      - deviceType
+      - name
+    VerifyEnrollMFAUserAuthAppRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    RequestEnrollMFAWebAuthnResponse:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/WebAuthnCredentialCreationOptions'
+      required:
+      - options
+    WebAuthNClientResponse:
+      type: object
+      properties:
+        clientDataJSON:
+          type: string
+        attestationObject:
+          type: string
+      required:
+      - clientDataJSON
+      - attestationObject
+    RequestDisableMFASMSResponse:
+      type: object
+      properties: {}
+    RequestVerifyMFASMSResponse:
+      type: object
+      properties: {}
+    VerifyMFAWebAuthnRequest:
+      type: object
+      properties:
+        webauthnToken:
+          type: string
+        options:
+          $ref: '#/components/schemas/AuthenticateUserWebAuthNDto'
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - webauthnToken
+      - options
+      - mfaToken
+    VerifyEnrollMFAResponse:
+      type: object
+      properties:
+        recoveryCode:
+          type: string
+      required:
+      - recoveryCode
+    WebAuthnCredentialCreationOptions:
+      type: object
+      properties: {}
+    AuthenticateUserWebAuthNDto:
+      type: object
+      properties:
+        id:
+          type: string
+        response:
+          $ref: '#/components/schemas/WebAuthNResponse'
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+      required:
+      - id
+      - response
+    RequestEnrollMFASMSResponse:
+      type: object
+      properties: {}
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    DisableMFAAuthAppRequest:
+      type: object
+      properties:
+        token:
+          type: string
+    VerifyMFAAuthAppRequest:
+      type: object
+      properties:
+        value:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - value
+      - mfaToken
+    RequestVerifyMFAEmailResponse:
+      type: object
+      properties: {}
+    DisableMFASMSRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+      required:
+      - otcToken
+      - code
+    VerifyEnrollMFAAuthAppRequest:
+      type: object
+      properties:
+        token:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - token
+      - mfaToken
+    CheckAllowRememberResponse:
+      type: object
+      properties: {}
+    VerifyNewWebAuthnDeviceRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        response:
+          $ref: '#/components/schemas/WebAuthNClientResponse'
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+      required:
+      - id
+      - response
+    RequestEnrollAuthenticatorAppMfaResponse:
+      type: object
+      properties:
+        qrCode:
+          type: string
+          description: QR code to be verified by authenticator app
+      required:
+      - qrCode
     VerifyEnrollMFAWebAuthnRequest:
       type: object
       properties:
@@ -1360,125 +1595,6 @@ components:
       - webauthnToken
       - options
       - mfaToken
-    VerifyNewWebAuthnDeviceRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        response:
-          $ref: '#/components/schemas/WebAuthNClientResponse'
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-      required:
-      - id
-      - response
-    RequestVerifyMFAWebAuthnResponse:
-      type: object
-      properties: {}
-    CheckAllowRememberResponse:
-      type: object
-      properties: {}
-    UserMFADevicesResponse:
-      type: object
-      properties:
-        webauthn:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
-        authenticators:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
-      required:
-      - webauthn
-      - phones
-      - authenticators
-      - emails
-    WebAuthNResponse:
-      type: object
-      properties:
-        clientDataJSON:
-          type: string
-        authenticatorData:
-          type: string
-        signature:
-          type: string
-        userHandle:
-          type: string
-      required:
-      - clientDataJSON
-      - authenticatorData
-      - signature
-      - userHandle
-    VerifyMFASMSRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - otcToken
-      - code
-      - mfaToken
-    VerifyMFAAuthAppRequest:
-      type: object
-      properties:
-        value:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - value
-      - mfaToken
-    DisableMFASMSRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-      required:
-      - otcToken
-      - code
-    VerifyMFAWebAuthnRequest:
-      type: object
-      properties:
-        webauthnToken:
-          type: string
-        options:
-          $ref: '#/components/schemas/AuthenticateUserWebAuthNDto'
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - webauthnToken
-      - options
-      - mfaToken
-    RequestVerifyMFASMSResponse:
-      type: object
-      properties: {}
-    RequestVerifyMFAEmailResponse:
-      type: object
-      properties: {}
     RecoverMfaDto:
       type: object
       properties:
@@ -1489,16 +1605,24 @@ components:
       required:
       - recoveryCode
       - email
-    RequestDisableMFARequest:
+    RequestVerifyMFAWebAuthnResponse:
       type: object
       properties: {}
-    VerifyEnrollMFAResponse:
+    VerifyMFAEmailOTCRequest:
       type: object
       properties:
-        recoveryCode:
+        otcToken:
           type: string
+        code:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
       required:
-      - recoveryCode
+      - otcToken
+      - code
+      - mfaToken
     AuthenticationResponseDto:
       type: object
       properties:
@@ -1549,6 +1673,28 @@ components:
       - refreshToken
       - expiresIn
       - expires
+    VerifyMFASMSRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - otcToken
+      - code
+      - mfaToken
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
     VerifyEnrollMFASMSRequest:
       type: object
       properties:
@@ -1559,83 +1705,6 @@ components:
       required:
       - otcToken
       - code
-    AuthenticateUserWebAuthNDto:
-      type: object
-      properties:
-        id:
-          type: string
-        response:
-          $ref: '#/components/schemas/WebAuthNResponse'
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
-      required:
-      - id
-      - response
-    AuthRequestEnrollMFARequest:
-      type: object
-      properties:
-        mfaToken:
-          type: string
-      required:
-      - mfaToken
-    UserMFAWebAuthnDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-        name:
-          type: string
-      required:
-      - id
-      - deviceType
-      - name
-    RequestDisableMFASMSResponse:
-      type: object
-      properties: {}
-    RequestEnrollMFASMSRequest:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          pattern: phoneNumberRegexp
-      required:
-      - phoneNumber
-    VerifyMFAEmailOTCRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - otcToken
-      - code
-      - mfaToken
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    RequestEnrollMFAWebAuthnResponse:
-      type: object
-      properties:
-        options:
-          $ref: '#/components/schemas/WebAuthnCredentialCreationOptions'
-      required:
-      - options
     UserMFAPhoneDeviceResponse:
       type: object
       properties:
@@ -1646,36 +1715,16 @@ components:
       required:
       - id
       - phoneNumber
-    VerifyEnrollMFAUserAuthAppRequest:
+    AuthRequestEnrollMFARequest:
       type: object
       properties:
-        token:
+        mfaToken:
           type: string
       required:
-      - token
-    DisableMFAAuthAppRequest:
-      type: object
-      properties:
-        token:
-          type: string
-    RequestEnrollMFASMSResponse:
+      - mfaToken
+    RequestDisableMFARequest:
       type: object
       properties: {}
-    UserMFAAuthenticatorAppResponse:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    RequestEnrollAuthenticatorAppMfaResponse:
-      type: object
-      properties:
-        qrCode:
-          type: string
-          description: QR code to be verified by authenticator app
-      required:
-      - qrCode
     AuthRequestVerifyMfaRequest:
       type: object
       properties:
@@ -1683,40 +1732,115 @@ components:
           type: string
       required:
       - mfaToken
-    WebAuthNClientResponse:
+    UserMFADevicesResponse:
       type: object
       properties:
-        clientDataJSON:
-          type: string
-        attestationObject:
-          type: string
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
       required:
-      - clientDataJSON
-      - attestationObject
-    VerifyEnrollMFAAuthAppRequest:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    RequestEnrollMFASMSRequest:
       type: object
       properties:
-        token:
+        phoneNumber:
           type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
+          pattern: phoneNumberRegexp
       required:
-      - token
-      - mfaToken
-    WebAuthnCredentialCreationOptions:
-      type: object
-      properties: {}
+      - phoneNumber
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

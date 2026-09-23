@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg User Groups API
+  title: Entitlements Agent (PDP) User Groups API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged User Groups across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: User Groups
   x-displayName: User groups
@@ -571,6 +560,16 @@ paths:
       - bearer: []
 components:
   schemas:
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
     CreateOrUpdateGroupConfigurationDto:
       type: object
       properties:
@@ -582,6 +581,102 @@ components:
           type: boolean
           description: Determine whether groups can have roles or not. Default value is true.
           default: true
+    GetGroupConfigurationResponse:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        rolesEnabled:
+          type: boolean
+      required:
+      - enabled
+      - rolesEnabled
+    UpdateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
+    CreateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
+      required:
+      - name
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    UpdateRolesOnGroupDto:
+      type: object
+      properties:
+        roleIds:
+          description: Will add / remove requested roles from the group
+          example:
+          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
+          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    GroupUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        activatedForTenant:
+          type: boolean
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - createdAt
+      - activatedForTenant
     RoleDto:
       type: object
       properties:
@@ -621,29 +716,9 @@ components:
       - level
       - createdAt
       - updatedAt
-    FronteggPaginationMetadata:
+    FronteggPaginationWrapper:
       type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    UpdateRolesOnGroupDto:
-      type: object
-      properties:
-        roleIds:
-          description: Will add / remove requested roles from the group
-          example:
-          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
-          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
+      properties: {}
     UpdateUsersOnGroupDto:
       type: object
       properties:
@@ -709,47 +784,6 @@ components:
             $ref: '#/components/schemas/GroupResponse'
       required:
       - groups
-    GroupUserDto:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        activatedForTenant:
-          type: boolean
-      required:
-      - id
-      - email
-      - name
-      - profilePictureUrl
-      - createdAt
-      - activatedForTenant
-    CreateGroupDto:
-      type: object
-      properties:
-        color:
-          type: string
-          description: Color for group display
-        description:
-          type: string
-          description: Group description
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        name:
-          type: string
-          description: Group unique name
-      required:
-      - name
     GetGroupsDto:
       type: object
       properties:
@@ -760,60 +794,83 @@ components:
             type: string
       required:
       - groupsIds
-    GetGroupConfigurationResponse:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        rolesEnabled:
-          type: boolean
-      required:
-      - enabled
-      - rolesEnabled
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
-    UpdateGroupDto:
-      type: object
-      properties:
-        color:
-          type: string
-          description: Color for group display
-        description:
-          type: string
-          description: Group description
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        name:
-          type: string
-          description: Group unique name
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg Entitlements API
+  title: Agent (PDP) Entitlements API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged Entitlements across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/entitlements
-  description: EU Region
-- url: https://api.us.frontegg.com/entitlements
-  description: US Region
-- url: https://api.ca.frontegg.com/entitlements
-  description: CA Region
-- url: https://api.au.frontegg.com/entitlements
-  description: AU Region
-- url: https://{domain}.frontegg.com/entitlements
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: Entitlements
   x-displayName: Entitlements
@@ -332,41 +321,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    PageDto:
-      type: object
-      properties: {}
-    EntitlementIdsDto:
-      type: object
-      properties:
-        entitlementIds:
-          description: UUID string that represents the entitlement ID
-          example:
-          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
-      required:
-      - entitlementIds
-    CreateManyEntitlementsDto:
-      type: object
-      properties:
-        entitlements:
-          description: Array of entitlements to create
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEntitlementDto'
-      required:
-      - entitlements
-    UpdateManyEntitlementsDto:
-      type: object
-      properties:
-        entitlements:
-          description: Array of entitlements to update
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
-      required:
-      - entitlements
     CreateEntitlementDto:
       type: object
       properties:
@@ -390,20 +344,6 @@ components:
       required:
       - planId
       - tenantId
-    UpdateEntitlementWithIdDto:
-      type: object
-      properties:
-        expirationDate:
-          format: date-time
-          type: string
-          description: Date of entitlement expiration
-          example: '2022-01-01T12:00:00'
-        id:
-          type: string
-          description: UUID string that represents the entitlement ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-      required:
-      - id
     UpdateEntitlementDto:
       type: object
       properties:
@@ -448,6 +388,33 @@ components:
       - vendorId
       - name
       - createdAt
+    UpdateEntitlementWithIdDto:
+      type: object
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        id:
+          type: string
+          description: UUID string that represents the entitlement ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+      required:
+      - id
+    CreateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to create
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEntitlementDto'
+      required:
+      - entitlements
+    PageDto:
+      type: object
+      properties: {}
     EntitlementDto:
       type: object
       properties:
@@ -492,15 +459,105 @@ components:
       - tenantId
       - createdAt
       - plan
+    UpdateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to update
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
+      required:
+      - entitlements
+    EntitlementIdsDto:
+      type: object
+      properties:
+        entitlementIds:
+          description: UUID string that represents the entitlement ID
+          example:
+          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - entitlementIds
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-entitlements-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

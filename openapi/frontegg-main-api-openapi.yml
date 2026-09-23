@@ -1,30 +1,38 @@
 openapi: 3.2.0
 info:
-  title: Frontegg Main API
+  title: Entitlements Agent (PDP) Main API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged Main across 2 of this provider''s published API definitions: frontegg-audits-openapi.yml, frontegg-combined-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/audits
-  description: EU Region
-- url: https://api.us.frontegg.com/audits
-  description: US Region
-- url: https://api.ca.frontegg.com/audits
-  description: CA Region
-- url: https://api.au.frontegg.com/audits
-  description: AU Region
-- url: https://{domain}.frontegg.com/audits
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: Main
+  x-displayName: Main
 paths:
   /:
+    servers:
+    - url: https://api.frontegg.com/audits
+      description: EU Region
+    - url: https://api.us.frontegg.com/audits
+      description: US Region
+    - url: https://api.ca.frontegg.com/audits
+      description: CA Region
+    - url: https://api.au.frontegg.com/audits
+      description: AU Region
+    - url: https://{domain}.frontegg.com/audits
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
     get:
       operationId: AuditsController_getAudits
       summary: Get Audits
-      description: "This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+      description: 'This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There''s a limit of 200 audits. You can use the ''offset'' query param to get the following 200 results. For example:
+
+        ?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200,
+
+        ?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400'
       deprecated: true
       parameters:
       - name: vendorId
@@ -120,6 +128,7 @@ paths:
       - Main
       security:
       - bearer: []
+  /stats:
     servers:
     - url: https://api.frontegg.com/audits
       description: EU Region
@@ -134,7 +143,6 @@ paths:
       variables:
         domain:
           default: app-xxx
-  /stats:
     get:
       operationId: AuditsController_getAuditsStats
       summary: Get Audits Statistics
@@ -153,6 +161,7 @@ paths:
       - Main
       security:
       - bearer: []
+  /export/csv:
     servers:
     - url: https://api.frontegg.com/audits
       description: EU Region
@@ -167,11 +176,9 @@ paths:
       variables:
         domain:
           default: app-xxx
-  /export/csv:
     post:
       operationId: AuditsController_exportCsv
       summary: Export CSV
-      description: Export CSV
       deprecated: true
       parameters:
       - name: vendorId
@@ -249,6 +256,7 @@ paths:
       - Main
       security:
       - bearer: []
+  /export/csv/v2:
     servers:
     - url: https://api.frontegg.com/audits
       description: EU Region
@@ -263,7 +271,6 @@ paths:
       variables:
         domain:
           default: app-xxx
-  /export/csv/v2:
     post:
       operationId: AuditsController_exportCsvToStream
       summary: Export CSV to Stream
@@ -344,6 +351,7 @@ paths:
       - Main
       security:
       - bearer: []
+  /resources/audits/v2:
     servers:
     - url: https://api.frontegg.com/audits
       description: EU Region
@@ -358,11 +366,14 @@ paths:
       variables:
         domain:
           default: app-xxx
-  /resources/audits/v2:
     get:
       operationId: AuditsController_V2_getAudits
       summary: Get Audits (V2)
-      description: "Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400"
+      description: 'Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example:
+
+        ?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200,
+
+        ?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400'
       parameters:
       - name: created_from
         required: false
@@ -456,6 +467,7 @@ paths:
       - Main
       security:
       - bearer: []
+  /resources/audits/v2/export/csv:
     servers:
     - url: https://api.frontegg.com/audits
       description: EU Region
@@ -470,7 +482,6 @@ paths:
       variables:
         domain:
           default: app-xxx
-  /resources/audits/v2/export/csv:
     post:
       operationId: AuditsController_V2_exportCsvToStream
       summary: Export CSV to Stream (V2)
@@ -574,20 +585,6 @@ paths:
       - Main
       security:
       - bearer: []
-    servers:
-    - url: https://api.frontegg.com/audits
-      description: EU Region
-    - url: https://api.us.frontegg.com/audits
-      description: US Region
-    - url: https://api.ca.frontegg.com/audits
-      description: CA Region
-    - url: https://api.au.frontegg.com/audits
-      description: AU Region
-    - url: https://{domain}.frontegg.com/audits
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
 components:
   schemas:
     AuditRequest:
@@ -604,6 +601,16 @@ components:
           description: ''
       required:
       - severity
+    ExportCSV:
+      type: object
+      properties:
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+          description: ''
+      required:
+      - properties
     Property:
       type: object
       properties:
@@ -616,25 +623,83 @@ components:
       required:
       - displayName
       - name
-    ExportCSV:
-      type: object
-      properties:
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-          description: ''
-      required:
-      - properties
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-audits-openapi.yml
-- frontegg-combined-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

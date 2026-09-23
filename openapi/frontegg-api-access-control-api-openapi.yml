@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg API Access Control API
+  title: Entitlements Agent (PDP) API Access Control API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged API Access Control across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/entitlements
-  description: EU Region
-- url: https://api.us.frontegg.com/entitlements
-  description: US Region
-- url: https://api.ca.frontegg.com/entitlements
-  description: CA Region
-- url: https://api.au.frontegg.com/entitlements
-  description: AU Region
-- url: https://{domain}.frontegg.com/entitlements
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: API Access Control
   x-displayName: API Access Control
@@ -236,61 +225,7 @@ paths:
       - bearer: []
 components:
   schemas:
-    RouteRuleDto:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: b796239c-6641-4cf3-9ff3-658ad4049131
-        routeId:
-          type: string
-          readOnly: true
-          example: b796239c-6641-4cf3-9ff3-658ad4049131
-        type:
-          type: string
-          readOnly: true
-          example: feature
-          enum:
-          - feature
-          - permission
-        value:
-          type: string
-          readOnly: true
-          example: my-feature-key
-      required:
-      - id
-      - routeId
-      - type
-      - value
-    ReplaceRouteRulesDto:
-      type: object
-      properties:
-        rules:
-          description: Set of route rules
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateRouteRuleDto'
-      required:
-      - rules
-    CreateRouteRuleDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Rule type - can be either "feature" or "permission"
-          enum:
-          - feature
-          - permission
-          example: feature
-        value:
-          type: string
-          description: Rule value - represents a reference key to the rule type entity
-          example: my-feature-key
-      required:
-      - type
-      - value
-    UpdateRouteDto:
+    CreateRouteDto:
       type: object
       properties:
         method:
@@ -325,7 +260,51 @@ components:
       - path
       - policyType
       - description
-    CreateRouteDto:
+    RouteRuleDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        routeId:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        type:
+          type: string
+          readOnly: true
+          example: feature
+          enum:
+          - feature
+          - permission
+        value:
+          type: string
+          readOnly: true
+          example: my-feature-key
+      required:
+      - id
+      - routeId
+      - type
+      - value
+    CreateRouteRuleDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Rule type - can be either "feature" or "permission"
+          enum:
+          - feature
+          - permission
+          example: feature
+        value:
+          type: string
+          description: Rule value - represents a reference key to the rule type entity
+          example: my-feature-key
+      required:
+      - type
+      - value
+    UpdateRouteDto:
       type: object
       properties:
         method:
@@ -411,15 +390,93 @@ components:
       - description
       - policyType
       - rules
+    ReplaceRouteRulesDto:
+      type: object
+      properties:
+        rules:
+          description: Set of route rules
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRouteRuleDto'
+      required:
+      - rules
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-entitlements-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

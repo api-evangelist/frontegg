@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg API Token API
+  title: Entitlements Agent (PDP) API Token API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged API Token across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: API Token
   x-displayName: API token
@@ -39,7 +28,7 @@ paths:
     post:
       operationId: AuthenticationApiTokenControllerV2_authApiToken
       summary: Authenticate Using API Token
-      description: 'Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`).
+      description: 'Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://.frontegg.com`).
 
 
         **Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalidated.
@@ -106,16 +95,13 @@ paths:
       - bearer: []
 components:
   schemas:
-    AuthApiTokenDto:
+    RefreshApiTokenDto:
       type: object
       properties:
-        clientId:
-          type: string
-        secret:
+        refreshToken:
           type: string
       required:
-      - clientId
-      - secret
+      - refreshToken
     ApiTokenAuthV2Response:
       type: object
       properties:
@@ -132,22 +118,93 @@ components:
       - refresh_token
       - expires_in
       - expires
-    RefreshApiTokenDto:
+    AuthApiTokenDto:
       type: object
       properties:
-        refreshToken:
+        clientId:
+          type: string
+        secret:
           type: string
       required:
-      - refreshToken
+      - clientId
+      - secret
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

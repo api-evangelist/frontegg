@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg API Tokens API
+  title: Entitlements Agent (PDP) API Tokens API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged API Tokens across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: API Tokens
   x-displayName: API tokens
@@ -311,121 +300,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateTenantAccessTokenRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
-        roleIds:
-          description: Array of role IDs to attach to the token
-          type: array
-          items:
-            type: string
-    TenantAccessTokenResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        secret:
-          type: string
-        expires:
-          format: date-time
-          type: string
-        roleIds:
-          description: Array of role Ids
-          type: array
-          items:
-            type: string
-        createdByUserId:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - createdAt
-      - roleIds
-      - createdByUserId
-    UpdateTenantApiTokenResponseDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        tenantId:
-          type: string
-        createdByUserId:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        createdAt:
-          format: date-time
-          type: string
-        permissionIds:
-          description: Array of permission Ids
-          type: array
-          items:
-            type: string
-        roleIds:
-          description: Array of role Ids
-          type: array
-          items:
-            type: string
-        expires:
-          format: date-time
-          type: string
-      required:
-      - clientId
-      - description
-      - tenantId
-      - createdByUserId
-      - metadata
-      - createdAt
-    CreateTenantApiTokenDto:
-      type: object
-      properties:
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        description:
-          type: string
-        roleIds:
-          description: Array of role Ids. Either this or permissionIds must be provided, but not both.
-          type: array
-          items:
-            type: string
-        permissionIds:
-          description: Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.
-          type: array
-          items:
-            type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
-    GetTenantAccessTokensResponse:
-      type: object
-      properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/TenantAccessTokenResponse'
-      required:
-      - accessTokens
     CreateTenantApiTokenResponseDto:
       type: object
       properties:
@@ -470,6 +344,80 @@ components:
       - createdByUserId
       - metadata
       - createdAt
+    CreateTenantAccessTokenRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+        roleIds:
+          description: Array of role IDs to attach to the token
+          type: array
+          items:
+            type: string
+    TenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - createdAt
+      - roleIds
+      - createdByUserId
+    CreateTenantApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        roleIds:
+          description: Array of role Ids. Either this or permissionIds must be provided, but not both.
+          type: array
+          items:
+            type: string
+        permissionIds:
+          description: Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.
+          type: array
+          items:
+            type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    GetTenantAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantAccessTokenResponse'
+      required:
+      - accessTokens
     GetTenantApiTokensResponse:
       type: object
       properties:
@@ -532,15 +480,124 @@ components:
           type: array
           items:
             type: string
+    UpdateTenantApiTokenResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          type: string
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - createdByUserId
+      - metadata
+      - createdAt
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg Approval Flows API
+  title: Entitlements Agent (PDP) Approval Flows API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged Approval Flows across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: Approval Flows
   x-displayName: Approval Flows
@@ -329,20 +318,151 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateApprovalFlowStepDto:
+    CreateApprovalFlowDto:
       type: object
       properties:
-        approverSelectors:
-          $ref: '#/components/schemas/ApproverSelectorDto'
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        channels:
+          $ref: '#/components/schemas/ApprovalFlowChannelDto'
         configuration:
-          $ref: '#/components/schemas/StepConfigurationDto'
-        stepOrder:
+          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
+      required:
+      - name
+      - channels
+      - configuration
+      - steps
+    ApproverSelectorDto:
+      type: object
+      properties:
+        roleKeys:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+    ApprovalFlowChannel:
+      type: object
+      properties: {}
+    ApprovalFlowConfigurationDto:
+      type: object
+      properties:
+        autoApproveInMinutes:
           type: number
           minimum: 1
+        reminderIntervalMinutes:
+          type: number
+          minimum: 60
+        notifyOnDecisions:
+          type: boolean
+        timeoutMinutes:
+          type: number
+          minimum: 5
+          maximum: 10080
+        webhookUrl:
+          type: string
+    StepConfigurationResponseDto:
+      type: object
+      properties:
+        minApprovals:
+          type: number
+    ExecutionDataResponseDto:
+      type: object
+      properties:
+        approvalFlowName:
+          type: string
+        approvalFlowDescription:
+          type: string
+        requester:
+          type: string
+        approvalFlowRequestDate:
+          format: date-time
+          type: string
+        executionData:
+          type: object
       required:
+      - approvalFlowName
+      - requester
+      - approvalFlowRequestDate
+    ApproverSelectorResponseDto:
+      type: object
+      properties:
+        roleKeys:
+          type: array
+          items:
+            type: string
+        emails:
+          type: array
+          items:
+            type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: string
+      required:
+      - roleKeys
+      - emails
+      - phoneNumbers
+    ExecuteApprovalFlowDto:
+      type: object
+      properties:
+        executionData:
+          type: object
+        webhookUrl:
+          type: string
+    ApprovalFlowConfigurationResponseDto:
+      type: object
+      properties:
+        autoApproveInMinutes:
+          type: number
+        reminderIntervalMinutes:
+          type: number
+        notifyOnDecisions:
+          type: boolean
+        logging:
+          type: boolean
+        timeoutMinutes:
+          type: number
+        webhookUrl:
+          type: string
+    ApprovalFlowStepResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        stepOrder:
+          type: number
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorResponseDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - stepOrder
       - approverSelectors
       - configuration
-      - stepOrder
+      - createdAt
+      - updatedAt
     ApprovalFlowResponseDto:
       type: object
       properties:
@@ -382,11 +502,40 @@ components:
       - steps
       - createdAt
       - updatedAt
-    StepConfigurationResponseDto:
+    ApprovalFlowsListResponseDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFlowResponseDto'
+        total:
+          type: number
+      required:
+      - items
+      - total
+    CreateApprovalFlowStepDto:
+      type: object
+      properties:
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationDto'
+        stepOrder:
+          type: number
+          minimum: 1
+      required:
+      - approverSelectors
+      - configuration
+      - stepOrder
+    StepConfigurationDto:
       type: object
       properties:
         minApprovals:
           type: number
+          minimum: 1
+      required:
+      - minApprovals
     ApprovalFlowChannelDto:
       type: object
       properties:
@@ -413,110 +562,6 @@ components:
       - approvalFlowExecutionId
       - approverId
       - approvalFlowStepId
-    ApproverSelectorDto:
-      type: object
-      properties:
-        roleKeys:
-          type: array
-          items:
-            type: string
-        emails:
-          type: array
-          items:
-            type: string
-        phoneNumbers:
-          type: array
-          items:
-            type: string
-    ExecuteApprovalFlowDto:
-      type: object
-      properties:
-        executionData:
-          type: object
-        webhookUrl:
-          type: string
-    ExecutionDataResponseDto:
-      type: object
-      properties:
-        approvalFlowName:
-          type: string
-        approvalFlowDescription:
-          type: string
-        requester:
-          type: string
-        approvalFlowRequestDate:
-          format: date-time
-          type: string
-        executionData:
-          type: object
-      required:
-      - approvalFlowName
-      - requester
-      - approvalFlowRequestDate
-    ApproverSelectorResponseDto:
-      type: object
-      properties:
-        roleKeys:
-          type: array
-          items:
-            type: string
-        emails:
-          type: array
-          items:
-            type: string
-        phoneNumbers:
-          type: array
-          items:
-            type: string
-      required:
-      - roleKeys
-      - emails
-      - phoneNumbers
-    ApprovalFlowsListResponseDto:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApprovalFlowResponseDto'
-        total:
-          type: number
-      required:
-      - items
-      - total
-    CreateApprovalFlowDto:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        isActive:
-          type: boolean
-        channels:
-          $ref: '#/components/schemas/ApprovalFlowChannelDto'
-        configuration:
-          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
-      required:
-      - name
-      - channels
-      - configuration
-      - steps
-    StepConfigurationDto:
-      type: object
-      properties:
-        minApprovals:
-          type: number
-          minimum: 1
-      required:
-      - minApprovals
-    ApprovalFlowChannel:
-      type: object
-      properties: {}
     UpdateApprovalFlowDto:
       type: object
       properties:
@@ -534,71 +579,83 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateApprovalFlowStepDto'
-    ApprovalFlowStepResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-        stepOrder:
-          type: number
-        approverSelectors:
-          $ref: '#/components/schemas/ApproverSelectorResponseDto'
-        configuration:
-          $ref: '#/components/schemas/StepConfigurationResponseDto'
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - stepOrder
-      - approverSelectors
-      - configuration
-      - createdAt
-      - updatedAt
-    ApprovalFlowConfigurationDto:
-      type: object
-      properties:
-        autoApproveInMinutes:
-          type: number
-          minimum: 1
-        reminderIntervalMinutes:
-          type: number
-          minimum: 60
-        notifyOnDecisions:
-          type: boolean
-        timeoutMinutes:
-          type: number
-          minimum: 5
-          maximum: 10080
-        webhookUrl:
-          type: string
-    ApprovalFlowConfigurationResponseDto:
-      type: object
-      properties:
-        autoApproveInMinutes:
-          type: number
-        reminderIntervalMinutes:
-          type: number
-        notifyOnDecisions:
-          type: boolean
-        logging:
-          type: boolean
-        timeoutMinutes:
-          type: number
-        webhookUrl:
-          type: string
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg Features API
+  title: Entitlements Agent (PDP) Features API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged Features across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-entitlements-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/entitlements
-  description: EU Region
-- url: https://api.us.frontegg.com/entitlements
-  description: US Region
-- url: https://api.ca.frontegg.com/entitlements
-  description: CA Region
-- url: https://api.au.frontegg.com/entitlements
-  description: AU Region
-- url: https://{domain}.frontegg.com/entitlements
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: Features
   x-displayName: Features
@@ -304,6 +293,99 @@ paths:
       - bearer: []
 components:
   schemas:
+    UpdateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+    CreateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - key
+    FeatureFlagDtoThin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the feature flag ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was created
+          example: '2022-01-01T00:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was last updated
+          example: '2022-01-01T00:00:00'
     PermissionDto:
       type: object
       properties:
@@ -315,9 +397,6 @@ components:
           type: string
           description: Permission identifier
           example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-    PageDto:
-      type: object
-      properties: {}
     CreateFeatureDtoV2:
       type: object
       properties:
@@ -345,55 +424,6 @@ components:
       required:
       - name
       - key
-    CreateFeatureDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          example:
-          - permission.read
-          - permission.write
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - key
-    UpdateFeatureDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          example:
-          - permission.read
-          - permission.write
-          type: array
-          items:
-            type: string
     FeatureDto:
       type: object
       properties:
@@ -448,7 +478,10 @@ components:
       - key
       - metadata
       - createdAt
-    UpdateFeatureDtoV2:
+    PageDto:
+      type: object
+      properties: {}
+    UpdateFeatureDto:
       type: object
       properties:
         name:
@@ -465,65 +498,89 @@ components:
           example: This is a test feature
         permissions:
           description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
           type: array
           items:
-            $ref: '#/components/schemas/PermissionDto'
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-    FeatureFlagDtoThin:
-      type: object
-      properties:
-        id:
-          type: string
-          description: UUID string that represents the feature flag ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        name:
-          type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
-          type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
-          enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        description:
-          type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        updatedAt:
-          format: date-time
-          type: string
-          description: Date when feature flag was created
-          example: '2022-01-01T00:00:00'
-        createdAt:
-          format: date-time
-          type: string
-          description: Date when feature flag was last updated
-          example: '2022-01-01T00:00:00'
+            type: string
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-entitlements-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

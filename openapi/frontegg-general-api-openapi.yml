@@ -1,22 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Frontegg General API
+  title: Entitlements Agent (PDP) General API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
   version: '1.0'
-  description: 'Operations tagged General across 2 of this provider''s published API definitions: frontegg-combined-openapi.yml, frontegg-identity-openapi.yml. Each path carries the servers of the definition it was published in.'
-servers:
-- url: https://api.frontegg.com/identity
-  description: EU Region
-- url: https://api.us.frontegg.com/identity
-  description: US Region
-- url: https://api.ca.frontegg.com/identity
-  description: CA Region
-- url: https://api.au.frontegg.com/identity
-  description: AU Region
-- url: https://{domain}.frontegg.com/identity
-  description: Frontegg sub-domain for use with user tokens
-  variables:
-    domain:
-      default: app-xxx
 tags:
 - name: General
   x-displayName: General
@@ -267,19 +256,33 @@ paths:
       - bearer: []
 components:
   schemas:
-    SignUpResponseDto:
+    UserMFAPhoneDeviceResponse:
       type: object
       properties:
-        shouldActivate:
-          type: boolean
-        userId:
+        id:
           type: string
-        tenantId:
+        phoneNumber:
           type: string
-        authResponse:
-          $ref: '#/components/schemas/AuthenticationResponseDto'
-        activationToken:
+      required:
+      - id
+      - phoneNumber
+    RefreshTokenDto:
+      type: object
+      properties: {}
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
           type: string
+      required:
+      - id
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
     UserMFAWebAuthnDeviceResponse:
       type: object
       properties:
@@ -296,6 +299,159 @@ components:
       - id
       - deviceType
       - name
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        tokenType:
+          type: string
+          default: bearer
+        otcToken:
+          type: string
+        mfaRequired:
+          type: boolean
+        mfaToken:
+          type: string
+        resetPasswordToken:
+          type: string
+        passwordExpiresIn:
+          type: number
+        notificationPeriod:
+          type: number
+        mfaEnrolled:
+          type: boolean
+        mfaDevices:
+          $ref: '#/components/schemas/UserMFADevicesResponse'
+        mfaStrategies:
+          type: object
+        qrCode:
+          type: string
+        recoveryCode:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+        expires:
+          type: string
+        userId:
+          type: string
+        userEmail:
+          type: string
+        emailVerified:
+          type: boolean
+        isBreachedPassword:
+          type: boolean
+      required:
+      - mfaRequired
+      - accessToken
+      - refreshToken
+      - expiresIn
+      - expires
+    UserMFADevicesResponse:
+      type: object
+      properties:
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+      required:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    SignUpUserEmailDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+        metadata:
+          type: string
+          description: Stringified JSON object. Use the JSON.stringify() method.
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        password:
+          type: string
+        skipInviteEmail:
+          type: boolean
+        roleIds:
+          type: array
+          items:
+            type: string
+        emailMetadata:
+          type: object
+        companyName:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - provider
+      - email
+      - companyName
+    AuthenticateUserPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email. Either email or username must be provided.
+        username:
+          type: string
+          description: Username. Either email or username must be provided.
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+      required:
+      - password
+    SignUpResponseDto:
+      type: object
+      properties:
+        shouldActivate:
+          type: boolean
+        userId:
+          type: string
+        tenantId:
+          type: string
+        authResponse:
+          $ref: '#/components/schemas/AuthenticationResponseDto'
+        activationToken:
+          type: string
     SignUpUserUsernameDto:
       type: object
       properties:
@@ -347,182 +503,83 @@ components:
       - provider
       - username
       - companyName
-    AuthenticateUserPasswordDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: User email. Either email or username must be provided.
-        username:
-          type: string
-          description: Username. Either email or username must be provided.
-        password:
-          type: string
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
-      required:
-      - password
-    UserMFAAuthenticatorAppResponse:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    SignUpUserEmailDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - local
-          - saml
-          - google
-          - github
-          - facebook
-          - microsoft
-          - scim2
-          - slack
-          - apple
-        metadata:
-          type: string
-          description: Stringified JSON object. Use the JSON.stringify() method.
-        email:
-          type: string
-        username:
-          type: string
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-          maxLength: 4095
-        password:
-          type: string
-        skipInviteEmail:
-          type: boolean
-        roleIds:
-          type: array
-          items:
-            type: string
-        emailMetadata:
-          type: object
-        companyName:
-          type: string
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - provider
-      - email
-      - companyName
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    RefreshTokenDto:
-      type: object
-      properties: {}
-    UserMFADevicesResponse:
-      type: object
-      properties:
-        webauthn:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
-        authenticators:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
-      required:
-      - webauthn
-      - phones
-      - authenticators
-      - emails
-    AuthenticationResponseDto:
-      type: object
-      properties:
-        tokenType:
-          type: string
-          default: bearer
-        otcToken:
-          type: string
-        mfaRequired:
-          type: boolean
-        mfaToken:
-          type: string
-        resetPasswordToken:
-          type: string
-        passwordExpiresIn:
-          type: number
-        notificationPeriod:
-          type: number
-        mfaEnrolled:
-          type: boolean
-        mfaDevices:
-          $ref: '#/components/schemas/UserMFADevicesResponse'
-        mfaStrategies:
-          type: object
-        qrCode:
-          type: string
-        recoveryCode:
-          type: string
-        accessToken:
-          type: string
-        refreshToken:
-          type: string
-        expiresIn:
-          type: number
-        expires:
-          type: string
-        userId:
-          type: string
-        userEmail:
-          type: string
-        emailVerified:
-          type: boolean
-        isBreachedPassword:
-          type: boolean
-      required:
-      - mfaRequired
-      - accessToken
-      - refreshToken
-      - expiresIn
-      - expires
-    UserMFAPhoneDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - id
-      - phoneNumber
   securitySchemes:
     bearer:
       scheme: bearer
       bearerFormat: JWT
       type: http
-x-refined-from:
-- frontegg-combined-openapi.yml
-- frontegg-identity-openapi.yml
 x-tagGroups:
-- name: Management
+- name: Entitlements Agent (PDP)
   tags:
-  - Applications settings
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy
