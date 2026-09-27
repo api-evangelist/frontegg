@@ -133,25 +133,6 @@ components:
           example: false
       required:
       - result
-    IsEntitledToRouteDto:
-      type: object
-      properties:
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
-          type: string
-          example: /example
-      required:
-      - method
-      - path
     SubjectContext:
       type: object
       properties:
@@ -182,14 +163,25 @@ components:
           example: example.permission.read
       required:
       - permissionKey
-    IsEntitledToFeatureDto:
+    IsEntitledToRouteDto:
       type: object
       properties:
-        featureKey:
+        method:
           type: string
-          example: example-feature-key
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          example: /example
       required:
-      - featureKey
+      - method
+      - path
     PDPResponse:
       type: object
       properties:
@@ -204,6 +196,14 @@ components:
       - decision_id
       - metrics
       - result
+    IsEntitledToFeatureDto:
+      type: object
+      properties:
+        featureKey:
+          type: string
+          example: example-feature-key
+      required:
+      - featureKey
   securitySchemes:
     bearer:
       scheme: bearer

@@ -300,7 +300,7 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateTenantApiTokenResponseDto:
+    GetTenantApiTokensResponse:
       type: object
       properties:
         clientId:
@@ -311,7 +311,49 @@ components:
           - 'null'
         tenantId:
           type: string
-        secret:
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        permissionIds:
+          description: Array of permission Ids. Either this or roleIds will be present, but not both.
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids. Either this or permissionIds will be present, but not both.
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - createdByUserId
+      - metadata
+      - createdAt
+      - permissionIds
+      - roleIds
+      - expires
+    UpdateTenantApiTokenResponseDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        tenantId:
           type: string
         createdByUserId:
           type:
@@ -340,10 +382,18 @@ components:
       - clientId
       - description
       - tenantId
-      - secret
       - createdByUserId
       - metadata
       - createdAt
+    GetTenantAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantAccessTokenResponse'
+      required:
+      - accessTokens
     CreateTenantAccessTokenRequest:
       type: object
       properties:
@@ -409,59 +459,6 @@ components:
           type: number
           minimum: 1
           description: Token expiration time in minutes. In case of undefined, the token won't be expired
-    GetTenantAccessTokensResponse:
-      type: object
-      properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/TenantAccessTokenResponse'
-      required:
-      - accessTokens
-    GetTenantApiTokensResponse:
-      type: object
-      properties:
-        clientId:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        tenantId:
-          type: string
-        createdByUserId:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        createdAt:
-          format: date-time
-          type: string
-        permissionIds:
-          description: Array of permission Ids. Either this or roleIds will be present, but not both.
-          type: array
-          items:
-            type: string
-        roleIds:
-          description: Array of role Ids. Either this or permissionIds will be present, but not both.
-          type: array
-          items:
-            type: string
-        expires:
-          format: date-time
-          type: string
-      required:
-      - clientId
-      - description
-      - tenantId
-      - createdByUserId
-      - metadata
-      - createdAt
-      - permissionIds
-      - roleIds
-      - expires
     UpdateApiTokenDto:
       type: object
       properties:
@@ -480,7 +477,7 @@ components:
           type: array
           items:
             type: string
-    UpdateTenantApiTokenResponseDto:
+    CreateTenantApiTokenResponseDto:
       type: object
       properties:
         clientId:
@@ -490,6 +487,8 @@ components:
           - string
           - 'null'
         tenantId:
+          type: string
+        secret:
           type: string
         createdByUserId:
           type:
@@ -518,6 +517,7 @@ components:
       - clientId
       - description
       - tenantId
+      - secret
       - createdByUserId
       - metadata
       - createdAt

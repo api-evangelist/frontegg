@@ -321,29 +321,16 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateEntitlementDto:
+    UpdateManyEntitlementsDto:
       type: object
       properties:
-        planId:
-          type: string
-          description: UUID string that represents the plan ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        tenantId:
-          type: string
-          description: UUID string that represents the account (tenant) ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        userId:
-          type: string
-          description: UUID string that represents the user ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        expirationDate:
-          format: date-time
-          type: string
-          description: Date of entitlement expiration
-          example: '2022-01-01T12:00:00'
+        entitlements:
+          description: Array of entitlements to update
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
       required:
-      - planId
-      - tenantId
+      - entitlements
     UpdateEntitlementDto:
       type: object
       properties:
@@ -352,6 +339,31 @@ components:
           type: string
           description: Date of entitlement expiration
           example: '2022-01-01T12:00:00'
+    EntitlementIdsDto:
+      type: object
+      properties:
+        entitlementIds:
+          description: UUID string that represents the entitlement ID
+          example:
+          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - entitlementIds
+    PageDto:
+      type: object
+      properties: {}
+    CreateManyEntitlementsDto:
+      type: object
+      properties:
+        entitlements:
+          description: Array of entitlements to create
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEntitlementDto'
+      required:
+      - entitlements
     EntitlementPlan:
       type: object
       properties:
@@ -388,33 +400,6 @@ components:
       - vendorId
       - name
       - createdAt
-    UpdateEntitlementWithIdDto:
-      type: object
-      properties:
-        expirationDate:
-          format: date-time
-          type: string
-          description: Date of entitlement expiration
-          example: '2022-01-01T12:00:00'
-        id:
-          type: string
-          description: UUID string that represents the entitlement ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-      required:
-      - id
-    CreateManyEntitlementsDto:
-      type: object
-      properties:
-        entitlements:
-          description: Array of entitlements to create
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateEntitlementDto'
-      required:
-      - entitlements
-    PageDto:
-      type: object
-      properties: {}
     EntitlementDto:
       type: object
       properties:
@@ -459,28 +444,43 @@ components:
       - tenantId
       - createdAt
       - plan
-    UpdateManyEntitlementsDto:
+    UpdateEntitlementWithIdDto:
       type: object
       properties:
-        entitlements:
-          description: Array of entitlements to update
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
-      required:
-      - entitlements
-    EntitlementIdsDto:
-      type: object
-      properties:
-        entitlementIds:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+        id:
+          type: string
           description: UUID string that represents the entitlement ID
-          example:
-          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
       required:
-      - entitlementIds
+      - id
+    CreateEntitlementDto:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        tenantId:
+          type: string
+          description: UUID string that represents the account (tenant) ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        userId:
+          type: string
+          description: UUID string that represents the user ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
+      required:
+      - planId
+      - tenantId
   securitySchemes:
     bearer:
       scheme: bearer

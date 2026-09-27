@@ -224,7 +224,52 @@ paths:
       - bearer: []
 components:
   schemas:
-    UnassignUsersFromAppRequestDto:
+    SwitchApplicationActiveUserTenantsRequestDto:
+      type: object
+      properties:
+        activeApplicationTenants:
+          description: List of applications and tenants to set as active, for user
+          type: array
+          items:
+            $ref: '#/components/schemas/SwitchApplicationActiveUserTenantDto'
+      required:
+      - activeApplicationTenants
+    UserApplicationActiveTenantsResponseDto:
+      type: object
+      properties:
+        applicationActiveTenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
+      required:
+      - applicationActiveTenants
+    SwitchApplicationActiveUserTenantDto:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          description: Desired application to set active tenant in
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user in application
+      required:
+      - applicationId
+      - tenantId
+    ApplicationUserTenantsResponseDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        userTenantId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - appId
+      - userTenantId
+      - createdAt
+    AssignUsersToAppRequestDto:
       type: object
       properties:
         appId:
@@ -239,29 +284,7 @@ components:
       - appId
       - tenantId
       - userIds
-    SwitchApplicationActiveUserTenantDto:
-      type: object
-      properties:
-        applicationId:
-          type: string
-          description: Desired application to set active tenant in
-        tenantId:
-          type: string
-          description: Desired tenant to set as active tenant for user in application
-      required:
-      - applicationId
-      - tenantId
-    SwitchApplicationActiveUserTenantsRequestDto:
-      type: object
-      properties:
-        activeApplicationTenants:
-          description: List of applications and tenants to set as active, for user
-          type: array
-          items:
-            $ref: '#/components/schemas/SwitchApplicationActiveUserTenantDto'
-      required:
-      - activeApplicationTenants
-    AssignUsersToAppRequestDto:
+    UnassignUsersFromAppRequestDto:
       type: object
       properties:
         appId:
@@ -286,29 +309,6 @@ components:
       required:
       - tenantId
       - applicationId
-    UserApplicationActiveTenantsResponseDto:
-      type: object
-      properties:
-        applicationActiveTenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
-      required:
-      - applicationActiveTenants
-    ApplicationUserTenantsResponseDto:
-      type: object
-      properties:
-        appId:
-          type: string
-        userTenantId:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-      required:
-      - appId
-      - userTenantId
-      - createdAt
   securitySchemes:
     bearer:
       scheme: bearer

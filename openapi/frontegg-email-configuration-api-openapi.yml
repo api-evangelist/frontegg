@@ -134,6 +134,28 @@ paths:
       - bearer: []
 components:
   schemas:
+    CreateOrUpdateMailConfigRequestDto:
+      type: object
+      properties:
+        secret:
+          type: string
+      required:
+      - secret
+    SesRoleDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - ses-role
+        secret:
+          type: string
+        region:
+          type: string
+      required:
+      - provider
+      - secret
+      - region
     SesDto:
       type: object
       properties:
@@ -151,6 +173,40 @@ components:
       - provider
       - secret
       - id
+      - region
+    SendGridDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - sendgrid
+        secret:
+          type: string
+      required:
+      - provider
+      - secret
+    MailgunDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - mailgun
+        secret:
+          type: string
+        domain:
+          type: string
+        region:
+          default: us
+          enum:
+          - US: us
+            EU: eu
+          type: number
+      required:
+      - provider
+      - secret
+      - domain
       - region
     GetMailConfigResponseDto:
       type: object
@@ -180,62 +236,6 @@ components:
       - updatedAt
       - extension
       - provider
-    CreateOrUpdateMailConfigRequestDto:
-      type: object
-      properties:
-        secret:
-          type: string
-      required:
-      - secret
-    SesRoleDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - ses-role
-        secret:
-          type: string
-        region:
-          type: string
-      required:
-      - provider
-      - secret
-      - region
-    MailgunDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - mailgun
-        secret:
-          type: string
-        domain:
-          type: string
-        region:
-          default: us
-          enum:
-          - US: us
-            EU: eu
-          type: number
-      required:
-      - provider
-      - secret
-      - domain
-      - region
-    SendGridDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - sendgrid
-        secret:
-          type: string
-      required:
-      - provider
-      - secret
   securitySchemes:
     bearer:
       scheme: bearer

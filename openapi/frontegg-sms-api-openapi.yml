@@ -476,7 +476,25 @@ paths:
       - bearer: []
 components:
   schemas:
+    VerifyPhoneNumberOTCRequestDto:
+      type: object
+      properties:
+        otcToken:
+          type: string
+          description: OTC token
+        code:
+          type: string
+          description: Code that was sent to the user
+      required:
+      - otcToken
+      - code
+    UserPhoneNumberCreatedResponseDto:
+      type: object
+      properties: {}
     UserPhoneNumberDeleteCodeResponseDto:
+      type: object
+      properties: {}
+    FronteggPaginationWrapper:
       type: object
       properties: {}
     FronteggPaginationMetadata:
@@ -489,14 +507,6 @@ components:
       required:
       - totalItems
       - totalPages
-    PreVerifyUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-      required:
-      - phoneNumber
     CreateUserPhoneNumberRequestDto:
       type: object
       properties:
@@ -509,9 +519,6 @@ components:
           description: Should send verification code, default is true
       required:
       - phoneNumber
-    UserPhoneNumberCreatedResponseDto:
-      type: object
-      properties: {}
     FronteggPaginationLinks:
       type: object
       properties:
@@ -528,18 +535,14 @@ components:
       - prev
       - first
       - last
-    VerifyPhoneNumberOTCRequestDto:
+    PreVerifyUserPhoneNumberRequestDto:
       type: object
       properties:
-        otcToken:
+        phoneNumber:
           type: string
-          description: OTC token
-        code:
-          type: string
-          description: Code that was sent to the user
+          description: New phone number
       required:
-      - otcToken
-      - code
+      - phoneNumber
     UserPhoneNumberResponseDto:
       type: object
       properties:
@@ -564,9 +567,6 @@ components:
       - verified
       - createdAt
       - updatedAt
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

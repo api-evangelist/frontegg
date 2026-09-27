@@ -213,6 +213,43 @@ paths:
       - bearer: []
 components:
   schemas:
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    AddRoleWithPermissionsRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        baseRoleId:
+          type: string
+          description: Role level of the new role will be based on this parameter
+        permissionIds:
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - name
+      - baseRoleId
+      - permissionIds
     RoleResponse:
       type: object
       properties:
@@ -257,16 +294,6 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     AddRoleWithPermissionsResponse:
       type: object
       properties:
@@ -313,33 +340,6 @@ components:
       - prev
       - first
       - last
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    AddRoleWithPermissionsRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-          description: This role will be assigned for every user that will be added without specified roles
-        baseRoleId:
-          type: string
-          description: Role level of the new role will be based on this parameter
-        permissionIds:
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - name
-      - baseRoleId
-      - permissionIds
   securitySchemes:
     bearer:
       scheme: bearer

@@ -236,16 +236,26 @@ paths:
       - bearer: []
 components:
   schemas:
-    AddRolesToPermissionRequest:
+    AddPermissionRequest:
       type: object
       properties:
-        roleIds:
-          description: The permission will be assigned to the specified roles
-          type: array
-          items:
-            type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
+        assignmentType:
+          type: string
+          enum:
+          - NEVER
+          - ALWAYS
+          - ASSIGNABLE
       required:
-      - roleIds
+      - key
+      - name
     PermissionResponse:
       type: object
       properties:
@@ -281,6 +291,27 @@ components:
       - roleIds
       - categoryId
       - fePermission
+    AddRolesToPermissionRequest:
+      type: object
+      properties:
+        roleIds:
+          description: The permission will be assigned to the specified roles
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    UpdatePermissionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
     ClassifyPermissionsDto:
       type: object
       properties:
@@ -297,37 +328,6 @@ components:
       required:
       - permissionIds
       - type
-    UpdatePermissionRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        categoryId:
-          type: string
-    AddPermissionRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        categoryId:
-          type: string
-        assignmentType:
-          type: string
-          enum:
-          - NEVER
-          - ALWAYS
-          - ASSIGNABLE
-      required:
-      - key
-      - name
   securitySchemes:
     bearer:
       scheme: bearer

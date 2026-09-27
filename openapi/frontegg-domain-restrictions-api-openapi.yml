@@ -216,6 +216,51 @@ components:
       required:
       - domain
       - type
+    DomainRestrictionsBulkRequestRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+        domains:
+          type: array
+          items:
+            type: string
+            pattern: domainRegexString
+      required:
+      - type
+      - domains
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    DomainRestrictionsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        domain:
+          type: string
+        type:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+      required:
+      - id
+      - domain
+      - type
     DomainRestrictionsConfigResponse:
       type: object
       properties:
@@ -232,16 +277,6 @@ components:
       - active
       - listType
       - blockPublicDomains
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     DomainRestrictionsConfigUpdateRequest:
       type: object
       properties:
@@ -272,41 +307,6 @@ components:
       - prev
       - first
       - last
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    DomainRestrictionsBulkRequestRequest:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - ALLOW
-          - BLOCK
-        domains:
-          type: array
-          items:
-            type: string
-            pattern: domainRegexString
-      required:
-      - type
-      - domains
-    DomainRestrictionsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        domain:
-          type: string
-        type:
-          enum:
-          - ALLOW
-          - BLOCK
-          type: string
-      required:
-      - id
-      - domain
-      - type
   securitySchemes:
     bearer:
       scheme: bearer

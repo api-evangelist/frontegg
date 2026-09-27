@@ -193,25 +193,15 @@ paths:
       - bearer: []
 components:
   schemas:
-    MfaPolicyRequest:
+    MFAStrategiesResponse:
       type: object
       properties:
-        enforceMFAType:
-          type: string
-          enum:
-          - DontForce
-          - Force
-          - ForceExceptSAML
-          description: Determine whether MFA should be enforced.
-          default: Force
-        allowRememberMyDevice:
-          type: boolean
-          description: Determine whether devices can be remembered and authentication can be skipped.
-          default: false
-        mfaDeviceExpiration:
-          type: number
-          description: Expiration time of device in seconds
-          default: 1209600
+        strategies:
+          type: array
+          items:
+            $ref: '#/components/schemas/MFAStrategyResponse'
+      required:
+      - strategies
     MfaPolicyResponse:
       type: object
       properties:
@@ -235,31 +225,6 @@ components:
       - mfaDeviceExpiration
       - createdAt
       - updatedAt
-    MFAStrategiesResponse:
-      type: object
-      properties:
-        strategies:
-          type: array
-          items:
-            $ref: '#/components/schemas/MFAStrategyResponse'
-      required:
-      - strategies
-    MFAStrategyResponse:
-      type: object
-      properties:
-        strategy:
-          enum:
-          - AuthenticatorApp
-          - WebAuthnPlatform
-          - WebAuthnCrossPlatform
-          - SMS
-          - EmailCode
-          type: string
-        isActive:
-          type: boolean
-      required:
-      - strategy
-      - isActive
     CreateOrUpdateMFAStrategyRequest:
       type: object
       properties:
@@ -276,6 +241,41 @@ components:
       required:
       - isActive
       - strategy
+    MFAStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          enum:
+          - AuthenticatorApp
+          - WebAuthnPlatform
+          - WebAuthnCrossPlatform
+          - SMS
+          - EmailCode
+          type: string
+        isActive:
+          type: boolean
+      required:
+      - strategy
+      - isActive
+    MfaPolicyRequest:
+      type: object
+      properties:
+        enforceMFAType:
+          type: string
+          enum:
+          - DontForce
+          - Force
+          - ForceExceptSAML
+          description: Determine whether MFA should be enforced.
+          default: Force
+        allowRememberMyDevice:
+          type: boolean
+          description: Determine whether devices can be remembered and authentication can be skipped.
+          default: false
+        mfaDeviceExpiration:
+          type: number
+          description: Expiration time of device in seconds
+          default: 1209600
   securitySchemes:
     bearer:
       scheme: bearer

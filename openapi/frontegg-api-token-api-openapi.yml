@@ -95,6 +95,16 @@ paths:
       - bearer: []
 components:
   schemas:
+    AuthApiTokenDto:
+      type: object
+      properties:
+        clientId:
+          type: string
+        secret:
+          type: string
+      required:
+      - clientId
+      - secret
     RefreshApiTokenDto:
       type: object
       properties:
@@ -118,16 +128,6 @@ components:
       - refresh_token
       - expires_in
       - expires
-    AuthApiTokenDto:
-      type: object
-      properties:
-        clientId:
-          type: string
-        secret:
-          type: string
-      required:
-      - clientId
-      - secret
   securitySchemes:
     bearer:
       scheme: bearer

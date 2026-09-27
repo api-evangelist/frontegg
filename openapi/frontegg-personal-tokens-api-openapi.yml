@@ -256,6 +256,24 @@ paths:
       - bearer: []
 components:
   schemas:
+    UserAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - createdAt
     GetUserApiTokensResponseDto:
       type: object
       properties:
@@ -277,24 +295,6 @@ components:
       - description
       - metadata
       - createdAt
-    GetUserAccessTokensResponse:
-      type: object
-      properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserAccessTokenResponse'
-      required:
-      - accessTokens
-    CreateUserAccessTokenRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
     CreateUserApiTokenResponseDto:
       type: object
       properties:
@@ -319,6 +319,24 @@ components:
       - metadata
       - createdAt
       - secret
+    GetUserAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccessTokenResponse'
+      required:
+      - accessTokens
+    CreateUserAccessTokenRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
     CreateUserApiTokenDto:
       type: object
       properties:
@@ -332,24 +350,6 @@ components:
           minimum: 1
           maximum: 5256000
           description: Token expiration time in minutes. In case of undefined, the token won't be expired
-    UserAccessTokenResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        secret:
-          type: string
-        expires:
-          format: date-time
-          type: string
-      required:
-      - id
-      - createdAt
   securitySchemes:
     bearer:
       scheme: bearer
