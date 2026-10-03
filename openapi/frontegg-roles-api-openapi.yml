@@ -268,69 +268,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    UpdateRoleTenantRequest:
-      type: object
-      properties:
-        tenantId:
-          type:
-          - string
-          - 'null'
-      required:
-      - tenantId
-    AddPermissionToRoleRequest:
-      type: object
-      properties:
-        permissionIds:
-          description: Set permission Ids to attach to the role
-          type: array
-          items:
-            type: string
-      required:
-      - permissionIds
-    RoleResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        permissions:
-          type: array
-          items:
-            type: string
-      required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - firstUserRole
-      - level
-      - createdAt
-      - updatedAt
-      - permissions
     UpdateRoleRequest:
       type: object
       properties:
@@ -381,6 +318,69 @@ components:
       - key
       - name
       - level
+    UpdateRoleTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type:
+          - string
+          - 'null'
+      required:
+      - tenantId
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    AddPermissionToRoleRequest:
+      type: object
+      properties:
+        permissionIds:
+          description: Set permission Ids to attach to the role
+          type: array
+          items:
+            type: string
+      required:
+      - permissionIds
   securitySchemes:
     bearer:
       scheme: bearer

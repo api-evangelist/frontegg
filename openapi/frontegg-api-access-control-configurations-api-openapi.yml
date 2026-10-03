@@ -67,6 +67,18 @@ paths:
       - bearer: []
 components:
   schemas:
+    UpdateRoutesConfigurationDto:
+      type: object
+      properties:
+        accessControlMode:
+          type: string
+          description: Access control mode
+          example: monitor
+          enum:
+          - guard
+          - monitor
+      required:
+      - accessControlMode
     RoutesConfigurationDto:
       type: object
       properties:
@@ -88,18 +100,6 @@ components:
       required:
       - id
       - vendorId
-      - accessControlMode
-    UpdateRoutesConfigurationDto:
-      type: object
-      properties:
-        accessControlMode:
-          type: string
-          description: Access control mode
-          example: monitor
-          enum:
-          - guard
-          - monitor
-      required:
       - accessControlMode
   securitySchemes:
     bearer:

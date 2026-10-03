@@ -476,73 +476,9 @@ paths:
       - bearer: []
 components:
   schemas:
-    VerifyPhoneNumberOTCRequestDto:
-      type: object
-      properties:
-        otcToken:
-          type: string
-          description: OTC token
-        code:
-          type: string
-          description: Code that was sent to the user
-      required:
-      - otcToken
-      - code
-    UserPhoneNumberCreatedResponseDto:
-      type: object
-      properties: {}
-    UserPhoneNumberDeleteCodeResponseDto:
-      type: object
-      properties: {}
     FronteggPaginationWrapper:
       type: object
       properties: {}
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    CreateUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-        verify:
-          type: boolean
-          default: true
-          description: Should send verification code, default is true
-      required:
-      - phoneNumber
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
-    PreVerifyUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-      required:
-      - phoneNumber
     UserPhoneNumberResponseDto:
       type: object
       properties:
@@ -567,6 +503,70 @@ components:
       - verified
       - createdAt
       - updatedAt
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    PreVerifyUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+      required:
+      - phoneNumber
+    UserPhoneNumberCreatedResponseDto:
+      type: object
+      properties: {}
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    UserPhoneNumberDeleteCodeResponseDto:
+      type: object
+      properties: {}
+    VerifyPhoneNumberOTCRequestDto:
+      type: object
+      properties:
+        otcToken:
+          type: string
+          description: OTC token
+        code:
+          type: string
+          description: Code that was sent to the user
+      required:
+      - otcToken
+      - code
+    CreateUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+        verify:
+          type: boolean
+          default: true
+          description: Should send verification code, default is true
+      required:
+      - phoneNumber
   securitySchemes:
     bearer:
       scheme: bearer

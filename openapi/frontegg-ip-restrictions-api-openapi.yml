@@ -274,30 +274,7 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    CreateOrUpdateIpRestrictionConfigDto:
-      type: object
-      properties:
-        strategy:
-          enum:
-          - ALLOW
-          - BLOCK
-          type: string
-        isActive:
-          type: boolean
-    GetIpRestrictionResponse:
       type: object
       properties: {}
     CreateOrUpdateIpRestrictionDto:
@@ -334,6 +311,29 @@ components:
       - prev
       - first
       - last
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    CreateOrUpdateIpRestrictionConfigDto:
+      type: object
+      properties:
+        strategy:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+        isActive:
+          type: boolean
+    GetIpRestrictionResponse:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

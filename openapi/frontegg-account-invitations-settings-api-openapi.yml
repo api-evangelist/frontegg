@@ -229,50 +229,29 @@ paths:
       - bearer: []
 components:
   schemas:
+    CreateInviteTokenRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+        roleIds:
+          description: Array of role IDs to assign to invited users
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
     CreateOrUpdateInvitationStrategyRequest:
       type: object
       properties:
         codeExpiration:
           type: number
-    CreateOrUpdateActivationStrategyRequest:
-      type: object
-      properties:
-        codeExpiration:
-          type: number
-          minimum: 60
-        strategy:
-          type: string
-          enum:
-          - code
-          - link
-      required:
-      - strategy
-    ActivationStrategyResponse:
-      type: object
-      properties:
-        strategy:
-          type: string
-          enum:
-          - code
-          - link
-        codeExpiration:
-          type: number
-      required:
-      - strategy
-      - codeExpiration
-    InvitationStrategyResponse:
-      type: object
-      properties:
-        strategy:
-          type: string
-          enum:
-          - code
-          - link
-        codeExpiration:
-          type: number
-      required:
-      - strategy
-      - codeExpiration
     InviteTokenDto:
       type: object
       properties:
@@ -304,24 +283,45 @@ components:
       - token
       - expires
       - shouldSendEmail
-    CreateInviteTokenRequest:
+    ActivationStrategyResponse:
       type: object
       properties:
-        tenantId:
+        strategy:
           type: string
-        userId:
-          type: string
-        expiresInMinutes:
+          enum:
+          - code
+          - link
+        codeExpiration:
           type: number
-        shouldSendEmail:
-          type: boolean
-        roleIds:
-          description: Array of role IDs to assign to invited users
-          type: array
-          items:
-            type: string
       required:
-      - tenantId
+      - strategy
+      - codeExpiration
+    InvitationStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+        codeExpiration:
+          type: number
+      required:
+      - strategy
+      - codeExpiration
+    CreateOrUpdateActivationStrategyRequest:
+      type: object
+      properties:
+        codeExpiration:
+          type: number
+          minimum: 60
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+      required:
+      - strategy
   securitySchemes:
     bearer:
       scheme: bearer

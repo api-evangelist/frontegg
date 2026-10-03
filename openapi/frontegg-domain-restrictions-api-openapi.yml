@@ -202,46 +202,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    DomainRestrictionsCreateRequest:
-      type: object
-      properties:
-        domain:
-          type: string
-          pattern: domainRegex
-        type:
-          type: string
-          enum:
-          - ALLOW
-          - BLOCK
-      required:
-      - domain
-      - type
-    DomainRestrictionsBulkRequestRequest:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - ALLOW
-          - BLOCK
-        domains:
-          type: array
-          items:
-            type: string
-            pattern: domainRegexString
-      required:
-      - type
-      - domains
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     FronteggPaginationWrapper:
       type: object
       properties: {}
@@ -277,20 +237,20 @@ components:
       - active
       - listType
       - blockPublicDomains
-    DomainRestrictionsConfigUpdateRequest:
+    DomainRestrictionsCreateRequest:
       type: object
       properties:
-        active:
-          type: boolean
-        blockPublicDomains:
-          type: boolean
+        domain:
+          type: string
+          pattern: domainRegex
         type:
           type: string
           enum:
           - ALLOW
           - BLOCK
       required:
-      - active
+      - domain
+      - type
     FronteggPaginationLinks:
       type: object
       properties:
@@ -307,6 +267,46 @@ components:
       - prev
       - first
       - last
+    DomainRestrictionsBulkRequestRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+        domains:
+          type: array
+          items:
+            type: string
+            pattern: domainRegexString
+      required:
+      - type
+      - domains
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    DomainRestrictionsConfigUpdateRequest:
+      type: object
+      properties:
+        active:
+          type: boolean
+        blockPublicDomains:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+      required:
+      - active
   securitySchemes:
     bearer:
       scheme: bearer

@@ -375,19 +375,6 @@ components:
     UpdateTenantRequestV2:
       type: object
       properties: {}
-    AddTenantMetadataRequest:
-      type: object
-      properties:
-        metadata:
-          oneOf:
-          - type: object
-            example:
-              maximumUsers: 50
-      required:
-      - metadata
-    UpdateTenantRequest:
-      type: object
-      properties: {}
     CreateTenantRequest:
       type: object
       properties:
@@ -422,6 +409,19 @@ components:
           type: boolean
         parentTenantId:
           type: string
+    AddTenantMetadataRequest:
+      type: object
+      properties:
+        metadata:
+          oneOf:
+          - type: object
+            example:
+              maximumUsers: 50
+      required:
+      - metadata
+    UpdateTenantRequest:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

@@ -633,18 +633,104 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    UserSourceFromSourceTenantConfig:
+    CreateFederationUserSourceRequestDTO:
       type: object
       properties:
-        tenantResolverType:
+        name:
           type: string
-          enum:
-          - from-source
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/FederationUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
       required:
-      - tenantResolverType
+      - name
+      - configuration
+      - index
+    UpdateExternalFirebaseUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalFirebaseUserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
+    ExternalCustomCodeUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        codePayload:
+          type: string
+        getUserCodePayload:
+          type: string
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+          - $ref: '#/components/schemas/UserSourceFromSourceTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - codePayload
+      - tenantConfig
+    GetUserSourceUsersResponseDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+      required:
+      - email
+      - lastLogin
+    ExternalFirebaseUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        apiKey:
+          type: string
+          description: The firebase Web API Key
+        serviceAccount:
+          $ref: '#/components/schemas/FirebaseServiceAccountConfig'
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
+      required:
+      - syncOnLogin
+      - isMigrated
+      - apiKey
+      - serviceAccount
+      - tenantConfig
     UserSourceStaticTenantConfig:
       type: object
       properties:
@@ -658,7 +744,10 @@ components:
       required:
       - tenantId
       - tenantResolverType
-    UpdateExternalAuth0UserSourceRequestDTO:
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    CreateCustomCodeExternalUserSourceRequestDTO:
       type: object
       properties:
         name:
@@ -667,14 +756,23 @@ components:
         configuration:
           description: User source configuration
           allOf:
-          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
+          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
+        appIds:
+          description: The application Ids to assign to this user source
+          type: array
+          items:
+            type: string
         index:
           type: number
           description: The user source index
         description:
           type: string
           description: The user source description
-    UnassignApplicationsFromUserSourceRequestDTO:
+      required:
+      - name
+      - configuration
+      - index
+    AssignApplicationsToUserSourceRequestDTO:
       type: object
       properties:
         appIds:
@@ -715,7 +813,16 @@ components:
       - appIds
       - index
       - configuration
-    CreateCognitoExternalUserSourceRequestDTO:
+    UserSourceNewTenantConfig:
+      type: object
+      properties:
+        tenantResolverType:
+          type: string
+          enum:
+          - new
+      required:
+      - tenantResolverType
+    UpdateFederationUserSourceRequestDTO:
       type: object
       properties:
         name:
@@ -724,22 +831,13 @@ components:
         configuration:
           description: User source configuration
           allOf:
-          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
-        appIds:
-          description: The application Ids to assign to this user source
-          type: array
-          items:
-            type: string
+          - $ref: '#/components/schemas/FederationUserSourceConfig'
         index:
           type: number
           description: The user source index
         description:
           type: string
           description: The user source description
-      required:
-      - name
-      - configuration
-      - index
     ExternalCognitoUserSourceConfig:
       type: object
       properties:
@@ -781,7 +879,7 @@ components:
       - accessKeyId
       - secretAccessKey
       - tenantConfig
-    CreateAuth0ExternalUserSourceRequestDTO:
+    CreateCognitoExternalUserSourceRequestDTO:
       type: object
       properties:
         name:
@@ -790,7 +888,7 @@ components:
         configuration:
           description: User source configuration
           allOf:
-          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
+          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
         appIds:
           description: The application Ids to assign to this user source
           type: array
@@ -806,7 +904,36 @@ components:
       - name
       - configuration
       - index
-    CreateFederationUserSourceRequestDTO:
+    UserSourceDynamicTenantConfig:
+      type: object
+      properties:
+        tenantIdFieldName:
+          type: string
+          description: The attribute name of which the tenant id would be taken from
+        tenantResolverType:
+          type: string
+          enum:
+          - dynamic
+      required:
+      - tenantIdFieldName
+      - tenantResolverType
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    UpdateExternalCustomCodeUserSourceRequestDTO:
       type: object
       properties:
         name:
@@ -815,22 +942,82 @@ components:
         configuration:
           description: User source configuration
           allOf:
-          - $ref: '#/components/schemas/FederationUserSourceConfig'
-        appIds:
-          description: The application Ids to assign to this user source
-          type: array
-          items:
-            type: string
+          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
         index:
           type: number
           description: The user source index
         description:
           type: string
           description: The user source description
+    FederationUserSourceConfig:
+      type: object
+      properties:
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        wellknownUrl:
+          type: string
+          description: The url of the service provider
+        oauth2Config:
+          description: OAuth2 configuration (required if wellknownUrl is not provided)
+          allOf:
+          - $ref: '#/components/schemas/Oauth2UserSourceConfig'
+        clientId:
+          type: string
+          description: The client id from the service provider
+        secret:
+          type: string
+          description: The secret from the service provider
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
       required:
+      - syncOnLogin
+      - clientId
+      - secret
+      - tenantConfig
+    GetUserSourceExtendedResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+        index:
+          type: number
+        configuration:
+          type: object
+        usersCount:
+          type: number
+      required:
+      - id
       - name
-      - configuration
+      - type
+      - description
+      - appIds
       - index
+      - configuration
+      - usersCount
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
     CreateFirebaseExternalUserSourceRequestDTO:
       type: object
       properties:
@@ -856,30 +1043,77 @@ components:
       - name
       - configuration
       - index
-    FronteggPaginationMetadata:
+    ExternalAuth0UserSourceConfig:
       type: object
       properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
+        syncOnLogin:
+          type: boolean
+          description: Whether to sync user profile attributes on each login
+        isMigrated:
+          type: boolean
+          description: Whether to migrate the users
+        domain:
+          type: string
+          description: the auth0 domain
+        clientId:
+          type: string
+          description: the auth0 application clientId
+        secret:
+          type: string
+          description: the auth0 application secret
+        tenantConfig:
+          oneOf:
+          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
+          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
+          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
       required:
-      - totalItems
-      - totalPages
-    AssignApplicationsToUserSourceRequestDTO:
+      - syncOnLogin
+      - isMigrated
+      - domain
+      - clientId
+      - secret
+      - tenantConfig
+    CreateAuth0ExternalUserSourceRequestDTO:
       type: object
       properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
         appIds:
           description: The application Ids to assign to this user source
           type: array
           items:
             type: string
-        userSourceId:
+        index:
+          type: number
+          description: The user source index
+        description:
           type: string
-          description: The user source id
+          description: The user source description
       required:
-      - appIds
-      - userSourceId
+      - name
+      - configuration
+      - index
+    UpdateExternalAuth0UserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalAuth0UserSourceConfig'
+        index:
+          type: number
+          description: The user source index
+        description:
+          type: string
+          description: The user source description
     Oauth2UserSourceConfig:
       type: object
       properties:
@@ -912,109 +1146,46 @@ components:
       - authorizationUrl
       - tokenUrl
       - userInfoUrl
-    UserSourceDynamicTenantConfig:
+    CreateUserSourceResponse:
       type: object
       properties:
-        tenantIdFieldName:
+        id:
           type: string
-          description: The attribute name of which the tenant id would be taken from
-        tenantResolverType:
-          type: string
-          enum:
-          - dynamic
-      required:
-      - tenantIdFieldName
-      - tenantResolverType
-    UserSourceNewTenantConfig:
-      type: object
-      properties:
-        tenantResolverType:
-          type: string
-          enum:
-          - new
-      required:
-      - tenantResolverType
-    UpdateExternalCustomCodeUserSourceRequestDTO:
-      type: object
-      properties:
         name:
           type: string
-          description: The user source name
-        configuration:
-          description: User source configuration
-          allOf:
-          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
-        index:
-          type: number
-          description: The user source index
-        description:
+        type:
           type: string
-          description: The user source description
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
-    ExternalFirebaseUserSourceConfig:
-      type: object
-      properties:
-        syncOnLogin:
-          type: boolean
-          description: Whether to sync user profile attributes on each login
-        isMigrated:
-          type: boolean
-          description: Whether to migrate the users
-        apiKey:
-          type: string
-          description: The firebase Web API Key
-        serviceAccount:
-          $ref: '#/components/schemas/FirebaseServiceAccountConfig'
-        tenantConfig:
-          oneOf:
-          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
-          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
-      required:
-      - syncOnLogin
-      - isMigrated
-      - apiKey
-      - serviceAccount
-      - tenantConfig
-    CreateCustomCodeExternalUserSourceRequestDTO:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The user source name
-        configuration:
-          description: User source configuration
-          allOf:
-          - $ref: '#/components/schemas/ExternalCustomCodeUserSourceConfig'
         appIds:
-          description: The application Ids to assign to this user source
           type: array
           items:
             type: string
+        description:
+          type: string
+        index:
+          type: number
+      required:
+      - id
+      - name
+      - type
+      - appIds
+      - description
+      - index
+    UpdateExternalCognitoUserSourceRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user source name
+        configuration:
+          description: User source configuration
+          allOf:
+          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
         index:
           type: number
           description: The user source index
         description:
           type: string
           description: The user source description
-      required:
-      - name
-      - configuration
-      - index
     FirebaseServiceAccountConfig:
       type: object
       properties:
@@ -1052,200 +1223,29 @@ components:
       - auth_provider_x509_cert_url
       - client_x509_cert_url
       - universe_domain
-    CreateUserSourceResponse:
+    UserSourceFromSourceTenantConfig:
       type: object
       properties:
-        id:
+        tenantResolverType:
           type: string
-        name:
-          type: string
-        type:
-          type: string
+          enum:
+          - from-source
+      required:
+      - tenantResolverType
+    UnassignApplicationsFromUserSourceRequestDTO:
+      type: object
+      properties:
         appIds:
+          description: The application Ids to assign to this user source
           type: array
           items:
             type: string
-        description:
+        userSourceId:
           type: string
-        index:
-          type: number
+          description: The user source id
       required:
-      - id
-      - name
-      - type
       - appIds
-      - description
-      - index
-    FederationUserSourceConfig:
-      type: object
-      properties:
-        syncOnLogin:
-          type: boolean
-          description: Whether to sync user profile attributes on each login
-        wellknownUrl:
-          type: string
-          description: The url of the service provider
-        oauth2Config:
-          description: OAuth2 configuration (required if wellknownUrl is not provided)
-          allOf:
-          - $ref: '#/components/schemas/Oauth2UserSourceConfig'
-        clientId:
-          type: string
-          description: The client id from the service provider
-        secret:
-          type: string
-          description: The secret from the service provider
-        tenantConfig:
-          oneOf:
-          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
-          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
-          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
-      required:
-      - syncOnLogin
-      - clientId
-      - secret
-      - tenantConfig
-    UpdateExternalCognitoUserSourceRequestDTO:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The user source name
-        configuration:
-          description: User source configuration
-          allOf:
-          - $ref: '#/components/schemas/ExternalCognitoUserSourceConfig'
-        index:
-          type: number
-          description: The user source index
-        description:
-          type: string
-          description: The user source description
-    UpdateExternalFirebaseUserSourceRequestDTO:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The user source name
-        configuration:
-          description: User source configuration
-          allOf:
-          - $ref: '#/components/schemas/ExternalFirebaseUserSourceConfig'
-        index:
-          type: number
-          description: The user source index
-        description:
-          type: string
-          description: The user source description
-    GetUserSourceUsersResponseDTO:
-      type: object
-      properties:
-        email:
-          type: string
-        lastLogin:
-          format: date-time
-          type: string
-      required:
-      - email
-      - lastLogin
-    UpdateFederationUserSourceRequestDTO:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The user source name
-        configuration:
-          description: User source configuration
-          allOf:
-          - $ref: '#/components/schemas/FederationUserSourceConfig'
-        index:
-          type: number
-          description: The user source index
-        description:
-          type: string
-          description: The user source description
-    ExternalAuth0UserSourceConfig:
-      type: object
-      properties:
-        syncOnLogin:
-          type: boolean
-          description: Whether to sync user profile attributes on each login
-        isMigrated:
-          type: boolean
-          description: Whether to migrate the users
-        domain:
-          type: string
-          description: the auth0 domain
-        clientId:
-          type: string
-          description: the auth0 application clientId
-        secret:
-          type: string
-          description: the auth0 application secret
-        tenantConfig:
-          oneOf:
-          - $ref: '#/components/schemas/UserSourceDynamicTenantConfig'
-          - $ref: '#/components/schemas/UserSourceStaticTenantConfig'
-          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
-      required:
-      - syncOnLogin
-      - isMigrated
-      - domain
-      - clientId
-      - secret
-      - tenantConfig
-    GetUserSourceExtendedResponseDTO:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-        appIds:
-          type: array
-          items:
-            type: string
-        index:
-          type: number
-        configuration:
-          type: object
-        usersCount:
-          type: number
-      required:
-      - id
-      - name
-      - type
-      - description
-      - appIds
-      - index
-      - configuration
-      - usersCount
-    ExternalCustomCodeUserSourceConfig:
-      type: object
-      properties:
-        syncOnLogin:
-          type: boolean
-          description: Whether to sync user profile attributes on each login
-        isMigrated:
-          type: boolean
-          description: Whether to migrate the users
-        codePayload:
-          type: string
-        getUserCodePayload:
-          type: string
-        tenantConfig:
-          oneOf:
-          - $ref: '#/components/schemas/UserSourceNewTenantConfig'
-          - $ref: '#/components/schemas/UserSourceFromSourceTenantConfig'
-      required:
-      - syncOnLogin
-      - isMigrated
-      - codePayload
-      - tenantConfig
+      - userSourceId
   securitySchemes:
     bearer:
       scheme: bearer

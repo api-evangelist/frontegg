@@ -225,6 +225,41 @@ paths:
       - bearer: []
 components:
   schemas:
+    CreateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
     RouteDto:
       type: object
       properties:
@@ -276,41 +311,23 @@ components:
       - description
       - policyType
       - rules
-    CreateRouteDto:
+    CreateRouteRuleDto:
       type: object
       properties:
-        method:
+        type:
           type: string
-          description: Http Method
+          description: Rule type - can be either "feature" or "permission"
           enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
+          - feature
+          - permission
+          example: feature
+        value:
           type: string
-          description: Route path
-          example: /users
-        policyType:
-          type: string
-          description: Route policy type
-          enum:
-          - allow
-          - deny
-          - ruleBased
-          example: allow
-        description:
-          type: string
-          description: Route description
-          example: This is an example route
+          description: Rule value - represents a reference key to the rule type entity
+          example: my-feature-key
       required:
-      - method
-      - path
-      - policyType
-      - description
+      - type
+      - value
     UpdateRouteDto:
       type: object
       properties:
@@ -381,23 +398,6 @@ components:
       required:
       - id
       - routeId
-      - type
-      - value
-    CreateRouteRuleDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Rule type - can be either "feature" or "permission"
-          enum:
-          - feature
-          - permission
-          example: feature
-        value:
-          type: string
-          description: Rule value - represents a reference key to the rule type entity
-          example: my-feature-key
-      required:
       - type
       - value
   securitySchemes:

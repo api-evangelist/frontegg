@@ -509,47 +509,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CaptchaPolicyRequest:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-        siteKey:
-          type: string
-        secretKey:
-          type: string
-        minScore:
-          type: number
-        ignoredEmails:
-          description: Captcha validation will be skipped for those emails.
-          type: array
-          items:
-            type: string
-      required:
-      - enabled
-      - siteKey
-      - secretKey
-      - minScore
-    IdentityRuleDto:
-      type: object
-      properties:
-        conditionLogic:
-          type: string
-          enum:
-          - and
-          description: The logic to combine conditions
-        conditions:
-          description: The conditions to evaluate
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityConditionDto'
-        treatment:
-          type: string
-          description: The treatment value (template key) if conditions match
-      required:
-      - conditionLogic
-      - conditions
-      - treatment
     VendorConfigBasicResponse:
       type: object
       properties:
@@ -563,248 +522,9 @@ components:
       required:
       - forcePermissions
       - machineToMachineAuthStrategy
-    IdentityConditionDto:
-      type: object
-      properties:
-        attribute:
-          enum:
-          - userId
-          - applicationId
-          - tenantId
-          - roleIds
-          - tokenType
-          - userEmail
-          type: string
-          description: The attribute to evaluate
-        op:
-          enum:
-          - in_list
-          - contains
-          - ends_with
-          type: string
-          description: The operation to apply
-        value:
-          type: object
-          description: The value to compare against
-        negate:
-          type: boolean
-          description: The negate flag
-      required:
-      - attribute
-      - op
-      - value
-      - negate
-    JwtTemplatePayloadDto:
-      type: object
-      properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
-      required:
-      - claims
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     FronteggPaginationWrapper:
       type: object
       properties: {}
-    JwtTemplatePayloadResponseDto:
-      type: object
-      properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
-      required:
-      - claims
-    CreateJwtTemplateDto:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type: string
-          description: Description of the template
-        expiration:
-          type: number
-          minimum: 10
-          maximum: 15552000
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
-      required:
-      - key
-      - name
-      - expiration
-      - algorithm
-      - templateSchema
-    UpdateJwtTemplateTargetingRequestDto:
-      type: object
-      properties:
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityRuleDto'
-    JwtTemplateResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Template ID
-        vendorId:
-          type: string
-          description: Vendor ID
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the template
-        expiration:
-          type: number
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadResponseDto'
-        createdAt:
-          format: date-time
-          type: string
-          description: Creation timestamp
-        updatedAt:
-          format: date-time
-          type: string
-          description: Last update timestamp
-      required:
-      - id
-      - vendorId
-      - key
-      - name
-      - expiration
-      - algorithm
-      - templateSchema
-      - createdAt
-      - updatedAt
-    VendorConfigRequest:
-      type: object
-      properties:
-        defaultTokenExpiration:
-          type: number
-        defaultRefreshTokenExpiration:
-          type: number
-          maximum: 15552000
-        cookieSameSite:
-          enum:
-          - STRICT
-          - LAX
-          - NONE
-          type: string
-        machineToMachineAuthStrategy:
-          enum:
-          - ClientCredentials
-          - AccessToken
-          type: string
-        allowSignups:
-          type: boolean
-        apiTokensEnabled:
-          type: boolean
-        allowOverridePasswordComplexity:
-          type: boolean
-        allowOverridePasswordExpiration:
-          type: boolean
-        allowOverrideEnforcePasswordHistory:
-          type: boolean
-        jwtAlgorithm:
-          enum:
-          - HS256
-          - RS256
-          type: string
-        allowNotVerifiedUsersLogin:
-          type: boolean
-        forcePermissions:
-          type: boolean
-        addSamlAttributesToJwt:
-          type: boolean
-        authStrategy:
-          enum:
-          - Code
-          - EmailAndPassword
-          - MagicLink
-          - NoLocalAuthentication
-          - SmsCode
-          type: string
-        defaultPasswordlessTokenExpiration:
-          type: number
-        forceSameDeviceOnAuth:
-          type: boolean
-        allowTenantInvitations:
-          type: boolean
-        rotateRefreshTokens:
-          type: boolean
-        skipTenantValidation:
-          type: boolean
-        addRolesToJwt:
-          type: boolean
-        addPermissionsToJwt:
-          type: boolean
-        allowCustomLoginTenantSwitch:
-          type: boolean
-    UpdateJwtTemplateDto:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type: string
-          description: Description of the template
-        expiration:
-          type: number
-          minimum: 10
-          maximum: 15552000
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
     VendorConfigResponse:
       type: object
       properties:
@@ -904,6 +624,205 @@ components:
       - refreshTokensRotationLimit
       - addSamlAttributesToJwt
       - allowCustomLoginTenantSwitch
+    JwtTemplatePayloadDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    UpdateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
+    UpdateJwtTemplateTargetingRequestDto:
+      type: object
+      properties:
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRuleDto'
+    IdentityRuleDto:
+      type: object
+      properties:
+        conditionLogic:
+          type: string
+          enum:
+          - and
+          description: The logic to combine conditions
+        conditions:
+          description: The conditions to evaluate
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityConditionDto'
+        treatment:
+          type: string
+          description: The treatment value (template key) if conditions match
+      required:
+      - conditionLogic
+      - conditions
+      - treatment
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    IdentityConditionDto:
+      type: object
+      properties:
+        attribute:
+          enum:
+          - userId
+          - applicationId
+          - tenantId
+          - roleIds
+          - tokenType
+          - userEmail
+          type: string
+          description: The attribute to evaluate
+        op:
+          enum:
+          - in_list
+          - contains
+          - ends_with
+          type: string
+          description: The operation to apply
+        value:
+          type: object
+          description: The value to compare against
+        negate:
+          type: boolean
+          description: The negate flag
+      required:
+      - attribute
+      - op
+      - value
+      - negate
+    JwtTemplatePayloadResponseDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
+    CaptchaPolicyRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        siteKey:
+          type: string
+        secretKey:
+          type: string
+        minScore:
+          type: number
+        ignoredEmails:
+          description: Captcha validation will be skipped for those emails.
+          type: array
+          items:
+            type: string
+      required:
+      - enabled
+      - siteKey
+      - secretKey
+      - minScore
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    JwtTemplateResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+        vendorId:
+          type: string
+          description: Vendor ID
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the template
+        expiration:
+          type: number
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+          description: Creation timestamp
+        updatedAt:
+          format: date-time
+          type: string
+          description: Last update timestamp
+      required:
+      - id
+      - vendorId
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
+      - createdAt
+      - updatedAt
     JwtTemplateTargetingResponseDto:
       type: object
       properties:
@@ -926,22 +845,103 @@ components:
       - createdAt
       - updatedAt
       - targeting
-    FronteggPaginationLinks:
+    VendorConfigRequest:
       type: object
       properties:
-        next:
+        defaultTokenExpiration:
+          type: number
+        defaultRefreshTokenExpiration:
+          type: number
+          maximum: 15552000
+        cookieSameSite:
+          enum:
+          - STRICT
+          - LAX
+          - NONE
           type: string
-        prev:
+        machineToMachineAuthStrategy:
+          enum:
+          - ClientCredentials
+          - AccessToken
           type: string
-        first:
+        allowSignups:
+          type: boolean
+        apiTokensEnabled:
+          type: boolean
+        allowOverridePasswordComplexity:
+          type: boolean
+        allowOverridePasswordExpiration:
+          type: boolean
+        allowOverrideEnforcePasswordHistory:
+          type: boolean
+        jwtAlgorithm:
+          enum:
+          - HS256
+          - RS256
           type: string
-        last:
+        allowNotVerifiedUsersLogin:
+          type: boolean
+        forcePermissions:
+          type: boolean
+        addSamlAttributesToJwt:
+          type: boolean
+        authStrategy:
+          enum:
+          - Code
+          - EmailAndPassword
+          - MagicLink
+          - NoLocalAuthentication
+          - SmsCode
           type: string
+        defaultPasswordlessTokenExpiration:
+          type: number
+        forceSameDeviceOnAuth:
+          type: boolean
+        allowTenantInvitations:
+          type: boolean
+        rotateRefreshTokens:
+          type: boolean
+        skipTenantValidation:
+          type: boolean
+        addRolesToJwt:
+          type: boolean
+        addPermissionsToJwt:
+          type: boolean
+        allowCustomLoginTenantSwitch:
+          type: boolean
+    CreateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
       required:
-      - next
-      - prev
-      - first
-      - last
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
     CaptchaPolicyResponse:
       type: object
       properties:

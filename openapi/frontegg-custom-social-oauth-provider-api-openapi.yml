@@ -121,6 +121,31 @@ paths:
       - bearer: []
 components:
   schemas:
+    UpdateCustomSsoRequestDto:
+      type: object
+      properties:
+        type:
+          type: string
+        clientId:
+          type: string
+        secret:
+          type: string
+        redirectUrl:
+          type: string
+        authorizationUrl:
+          type: string
+        tokenUrl:
+          type: string
+        userInfoUrl:
+          type: string
+        scopes:
+          type: string
+        ssoLogoUrl:
+          type: string
+        displayName:
+          type: string
+        active:
+          type: boolean
     CreateCustomSsoRequestDto:
       type: object
       properties:
@@ -158,31 +183,6 @@ components:
       - ssoLogoUrl
       - displayName
       - active
-    UpdateCustomSsoRequestDto:
-      type: object
-      properties:
-        type:
-          type: string
-        clientId:
-          type: string
-        secret:
-          type: string
-        redirectUrl:
-          type: string
-        authorizationUrl:
-          type: string
-        tokenUrl:
-          type: string
-        userInfoUrl:
-          type: string
-        scopes:
-          type: string
-        ssoLogoUrl:
-          type: string
-        displayName:
-          type: string
-        active:
-          type: boolean
   securitySchemes:
     bearer:
       scheme: bearer

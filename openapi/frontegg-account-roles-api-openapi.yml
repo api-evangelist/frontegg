@@ -213,87 +213,9 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     FronteggPaginationWrapper:
       type: object
       properties: {}
-    AddRoleWithPermissionsRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-          description: This role will be assigned for every user that will be added without specified roles
-        baseRoleId:
-          type: string
-          description: Role level of the new role will be based on this parameter
-        permissionIds:
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - name
-      - baseRoleId
-      - permissionIds
-    RoleResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        permissions:
-          type: array
-          items:
-            type: string
-      required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - firstUserRole
-      - level
-      - createdAt
-      - updatedAt
-      - permissions
     AddRoleWithPermissionsResponse:
       type: object
       properties:
@@ -340,6 +262,84 @@ components:
       - prev
       - first
       - last
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
+    AddRoleWithPermissionsRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        baseRoleId:
+          type: string
+          description: Role level of the new role will be based on this parameter
+        permissionIds:
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - name
+      - baseRoleId
+      - permissionIds
   securitySchemes:
     bearer:
       scheme: bearer

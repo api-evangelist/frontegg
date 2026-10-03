@@ -612,19 +612,42 @@ paths:
       - SSO Configurations
 components:
   schemas:
-    CreateSSODomainConfigurationRequest:
+    CreateSSODomainRequestDto:
+      type: object
+      properties: {}
+    UpdateSSOGroupRequestDto:
       type: object
       properties:
-        allowVerifiedUsersToAddDomains:
-          type: boolean
-        skipDomainVerification:
-          type: boolean
-        bypassDomainCrossValidation:
-          type: boolean
+        group:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
       required:
-      - allowVerifiedUsersToAddDomains
-      - skipDomainVerification
-      - bypassDomainCrossValidation
+      - group
+      - roleIds
+    CreateSSOGroupRequestDto:
+      type: object
+      properties:
+        group:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - group
+      - roleIds
+    SetSSODefaultRoles:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
     CreateSSOConfigurationRequestDto:
       type: object
       properties:
@@ -673,9 +696,19 @@ components:
       - subAccountAccessLimit
       - idpClientId
       - idpClientSecret
-    CreateSSODomainRequestDto:
+    CreateSSODomainConfigurationRequest:
       type: object
-      properties: {}
+      properties:
+        allowVerifiedUsersToAddDomains:
+          type: boolean
+        skipDomainVerification:
+          type: boolean
+        bypassDomainCrossValidation:
+          type: boolean
+      required:
+      - allowVerifiedUsersToAddDomains
+      - skipDomainVerification
+      - bypassDomainCrossValidation
     UpdateSSOConfigurationByMetadataRequestDto:
       type: object
       properties:
@@ -683,39 +716,6 @@ components:
           type: string
       required:
       - metadata
-    UpdateSSOGroupRequestDto:
-      type: object
-      properties:
-        group:
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-      required:
-      - group
-      - roleIds
-    CreateSSOGroupRequestDto:
-      type: object
-      properties:
-        group:
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-      required:
-      - group
-      - roleIds
-    SetSSODefaultRoles:
-      type: object
-      properties:
-        roleIds:
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
   securitySchemes:
     bearer:
       scheme: bearer

@@ -293,52 +293,30 @@ paths:
       - bearer: []
 components:
   schemas:
-    FeatureFlagDtoThin:
+    UpdateFeatureDtoV2:
       type: object
       properties:
-        id:
-          type: string
-          description: UUID string that represents the feature flag ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
         name:
           type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
+          description: String representing the feature name
+          example: Test Feature
+        key:
           type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
-          enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
+          description: String representing the feature key
+          example: test-feature
         description:
           type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        updatedAt:
-          format: date-time
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
           type: string
-          description: Date when feature flag was created
-          example: '2022-01-01T00:00:00'
-        createdAt:
-          format: date-time
-          type: string
-          description: Date when feature flag was last updated
-          example: '2022-01-01T00:00:00'
-    PageDto:
-      type: object
-      properties: {}
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
     CreateFeatureDto:
       type: object
       properties:
@@ -362,6 +340,33 @@ components:
           type: array
           items:
             type: string
+      required:
+      - name
+      - key
+    CreateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
       required:
       - name
       - key
@@ -442,6 +447,49 @@ components:
       - key
       - metadata
       - createdAt
+    FeatureFlagDtoThin:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the feature flag ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was created
+          example: '2022-01-01T00:00:00'
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when feature flag was last updated
+          example: '2022-01-01T00:00:00'
     PermissionDto:
       type: object
       properties:
@@ -453,57 +501,9 @@ components:
           type: string
           description: Permission identifier
           example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-    CreateFeatureDtoV2:
+    PageDto:
       type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-      required:
-      - name
-      - key
-    UpdateFeatureDtoV2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

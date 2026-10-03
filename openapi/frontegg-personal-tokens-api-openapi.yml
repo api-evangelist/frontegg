@@ -256,45 +256,28 @@ paths:
       - bearer: []
 components:
   schemas:
-    UserAccessTokenResponse:
+    GetUserAccessTokensResponse:
       type: object
       properties:
-        id:
-          type: string
-        description:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        secret:
-          type: string
-        expires:
-          format: date-time
-          type: string
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccessTokenResponse'
       required:
-      - id
-      - createdAt
-    GetUserApiTokensResponseDto:
+      - accessTokens
+    CreateUserApiTokenDto:
       type: object
       properties:
-        clientId:
-          type: string
-        description:
-          type: string
         metadata:
           type: object
           description: Extra data that will be encoded as part of the JWT
-        createdAt:
-          format: date-time
+        description:
           type: string
-        expires:
-          format: date-time
-          type: string
-      required:
-      - clientId
-      - description
-      - metadata
-      - createdAt
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          maximum: 5256000
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
     CreateUserApiTokenResponseDto:
       type: object
       properties:
@@ -319,15 +302,6 @@ components:
       - metadata
       - createdAt
       - secret
-    GetUserAccessTokensResponse:
-      type: object
-      properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserAccessTokenResponse'
-      required:
-      - accessTokens
     CreateUserAccessTokenRequest:
       type: object
       properties:
@@ -337,19 +311,45 @@ components:
           type: number
           minimum: 1
           description: Token expiration time in minutes. In case of undefined, the token won't be expired
-    CreateUserApiTokenDto:
+    GetUserApiTokensResponseDto:
       type: object
       properties:
+        clientId:
+          type: string
+        description:
+          type: string
         metadata:
           type: object
           description: Extra data that will be encoded as part of the JWT
+        createdAt:
+          format: date-time
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - metadata
+      - createdAt
+    UserAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
         description:
           type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          maximum: 5256000
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - createdAt
   securitySchemes:
     bearer:
       scheme: bearer

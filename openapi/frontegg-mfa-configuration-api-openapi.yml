@@ -68,6 +68,26 @@ paths:
       - bearer: []
 components:
   schemas:
+    MfaAuthAppConfig:
+      type: object
+      properties:
+        active:
+          type: boolean
+        serviceName:
+          type: string
+      required:
+      - active
+      - serviceName
+    SmsConfiguration:
+      type: object
+      properties:
+        active:
+          type: boolean
+        tokenLifetimeSeconds:
+          type: number
+      required:
+      - active
+      - tokenLifetimeSeconds
     EmailConfiguration:
       type: object
       properties:
@@ -81,16 +101,49 @@ components:
       - active
       - tokenLifetimeSeconds
       - sender
-    SmsConfiguration:
+    MfaSmsConfig:
       type: object
       properties:
         active:
           type: boolean
         tokenLifetimeSeconds:
           type: number
+          minimum: 300
       required:
       - active
       - tokenLifetimeSeconds
+    AuthenticationAppConfiguration:
+      type: object
+      properties:
+        active:
+          type: boolean
+        serviceName:
+          type: string
+      required:
+      - active
+      - serviceName
+    MfaConfigResponse:
+      type: object
+      properties:
+        authenticationApp:
+          $ref: '#/components/schemas/AuthenticationAppConfiguration'
+        sms:
+          $ref: '#/components/schemas/SmsConfiguration'
+        email:
+          $ref: '#/components/schemas/EmailConfiguration'
+      required:
+      - authenticationApp
+      - sms
+      - email
+    MfaConfigRequest:
+      type: object
+      properties:
+        authenticationApp:
+          $ref: '#/components/schemas/MfaAuthAppConfig'
+        sms:
+          $ref: '#/components/schemas/MfaSmsConfig'
+        email:
+          $ref: '#/components/schemas/MfaEmailConfig'
     MfaEmailConfig:
       type: object
       properties:
@@ -105,59 +158,6 @@ components:
       - active
       - tokenLifetimeSeconds
       - sender
-    MfaConfigRequest:
-      type: object
-      properties:
-        authenticationApp:
-          $ref: '#/components/schemas/MfaAuthAppConfig'
-        sms:
-          $ref: '#/components/schemas/MfaSmsConfig'
-        email:
-          $ref: '#/components/schemas/MfaEmailConfig'
-    MfaSmsConfig:
-      type: object
-      properties:
-        active:
-          type: boolean
-        tokenLifetimeSeconds:
-          type: number
-          minimum: 300
-      required:
-      - active
-      - tokenLifetimeSeconds
-    MfaConfigResponse:
-      type: object
-      properties:
-        authenticationApp:
-          $ref: '#/components/schemas/AuthenticationAppConfiguration'
-        sms:
-          $ref: '#/components/schemas/SmsConfiguration'
-        email:
-          $ref: '#/components/schemas/EmailConfiguration'
-      required:
-      - authenticationApp
-      - sms
-      - email
-    AuthenticationAppConfiguration:
-      type: object
-      properties:
-        active:
-          type: boolean
-        serviceName:
-          type: string
-      required:
-      - active
-      - serviceName
-    MfaAuthAppConfig:
-      type: object
-      properties:
-        active:
-          type: boolean
-        serviceName:
-          type: string
-      required:
-      - active
-      - serviceName
   securitySchemes:
     bearer:
       scheme: bearer

@@ -144,6 +144,29 @@ paths:
       - bearer: []
 components:
   schemas:
+    AuthTenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - tenantId
+      - permissions
+      - roles
     AuthUserAccessTokenResponse:
       type: object
       properties:
@@ -166,29 +189,6 @@ components:
           type: string
       required:
       - userId
-      - id
-      - tenantId
-      - permissions
-      - roles
-    AuthTenantAccessTokenResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        tenantId:
-          type: string
-        permissions:
-          type: array
-          items:
-            type: string
-        roles:
-          type: array
-          items:
-            type: string
-        expires:
-          format: date-time
-          type: string
-      required:
       - id
       - tenantId
       - permissions

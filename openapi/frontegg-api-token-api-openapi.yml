@@ -95,6 +95,22 @@ paths:
       - bearer: []
 components:
   schemas:
+    ApiTokenAuthV2Response:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: number
+        expires:
+          type: string
+      required:
+      - access_token
+      - refresh_token
+      - expires_in
+      - expires
     AuthApiTokenDto:
       type: object
       properties:
@@ -112,22 +128,6 @@ components:
           type: string
       required:
       - refreshToken
-    ApiTokenAuthV2Response:
-      type: object
-      properties:
-        access_token:
-          type: string
-        refresh_token:
-          type: string
-        expires_in:
-          type: number
-        expires:
-          type: string
-      required:
-      - access_token
-      - refresh_token
-      - expires_in
-      - expires
   securitySchemes:
     bearer:
       scheme: bearer

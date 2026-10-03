@@ -174,40 +174,6 @@ components:
       - secret
       - id
       - region
-    SendGridDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - sendgrid
-        secret:
-          type: string
-      required:
-      - provider
-      - secret
-    MailgunDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - mailgun
-        secret:
-          type: string
-        domain:
-          type: string
-        region:
-          default: us
-          enum:
-          - US: us
-            EU: eu
-          type: number
-      required:
-      - provider
-      - secret
-      - domain
-      - region
     GetMailConfigResponseDto:
       type: object
       properties:
@@ -236,6 +202,40 @@ components:
       - updatedAt
       - extension
       - provider
+    MailgunDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - mailgun
+        secret:
+          type: string
+        domain:
+          type: string
+        region:
+          default: us
+          enum:
+          - US: us
+            EU: eu
+          type: number
+      required:
+      - provider
+      - secret
+      - domain
+      - region
+    SendGridDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - sendgrid
+        secret:
+          type: string
+      required:
+      - provider
+      - secret
   securitySchemes:
     bearer:
       scheme: bearer

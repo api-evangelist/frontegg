@@ -587,6 +587,28 @@ paths:
       - bearer: []
 components:
   schemas:
+    Property:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: ''
+        name:
+          type: string
+          description: ''
+      required:
+      - displayName
+      - name
+    ExportCSV:
+      type: object
+      properties:
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+          description: ''
+      required:
+      - properties
     AuditRequest:
       type: object
       properties:
@@ -601,28 +623,6 @@ components:
           description: ''
       required:
       - severity
-    ExportCSV:
-      type: object
-      properties:
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-          description: ''
-      required:
-      - properties
-    Property:
-      type: object
-      properties:
-        displayName:
-          type: string
-          description: ''
-        name:
-          type: string
-          description: ''
-      required:
-      - displayName
-      - name
   securitySchemes:
     bearer:
       scheme: bearer

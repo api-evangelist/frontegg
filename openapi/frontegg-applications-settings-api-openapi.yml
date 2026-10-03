@@ -529,25 +529,6 @@ paths:
       - Applications Settings
 components:
   schemas:
-    RegenerateApplicationClientCredentialsRequest:
-      type: object
-      properties:
-        appId:
-          type: string
-      required:
-      - appId
-    CreateApplicationTenantRequestV1:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - tenantId
     ApplicationsTenantAssignmentsResponseV2:
       type: object
       properties:
@@ -560,121 +541,13 @@ components:
       required:
       - tenantId
       - assignments
-    ApplicationTenantsResponseV1:
+    RegenerateApplicationClientCredentialsRequest:
       type: object
       properties:
-        tenantIds:
-          type: array
-          items:
-            type: string
-      required:
-      - tenantIds
-    ApplicationsClientCredentialsResponse:
-      type: object
-      properties:
-        clientSecret:
-          type: string
-        sharedSecret:
-          type: string
-      required:
-      - clientSecret
-      - sharedSecret
-    ApplicationClientResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID (UUID)
         appId:
           type: string
-        clientName:
-          type: string
-        clientSecret:
-          type: string
-        clientType:
-          type: string
-          enum:
-          - Agent
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type:
-          - object
-          - 'null'
-          description: External metadata with string, number, or boolean values
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
       required:
-      - id
       - appId
-      - clientName
-      - clientSecret
-      - clientType
-      - redirectURLs
-      - createdAt
-      - updatedAt
-    CreateApplicationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        appURL:
-          type: string
-        loginURL:
-          type: string
-        logoURL:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-        isDefault:
-          type: boolean
-          default: false
-        isActive:
-          type: boolean
-          default: true
-        type:
-          type: string
-          default: web
-          enum:
-          - web
-          - mobile-ios
-          - mobile-android
-          - agent
-          - other
-        frontendStack:
-          type: string
-          default: react
-          enum:
-          - react
-          - vue
-          - angular
-          - next.js
-          - vanilla.js
-          - ionic
-          - flutter
-          - react-native
-          - kotlin
-          - swift
-        description:
-          type: string
-        metadata:
-          type: object
-        allowDcr:
-          type: boolean
-          default: false
-      required:
-      - name
-      - appURL
-      - loginURL
     CreateApplicationClientRequestDto:
       type: object
       properties:
@@ -694,6 +567,16 @@ components:
       required:
       - clientName
       - clientType
+    ApplicationsClientCredentialsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        sharedSecret:
+          type: string
+      required:
+      - clientSecret
+      - sharedSecret
     ApplicationsResponse:
       type: object
       properties:
@@ -753,6 +636,80 @@ components:
       - description
       - integrationFinishedAt
       - allowDcr
+    ApplicationTenantAssignmentAccessType:
+      type: object
+      properties:
+        appId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - appId
+      - accessType
+    ApplicationClientResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID (UUID)
+        appId:
+          type: string
+        clientName:
+          type: string
+        clientSecret:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type:
+          - object
+          - 'null'
+          description: External metadata with string, number, or boolean values
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - appId
+      - clientName
+      - clientSecret
+      - clientType
+      - redirectURLs
+      - createdAt
+      - updatedAt
+    ApplicationTenantsResponseV1:
+      type: object
+      properties:
+        tenantIds:
+          type: array
+          items:
+            type: string
+      required:
+      - tenantIds
+    CreateApplicationTenantRequestV1:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - tenantId
     UpdateApplicationRequest:
       type: object
       properties:
@@ -790,19 +747,6 @@ components:
         allowDcr:
           type: boolean
           default: false
-    ApplicationTenantAssignmentAccessType:
-      type: object
-      properties:
-        appId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - appId
-      - accessType
     EditApplicationTenantRequestV1:
       type: object
       properties:
@@ -813,6 +757,62 @@ components:
           - MANAGED_ACCESS
       required:
       - accessType
+    CreateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        logoURL:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        isDefault:
+          type: boolean
+          default: false
+        isActive:
+          type: boolean
+          default: true
+        type:
+          type: string
+          default: web
+          enum:
+          - web
+          - mobile-ios
+          - mobile-android
+          - agent
+          - other
+        frontendStack:
+          type: string
+          default: react
+          enum:
+          - react
+          - vue
+          - angular
+          - next.js
+          - vanilla.js
+          - ionic
+          - flutter
+          - react-native
+          - kotlin
+          - swift
+        description:
+          type: string
+        metadata:
+          type: object
+        allowDcr:
+          type: boolean
+          default: false
+      required:
+      - name
+      - appURL
+      - loginURL
     UpdateApplicationClientRequestDto:
       type: object
       properties:

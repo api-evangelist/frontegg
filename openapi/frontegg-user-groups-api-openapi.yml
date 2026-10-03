@@ -560,6 +560,75 @@ paths:
       - bearer: []
 components:
   schemas:
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    CreateOrUpdateGroupConfigurationDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Determine whether groups are enabled/disabled. Default value is true.
+          default: true
+        rolesEnabled:
+          type: boolean
+          description: Determine whether groups can have roles or not. Default value is true.
+          default: true
+    RoleDto:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
     UpdateUsersOnGroupDto:
       type: object
       properties:
@@ -573,19 +642,6 @@ components:
             type: string
       required:
       - userIds
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
     GetGroupConfigurationResponse:
       type: object
       properties:
@@ -606,31 +662,6 @@ components:
             type: string
       required:
       - groupsIds
-    UpdateGroupDto:
-      type: object
-      properties:
-        color:
-          type: string
-          description: Color for group display
-        description:
-          type: string
-          description: Group description
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        name:
-          type: string
-          description: Group unique name
-    GroupsResponse:
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponse'
-      required:
-      - groups
     GroupResponse:
       type: object
       properties:
@@ -674,58 +705,6 @@ components:
       - managedBy
       - createdAt
       - updatedAt
-    UpdateRolesOnGroupDto:
-      type: object
-      properties:
-        roleIds:
-          description: Will add / remove requested roles from the group
-          example:
-          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
-          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
-    RoleDto:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - firstUserRole
-      - level
-      - createdAt
-      - updatedAt
     GroupUserDto:
       type: object
       properties:
@@ -749,6 +728,25 @@ components:
       - profilePictureUrl
       - createdAt
       - activatedForTenant
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    GroupsResponse:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponse'
+      required:
+      - groups
     CreateGroupDto:
       type: object
       properties:
@@ -767,33 +765,35 @@ components:
           description: Group unique name
       required:
       - name
-    CreateOrUpdateGroupConfigurationDto:
+    UpdateRolesOnGroupDto:
       type: object
       properties:
-        enabled:
-          type: boolean
-          description: Determine whether groups are enabled/disabled. Default value is true.
-          default: true
-        rolesEnabled:
-          type: boolean
-          description: Determine whether groups can have roles or not. Default value is true.
-          default: true
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
+        roleIds:
+          description: Will add / remove requested roles from the group
+          example:
+          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
+          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
+          type: array
+          items:
+            type: string
       required:
-      - next
-      - prev
-      - first
-      - last
+      - roleIds
+    UpdateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
   securitySchemes:
     bearer:
       scheme: bearer
