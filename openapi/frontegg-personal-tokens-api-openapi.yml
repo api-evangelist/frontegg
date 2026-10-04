@@ -256,28 +256,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    GetUserAccessTokensResponse:
-      type: object
-      properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserAccessTokenResponse'
-      required:
-      - accessTokens
-    CreateUserApiTokenDto:
-      type: object
-      properties:
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        description:
-          type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          maximum: 5256000
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
     CreateUserApiTokenResponseDto:
       type: object
       properties:
@@ -310,6 +288,19 @@ components:
         expiresInMinutes:
           type: number
           minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    CreateUserApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          maximum: 5256000
           description: Token expiration time in minutes. In case of undefined, the token won't be expired
     GetUserApiTokensResponseDto:
       type: object
@@ -350,6 +341,15 @@ components:
       required:
       - id
       - createdAt
+    GetUserAccessTokensResponse:
+      type: object
+      properties:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserAccessTokenResponse'
+      required:
+      - accessTokens
   securitySchemes:
     bearer:
       scheme: bearer

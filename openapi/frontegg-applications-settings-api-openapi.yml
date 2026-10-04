@@ -529,6 +529,45 @@ paths:
       - Applications Settings
 components:
   schemas:
+    ApplicationsClientCredentialsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        sharedSecret:
+          type: string
+      required:
+      - clientSecret
+      - sharedSecret
+    ApplicationsTenantAssignmentResponseV1:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
+      - appIds
+    EditApplicationTenantRequestV1:
+      type: object
+      properties:
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - accessType
+    RegenerateApplicationClientCredentialsRequest:
+      type: object
+      properties:
+        appId:
+          type: string
+      required:
+      - appId
     ApplicationsTenantAssignmentsResponseV2:
       type: object
       properties:
@@ -541,13 +580,6 @@ components:
       required:
       - tenantId
       - assignments
-    RegenerateApplicationClientCredentialsRequest:
-      type: object
-      properties:
-        appId:
-          type: string
-      required:
-      - appId
     CreateApplicationClientRequestDto:
       type: object
       properties:
@@ -567,16 +599,6 @@ components:
       required:
       - clientName
       - clientType
-    ApplicationsClientCredentialsResponse:
-      type: object
-      properties:
-        clientSecret:
-          type: string
-        sharedSecret:
-          type: string
-      required:
-      - clientSecret
-      - sharedSecret
     ApplicationsResponse:
       type: object
       properties:
@@ -636,19 +658,6 @@ components:
       - description
       - integrationFinishedAt
       - allowDcr
-    ApplicationTenantAssignmentAccessType:
-      type: object
-      properties:
-        appId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - appId
-      - accessType
     ApplicationClientResponseDto:
       type: object
       properties:
@@ -689,19 +698,10 @@ components:
       - redirectURLs
       - createdAt
       - updatedAt
-    ApplicationTenantsResponseV1:
+    ApplicationTenantAssignmentAccessType:
       type: object
       properties:
-        tenantIds:
-          type: array
-          items:
-            type: string
-      required:
-      - tenantIds
-    CreateApplicationTenantRequestV1:
-      type: object
-      properties:
-        tenantId:
+        appId:
           type: string
         accessType:
           type: string
@@ -709,53 +709,7 @@ components:
           - FREE_ACCESS
           - MANAGED_ACCESS
       required:
-      - tenantId
-    UpdateApplicationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        appURL:
-          type: string
-        loginURL:
-          type: string
-        logoURL:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-        isDefault:
-          type: boolean
-          default: false
-        isActive:
-          type: boolean
-          default: true
-        type:
-          type: string
-          default: web
-        frontendStack:
-          type: string
-          default: react
-        description:
-          type: string
-        metadata:
-          type: object
-        appHost:
-          type: string
-        allowDcr:
-          type: boolean
-          default: false
-    EditApplicationTenantRequestV1:
-      type: object
-      properties:
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
+      - appId
       - accessType
     CreateApplicationRequest:
       type: object
@@ -825,18 +779,64 @@ components:
         externalMetadata:
           type: object
           description: External metadata with string, number, or boolean values
-    ApplicationsTenantAssignmentResponseV1:
+    CreateApplicationTenantRequestV1:
       type: object
       properties:
         tenantId:
           type: string
-        appIds:
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - tenantId
+    ApplicationTenantsResponseV1:
+      type: object
+      properties:
+        tenantIds:
           type: array
           items:
             type: string
       required:
-      - tenantId
-      - appIds
+      - tenantIds
+    UpdateApplicationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        logoURL:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        isDefault:
+          type: boolean
+          default: false
+        isActive:
+          type: boolean
+          default: true
+        type:
+          type: string
+          default: web
+        frontendStack:
+          type: string
+          default: react
+        description:
+          type: string
+        metadata:
+          type: object
+        appHost:
+          type: string
+        allowDcr:
+          type: boolean
+          default: false
   securitySchemes:
     bearer:
       scheme: bearer

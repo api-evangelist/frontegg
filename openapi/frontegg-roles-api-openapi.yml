@@ -268,65 +268,16 @@ paths:
       - bearer: []
 components:
   schemas:
-    UpdateRoleRequest:
+    AddPermissionToRoleRequest:
       type: object
       properties:
-        isDefault:
-          type: boolean
-          description: This role will be assigned for every user that will be added without specified roles
-        firstUserRole:
-          type: boolean
-          description: This role will be assigned to the first user of a tenant (new tenants only)
-        migrateRole:
-          type: boolean
-          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
-        level:
-          type: number
-          minimum: 0
-          maximum: 32767
-          description: Role level for roles elevation, lower level means stronger role.
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-    AddRoleRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-          description: This role will be assigned for every user that will be added without specified roles
-        migrateRole:
-          type: boolean
-          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
-        firstUserRole:
-          type: boolean
-          description: This role will be assigned to the first user of a tenant (new tenants only)
-        level:
-          type: number
-          minimum: 0
-          maximum: 32767
-          description: Role level for roles elevation, lower level means stronger role.
+        permissionIds:
+          description: Set permission Ids to attach to the role
+          type: array
+          items:
+            type: string
       required:
-      - key
-      - name
-      - level
-    UpdateRoleTenantRequest:
-      type: object
-      properties:
-        tenantId:
-          type:
-          - string
-          - 'null'
-      required:
-      - tenantId
+      - permissionIds
     RoleResponse:
       type: object
       properties:
@@ -371,16 +322,65 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    AddPermissionToRoleRequest:
+    AddRoleRequest:
       type: object
       properties:
-        permissionIds:
-          description: Set permission Ids to attach to the role
-          type: array
-          items:
-            type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        migrateRole:
+          type: boolean
+          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
+        firstUserRole:
+          type: boolean
+          description: This role will be assigned to the first user of a tenant (new tenants only)
+        level:
+          type: number
+          minimum: 0
+          maximum: 32767
+          description: Role level for roles elevation, lower level means stronger role.
       required:
-      - permissionIds
+      - key
+      - name
+      - level
+    UpdateRoleTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type:
+          - string
+          - 'null'
+      required:
+      - tenantId
+    UpdateRoleRequest:
+      type: object
+      properties:
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        firstUserRole:
+          type: boolean
+          description: This role will be assigned to the first user of a tenant (new tenants only)
+        migrateRole:
+          type: boolean
+          description: Set this property to `true` together with `isDefault` in order to assign this role to all users
+        level:
+          type: number
+          minimum: 0
+          maximum: 32767
+          description: Role level for roles elevation, lower level means stronger role.
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     bearer:
       scheme: bearer

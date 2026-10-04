@@ -213,55 +213,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    AddRoleWithPermissionsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        permissions:
-          type: array
-          items:
-            type: string
-      required:
-      - id
-      - vendorId
-      - tenantId
-      - key
-      - name
-      - description
-      - isDefault
-      - permissions
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
     FronteggPaginationMetadata:
       type: object
       properties:
@@ -316,6 +267,52 @@ components:
       - createdAt
       - updatedAt
       - permissions
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    AddRoleWithPermissionsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - permissions
     AddRoleWithPermissionsRequest:
       type: object
       properties:
@@ -340,6 +337,9 @@ components:
       - name
       - baseRoleId
       - permissionIds
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

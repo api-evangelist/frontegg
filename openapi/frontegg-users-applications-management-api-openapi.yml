@@ -234,6 +234,21 @@ components:
             $ref: '#/components/schemas/SwitchApplicationActiveUserTenantDto'
       required:
       - activeApplicationTenants
+    AssignUsersToAppRequestDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - tenantId
+      - userIds
     UnassignUsersFromAppRequestDto:
       type: object
       properties:
@@ -249,6 +264,27 @@ components:
       - appId
       - tenantId
       - userIds
+    UserApplicationActiveTenantsResponseDto:
+      type: object
+      properties:
+        applicationActiveTenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
+      required:
+      - applicationActiveTenants
+    SwitchApplicationActiveUserTenantDto:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          description: Desired application to set active tenant in
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user in application
+      required:
+      - applicationId
+      - tenantId
     ApplicationUserTenantsResponseDto:
       type: object
       properties:
@@ -273,42 +309,6 @@ components:
       required:
       - tenantId
       - applicationId
-    SwitchApplicationActiveUserTenantDto:
-      type: object
-      properties:
-        applicationId:
-          type: string
-          description: Desired application to set active tenant in
-        tenantId:
-          type: string
-          description: Desired tenant to set as active tenant for user in application
-      required:
-      - applicationId
-      - tenantId
-    AssignUsersToAppRequestDto:
-      type: object
-      properties:
-        appId:
-          type: string
-        tenantId:
-          type: string
-        userIds:
-          type: array
-          items:
-            type: string
-      required:
-      - appId
-      - tenantId
-      - userIds
-    UserApplicationActiveTenantsResponseDto:
-      type: object
-      properties:
-        applicationActiveTenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
-      required:
-      - applicationActiveTenants
   securitySchemes:
     bearer:
       scheme: bearer

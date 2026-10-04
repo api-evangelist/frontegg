@@ -287,30 +287,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    VerifyInviteTokenRequest:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
-    CreateInviteTokenRequestForUser:
-      type: object
-      properties:
-        expiresInMinutes:
-          type: number
-        shouldSendEmail:
-          type: boolean
-      required:
-      - expiresInMinutes
-      - shouldSendEmail
-    UpdateInviteTokenRequest:
-      type: object
-      properties:
-        expiresInMinutes:
-          type: number
-        shouldSendEmail:
-          type: boolean
     InviteTokenDto:
       type: object
       properties:
@@ -371,6 +347,30 @@ components:
       required:
       - tenantInvitationsAllowed
       - emailsEnabled
+    UpdateInviteTokenRequest:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+    CreateInviteTokenRequestForUser:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+      required:
+      - expiresInMinutes
+      - shouldSendEmail
+    VerifyInviteTokenRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
   securitySchemes:
     bearer:
       scheme: bearer

@@ -69,17 +69,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    SessionTimeoutConfigurationDto:
-      type: object
-      properties:
-        isActive:
-          type: boolean
-        timeout:
-          type: number
-          minimum: 60
-      required:
-      - isActive
-      - timeout
     SessionIdleTimeoutConfigurationDto:
       type: object
       properties:
@@ -92,15 +81,6 @@ components:
       required:
       - isActive
       - timeout
-    CreateSessionConfigurationRequest:
-      type: object
-      properties:
-        sessionIdleTimeoutConfiguration:
-          $ref: '#/components/schemas/SessionIdleTimeoutConfigurationDto'
-        sessionTimeoutConfiguration:
-          $ref: '#/components/schemas/SessionTimeoutConfigurationDto'
-        sessionConcurrentConfiguration:
-          $ref: '#/components/schemas/SessionConcurrentConfigurationDto'
     SessionConcurrentConfigurationDto:
       type: object
       properties:
@@ -112,6 +92,26 @@ components:
       required:
       - isActive
       - maxSessions
+    CreateSessionConfigurationRequest:
+      type: object
+      properties:
+        sessionIdleTimeoutConfiguration:
+          $ref: '#/components/schemas/SessionIdleTimeoutConfigurationDto'
+        sessionTimeoutConfiguration:
+          $ref: '#/components/schemas/SessionTimeoutConfigurationDto'
+        sessionConcurrentConfiguration:
+          $ref: '#/components/schemas/SessionConcurrentConfigurationDto'
+    SessionTimeoutConfigurationDto:
+      type: object
+      properties:
+        isActive:
+          type: boolean
+        timeout:
+          type: number
+          minimum: 60
+      required:
+      - isActive
+      - timeout
   securitySchemes:
     bearer:
       scheme: bearer

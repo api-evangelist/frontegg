@@ -225,92 +225,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateRouteDto:
-      type: object
-      properties:
-        method:
-          type: string
-          description: Http Method
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
-          type: string
-          description: Route path
-          example: /users
-        policyType:
-          type: string
-          description: Route policy type
-          enum:
-          - allow
-          - deny
-          - ruleBased
-          example: allow
-        description:
-          type: string
-          description: Route description
-          example: This is an example route
-      required:
-      - method
-      - path
-      - policyType
-      - description
-    RouteDto:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: b796239c-6641-4cf3-9ff3-658ad4049131
-        method:
-          type: string
-          readOnly: true
-          example: GET
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-        path:
-          type: string
-          readOnly: true
-          example: /users
-        priority:
-          type: number
-          readOnly: true
-          example: 100
-        description:
-          type: string
-          readOnly: true
-          example: This is an example route
-        policyType:
-          type: string
-          readOnly: true
-          example: allow
-          enum:
-          - allow
-          - deny
-          - ruleBased
-        rules:
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/RouteRuleDto'
-      required:
-      - id
-      - method
-      - path
-      - priority
-      - description
-      - policyType
-      - rules
     CreateRouteRuleDto:
       type: object
       properties:
@@ -328,7 +242,7 @@ components:
       required:
       - type
       - value
-    UpdateRouteDto:
+    CreateRouteDto:
       type: object
       properties:
         method:
@@ -400,6 +314,92 @@ components:
       - routeId
       - type
       - value
+    RouteDto:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: b796239c-6641-4cf3-9ff3-658ad4049131
+        method:
+          type: string
+          readOnly: true
+          example: GET
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+        path:
+          type: string
+          readOnly: true
+          example: /users
+        priority:
+          type: number
+          readOnly: true
+          example: 100
+        description:
+          type: string
+          readOnly: true
+          example: This is an example route
+        policyType:
+          type: string
+          readOnly: true
+          example: allow
+          enum:
+          - allow
+          - deny
+          - ruleBased
+        rules:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteRuleDto'
+      required:
+      - id
+      - method
+      - path
+      - priority
+      - description
+      - policyType
+      - rules
+    UpdateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
   securitySchemes:
     bearer:
       scheme: bearer

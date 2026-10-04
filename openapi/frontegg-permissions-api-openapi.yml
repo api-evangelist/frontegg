@@ -236,7 +236,7 @@ paths:
       - bearer: []
 components:
   schemas:
-    UpdatePermissionRequest:
+    AddPermissionRequest:
       type: object
       properties:
         key:
@@ -247,32 +247,15 @@ components:
           type: string
         categoryId:
           type: string
-    AddRolesToPermissionRequest:
-      type: object
-      properties:
-        roleIds:
-          description: The permission will be assigned to the specified roles
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
-    ClassifyPermissionsDto:
-      type: object
-      properties:
-        permissionIds:
-          type: array
-          items:
-            type: string
-        type:
+        assignmentType:
           type: string
           enum:
           - NEVER
           - ALWAYS
           - ASSIGNABLE
       required:
-      - permissionIds
-      - type
+      - key
+      - name
     PermissionResponse:
       type: object
       properties:
@@ -308,7 +291,17 @@ components:
       - roleIds
       - categoryId
       - fePermission
-    AddPermissionRequest:
+    AddRolesToPermissionRequest:
+      type: object
+      properties:
+        roleIds:
+          description: The permission will be assigned to the specified roles
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    UpdatePermissionRequest:
       type: object
       properties:
         key:
@@ -319,15 +312,22 @@ components:
           type: string
         categoryId:
           type: string
-        assignmentType:
+    ClassifyPermissionsDto:
+      type: object
+      properties:
+        permissionIds:
+          type: array
+          items:
+            type: string
+        type:
           type: string
           enum:
           - NEVER
           - ALWAYS
           - ASSIGNABLE
       required:
-      - key
-      - name
+      - permissionIds
+      - type
   securitySchemes:
     bearer:
       scheme: bearer

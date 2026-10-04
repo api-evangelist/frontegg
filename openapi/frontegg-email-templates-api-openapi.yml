@@ -218,6 +218,38 @@ paths:
       - bearer: []
 components:
   schemas:
+    GetTemplateResponseDto:
+      type: object
+      properties:
+        htmlTemplate:
+          type: string
+        senderEmail:
+          type: string
+        redirectURL:
+          type: string
+        successRedirectUrl:
+          type: string
+        subject:
+          type: string
+        fromName:
+          type: string
+        active:
+          type: boolean
+        type:
+          type: object
+        redirectURLPattern:
+          type: string
+        successRedirectUrlPattern:
+          type: string
+      required:
+      - htmlTemplate
+      - senderEmail
+      - redirectURL
+      - successRedirectUrl
+      - subject
+      - fromName
+      - active
+      - type
     CreateTemplateDto:
       type: object
       properties:
@@ -273,38 +305,6 @@ components:
         active:
           type: boolean
       required:
-      - type
-    GetTemplateResponseDto:
-      type: object
-      properties:
-        htmlTemplate:
-          type: string
-        senderEmail:
-          type: string
-        redirectURL:
-          type: string
-        successRedirectUrl:
-          type: string
-        subject:
-          type: string
-        fromName:
-          type: string
-        active:
-          type: boolean
-        type:
-          type: object
-        redirectURLPattern:
-          type: string
-        successRedirectUrlPattern:
-          type: string
-      required:
-      - htmlTemplate
-      - senderEmail
-      - redirectURL
-      - successRedirectUrl
-      - subject
-      - fromName
-      - active
       - type
   securitySchemes:
     bearer:

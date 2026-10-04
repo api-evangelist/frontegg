@@ -560,20 +560,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    CreateOrUpdateGroupConfigurationDto:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Determine whether groups are enabled/disabled. Default value is true.
-          default: true
-        rolesEnabled:
-          type: boolean
-          description: Determine whether groups can have roles or not. Default value is true.
-          default: true
     RoleDto:
       type: object
       properties:
@@ -613,22 +599,45 @@ components:
       - level
       - createdAt
       - updatedAt
-    FronteggPaginationLinks:
+    FronteggPaginationMetadata:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
+        totalItems:
+          type: number
+        totalPages:
+          type: number
       required:
-      - next
-      - prev
-      - first
-      - last
+      - totalItems
+      - totalPages
+    UpdateRolesOnGroupDto:
+      type: object
+      properties:
+        roleIds:
+          description: Will add / remove requested roles from the group
+          example:
+          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
+          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    UpdateGroupDto:
+      type: object
+      properties:
+        color:
+          type: string
+          description: Color for group display
+        description:
+          type: string
+          description: Group description
+        metadata:
+          type: string
+          description: Stringified JSON object
+          example: '{}'
+        name:
+          type: string
+          description: Group unique name
     UpdateUsersOnGroupDto:
       type: object
       properties:
@@ -652,16 +661,38 @@ components:
       required:
       - enabled
       - rolesEnabled
-    GetGroupsDto:
+    GroupUserDto:
       type: object
       properties:
-        groupsIds:
-          description: Group IDs
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        activatedForTenant:
+          type: boolean
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - createdAt
+      - activatedForTenant
+    GroupsResponse:
+      type: object
+      properties:
+        groups:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/GroupResponse'
       required:
-      - groupsIds
+      - groups
     GroupResponse:
       type: object
       properties:
@@ -705,48 +736,32 @@ components:
       - managedBy
       - createdAt
       - updatedAt
-    GroupUserDto:
+    FronteggPaginationLinks:
       type: object
       properties:
-        id:
+        next:
           type: string
-        email:
+        prev:
           type: string
-        name:
+        first:
           type: string
-        profilePictureUrl:
+        last:
           type: string
-        createdAt:
-          format: date-time
-          type: string
-        activatedForTenant:
-          type: boolean
       required:
-      - id
-      - email
-      - name
-      - profilePictureUrl
-      - createdAt
-      - activatedForTenant
-    FronteggPaginationMetadata:
+      - next
+      - prev
+      - first
+      - last
+    GetGroupsDto:
       type: object
       properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    GroupsResponse:
-      type: object
-      properties:
-        groups:
+        groupsIds:
+          description: Group IDs
           type: array
           items:
-            $ref: '#/components/schemas/GroupResponse'
+            type: string
       required:
-      - groups
+      - groupsIds
     CreateGroupDto:
       type: object
       properties:
@@ -765,35 +780,20 @@ components:
           description: Group unique name
       required:
       - name
-    UpdateRolesOnGroupDto:
+    CreateOrUpdateGroupConfigurationDto:
       type: object
       properties:
-        roleIds:
-          description: Will add / remove requested roles from the group
-          example:
-          - 5fbae0d3-a3b7-4b1e-8d64-6c9428f84aae
-          - 8b2d0f9a-f39e-49b3-98ca-93c85c06d1a7
-          type: array
-          items:
-            type: string
-      required:
-      - roleIds
-    UpdateGroupDto:
+        enabled:
+          type: boolean
+          description: Determine whether groups are enabled/disabled. Default value is true.
+          default: true
+        rolesEnabled:
+          type: boolean
+          description: Determine whether groups can have roles or not. Default value is true.
+          default: true
+    FronteggPaginationWrapper:
       type: object
-      properties:
-        color:
-          type: string
-          description: Color for group display
-        description:
-          type: string
-          description: Group description
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        name:
-          type: string
-          description: Group unique name
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

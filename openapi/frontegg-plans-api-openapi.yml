@@ -540,47 +540,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    UnlinkFeaturesDto:
-      type: object
-      properties:
-        featuresIds:
-          description: Array of UUID strings that represents the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
-      required:
-      - featuresIds
-    RuleDto:
-      type: object
-      properties:
-        description:
-          type: string
-          description: String that represents the description of the rule
-          example: This is the first rule
-        conditionLogic:
-          type: string
-          description: Enum that represents the rule conditions logic
-          example: and
-          enum:
-          - and
-        conditions:
-          description: Array of conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDto'
-        treatment:
-          type: string
-          description: String that represents the treatment for this rule
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-      required:
-      - description
-      - conditionLogic
-      - conditions
-      - treatment
     PlanFeatureDto:
       type: object
       properties:
@@ -609,118 +568,6 @@ components:
       - name
       - key
       - permissions
-    PlanDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: UUID string that represents the plan ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        vendorId:
-          type: string
-          description: UUID string that represents the vendor ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        name:
-          type: string
-          description: String that represents the plan name
-          example: Test Plan
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the plan
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-        description:
-          type: string
-          description: Feature plan description
-          example: This is a test plan
-        metadata:
-          type: object
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-        defaultTimeLimitation:
-          type: number
-          description: Number that represents the default time limitation in days for auto-assigned plans
-          example: '30'
-        assignOnSignup:
-          type: boolean
-          description: Boolean indicating whether a plan is assigned automatically upon signup
-          example: 'true'
-        createdAt:
-          type: string
-          description: Date when plan was created
-          example: '2022-01-01T00:00:00'
-        updatedAt:
-          type: string
-          description: Date when plan was last updated
-          example: '2022-01-01T00:00:00'
-        features:
-          description: List of features linked to a plan
-          allOf:
-          - $ref: '#/components/schemas/PlanFeatureDto'
-        entitlements:
-          description: List of features linked to a plan
-          allOf:
-          - $ref: '#/components/schemas/EntitlementDto'
-      required:
-      - id
-      - vendorId
-      - name
-      - assignOnSignup
-      - createdAt
-    PageDto:
-      type: object
-      properties: {}
-    CreatePlanDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String that represents the plan name
-          example: Test Plan
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the plan
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-        description:
-          type: string
-          description: Feature plan description
-          example: This is a test plan
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-        defaultTimeLimitation:
-          type: number
-          description: Number that represents the default time limitation in days for auto-assigned plans
-          example: '30'
-        assignOnSignup:
-          type: boolean
-          description: Boolean indicating whether a plan is assigned automatically upon signup
-          example: 'true'
-          default: false
-        featureKeys:
-          description: Array of feature-keys to be applied on the plan
-          example: '["my-cool-feature"]'
-          type: array
-          items:
-            type: string
-      required:
-      - name
     ConditionDto:
       type: object
       properties:
@@ -773,18 +620,7 @@ components:
       - negate
       - op
       - value
-    LinkFeaturesDto:
-      type: object
-      properties:
-        featuresIds:
-          description: Array of UUID strings that represents the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
-      required:
-      - featuresIds
-    UpdatePlanDto:
+    CreatePlanDto:
       type: object
       properties:
         name:
@@ -819,12 +655,15 @@ components:
           type: boolean
           description: Boolean indicating whether a plan is assigned automatically upon signup
           example: 'true'
+          default: false
         featureKeys:
           description: Array of feature-keys to be applied on the plan
           example: '["my-cool-feature"]'
           type: array
           items:
             type: string
+      required:
+      - name
     EntitlementPlan:
       type: object
       properties:
@@ -905,6 +744,167 @@ components:
       - tenantId
       - createdAt
       - plan
+    UnlinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    PageDto:
+      type: object
+      properties: {}
+    LinkFeaturesDto:
+      type: object
+      properties:
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
+      required:
+      - featuresIds
+    UpdatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
+    PlanDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string that represents the plan ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        vendorId:
+          type: string
+          description: UUID string that represents the vendor ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: object
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        createdAt:
+          type: string
+          description: Date when plan was created
+          example: '2022-01-01T00:00:00'
+        updatedAt:
+          type: string
+          description: Date when plan was last updated
+          example: '2022-01-01T00:00:00'
+        features:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/PlanFeatureDto'
+        entitlements:
+          description: List of features linked to a plan
+          allOf:
+          - $ref: '#/components/schemas/EntitlementDto'
+      required:
+      - id
+      - vendorId
+      - name
+      - assignOnSignup
+      - createdAt
   securitySchemes:
     bearer:
       scheme: bearer

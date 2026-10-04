@@ -61,6 +61,13 @@ paths:
       - bearer: []
 components:
   schemas:
+    CreateUserEmailsPolicyRequestDto:
+      type: object
+      properties:
+        allowEmailChange:
+          type: boolean
+          description: Used to enable or disable email change for users.
+          example: 'true'
     GetUserEmailsPolicyResponseDto:
       type: object
       properties:
@@ -70,13 +77,6 @@ components:
           example: 'true'
       required:
       - allowEmailChange
-    CreateUserEmailsPolicyRequestDto:
-      type: object
-      properties:
-        allowEmailChange:
-          type: boolean
-          description: Used to enable or disable email change for users.
-          example: 'true'
   securitySchemes:
     bearer:
       scheme: bearer

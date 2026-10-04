@@ -141,20 +141,39 @@ components:
           type: string
       required:
       - secret
-    SesRoleDto:
+    SendGridDto:
       type: object
       properties:
         provider:
           type: string
           enum:
-          - ses-role
+          - sendgrid
         secret:
-          type: string
-        region:
           type: string
       required:
       - provider
       - secret
+    MailgunDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - mailgun
+        secret:
+          type: string
+        domain:
+          type: string
+        region:
+          default: us
+          enum:
+          - US: us
+            EU: eu
+          type: number
+      required:
+      - provider
+      - secret
+      - domain
       - region
     SesDto:
       type: object
@@ -202,40 +221,21 @@ components:
       - updatedAt
       - extension
       - provider
-    MailgunDto:
+    SesRoleDto:
       type: object
       properties:
         provider:
           type: string
           enum:
-          - mailgun
+          - ses-role
         secret:
-          type: string
-        domain:
           type: string
         region:
-          default: us
-          enum:
-          - US: us
-            EU: eu
-          type: number
+          type: string
       required:
       - provider
       - secret
-      - domain
       - region
-    SendGridDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - sendgrid
-        secret:
-          type: string
-      required:
-      - provider
-      - secret
   securitySchemes:
     bearer:
       scheme: bearer

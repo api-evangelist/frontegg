@@ -300,42 +300,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateTenantApiTokenDto:
-      type: object
-      properties:
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        description:
-          type: string
-        roleIds:
-          description: Array of role Ids. Either this or permissionIds must be provided, but not both.
-          type: array
-          items:
-            type: string
-        permissionIds:
-          description: Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.
-          type: array
-          items:
-            type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
-    CreateTenantAccessTokenRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        expiresInMinutes:
-          type: number
-          minimum: 1
-          description: Token expiration time in minutes. In case of undefined, the token won't be expired
-        roleIds:
-          description: Array of role IDs to attach to the token
-          type: array
-          items:
-            type: string
     GetTenantApiTokensResponse:
       type: object
       properties:
@@ -380,65 +344,44 @@ components:
       - permissionIds
       - roleIds
       - expires
-    UpdateTenantApiTokenResponseDto:
+    GetTenantAccessTokensResponse:
       type: object
       properties:
-        clientId:
+        accessTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantAccessTokenResponse'
+      required:
+      - accessTokens
+    TenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
           type: string
         description:
-          type:
-          - string
-          - 'null'
-        tenantId:
           type: string
+        createdAt:
+          format: date-time
+          type: string
+        secret:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
         createdByUserId:
           type:
           - string
           - 'null'
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        createdAt:
-          format: date-time
-          type: string
-        permissionIds:
-          description: Array of permission Ids
-          type: array
-          items:
-            type: string
-        roleIds:
-          description: Array of role Ids
-          type: array
-          items:
-            type: string
-        expires:
-          format: date-time
-          type: string
       required:
-      - clientId
-      - description
-      - tenantId
-      - createdByUserId
-      - metadata
+      - id
       - createdAt
-    UpdateApiTokenDto:
-      type: object
-      properties:
-        metadata:
-          type: object
-          description: Extra data that will be encoded as part of the JWT
-        description:
-          type: string
-        roleIds:
-          description: Array of role Ids
-          type: array
-          items:
-            type: string
-        permissionIds:
-          description: Array of permission Ids
-          type: array
-          items:
-            type: string
+      - roleIds
+      - createdByUserId
     CreateTenantApiTokenResponseDto:
       type: object
       properties:
@@ -483,44 +426,101 @@ components:
       - createdByUserId
       - metadata
       - createdAt
-    GetTenantAccessTokensResponse:
+    UpdateTenantApiTokenResponseDto:
       type: object
       properties:
-        accessTokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/TenantAccessTokenResponse'
-      required:
-      - accessTokens
-    TenantAccessTokenResponse:
-      type: object
-      properties:
-        id:
+        clientId:
           type: string
         description:
+          type:
+          - string
+          - 'null'
+        tenantId:
           type: string
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
         createdAt:
           format: date-time
           type: string
-        secret:
-          type: string
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+        roleIds:
+          description: Array of role Ids
+          type: array
+          items:
+            type: string
         expires:
           format: date-time
+          type: string
+      required:
+      - clientId
+      - description
+      - tenantId
+      - createdByUserId
+      - metadata
+      - createdAt
+    CreateTenantApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
+          type: string
+        roleIds:
+          description: Array of role Ids. Either this or permissionIds must be provided, but not both.
+          type: array
+          items:
+            type: string
+        permissionIds:
+          description: Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.
+          type: array
+          items:
+            type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+    UpdateApiTokenDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: Extra data that will be encoded as part of the JWT
+        description:
           type: string
         roleIds:
           description: Array of role Ids
           type: array
           items:
             type: string
-        createdByUserId:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - createdAt
-      - roleIds
-      - createdByUserId
+        permissionIds:
+          description: Array of permission Ids
+          type: array
+          items:
+            type: string
+    CreateTenantAccessTokenRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        expiresInMinutes:
+          type: number
+          minimum: 1
+          description: Token expiration time in minutes. In case of undefined, the token won't be expired
+        roleIds:
+          description: Array of role IDs to attach to the token
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearer:
       scheme: bearer

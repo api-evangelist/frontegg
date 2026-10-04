@@ -114,14 +114,39 @@ paths:
       - Entitlements Check
 components:
   schemas:
-    IsEntitledToFeatureDto:
+    PDPResponse:
       type: object
       properties:
-        featureKey:
+        decision_id:
           type: string
-          example: example-feature-key
+          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
+        metrics:
+          type: object
+        result:
+          $ref: '#/components/schemas/EntitlementsResult'
       required:
-      - featureKey
+      - decision_id
+      - metrics
+      - result
+    IsEntitledToRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          example: /example
+      required:
+      - method
+      - path
     EntitlementsResult:
       type: object
       properties:
@@ -141,28 +166,6 @@ components:
           example: false
       required:
       - result
-    PDPResponse:
-      type: object
-      properties:
-        decision_id:
-          type: string
-          example: df5dae62-be02-4333-bbe1-f7220e13c6c3
-        metrics:
-          type: object
-        result:
-          $ref: '#/components/schemas/EntitlementsResult'
-      required:
-      - decision_id
-      - metrics
-      - result
-    IsEntitledToPermissionDto:
-      type: object
-      properties:
-        permissionKey:
-          type: string
-          example: example.permission.read
-      required:
-      - permissionKey
     SubjectContext:
       type: object
       properties:
@@ -185,25 +188,22 @@ components:
             exampleAttribute: example-value
       required:
       - tenantId
-    IsEntitledToRouteDto:
+    IsEntitledToPermissionDto:
       type: object
       properties:
-        method:
+        permissionKey:
           type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
-          type: string
-          example: /example
+          example: example.permission.read
       required:
-      - method
-      - path
+      - permissionKey
+    IsEntitledToFeatureDto:
+      type: object
+      properties:
+        featureKey:
+          type: string
+          example: example-feature-key
+      required:
+      - featureKey
   securitySchemes:
     bearer:
       scheme: bearer

@@ -193,48 +193,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    MfaPolicyRequest:
-      type: object
-      properties:
-        enforceMFAType:
-          type: string
-          enum:
-          - DontForce
-          - Force
-          - ForceExceptSAML
-          description: Determine whether MFA should be enforced.
-          default: Force
-        allowRememberMyDevice:
-          type: boolean
-          description: Determine whether devices can be remembered and authentication can be skipped.
-          default: false
-        mfaDeviceExpiration:
-          type: number
-          description: Expiration time of device in seconds
-          default: 1209600
-    MfaPolicyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        enforceMFAType:
-          type: string
-        allowRememberMyDevice:
-          type: boolean
-        mfaDeviceExpiration:
-          type: number
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - allowRememberMyDevice
-      - mfaDeviceExpiration
-      - createdAt
-      - updatedAt
     CreateOrUpdateMFAStrategyRequest:
       type: object
       properties:
@@ -267,6 +225,25 @@ components:
       required:
       - strategy
       - isActive
+    MfaPolicyRequest:
+      type: object
+      properties:
+        enforceMFAType:
+          type: string
+          enum:
+          - DontForce
+          - Force
+          - ForceExceptSAML
+          description: Determine whether MFA should be enforced.
+          default: Force
+        allowRememberMyDevice:
+          type: boolean
+          description: Determine whether devices can be remembered and authentication can be skipped.
+          default: false
+        mfaDeviceExpiration:
+          type: number
+          description: Expiration time of device in seconds
+          default: 1209600
     MFAStrategiesResponse:
       type: object
       properties:
@@ -276,6 +253,29 @@ components:
             $ref: '#/components/schemas/MFAStrategyResponse'
       required:
       - strategies
+    MfaPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        enforceMFAType:
+          type: string
+        allowRememberMyDevice:
+          type: boolean
+        mfaDeviceExpiration:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - allowRememberMyDevice
+      - mfaDeviceExpiration
+      - createdAt
+      - updatedAt
   securitySchemes:
     bearer:
       scheme: bearer

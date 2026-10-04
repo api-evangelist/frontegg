@@ -225,9 +225,16 @@ paths:
       - SSO Settings
 components:
   schemas:
-    ForceValidateDomainRequestDto:
+    ConfigureOidcRequest:
       type: object
-      properties: {}
+      properties:
+        active:
+          type: boolean
+        redirectUri:
+          type: string
+          description: Redirect URI that the user will be redirected. Should match the redirect URI you set on your application. Leave it empty if you didn't change it on your application
+      required:
+      - active
     ExcludeEmailFromSSORequestDto:
       type: object
       properties:
@@ -248,16 +255,9 @@ components:
       - unspecifiedTenantStrategy
       - active
       - useActiveTenant
-    ConfigureOidcRequest:
+    ForceValidateDomainRequestDto:
       type: object
-      properties:
-        active:
-          type: boolean
-        redirectUri:
-          type: string
-          description: Redirect URI that the user will be redirected. Should match the redirect URI you set on your application. Leave it empty if you didn't change it on your application
-      required:
-      - active
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

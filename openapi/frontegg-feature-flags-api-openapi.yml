@@ -198,36 +198,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    RuleDto:
-      type: object
-      properties:
-        description:
-          type: string
-          description: String that represents the description of the rule
-          example: This is the first rule
-        conditionLogic:
-          type: string
-          description: Enum that represents the rule conditions logic
-          example: and
-          enum:
-          - and
-        conditions:
-          description: Array of conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDto'
-        treatment:
-          type: string
-          description: String that represents the treatment for this rule
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-      required:
-      - description
-      - conditionLogic
-      - conditions
-      - treatment
     ConditionDto:
       type: object
       properties:
@@ -280,6 +250,144 @@ components:
       - negate
       - op
       - value
+    FeatureFlagFeature:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+    PageDto:
+      type: object
+      properties: {}
+    CreateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+      required:
+      - name
+      - 'on'
+      - offTreatment
+      - defaultTreatment
+      - featureId
+    UpdateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
     FeatureFlagDto:
       type: object
       properties:
@@ -336,114 +444,6 @@ components:
           type: string
           description: Date when feature flag was last updated
           example: '2022-01-01T00:00:00'
-    UpdateFeatureFlagDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
-          type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
-          enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        featureId:
-          type: string
-          description: UUID string that represents the related feature ID
-          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
-        description:
-          type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        metadata:
-          type: string
-          description: JSON String that represents additional custom metadata to the feature flag entity
-          example: '{}'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the feature
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-    PageDto:
-      type: object
-      properties: {}
-    FeatureFlagFeature:
-      type: object
-      properties:
-        id:
-          type: string
-          description: UUID string representing the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-    CreateFeatureFlagDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
-          type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
-          enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
-          type: string
-          description: Enum that represents the default treatment
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-        featureId:
-          type: string
-          description: UUID string that represents the related feature ID
-          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
-        description:
-          type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        metadata:
-          type: string
-          description: JSON String that represents additional custom metadata to the feature flag entity
-          example: '{}'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the feature
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-      required:
-      - name
-      - 'on'
-      - offTreatment
-      - defaultTreatment
-      - featureId
   securitySchemes:
     bearer:
       scheme: bearer

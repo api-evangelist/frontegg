@@ -509,22 +509,14 @@ paths:
       - bearer: []
 components:
   schemas:
-    VendorConfigBasicResponse:
+    JwtTemplatePayloadDto:
       type: object
       properties:
-        forcePermissions:
-          type: boolean
-        machineToMachineAuthStrategy:
-          type: string
-          enum:
-          - ClientCredentials
-          - AccessToken
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
       required:
-      - forcePermissions
-      - machineToMachineAuthStrategy
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
+      - claims
     VendorConfigResponse:
       type: object
       properties:
@@ -624,41 +616,6 @@ components:
       - refreshTokensRotationLimit
       - addSamlAttributesToJwt
       - allowCustomLoginTenantSwitch
-    JwtTemplatePayloadDto:
-      type: object
-      properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
-      required:
-      - claims
-    UpdateJwtTemplateDto:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type: string
-          description: Description of the template
-        expiration:
-          type: number
-          minimum: 10
-          maximum: 15552000
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
     UpdateJwtTemplateTargetingRequestDto:
       type: object
       properties:
@@ -666,42 +623,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IdentityRuleDto'
-    IdentityRuleDto:
+    VendorConfigBasicResponse:
       type: object
       properties:
-        conditionLogic:
+        forcePermissions:
+          type: boolean
+        machineToMachineAuthStrategy:
           type: string
           enum:
-          - and
-          description: The logic to combine conditions
-        conditions:
-          description: The conditions to evaluate
-          type: array
-          items:
-            $ref: '#/components/schemas/IdentityConditionDto'
-        treatment:
-          type: string
-          description: The treatment value (template key) if conditions match
+          - ClientCredentials
+          - AccessToken
       required:
-      - conditionLogic
-      - conditions
-      - treatment
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
+      - forcePermissions
+      - machineToMachineAuthStrategy
     IdentityConditionDto:
       type: object
       properties:
@@ -733,14 +667,33 @@ components:
       - op
       - value
       - negate
-    JwtTemplatePayloadResponseDto:
+    UpdateJwtTemplateDto:
       type: object
       properties:
-        claims:
-          type: object
-          description: Claims mapping as key-value pairs
-      required:
-      - claims
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
     CaptchaPolicyRequest:
       type: object
       properties:
@@ -772,6 +725,79 @@ components:
       required:
       - totalItems
       - totalPages
+    CreateJwtTemplateDto:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique key for the template
+        name:
+          type: string
+          description: Name of the template
+        description:
+          type: string
+          description: Description of the template
+        expiration:
+          type: number
+          minimum: 10
+          maximum: 15552000
+          description: Token expiration time in seconds
+        algorithm:
+          enum:
+          - RS256
+          - HS256
+          type: string
+          description: JWT signing algorithm
+        templateSchema:
+          description: JWT template schema
+          allOf:
+          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
+      required:
+      - key
+      - name
+      - expiration
+      - algorithm
+      - templateSchema
+    CaptchaPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        siteKey:
+          type: string
+        secretKey:
+          type: string
+        enabled:
+          type: boolean
+        minScore:
+          type: number
+        ignoredEmails:
+          type: array
+          items:
+            type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - siteKey
+      - secretKey
+      - enabled
+      - minScore
+      - ignoredEmails
+      - createdAt
+      - updatedAt
+    JwtTemplatePayloadResponseDto:
+      type: object
+      properties:
+        claims:
+          type: object
+          description: Claims mapping as key-value pairs
+      required:
+      - claims
     JwtTemplateResponseDto:
       type: object
       properties:
@@ -823,6 +849,42 @@ components:
       - templateSchema
       - createdAt
       - updatedAt
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    IdentityRuleDto:
+      type: object
+      properties:
+        conditionLogic:
+          type: string
+          enum:
+          - and
+          description: The logic to combine conditions
+        conditions:
+          description: The conditions to evaluate
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityConditionDto'
+        treatment:
+          type: string
+          description: The treatment value (template key) if conditions match
+      required:
+      - conditionLogic
+      - conditions
+      - treatment
     JwtTemplateTargetingResponseDto:
       type: object
       properties:
@@ -909,71 +971,9 @@ components:
           type: boolean
         allowCustomLoginTenantSwitch:
           type: boolean
-    CreateJwtTemplateDto:
+    FronteggPaginationWrapper:
       type: object
-      properties:
-        key:
-          type: string
-          description: Unique key for the template
-        name:
-          type: string
-          description: Name of the template
-        description:
-          type: string
-          description: Description of the template
-        expiration:
-          type: number
-          minimum: 10
-          maximum: 15552000
-          description: Token expiration time in seconds
-        algorithm:
-          enum:
-          - RS256
-          - HS256
-          type: string
-          description: JWT signing algorithm
-        templateSchema:
-          description: JWT template schema
-          allOf:
-          - $ref: '#/components/schemas/JwtTemplatePayloadDto'
-      required:
-      - key
-      - name
-      - expiration
-      - algorithm
-      - templateSchema
-    CaptchaPolicyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        siteKey:
-          type: string
-        secretKey:
-          type: string
-        enabled:
-          type: boolean
-        minScore:
-          type: number
-        ignoredEmails:
-          type: array
-          items:
-            type: string
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - siteKey
-      - secretKey
-      - enabled
-      - minScore
-      - ignoredEmails
-      - createdAt
-      - updatedAt
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

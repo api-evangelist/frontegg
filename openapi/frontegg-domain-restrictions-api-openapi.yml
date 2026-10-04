@@ -202,71 +202,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    DomainRestrictionsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        domain:
-          type: string
-        type:
-          enum:
-          - ALLOW
-          - BLOCK
-          type: string
-      required:
-      - id
-      - domain
-      - type
-    DomainRestrictionsConfigResponse:
-      type: object
-      properties:
-        active:
-          type: boolean
-        listType:
-          enum:
-          - ALLOW
-          - BLOCK
-          type: string
-        blockPublicDomains:
-          type: boolean
-      required:
-      - active
-      - listType
-      - blockPublicDomains
-    DomainRestrictionsCreateRequest:
-      type: object
-      properties:
-        domain:
-          type: string
-          pattern: domainRegex
-        type:
-          type: string
-          enum:
-          - ALLOW
-          - BLOCK
-      required:
-      - domain
-      - type
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
     DomainRestrictionsBulkRequestRequest:
       type: object
       properties:
@@ -293,6 +228,71 @@ components:
       required:
       - totalItems
       - totalPages
+    DomainRestrictionsConfigResponse:
+      type: object
+      properties:
+        active:
+          type: boolean
+        listType:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+        blockPublicDomains:
+          type: boolean
+      required:
+      - active
+      - listType
+      - blockPublicDomains
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    DomainRestrictionsCreateRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          pattern: domainRegex
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+      required:
+      - domain
+      - type
+    DomainRestrictionsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        domain:
+          type: string
+        type:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+      required:
+      - id
+      - domain
+      - type
     DomainRestrictionsConfigUpdateRequest:
       type: object
       properties:

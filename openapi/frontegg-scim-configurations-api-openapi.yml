@@ -141,42 +141,6 @@ paths:
       - SCIM Configurations
 components:
   schemas:
-    Scim2CreateConnectionConfigRequest:
-      type: object
-      properties:
-        source:
-          type: string
-          enum:
-          - frontegg
-          - okta
-          - azure-ad
-          - other
-        connectionName:
-          type: string
-        syncToUserManagement:
-          type: boolean
-      required:
-      - source
-    Scim2CreateConnectionConfigResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        connectionName:
-          type: string
-        token:
-          type: string
-      required:
-      - id
-      - connectionName
-      - token
-    Scim2PatchConnectionConfigRequest:
-      type: object
-      properties:
-        syncToUserManagement:
-          type: boolean
-      required:
-      - syncToUserManagement
     Scim2ConnectionConfigResponse:
       type: object
       properties:
@@ -206,6 +170,42 @@ components:
       - syncToUserManagement
       - lastSync
       - createdAt
+    Scim2PatchConnectionConfigRequest:
+      type: object
+      properties:
+        syncToUserManagement:
+          type: boolean
+      required:
+      - syncToUserManagement
+    Scim2CreateConnectionConfigRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+          - frontegg
+          - okta
+          - azure-ad
+          - other
+        connectionName:
+          type: string
+        syncToUserManagement:
+          type: boolean
+      required:
+      - source
+    Scim2CreateConnectionConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        connectionName:
+          type: string
+        token:
+          type: string
+      required:
+      - id
+      - connectionName
+      - token
   securitySchemes:
     bearer:
       scheme: bearer

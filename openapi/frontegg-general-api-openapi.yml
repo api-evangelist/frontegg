@@ -256,23 +256,69 @@ paths:
       - bearer: []
 components:
   schemas:
-    AuthenticateUserPasswordDto:
+    SignUpResponseDto:
       type: object
       properties:
-        email:
+        shouldActivate:
+          type: boolean
+        userId:
           type: string
-          description: User email. Either email or username must be provided.
-        username:
+        tenantId:
           type: string
-          description: Username. Either email or username must be provided.
-        password:
+        authResponse:
+          $ref: '#/components/schemas/AuthenticationResponseDto'
+        activationToken:
           type: string
-        recaptchaToken:
+    AuthenticationResponseDto:
+      type: object
+      properties:
+        tokenType:
           type: string
-        invitationToken:
+          default: bearer
+        otcToken:
           type: string
+        mfaRequired:
+          type: boolean
+        mfaToken:
+          type: string
+        resetPasswordToken:
+          type: string
+        passwordExpiresIn:
+          type: number
+        notificationPeriod:
+          type: number
+        mfaEnrolled:
+          type: boolean
+        mfaDevices:
+          $ref: '#/components/schemas/UserMFADevicesResponse'
+        mfaStrategies:
+          type: object
+        qrCode:
+          type: string
+        recoveryCode:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        expiresIn:
+          type: number
+        expires:
+          type: string
+        userId:
+          type: string
+        userEmail:
+          type: string
+        emailVerified:
+          type: boolean
+        isBreachedPassword:
+          type: boolean
       required:
-      - password
+      - mfaRequired
+      - accessToken
+      - refreshToken
+      - expiresIn
+      - expires
     SignUpUserEmailDto:
       type: object
       properties:
@@ -338,76 +384,6 @@ components:
       - id
       - deviceType
       - name
-    SignUpResponseDto:
-      type: object
-      properties:
-        shouldActivate:
-          type: boolean
-        userId:
-          type: string
-        tenantId:
-          type: string
-        authResponse:
-          $ref: '#/components/schemas/AuthenticationResponseDto'
-        activationToken:
-          type: string
-    AuthenticationResponseDto:
-      type: object
-      properties:
-        tokenType:
-          type: string
-          default: bearer
-        otcToken:
-          type: string
-        mfaRequired:
-          type: boolean
-        mfaToken:
-          type: string
-        resetPasswordToken:
-          type: string
-        passwordExpiresIn:
-          type: number
-        notificationPeriod:
-          type: number
-        mfaEnrolled:
-          type: boolean
-        mfaDevices:
-          $ref: '#/components/schemas/UserMFADevicesResponse'
-        mfaStrategies:
-          type: object
-        qrCode:
-          type: string
-        recoveryCode:
-          type: string
-        accessToken:
-          type: string
-        refreshToken:
-          type: string
-        expiresIn:
-          type: number
-        expires:
-          type: string
-        userId:
-          type: string
-        userEmail:
-          type: string
-        emailVerified:
-          type: boolean
-        isBreachedPassword:
-          type: boolean
-      required:
-      - mfaRequired
-      - accessToken
-      - refreshToken
-      - expiresIn
-      - expires
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
     UserMFADevicesResponse:
       type: object
       properties:
@@ -432,6 +408,30 @@ components:
       - phones
       - authenticators
       - emails
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    AuthenticateUserPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email. Either email or username must be provided.
+        username:
+          type: string
+          description: Username. Either email or username must be provided.
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+      required:
+      - password
     UserMFAAuthenticatorAppResponse:
       type: object
       properties:
@@ -439,6 +439,19 @@ components:
           type: string
       required:
       - id
+    RefreshTokenDto:
+      type: object
+      properties: {}
+    UserMFAPhoneDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - id
+      - phoneNumber
     SignUpUserUsernameDto:
       type: object
       properties:
@@ -490,19 +503,6 @@ components:
       - provider
       - username
       - companyName
-    RefreshTokenDto:
-      type: object
-      properties: {}
-    UserMFAPhoneDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - id
-      - phoneNumber
   securitySchemes:
     bearer:
       scheme: bearer

@@ -428,56 +428,15 @@ paths:
       - bearer: []
 components:
   schemas:
-    EntityTypeRelationsRequest:
+    RelationAssignmentsRequest:
       type: object
       properties:
-        relations:
+        assignments:
           type: array
           items:
-            $ref: '#/components/schemas/EntityTypeRelationRequest'
+            $ref: '#/components/schemas/RelationAssignmentRequestDto'
       required:
-      - relations
-    EntityTypeActionsResponse:
-      type: object
-      properties:
-        vendorId:
-          type: string
-          readOnly: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-        entityTypeKey:
-          type: string
-          readOnly: true
-          example: book
-        key:
-          type: string
-          readOnly: true
-          example: read
-        relationKeys:
-          readOnly: true
-          example:
-          - reader
-          - writer
-          - fromRelation: parent
-            toAction: read
-          type: array
-          items:
-            type: string
-      required:
-      - vendorId
-      - entityTypeKey
-      - key
-      - relationKeys
-    EntityTypeRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          example: document
-        description:
-          type: string
-          example: Representation of a Word document file
-      required:
-      - key
+      - assignments
     RelationAssignmentRequestDto:
       type: object
       properties:
@@ -508,6 +467,89 @@ components:
       - relationKey
       - targetEntityTypeKey
       - targetKey
+    EntityTypeRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: document
+        description:
+          type: string
+          example: Representation of a Word document file
+      required:
+      - key
+    EntityTypeRelationResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        targetEntityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: reader
+        subjectEntityTypeKeys:
+          readOnly: true
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - targetEntityTypeKey
+      - key
+      - subjectEntityTypeKeys
+    EntityTypeResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+          example: document
+        description:
+          type: string
+          readOnly: true
+          example: Representation of a Word document file
+        createdAt:
+          type: string
+          readOnly: true
+          example: '2021-06-02T14:00:00.000Z'
+          format: date-time
+      required:
+      - key
+      - description
+      - createdAt
+    EntityTypeRelationsRequest:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeRelationRequest'
+      required:
+      - relations
+    PagedEntityTypesResponse:
+      type: object
+      properties:
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: true
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeResponse'
+      required:
+      - hasNext
+      - items
     EntityTypeActionUpdateRequest:
       type: object
       properties:
@@ -546,15 +588,6 @@ components:
       required:
       - key
       - relationKeys
-    RelationAssignmentsRequest:
-      type: object
-      properties:
-        assignments:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationAssignmentRequestDto'
-      required:
-      - assignments
     EntityTypeOneResponse:
       type: object
       properties:
@@ -587,6 +620,76 @@ components:
       - createdAt
       - relations
       - actions
+    EntityTypeActionsRequest:
+      type: object
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityTypeActionRequest'
+      required:
+      - actions
+    EntityTypeActionsResponse:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        entityTypeKey:
+          type: string
+          readOnly: true
+          example: book
+        key:
+          type: string
+          readOnly: true
+          example: read
+        relationKeys:
+          readOnly: true
+          example:
+          - reader
+          - writer
+          - fromRelation: parent
+            toAction: read
+          type: array
+          items:
+            type: string
+      required:
+      - vendorId
+      - entityTypeKey
+      - key
+      - relationKeys
+    EntityTypeRelationRequest:
+      type: object
+      properties:
+        key:
+          type: string
+          example: reader
+        subjectEntityKeys:
+          example:
+          - copywriter
+          - customer
+          type: array
+          items:
+            type: string
+      required:
+      - key
+      - subjectEntityKeys
+    PagedRelationAssignmentsResponse:
+      type: object
+      properties:
+        items:
+          readOnly: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationAssignmentDto'
+        hasNext:
+          type: boolean
+          readOnly: true
+          example: false
+      required:
+      - items
+      - hasNext
     EntityTypeRelationUpdateRequest:
       type: object
       properties:
@@ -603,49 +706,6 @@ components:
       required:
       - key
       - subjectEntityKeys
-    EntityTypeRelationResponse:
-      type: object
-      properties:
-        vendorId:
-          type: string
-          readOnly: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-        targetEntityTypeKey:
-          type: string
-          readOnly: true
-          example: book
-        key:
-          type: string
-          readOnly: true
-          example: reader
-        subjectEntityTypeKeys:
-          readOnly: true
-          example:
-          - copywriter
-          - customer
-          type: array
-          items:
-            type: string
-      required:
-      - vendorId
-      - targetEntityTypeKey
-      - key
-      - subjectEntityTypeKeys
-    PagedEntityTypesResponse:
-      type: object
-      properties:
-        hasNext:
-          type: boolean
-          readOnly: true
-          example: true
-        items:
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityTypeResponse'
-      required:
-      - hasNext
-      - items
     RelationAssignmentDto:
       type: object
       properties:
@@ -681,66 +741,6 @@ components:
       - relationKey
       - targetEntityTypeKey
       - targetKey
-    EntityTypeResponse:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-          example: document
-        description:
-          type: string
-          readOnly: true
-          example: Representation of a Word document file
-        createdAt:
-          type: string
-          readOnly: true
-          example: '2021-06-02T14:00:00.000Z'
-          format: date-time
-      required:
-      - key
-      - description
-      - createdAt
-    EntityTypeActionsRequest:
-      type: object
-      properties:
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityTypeActionRequest'
-      required:
-      - actions
-    EntityTypeRelationRequest:
-      type: object
-      properties:
-        key:
-          type: string
-          example: reader
-        subjectEntityKeys:
-          example:
-          - copywriter
-          - customer
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - subjectEntityKeys
-    PagedRelationAssignmentsResponse:
-      type: object
-      properties:
-        items:
-          readOnly: true
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationAssignmentDto'
-        hasNext:
-          type: boolean
-          readOnly: true
-          example: false
-      required:
-      - items
-      - hasNext
   securitySchemes:
     bearer:
       scheme: bearer
