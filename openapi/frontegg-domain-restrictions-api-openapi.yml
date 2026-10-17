@@ -218,35 +218,6 @@ components:
       required:
       - type
       - domains
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    DomainRestrictionsConfigResponse:
-      type: object
-      properties:
-        active:
-          type: boolean
-        listType:
-          enum:
-          - ALLOW
-          - BLOCK
-          type: string
-        blockPublicDomains:
-          type: boolean
-      required:
-      - active
-      - listType
-      - blockPublicDomains
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
     FronteggPaginationLinks:
       type: object
       properties:
@@ -263,6 +234,23 @@ components:
       - prev
       - first
       - last
+    DomainRestrictionsConfigUpdateRequest:
+      type: object
+      properties:
+        active:
+          type: boolean
+        blockPublicDomains:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+      required:
+      - active
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
     DomainRestrictionsCreateRequest:
       type: object
       properties:
@@ -293,20 +281,32 @@ components:
       - id
       - domain
       - type
-    DomainRestrictionsConfigUpdateRequest:
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    DomainRestrictionsConfigResponse:
       type: object
       properties:
         active:
           type: boolean
-        blockPublicDomains:
-          type: boolean
-        type:
-          type: string
+        listType:
           enum:
           - ALLOW
           - BLOCK
+          type: string
+        blockPublicDomains:
+          type: boolean
       required:
       - active
+      - listType
+      - blockPublicDomains
   securitySchemes:
     bearer:
       scheme: bearer

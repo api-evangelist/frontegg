@@ -213,16 +213,46 @@ paths:
       - bearer: []
 components:
   schemas:
-    FronteggPaginationMetadata:
+    AddRoleWithPermissionsRequest:
       type: object
       properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+          description: This role will be assigned for every user that will be added without specified roles
+        baseRoleId:
+          type: string
+          description: Role level of the new role will be based on this parameter
+        permissionIds:
+          type: array
+          items:
+            type: string
       required:
-      - totalItems
-      - totalPages
+      - key
+      - name
+      - baseRoleId
+      - permissionIds
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
     RoleResponse:
       type: object
       properties:
@@ -267,22 +297,19 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    FronteggPaginationLinks:
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    FronteggPaginationMetadata:
       type: object
       properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
+        totalItems:
+          type: number
+        totalPages:
+          type: number
       required:
-      - next
-      - prev
-      - first
-      - last
+      - totalItems
+      - totalPages
     AddRoleWithPermissionsResponse:
       type: object
       properties:
@@ -313,33 +340,6 @@ components:
       - description
       - isDefault
       - permissions
-    AddRoleWithPermissionsRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        isDefault:
-          type: boolean
-          description: This role will be assigned for every user that will be added without specified roles
-        baseRoleId:
-          type: string
-          description: Role level of the new role will be based on this parameter
-        permissionIds:
-          type: array
-          items:
-            type: string
-      required:
-      - key
-      - name
-      - baseRoleId
-      - permissionIds
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

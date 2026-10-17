@@ -268,16 +268,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    AddPermissionToRoleRequest:
-      type: object
-      properties:
-        permissionIds:
-          description: Set permission Ids to attach to the role
-          type: array
-          items:
-            type: string
-      required:
-      - permissionIds
     RoleResponse:
       type: object
       properties:
@@ -349,15 +339,6 @@ components:
       - key
       - name
       - level
-    UpdateRoleTenantRequest:
-      type: object
-      properties:
-        tenantId:
-          type:
-          - string
-          - 'null'
-      required:
-      - tenantId
     UpdateRoleRequest:
       type: object
       properties:
@@ -381,6 +362,25 @@ components:
           type: string
         description:
           type: string
+    UpdateRoleTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type:
+          - string
+          - 'null'
+      required:
+      - tenantId
+    AddPermissionToRoleRequest:
+      type: object
+      properties:
+        permissionIds:
+          description: Set permission Ids to attach to the role
+          type: array
+          items:
+            type: string
+      required:
+      - permissionIds
   securitySchemes:
     bearer:
       scheme: bearer

@@ -236,6 +236,17 @@ paths:
       - bearer: []
 components:
   schemas:
+    UpdatePermissionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
     AddPermissionRequest:
       type: object
       properties:
@@ -256,6 +267,22 @@ components:
       required:
       - key
       - name
+    ClassifyPermissionsDto:
+      type: object
+      properties:
+        permissionIds:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+          - NEVER
+          - ALWAYS
+          - ASSIGNABLE
+      required:
+      - permissionIds
+      - type
     PermissionResponse:
       type: object
       properties:
@@ -301,33 +328,6 @@ components:
             type: string
       required:
       - roleIds
-    UpdatePermissionRequest:
-      type: object
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        categoryId:
-          type: string
-    ClassifyPermissionsDto:
-      type: object
-      properties:
-        permissionIds:
-          type: array
-          items:
-            type: string
-        type:
-          type: string
-          enum:
-          - NEVER
-          - ALWAYS
-          - ASSIGNABLE
-      required:
-      - permissionIds
-      - type
   securitySchemes:
     bearer:
       scheme: bearer

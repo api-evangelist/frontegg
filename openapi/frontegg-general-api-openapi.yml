@@ -256,19 +256,58 @@ paths:
       - bearer: []
 components:
   schemas:
-    SignUpResponseDto:
+    RefreshTokenDto:
+      type: object
+      properties: {}
+    SignUpUserEmailDto:
       type: object
       properties:
-        shouldActivate:
+        provider:
+          type: string
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
+        metadata:
+          type: string
+          description: Stringified JSON object. Use the JSON.stringify() method.
+        email:
+          type: string
+        username:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        password:
+          type: string
+        skipInviteEmail:
           type: boolean
-        userId:
+        roleIds:
+          type: array
+          items:
+            type: string
+        emailMetadata:
+          type: object
+        companyName:
           type: string
-        tenantId:
+        recaptchaToken:
           type: string
-        authResponse:
-          $ref: '#/components/schemas/AuthenticationResponseDto'
-        activationToken:
+        invitationToken:
           type: string
+        phoneNumber:
+          type: string
+      required:
+      - provider
+      - email
+      - companyName
     AuthenticationResponseDto:
       type: object
       properties:
@@ -319,139 +358,6 @@ components:
       - refreshToken
       - expiresIn
       - expires
-    SignUpUserEmailDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - local
-          - saml
-          - google
-          - github
-          - facebook
-          - microsoft
-          - scim2
-          - slack
-          - apple
-        metadata:
-          type: string
-          description: Stringified JSON object. Use the JSON.stringify() method.
-        email:
-          type: string
-        username:
-          type: string
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-          maxLength: 4095
-        password:
-          type: string
-        skipInviteEmail:
-          type: boolean
-        roleIds:
-          type: array
-          items:
-            type: string
-        emailMetadata:
-          type: object
-        companyName:
-          type: string
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - provider
-      - email
-      - companyName
-    UserMFAWebAuthnDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-        name:
-          type: string
-      required:
-      - id
-      - deviceType
-      - name
-    UserMFADevicesResponse:
-      type: object
-      properties:
-        webauthn:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
-        authenticators:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
-      required:
-      - webauthn
-      - phones
-      - authenticators
-      - emails
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
-    AuthenticateUserPasswordDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: User email. Either email or username must be provided.
-        username:
-          type: string
-          description: Username. Either email or username must be provided.
-        password:
-          type: string
-        recaptchaToken:
-          type: string
-        invitationToken:
-          type: string
-      required:
-      - password
-    UserMFAAuthenticatorAppResponse:
-      type: object
-      properties:
-        id:
-          type: string
-      required:
-      - id
-    RefreshTokenDto:
-      type: object
-      properties: {}
-    UserMFAPhoneDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - id
-      - phoneNumber
     SignUpUserUsernameDto:
       type: object
       properties:
@@ -503,6 +409,100 @@ components:
       - provider
       - username
       - companyName
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    SignUpResponseDto:
+      type: object
+      properties:
+        shouldActivate:
+          type: boolean
+        userId:
+          type: string
+        tenantId:
+          type: string
+        authResponse:
+          $ref: '#/components/schemas/AuthenticationResponseDto'
+        activationToken:
+          type: string
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    AuthenticateUserPasswordDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email. Either email or username must be provided.
+        username:
+          type: string
+          description: Username. Either email or username must be provided.
+        password:
+          type: string
+        recaptchaToken:
+          type: string
+        invitationToken:
+          type: string
+      required:
+      - password
+    UserMFADevicesResponse:
+      type: object
+      properties:
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+      required:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    UserMFAPhoneDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+      required:
+      - id
+      - phoneNumber
+    UserMFAWebAuthnDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
+      required:
+      - id
+      - deviceType
+      - name
   securitySchemes:
     bearer:
       scheme: bearer

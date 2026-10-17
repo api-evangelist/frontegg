@@ -68,33 +68,16 @@ paths:
       - bearer: []
 components:
   schemas:
-    EmailConfiguration:
+    SmsConfiguration:
       type: object
       properties:
         active:
           type: boolean
         tokenLifetimeSeconds:
           type: number
-        sender:
-          type: string
       required:
       - active
       - tokenLifetimeSeconds
-      - sender
-    MfaEmailConfig:
-      type: object
-      properties:
-        active:
-          type: boolean
-        tokenLifetimeSeconds:
-          type: number
-          minimum: 300
-        sender:
-          type: string
-      required:
-      - active
-      - tokenLifetimeSeconds
-      - sender
     MfaSmsConfig:
       type: object
       properties:
@@ -115,26 +98,19 @@ components:
           $ref: '#/components/schemas/MfaSmsConfig'
         email:
           $ref: '#/components/schemas/MfaEmailConfig'
-    MfaAuthAppConfig:
-      type: object
-      properties:
-        active:
-          type: boolean
-        serviceName:
-          type: string
-      required:
-      - active
-      - serviceName
-    SmsConfiguration:
+    EmailConfiguration:
       type: object
       properties:
         active:
           type: boolean
         tokenLifetimeSeconds:
           type: number
+        sender:
+          type: string
       required:
       - active
       - tokenLifetimeSeconds
+      - sender
     MfaConfigResponse:
       type: object
       properties:
@@ -148,7 +124,31 @@ components:
       - authenticationApp
       - sms
       - email
+    MfaEmailConfig:
+      type: object
+      properties:
+        active:
+          type: boolean
+        tokenLifetimeSeconds:
+          type: number
+          minimum: 300
+        sender:
+          type: string
+      required:
+      - active
+      - tokenLifetimeSeconds
+      - sender
     AuthenticationAppConfiguration:
+      type: object
+      properties:
+        active:
+          type: boolean
+        serviceName:
+          type: string
+      required:
+      - active
+      - serviceName
+    MfaAuthAppConfig:
       type: object
       properties:
         active:

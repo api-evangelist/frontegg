@@ -193,38 +193,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateOrUpdateMFAStrategyRequest:
-      type: object
-      properties:
-        isActive:
-          type: boolean
-        strategy:
-          type: string
-          enum:
-          - AuthenticatorApp
-          - WebAuthnPlatform
-          - WebAuthnCrossPlatform
-          - SMS
-          - EmailCode
-      required:
-      - isActive
-      - strategy
-    MFAStrategyResponse:
-      type: object
-      properties:
-        strategy:
-          enum:
-          - AuthenticatorApp
-          - WebAuthnPlatform
-          - WebAuthnCrossPlatform
-          - SMS
-          - EmailCode
-          type: string
-        isActive:
-          type: boolean
-      required:
-      - strategy
-      - isActive
     MfaPolicyRequest:
       type: object
       properties:
@@ -244,6 +212,22 @@ components:
           type: number
           description: Expiration time of device in seconds
           default: 1209600
+    CreateOrUpdateMFAStrategyRequest:
+      type: object
+      properties:
+        isActive:
+          type: boolean
+        strategy:
+          type: string
+          enum:
+          - AuthenticatorApp
+          - WebAuthnPlatform
+          - WebAuthnCrossPlatform
+          - SMS
+          - EmailCode
+      required:
+      - isActive
+      - strategy
     MFAStrategiesResponse:
       type: object
       properties:
@@ -276,6 +260,22 @@ components:
       - mfaDeviceExpiration
       - createdAt
       - updatedAt
+    MFAStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          enum:
+          - AuthenticatorApp
+          - WebAuthnPlatform
+          - WebAuthnCrossPlatform
+          - SMS
+          - EmailCode
+          type: string
+        isActive:
+          type: boolean
+      required:
+      - strategy
+      - isActive
   securitySchemes:
     bearer:
       scheme: bearer

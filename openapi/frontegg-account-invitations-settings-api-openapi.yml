@@ -229,6 +229,50 @@ paths:
       - bearer: []
 components:
   schemas:
+    ActivationStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+        codeExpiration:
+          type: number
+      required:
+      - strategy
+      - codeExpiration
+    InvitationStrategyResponse:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+          - code
+          - link
+        codeExpiration:
+          type: number
+      required:
+      - strategy
+      - codeExpiration
+    CreateInviteTokenRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        userId:
+          type: string
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+        roleIds:
+          description: Array of role IDs to assign to invited users
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
     InviteTokenDto:
       type: object
       properties:
@@ -260,42 +304,6 @@ components:
       - token
       - expires
       - shouldSendEmail
-    CreateOrUpdateInvitationStrategyRequest:
-      type: object
-      properties:
-        codeExpiration:
-          type: number
-    CreateInviteTokenRequest:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        userId:
-          type: string
-        expiresInMinutes:
-          type: number
-        shouldSendEmail:
-          type: boolean
-        roleIds:
-          description: Array of role IDs to assign to invited users
-          type: array
-          items:
-            type: string
-      required:
-      - tenantId
-    InvitationStrategyResponse:
-      type: object
-      properties:
-        strategy:
-          type: string
-          enum:
-          - code
-          - link
-        codeExpiration:
-          type: number
-      required:
-      - strategy
-      - codeExpiration
     CreateOrUpdateActivationStrategyRequest:
       type: object
       properties:
@@ -309,19 +317,11 @@ components:
           - link
       required:
       - strategy
-    ActivationStrategyResponse:
+    CreateOrUpdateInvitationStrategyRequest:
       type: object
       properties:
-        strategy:
-          type: string
-          enum:
-          - code
-          - link
         codeExpiration:
           type: number
-      required:
-      - strategy
-      - codeExpiration
   securitySchemes:
     bearer:
       scheme: bearer

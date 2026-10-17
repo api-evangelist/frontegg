@@ -242,51 +242,6 @@ components:
       required:
       - type
       - value
-    CreateRouteDto:
-      type: object
-      properties:
-        method:
-          type: string
-          description: Http Method
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          - '*'
-          example: GET
-        path:
-          type: string
-          description: Route path
-          example: /users
-        policyType:
-          type: string
-          description: Route policy type
-          enum:
-          - allow
-          - deny
-          - ruleBased
-          example: allow
-        description:
-          type: string
-          description: Route description
-          example: This is an example route
-      required:
-      - method
-      - path
-      - policyType
-      - description
-    ReplaceRouteRulesDto:
-      type: object
-      properties:
-        rules:
-          description: Set of route rules
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateRouteRuleDto'
-      required:
-      - rules
     RouteRuleDto:
       type: object
       properties:
@@ -366,6 +321,51 @@ components:
       - policyType
       - rules
     UpdateRouteDto:
+      type: object
+      properties:
+        method:
+          type: string
+          description: Http Method
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - '*'
+          example: GET
+        path:
+          type: string
+          description: Route path
+          example: /users
+        policyType:
+          type: string
+          description: Route policy type
+          enum:
+          - allow
+          - deny
+          - ruleBased
+          example: allow
+        description:
+          type: string
+          description: Route description
+          example: This is an example route
+      required:
+      - method
+      - path
+      - policyType
+      - description
+    ReplaceRouteRulesDto:
+      type: object
+      properties:
+        rules:
+          description: Set of route rules
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRouteRuleDto'
+      required:
+      - rules
+    CreateRouteDto:
       type: object
       properties:
         method:

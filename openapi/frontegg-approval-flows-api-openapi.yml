@@ -318,23 +318,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    UpdateApprovalFlowDto:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        isActive:
-          type: boolean
-        channels:
-          $ref: '#/components/schemas/ApprovalFlowChannelDto'
-        configuration:
-          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
     ApproverSelectorDto:
       type: object
       properties:
@@ -350,30 +333,6 @@ components:
           type: array
           items:
             type: string
-    ExecuteApprovalFlowDto:
-      type: object
-      properties:
-        executionData:
-          type: object
-        webhookUrl:
-          type: string
-    ApprovalFlowConfigurationDto:
-      type: object
-      properties:
-        autoApproveInMinutes:
-          type: number
-          minimum: 1
-        reminderIntervalMinutes:
-          type: number
-          minimum: 60
-        notifyOnDecisions:
-          type: boolean
-        timeoutMinutes:
-          type: number
-          minimum: 5
-          maximum: 10080
-        webhookUrl:
-          type: string
     ApproverSelectorResponseDto:
       type: object
       properties:
@@ -393,56 +352,96 @@ components:
       - roleKeys
       - emails
       - phoneNumbers
-    ApprovalFlowChannel:
-      type: object
-      properties: {}
-    StepConfigurationDto:
+    ApprovalFlowsListResponseDto:
       type: object
       properties:
-        minApprovals:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFlowResponseDto'
+        total:
           type: number
-          minimum: 1
       required:
-      - minApprovals
-    ApprovalFlowStepResponseDto:
+      - items
+      - total
+    ExecutionDataResponseDto:
       type: object
       properties:
-        id:
+        approvalFlowName:
           type: string
-        stepOrder:
-          type: number
-        approverSelectors:
-          $ref: '#/components/schemas/ApproverSelectorResponseDto'
+        approvalFlowDescription:
+          type: string
+        requester:
+          type: string
+        approvalFlowRequestDate:
+          format: date-time
+          type: string
+        executionData:
+          type: object
+      required:
+      - approvalFlowName
+      - requester
+      - approvalFlowRequestDate
+    UpdateApprovalFlowDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        isActive:
+          type: boolean
+        channels:
+          $ref: '#/components/schemas/ApprovalFlowChannelDto'
         configuration:
-          $ref: '#/components/schemas/StepConfigurationResponseDto'
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - stepOrder
-      - approverSelectors
-      - configuration
-      - createdAt
-      - updatedAt
+          $ref: '#/components/schemas/ApprovalFlowConfigurationDto'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateApprovalFlowStepDto'
     StepConfigurationResponseDto:
       type: object
       properties:
         minApprovals:
           type: number
-    ApprovalFlowChannelDto:
+    ApprovalFlowConfigurationDto:
       type: object
       properties:
-        email:
+        autoApproveInMinutes:
+          type: number
+          minimum: 1
+        reminderIntervalMinutes:
+          type: number
+          minimum: 60
+        notifyOnDecisions:
           type: boolean
-        sms:
-          type: boolean
+        timeoutMinutes:
+          type: number
+          minimum: 5
+          maximum: 10080
+        webhookUrl:
+          type: string
+    CreateApprovalFlowStepDto:
+      type: object
+      properties:
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationDto'
+        stepOrder:
+          type: number
+          minimum: 1
       required:
-      - email
-      - sms
+      - approverSelectors
+      - configuration
+      - stepOrder
+    ExecuteApprovalFlowDto:
+      type: object
+      properties:
+        executionData:
+          type: object
+        webhookUrl:
+          type: string
     CreateApprovalFlowDto:
       type: object
       properties:
@@ -465,54 +464,6 @@ components:
       - channels
       - configuration
       - steps
-    CreateApprovalFlowStepDto:
-      type: object
-      properties:
-        approverSelectors:
-          $ref: '#/components/schemas/ApproverSelectorDto'
-        configuration:
-          $ref: '#/components/schemas/StepConfigurationDto'
-        stepOrder:
-          type: number
-          minimum: 1
-      required:
-      - approverSelectors
-      - configuration
-      - stepOrder
-    ApproverActionDto:
-      type: object
-      properties:
-        approved:
-          type: boolean
-        approvalFlowExecutionId:
-          type: string
-        approverId:
-          type: string
-        approvalFlowStepId:
-          type: string
-      required:
-      - approved
-      - approvalFlowExecutionId
-      - approverId
-      - approvalFlowStepId
-    ExecutionDataResponseDto:
-      type: object
-      properties:
-        approvalFlowName:
-          type: string
-        approvalFlowDescription:
-          type: string
-        requester:
-          type: string
-        approvalFlowRequestDate:
-          format: date-time
-          type: string
-        executionData:
-          type: object
-      required:
-      - approvalFlowName
-      - requester
-      - approvalFlowRequestDate
     ApprovalFlowResponseDto:
       type: object
       properties:
@@ -567,18 +518,67 @@ components:
           type: number
         webhookUrl:
           type: string
-    ApprovalFlowsListResponseDto:
+    ApprovalFlowStepResponseDto:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApprovalFlowResponseDto'
-        total:
+        id:
+          type: string
+        stepOrder:
           type: number
+        approverSelectors:
+          $ref: '#/components/schemas/ApproverSelectorResponseDto'
+        configuration:
+          $ref: '#/components/schemas/StepConfigurationResponseDto'
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
       required:
-      - items
-      - total
+      - id
+      - stepOrder
+      - approverSelectors
+      - configuration
+      - createdAt
+      - updatedAt
+    StepConfigurationDto:
+      type: object
+      properties:
+        minApprovals:
+          type: number
+          minimum: 1
+      required:
+      - minApprovals
+    ApprovalFlowChannelDto:
+      type: object
+      properties:
+        email:
+          type: boolean
+        sms:
+          type: boolean
+      required:
+      - email
+      - sms
+    ApproverActionDto:
+      type: object
+      properties:
+        approved:
+          type: boolean
+        approvalFlowExecutionId:
+          type: string
+        approverId:
+          type: string
+        approvalFlowStepId:
+          type: string
+      required:
+      - approved
+      - approvalFlowExecutionId
+      - approverId
+      - approvalFlowStepId
+    ApprovalFlowChannel:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

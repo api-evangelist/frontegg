@@ -321,16 +321,21 @@ paths:
       - bearer: []
 components:
   schemas:
-    UpdateManyEntitlementsDto:
+    EntitlementIdsDto:
       type: object
       properties:
-        entitlements:
-          description: Array of entitlements to update
+        entitlementIds:
+          description: UUID string that represents the entitlement ID
+          example:
+          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
           type: array
           items:
-            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
+            type: string
       required:
-      - entitlements
+      - entitlementIds
+    PageDto:
+      type: object
+      properties: {}
     UpdateEntitlementWithIdDto:
       type: object
       properties:
@@ -345,26 +350,16 @@ components:
           example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
       required:
       - id
-    UpdateEntitlementDto:
+    UpdateManyEntitlementsDto:
       type: object
       properties:
-        expirationDate:
-          format: date-time
-          type: string
-          description: Date of entitlement expiration
-          example: '2022-01-01T12:00:00'
-    EntitlementIdsDto:
-      type: object
-      properties:
-        entitlementIds:
-          description: UUID string that represents the entitlement ID
-          example:
-          - e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        entitlements:
+          description: Array of entitlements to update
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/UpdateEntitlementWithIdDto'
       required:
-      - entitlementIds
+      - entitlements
     EntitlementPlan:
       type: object
       properties:
@@ -468,9 +463,14 @@ components:
       required:
       - planId
       - tenantId
-    PageDto:
+    UpdateEntitlementDto:
       type: object
-      properties: {}
+      properties:
+        expirationDate:
+          format: date-time
+          type: string
+          description: Date of entitlement expiration
+          example: '2022-01-01T12:00:00'
     CreateManyEntitlementsDto:
       type: object
       properties:

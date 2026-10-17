@@ -540,86 +540,69 @@ paths:
       - bearer: []
 components:
   schemas:
-    PlanFeatureDto:
+    LinkFeaturesDto:
       type: object
       properties:
-        id:
-          type: string
-          description: UUID string representing the feature ID
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
           example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        permissions:
-          description: Array of permissions linked to a feature
-          example:
-          - permission.read
-          - permission.write
           type: array
           items:
             type: string
       required:
-      - id
-      - name
-      - key
-      - permissions
-    ConditionDto:
+      - featuresIds
+    UnlinkFeaturesDto:
       type: object
       properties:
-        attribute:
-          type: string
-          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
-          example: myCustomAttribute
-        attributeType:
-          type: string
-          description: Enum that represents the attribute type (`frontegg` or `custom`)
-          example: custom
-          enum:
-          - custom
-          - frontegg
-        negate:
-          type: boolean
-          description: Boolean that indicates whether the condition should negate the operation
-          example: false
-        op:
-          type: string
-          description: Enum that represents the operation applied to the condition
-          example: in_list
-          enum:
-          - in_list
-          - starts_with
-          - ends_with
-          - contains
-          - matches
-          - equal
-          - greater_than
-          - greater_than_equal
-          - lower_than
-          - lower_than_equal
-          - between_numeric
-          - is
-          - 'on'
-          - between_date
-          - on_or_after
-          - on_or_before
-        value:
-          type: object
-          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
-          example:
-            list:
-            - valueA
-            - valueB
+        featuresIds:
+          description: Array of UUID strings that represents the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+          type: array
+          items:
+            type: string
       required:
-      - attribute
-      - attributeType
-      - negate
-      - op
-      - value
+      - featuresIds
+    UpdatePlanDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represents the plan name
+          example: Test Plan
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the plan
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+        description:
+          type: string
+          description: Feature plan description
+          example: This is a test plan
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+        defaultTimeLimitation:
+          type: number
+          description: Number that represents the default time limitation in days for auto-assigned plans
+          example: '30'
+        assignOnSignup:
+          type: boolean
+          description: Boolean indicating whether a plan is assigned automatically upon signup
+          example: 'true'
+        featureKeys:
+          description: Array of feature-keys to be applied on the plan
+          example: '["my-cool-feature"]'
+          type: array
+          items:
+            type: string
     CreatePlanDto:
       type: object
       properties:
@@ -664,6 +647,67 @@ components:
             type: string
       required:
       - name
+    RuleDto:
+      type: object
+      properties:
+        description:
+          type: string
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
+          type: string
+          description: Enum that represents the rule conditions logic
+          example: and
+          enum:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
+          type: string
+          description: String that represents the treatment for this rule
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+      required:
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
+    PageDto:
+      type: object
+      properties: {}
+    PlanFeatureDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - name
+      - key
+      - permissions
     EntitlementPlan:
       type: object
       properties:
@@ -744,102 +788,58 @@ components:
       - tenantId
       - createdAt
       - plan
-    UnlinkFeaturesDto:
+    ConditionDto:
       type: object
       properties:
-        featuresIds:
-          description: Array of UUID strings that represents the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
-      required:
-      - featuresIds
-    PageDto:
-      type: object
-      properties: {}
-    LinkFeaturesDto:
-      type: object
-      properties:
-        featuresIds:
-          description: Array of UUID strings that represents the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-          type: array
-          items:
-            type: string
-      required:
-      - featuresIds
-    UpdatePlanDto:
-      type: object
-      properties:
-        name:
+        attribute:
           type: string
-          description: String that represents the plan name
-          example: Test Plan
-        defaultTreatment:
+          description: String representing an attribute with a subset of condition(s) that is used in code to enact targeting rules
+          example: myCustomAttribute
+        attributeType:
           type: string
-          description: Enum that represents the default treatment
-          example: 'true'
+          description: Enum that represents the attribute type (`frontegg` or `custom`)
+          example: custom
           enum:
-          - 'true'
-          - 'false'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the plan
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
-        description:
-          type: string
-          description: Feature plan description
-          example: This is a test plan
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-        defaultTimeLimitation:
-          type: number
-          description: Number that represents the default time limitation in days for auto-assigned plans
-          example: '30'
-        assignOnSignup:
+          - custom
+          - frontegg
+        negate:
           type: boolean
-          description: Boolean indicating whether a plan is assigned automatically upon signup
-          example: 'true'
-        featureKeys:
-          description: Array of feature-keys to be applied on the plan
-          example: '["my-cool-feature"]'
-          type: array
-          items:
-            type: string
-    RuleDto:
-      type: object
-      properties:
-        description:
+          description: Boolean that indicates whether the condition should negate the operation
+          example: false
+        op:
           type: string
-          description: String that represents the description of the rule
-          example: This is the first rule
-        conditionLogic:
-          type: string
-          description: Enum that represents the rule conditions logic
-          example: and
+          description: Enum that represents the operation applied to the condition
+          example: in_list
           enum:
-          - and
-        conditions:
-          description: Array of conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDto'
-        treatment:
-          type: string
-          description: String that represents the treatment for this rule
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
+          - in_list
+          - starts_with
+          - ends_with
+          - contains
+          - matches
+          - equal
+          - greater_than
+          - greater_than_equal
+          - lower_than
+          - lower_than_equal
+          - between_numeric
+          - is
+          - 'on'
+          - between_date
+          - on_or_after
+          - on_or_before
+        value:
+          type: object
+          description: Object that contains the condition data according to selected operation, each operation requires different structure (see [documentation](https://docs.frontegg.com/docs/entitlements-backend-sdk#operations-and-corresponding-object-structure))
+          example:
+            list:
+            - valueA
+            - valueB
       required:
-      - description
-      - conditionLogic
-      - conditions
-      - treatment
+      - attribute
+      - attributeType
+      - negate
+      - op
+      - value
     PlanDto:
       type: object
       properties:

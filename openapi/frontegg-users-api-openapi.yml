@@ -1093,33 +1093,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    BulkRolesTaskError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error message
-          example: Failed to update roles for tenant
-        tenantId:
-          type: string
-          description: Tenant ID where the error occurred
-        details:
-          type: string
-          description: Additional error details
-        tenantIds:
-          description: Tenant IDs affected by this error (for batch failures)
-          type: array
-          items:
-            type: string
-      required:
-      - message
-    UpdateUserInvisibleDto:
-      type: object
-      properties:
-        invisible:
-          type: boolean
-      required:
-      - invisible
     UpdateUserSuperuserDto:
       type: object
       properties:
@@ -1127,258 +1100,6 @@ components:
           type: boolean
       required:
       - superUser
-    PreVerifyUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-      required:
-      - phoneNumber
-    BulkRolesTaskStatusResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          example: task-uuid
-        userId:
-          type: string
-          description: User ID being updated
-          example: user-uuid
-        status:
-          enum:
-          - NotStarted
-          - InProgress
-          - Completed
-          - CompletedWithErrors
-          type: string
-          description: Current status of the task
-          example: InProgress
-        totalTenants:
-          type: number
-          description: Total number of tenants to update
-          example: 500
-        processedTenants:
-          type: number
-          description: Number of tenants already processed
-          example: 150
-        addedRoleIds:
-          description: Role IDs being added
-          example:
-          - role-uuid-1
-          type: array
-          items:
-            type: string
-        removedRoleIds:
-          description: Role IDs being removed
-          example:
-          - role-uuid-2
-          type: array
-          items:
-            type: string
-        errors:
-          description: Errors encountered during processing
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkRolesTaskError'
-      required:
-      - id
-      - userId
-      - status
-      - totalTenants
-      - processedTenants
-      - addedRoleIds
-      - removedRoleIds
-    BulkUpdateUserRolesSyncResponseDto:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: The user ID that was updated
-          example: user-uuid
-        affectedTenants:
-          type: number
-          description: Number of tenants affected by the update
-          example: 15
-        rolesAdded:
-          description: Role IDs that were added
-          example:
-          - role-uuid-1
-          type: array
-          items:
-            type: string
-        rolesRemoved:
-          description: Role IDs that were removed
-          example:
-          - role-uuid-2
-          type: array
-          items:
-            type: string
-      required:
-      - userId
-      - affectedTenants
-      - rolesAdded
-      - rolesRemoved
-    CoreUserDto:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-        sub:
-          type: string
-        verified:
-          type: boolean
-        mfaEnrolled:
-          type: boolean
-        mfaBypass:
-          type: boolean
-        phoneNumber:
-          type: string
-        provider:
-          type: string
-        tenantId:
-          type: string
-        tenantIds:
-          type: array
-          items:
-            type: string
-        activatedForTenant:
-          type: boolean
-        isLocked:
-          type: boolean
-        tenants:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserTenantDto'
-        invisible:
-          type: boolean
-        superUser:
-          type: boolean
-        metadata:
-          type: string
-        vendorMetadata:
-          type: string
-        externalId:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        lastLogin:
-          format: date-time
-          type: string
-        subAccountAccessAllowed:
-          type: boolean
-        managedBy:
-          type: string
-          enum:
-          - frontegg
-          - scim2
-          - external
-      required:
-      - id
-      - email
-      - name
-      - profilePictureUrl
-      - sub
-      - verified
-      - mfaEnrolled
-      - provider
-      - tenantId
-      - tenantIds
-      - tenants
-      - metadata
-      - vendorMetadata
-      - createdAt
-      - lastLogin
-      - subAccountAccessAllowed
-    BulkUpdateUserRolesRequestDto:
-      type: object
-      properties:
-        addRoleIds:
-          description: Role IDs to add across tenants
-          example:
-          - role-uuid-1
-          - role-uuid-2
-          type: array
-          items:
-            type: string
-        removeRoleIds:
-          description: Role IDs to remove across tenants
-          example:
-          - role-uuid-3
-          type: array
-          items:
-            type: string
-        tenantIds:
-          description: Specific tenant IDs to update. If not provided, all tenants the user belongs to will be updated.
-          example:
-          - tenant-uuid-1
-          - tenant-uuid-2
-          type: array
-          items:
-            type: string
-    TaskContext:
-      type: object
-      properties: {}
-    UserBulkInviteRequestDto:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email of the user. If not provided, the username is required
-        username:
-          type: string
-          maxLength: 255
-          pattern: /^[a-zA-Z0-9._-]+$/
-          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
-        name:
-          type: string
-        profilePictureUrl:
-          type: string
-          maxLength: 4095
-        password:
-          type: string
-        phoneNumber:
-          type: string
-        provider:
-          type: string
-          default: local
-          enum:
-          - local
-          - saml
-          - google
-          - github
-          - facebook
-          - microsoft
-          - scim2
-          - slack
-          - apple
-        metadata:
-          type: string
-          description: Stringified JSON object
-          example: '{}'
-        skipInviteEmail:
-          type: boolean
-        roleIds:
-          type: array
-          items:
-            type: string
-        emailMetadata:
-          type: object
-        expirationInSeconds:
-          type: number
-          minimum: 300
-          description: Temporary user expiration in seconds
-        verified:
-          type: boolean
     UsersBulkInviteRequestDto:
       type: object
       properties:
@@ -1388,6 +1109,9 @@ components:
             $ref: '#/components/schemas/UserBulkInviteRequestDto'
       required:
       - users
+    ValidateUserPasswordResponse:
+      type: object
+      properties: {}
     UserDto:
       type: object
       properties:
@@ -1480,6 +1204,23 @@ components:
       - createdAt
       - lastLogin
       - subAccountAccessAllowed
+    UserTenantDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+        isDisabled:
+          type: boolean
+      required:
+      - tenantId
+      - roles
     PermissionResponse:
       type: object
       properties:
@@ -1515,77 +1256,32 @@ components:
       - roleIds
       - categoryId
       - fePermission
-    ValidateUserPasswordResponse:
-      type: object
-      properties: {}
-    TenantStatus:
+    BulkUpdateUserRolesRequestDto:
       type: object
       properties:
-        tenantId:
-          type: string
-        status:
-          type: string
-          enum:
-          - PendingInvitation
-          - PendingLogin
-          - Activated
-          - NotActivated
-      required:
-      - tenantId
-      - status
-    UserTenantDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        roles:
+        addRoleIds:
+          description: Role IDs to add across tenants
+          example:
+          - role-uuid-1
+          - role-uuid-2
           type: array
           items:
-            $ref: '#/components/schemas/RoleResponse'
-        temporaryExpirationDate:
-          format: date-time
-          type: string
-        isDisabled:
-          type: boolean
-      required:
-      - tenantId
-      - roles
-    GenerateUserResetPasswordLinkResponseDto:
-      type: object
-      properties:
-        link:
-          type: string
-        token:
-          type: string
-        userId:
-          type: string
-      required:
-      - link
-      - token
-      - userId
-    ValidateUserPasswordRequest:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-      - email
-      - password
-    GenerateUserActivationLinkResponseDto:
-      type: object
-      properties:
-        link:
-          type: string
-        token:
-          type: string
-        userId:
-          type: string
-      required:
-      - link
-      - token
-      - userId
+            type: string
+        removeRoleIds:
+          description: Role IDs to remove across tenants
+          example:
+          - role-uuid-3
+          type: array
+          items:
+            type: string
+        tenantIds:
+          description: Specific tenant IDs to update. If not provided, all tenants the user belongs to will be updated.
+          example:
+          - tenant-uuid-1
+          - tenant-uuid-2
+          type: array
+          items:
+            type: string
     UserTenantStatusesResponse:
       type: object
       properties:
@@ -1599,6 +1295,46 @@ components:
       required:
       - userId
       - tenantsStatuses
+    CreateUserDtoVendorOnly:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email of the user. If not provided, the username is required
+        username:
+          type: string
+          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
+          maxLength: 255
+        name:
+          type: string
+        password:
+          type: string
+        phoneNumber:
+          type: string
+        metadata:
+          type: string
+          description: Stringified JSON object
+        vendorMetadata:
+          type: string
+          description: Extra vendor-only data. stringified JSON object
+        roleIds:
+          description: Role IDs to assign to the user
+          type: array
+          items:
+            type: string
+        tenantId:
+          type: string
+        expirationInSeconds:
+          type: number
+          description: Temporary user expiration in seconds
+        mfaBypass:
+          type: boolean
+          description: Bypass MFA for this user
+        externalId:
+          type: string
+          description: The external id of the user
+      required:
+      - tenantId
     RoleResponse:
       type: object
       properties:
@@ -1643,13 +1379,24 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    TemporaryUsersConfigurationDto:
+    UpdateUserTenantWithValidationDto:
       type: object
       properties:
-        enabled:
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user
+        validateTenantExist:
           type: boolean
       required:
-      - enabled
+      - tenantId
+    PreVerifyUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+      required:
+      - phoneNumber
     AddUserToTenantRequest:
       type: object
       properties:
@@ -1661,16 +1408,272 @@ components:
           type: boolean
       required:
       - tenantId
-    UpdateUserTenantWithValidationDto:
+    UpdateUserInvisibleDto:
+      type: object
+      properties:
+        invisible:
+          type: boolean
+      required:
+      - invisible
+    BulkRolesTaskStatusResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          example: task-uuid
+        userId:
+          type: string
+          description: User ID being updated
+          example: user-uuid
+        status:
+          enum:
+          - NotStarted
+          - InProgress
+          - Completed
+          - CompletedWithErrors
+          type: string
+          description: Current status of the task
+          example: InProgress
+        totalTenants:
+          type: number
+          description: Total number of tenants to update
+          example: 500
+        processedTenants:
+          type: number
+          description: Number of tenants already processed
+          example: 150
+        addedRoleIds:
+          description: Role IDs being added
+          example:
+          - role-uuid-1
+          type: array
+          items:
+            type: string
+        removedRoleIds:
+          description: Role IDs being removed
+          example:
+          - role-uuid-2
+          type: array
+          items:
+            type: string
+        errors:
+          description: Errors encountered during processing
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkRolesTaskError'
+      required:
+      - id
+      - userId
+      - status
+      - totalTenants
+      - processedTenants
+      - addedRoleIds
+      - removedRoleIds
+    ValidateUserPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+      - email
+      - password
+    MigrateUsersFromTenantToTenantRequest:
+      type: object
+      properties:
+        srcTenantId:
+          type: string
+        targetTenantId:
+          type: string
+      required:
+      - srcTenantId
+      - targetTenantId
+    TenantStatus:
       type: object
       properties:
         tenantId:
           type: string
-          description: Desired tenant to set as active tenant for user
-        validateTenantExist:
-          type: boolean
+        status:
+          type: string
+          enum:
+          - PendingInvitation
+          - PendingLogin
+          - Activated
+          - NotActivated
       required:
       - tenantId
+      - status
+    BulkRolesTaskError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: Failed to update roles for tenant
+        tenantId:
+          type: string
+          description: Tenant ID where the error occurred
+        details:
+          type: string
+          description: Additional error details
+        tenantIds:
+          description: Tenant IDs affected by this error (for batch failures)
+          type: array
+          items:
+            type: string
+      required:
+      - message
+    GenerateUserActivationLinkResponseDto:
+      type: object
+      properties:
+        link:
+          type: string
+        token:
+          type: string
+        userId:
+          type: string
+      required:
+      - link
+      - token
+      - userId
+    BulkUpdateUserRolesSyncResponseDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The user ID that was updated
+          example: user-uuid
+        affectedTenants:
+          type: number
+          description: Number of tenants affected by the update
+          example: 15
+        rolesAdded:
+          description: Role IDs that were added
+          example:
+          - role-uuid-1
+          type: array
+          items:
+            type: string
+        rolesRemoved:
+          description: Role IDs that were removed
+          example:
+          - role-uuid-2
+          type: array
+          items:
+            type: string
+      required:
+      - userId
+      - affectedTenants
+      - rolesAdded
+      - rolesRemoved
+    GenerateUserResetPasswordLinkResponseDto:
+      type: object
+      properties:
+        link:
+          type: string
+        token:
+          type: string
+        userId:
+          type: string
+      required:
+      - link
+      - token
+      - userId
+    CoreUserDto:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+        sub:
+          type: string
+        verified:
+          type: boolean
+        mfaEnrolled:
+          type: boolean
+        mfaBypass:
+          type: boolean
+        phoneNumber:
+          type: string
+        provider:
+          type: string
+        tenantId:
+          type: string
+        tenantIds:
+          type: array
+          items:
+            type: string
+        activatedForTenant:
+          type: boolean
+        isLocked:
+          type: boolean
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTenantDto'
+        invisible:
+          type: boolean
+        superUser:
+          type: boolean
+        metadata:
+          type: string
+        vendorMetadata:
+          type: string
+        externalId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        lastLogin:
+          format: date-time
+          type: string
+        subAccountAccessAllowed:
+          type: boolean
+        managedBy:
+          type: string
+          enum:
+          - frontegg
+          - scim2
+          - external
+      required:
+      - id
+      - email
+      - name
+      - profilePictureUrl
+      - sub
+      - verified
+      - mfaEnrolled
+      - provider
+      - tenantId
+      - tenantIds
+      - tenants
+      - metadata
+      - vendorMetadata
+      - createdAt
+      - lastLogin
+      - subAccountAccessAllowed
+    TemporaryUsersConfigurationDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
+    UpdateUserEmailDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
     UpdateVendorUserDto:
       type: object
       properties:
@@ -1697,64 +1700,61 @@ components:
           description: The external id of the user
         name:
           type: string
-    UpdateUserEmailDto:
+    UserBulkInviteRequestDto:
       type: object
       properties:
         email:
           type: string
           format: email
-      required:
-      - email
-    MigrateUsersFromTenantToTenantRequest:
-      type: object
-      properties:
-        srcTenantId:
-          type: string
-        targetTenantId:
-          type: string
-      required:
-      - srcTenantId
-      - targetTenantId
-    CreateUserDtoVendorOnly:
-      type: object
-      properties:
-        email:
-          type: string
           description: The email of the user. If not provided, the username is required
         username:
           type: string
-          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
           maxLength: 255
+          pattern: /^[a-zA-Z0-9._-]+$/
+          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
         name:
           type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
         password:
           type: string
         phoneNumber:
           type: string
+        provider:
+          type: string
+          default: local
+          enum:
+          - local
+          - saml
+          - google
+          - github
+          - facebook
+          - microsoft
+          - scim2
+          - slack
+          - apple
         metadata:
           type: string
           description: Stringified JSON object
-        vendorMetadata:
-          type: string
-          description: Extra vendor-only data. stringified JSON object
+          example: '{}'
+        skipInviteEmail:
+          type: boolean
         roleIds:
-          description: Role IDs to assign to the user
           type: array
           items:
             type: string
-        tenantId:
-          type: string
+        emailMetadata:
+          type: object
         expirationInSeconds:
           type: number
+          minimum: 300
           description: Temporary user expiration in seconds
-        mfaBypass:
+        verified:
           type: boolean
-          description: Bypass MFA for this user
-        externalId:
-          type: string
-          description: The external id of the user
-      required:
-      - tenantId
+    TaskContext:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer

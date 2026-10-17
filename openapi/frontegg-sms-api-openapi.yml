@@ -476,54 +476,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    VerifyPhoneNumberOTCRequestDto:
-      type: object
-      properties:
-        otcToken:
-          type: string
-          description: OTC token
-        code:
-          type: string
-          description: Code that was sent to the user
-      required:
-      - otcToken
-      - code
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
-    UserPhoneNumberCreatedResponseDto:
-      type: object
-      properties: {}
-    CreateUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-        verify:
-          type: boolean
-          default: true
-          description: Should send verification code, default is true
-      required:
-      - phoneNumber
-    UserPhoneNumberDeleteCodeResponseDto:
-      type: object
-      properties: {}
-    PreVerifyUserPhoneNumberRequestDto:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          description: New phone number
-      required:
-      - phoneNumber
     UserPhoneNumberResponseDto:
       type: object
       properties:
@@ -567,6 +519,54 @@ components:
     FronteggPaginationWrapper:
       type: object
       properties: {}
+    CreateUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+        verify:
+          type: boolean
+          default: true
+          description: Should send verification code, default is true
+      required:
+      - phoneNumber
+    PreVerifyUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+      required:
+      - phoneNumber
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    UserPhoneNumberDeleteCodeResponseDto:
+      type: object
+      properties: {}
+    UserPhoneNumberCreatedResponseDto:
+      type: object
+      properties: {}
+    VerifyPhoneNumberOTCRequestDto:
+      type: object
+      properties:
+        otcToken:
+          type: string
+          description: OTC token
+        code:
+          type: string
+          description: Code that was sent to the user
+      required:
+      - otcToken
+      - code
   securitySchemes:
     bearer:
       scheme: bearer

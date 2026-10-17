@@ -204,59 +204,26 @@ paths:
       - bearer: []
 components:
   schemas:
-    MigrateUsersRequestV1:
+    Auth0Configuration:
       type: object
       properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MigrateUserRequestV1'
-      required:
-      - users
-    PermissionResponse:
-      type: object
-      properties:
-        id:
+        domain:
           type: string
-        key:
+        clientId:
           type: string
-        name:
+        secret:
           type: string
-        description:
+        tenantIdFieldName:
           type: string
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-        categoryId:
-          type: string
-        fePermission:
+          description: The field name that the tenant ID will be taken from under app metadata
+        isTenantIdOnUserMetadata:
           type: boolean
+          description: If you would like to take tenant ID from user metadata, set this field to true
       required:
-      - id
-      - key
-      - name
-      - description
-      - createdAt
-      - updatedAt
-      - roleIds
-      - categoryId
-      - fePermission
-    MigrateUsersRequestV2:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MigrateUserRequestV2'
-      required:
-      - users
+      - domain
+      - clientId
+      - secret
+      - tenantIdFieldName
     RoleResponse:
       type: object
       properties:
@@ -301,68 +268,15 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    PhoneNumberType:
-      type: string
-      enum:
-      - auth
-      - mfa
-    MigrationContext:
+    MigrateUsersRequestV1:
       type: object
       properties:
-        migrationId:
-          type: string
-      required:
-      - migrationId
-    MigrationObject:
-      type: object
-      properties: {}
-    UserTenantDto:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        roles:
+        users:
           type: array
           items:
-            $ref: '#/components/schemas/RoleResponse'
-        temporaryExpirationDate:
-          format: date-time
-          type: string
-        isDisabled:
-          type: boolean
+            $ref: '#/components/schemas/MigrateUserRequestV1'
       required:
-      - tenantId
-      - roles
-    Auth0Configuration:
-      type: object
-      properties:
-        domain:
-          type: string
-        clientId:
-          type: string
-        secret:
-          type: string
-        tenantIdFieldName:
-          type: string
-          description: The field name that the tenant ID will be taken from under app metadata
-        isTenantIdOnUserMetadata:
-          type: boolean
-          description: If you would like to take tenant ID from user metadata, set this field to true
-      required:
-      - domain
-      - clientId
-      - secret
-      - tenantIdFieldName
-    PasswordHashingType:
-      type: string
-      enum:
-      - bcrypt
-      - scrypt
-      - firebase-scrypt
-      - pbkdf2
-      - argon2
-      - sha256
-      - sha1
+      - users
     MigrateUserRequestV2:
       type: object
       properties:
@@ -432,23 +346,18 @@ components:
             $ref: '#/components/schemas/EmailObjectDto'
       required:
       - tenantId
-    EmailObjectDto:
+    MigrateUsersRequestV2:
       type: object
       properties:
-        email:
-          type: string
-          description: The email address
-          format: email
-        primary:
-          type: boolean
-          description: Whether this is the primary email
-        verified:
-          type: boolean
-          description: Whether this email is verified
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MigrateUserRequestV2'
       required:
-      - email
-      - primary
-      - verified
+      - users
+    MigrationObject:
+      type: object
+      properties: {}
     UserDto:
       type: object
       properties:
@@ -541,6 +450,75 @@ components:
       - createdAt
       - lastLogin
       - subAccountAccessAllowed
+    UserTenantDto:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleResponse'
+        temporaryExpirationDate:
+          format: date-time
+          type: string
+        isDisabled:
+          type: boolean
+      required:
+      - tenantId
+      - roles
+    PermissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        categoryId:
+          type: string
+        fePermission:
+          type: boolean
+      required:
+      - id
+      - key
+      - name
+      - description
+      - createdAt
+      - updatedAt
+      - roleIds
+      - categoryId
+      - fePermission
+    EmailObjectDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email address
+          format: email
+        primary:
+          type: boolean
+          description: Whether this is the primary email
+        verified:
+          type: boolean
+          description: Whether this email is verified
+      required:
+      - email
+      - primary
+      - verified
     MigrateUserRequestV1:
       type: object
       properties:
@@ -613,6 +591,28 @@ components:
       required:
       - tenantId
       - email
+    PhoneNumberType:
+      type: string
+      enum:
+      - auth
+      - mfa
+    MigrationContext:
+      type: object
+      properties:
+        migrationId:
+          type: string
+      required:
+      - migrationId
+    PasswordHashingType:
+      type: string
+      enum:
+      - bcrypt
+      - scrypt
+      - firebase-scrypt
+      - pbkdf2
+      - argon2
+      - sha256
+      - sha1
   securitySchemes:
     bearer:
       scheme: bearer

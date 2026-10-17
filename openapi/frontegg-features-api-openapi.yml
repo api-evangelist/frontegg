@@ -293,6 +293,94 @@ paths:
       - bearer: []
 components:
   schemas:
+    UpdateFeatureDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          example:
+          - permission.read
+          - permission.write
+          type: array
+          items:
+            type: string
+    PermissionDto:
+      type: object
+      properties:
+        permissionKey:
+          type: string
+          description: Permission key
+          example: user.read
+        permissionId:
+          type: string
+          description: Permission identifier
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+    PageDto:
+      type: object
+      properties: {}
+    CreateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
+      required:
+      - name
+      - key
+    UpdateFeatureDtoV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        description:
+          type: string
+          description: Feature description
+          example: This is a test feature
+        permissions:
+          description: Array of permissions linked to a feature
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionDto'
+        metadata:
+          type: string
+          description: JSON String
+          example: '{ "some-key": "some-value" }'
     FeatureFlagDtoThin:
       type: object
       properties:
@@ -336,72 +424,7 @@ components:
           type: string
           description: Date when feature flag was last updated
           example: '2022-01-01T00:00:00'
-    CreateFeatureDtoV2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-      required:
-      - name
-      - key
-    PageDto:
-      type: object
-      properties: {}
-    PermissionDto:
-      type: object
-      properties:
-        permissionKey:
-          type: string
-          description: Permission key
-          example: user.read
-        permissionId:
-          type: string
-          description: Permission identifier
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-    UpdateFeatureDtoV2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          type: array
-          items:
-            $ref: '#/components/schemas/PermissionDto'
-        metadata:
-          type: string
-          description: JSON String
-          example: '{ "some-key": "some-value" }'
-    UpdateFeatureDto:
+    CreateFeatureDto:
       type: object
       properties:
         name:
@@ -424,6 +447,9 @@ components:
           type: array
           items:
             type: string
+      required:
+      - name
+      - key
     FeatureDto:
       type: object
       properties:
@@ -478,32 +504,6 @@ components:
       - key
       - metadata
       - createdAt
-    CreateFeatureDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        description:
-          type: string
-          description: Feature description
-          example: This is a test feature
-        permissions:
-          description: Array of permissions linked to a feature
-          example:
-          - permission.read
-          - permission.write
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - key
   securitySchemes:
     bearer:
       scheme: bearer

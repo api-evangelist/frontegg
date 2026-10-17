@@ -287,6 +287,49 @@ paths:
       - bearer: []
 components:
   schemas:
+    InvitationConfigurationResponse:
+      type: object
+      properties:
+        tenantInvitationsAllowed:
+          type: boolean
+        emailsEnabled:
+          type: boolean
+      required:
+      - tenantInvitationsAllowed
+      - emailsEnabled
+    CreateInviteTokenRequestForUserV2:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+        roleIds:
+          description: Array of role IDs to assign to invited users
+          example:
+          - role1
+          - role2
+          type: array
+          items:
+            type: string
+      required:
+      - expiresInMinutes
+      - shouldSendEmail
+      - roleIds
+    UpdateInviteTokenRequest:
+      type: object
+      properties:
+        expiresInMinutes:
+          type: number
+        shouldSendEmail:
+          type: boolean
+    VerifyInviteTokenRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
     InviteTokenDto:
       type: object
       properties:
@@ -318,42 +361,6 @@ components:
       - token
       - expires
       - shouldSendEmail
-    CreateInviteTokenRequestForUserV2:
-      type: object
-      properties:
-        expiresInMinutes:
-          type: number
-        shouldSendEmail:
-          type: boolean
-        roleIds:
-          description: Array of role IDs to assign to invited users
-          example:
-          - role1
-          - role2
-          type: array
-          items:
-            type: string
-      required:
-      - expiresInMinutes
-      - shouldSendEmail
-      - roleIds
-    InvitationConfigurationResponse:
-      type: object
-      properties:
-        tenantInvitationsAllowed:
-          type: boolean
-        emailsEnabled:
-          type: boolean
-      required:
-      - tenantInvitationsAllowed
-      - emailsEnabled
-    UpdateInviteTokenRequest:
-      type: object
-      properties:
-        expiresInMinutes:
-          type: number
-        shouldSendEmail:
-          type: boolean
     CreateInviteTokenRequestForUser:
       type: object
       properties:
@@ -364,13 +371,6 @@ components:
       required:
       - expiresInMinutes
       - shouldSendEmail
-    VerifyInviteTokenRequest:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
   securitySchemes:
     bearer:
       scheme: bearer

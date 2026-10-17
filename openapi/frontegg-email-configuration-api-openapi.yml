@@ -134,25 +134,39 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateOrUpdateMailConfigRequestDto:
-      type: object
-      properties:
-        secret:
-          type: string
-      required:
-      - secret
-    SendGridDto:
+    SesRoleDto:
       type: object
       properties:
         provider:
           type: string
           enum:
-          - sendgrid
+          - ses-role
         secret:
+          type: string
+        region:
           type: string
       required:
       - provider
       - secret
+      - region
+    SesDto:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum:
+          - ses
+        secret:
+          type: string
+        id:
+          type: string
+        region:
+          type: string
+      required:
+      - provider
+      - secret
+      - id
+      - region
     MailgunDto:
       type: object
       properties:
@@ -175,24 +189,25 @@ components:
       - secret
       - domain
       - region
-    SesDto:
+    SendGridDto:
       type: object
       properties:
         provider:
           type: string
           enum:
-          - ses
+          - sendgrid
         secret:
-          type: string
-        id:
-          type: string
-        region:
           type: string
       required:
       - provider
       - secret
-      - id
-      - region
+    CreateOrUpdateMailConfigRequestDto:
+      type: object
+      properties:
+        secret:
+          type: string
+      required:
+      - secret
     GetMailConfigResponseDto:
       type: object
       properties:
@@ -221,21 +236,6 @@ components:
       - updatedAt
       - extension
       - provider
-    SesRoleDto:
-      type: object
-      properties:
-        provider:
-          type: string
-          enum:
-          - ses-role
-        secret:
-          type: string
-        region:
-          type: string
-      required:
-      - provider
-      - secret
-      - region
   securitySchemes:
     bearer:
       scheme: bearer

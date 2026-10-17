@@ -529,188 +529,6 @@ paths:
       - Applications Settings
 components:
   schemas:
-    ApplicationsClientCredentialsResponse:
-      type: object
-      properties:
-        clientSecret:
-          type: string
-        sharedSecret:
-          type: string
-      required:
-      - clientSecret
-      - sharedSecret
-    ApplicationsTenantAssignmentResponseV1:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        appIds:
-          type: array
-          items:
-            type: string
-      required:
-      - tenantId
-      - appIds
-    EditApplicationTenantRequestV1:
-      type: object
-      properties:
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - accessType
-    RegenerateApplicationClientCredentialsRequest:
-      type: object
-      properties:
-        appId:
-          type: string
-      required:
-      - appId
-    ApplicationsTenantAssignmentsResponseV2:
-      type: object
-      properties:
-        tenantId:
-          type: string
-        assignments:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationTenantAssignmentAccessType'
-      required:
-      - tenantId
-      - assignments
-    CreateApplicationClientRequestDto:
-      type: object
-      properties:
-        clientName:
-          type: string
-        clientType:
-          type: string
-          enum:
-          - Agent
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type: object
-          description: External metadata with string, number, or boolean values
-      required:
-      - clientName
-      - clientType
-    ApplicationsResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        vendorId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-        appURL:
-          type: string
-        loginURL:
-          type: string
-        isDefault:
-          type: boolean
-        isActive:
-          type: boolean
-        name:
-          type: string
-        logoURL:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        type:
-          type: string
-        frontendStack:
-          type: string
-        description:
-          type: string
-        integrationFinishedAt:
-          type: string
-        metadata:
-          type: object
-        appHost:
-          type: string
-        allowDcr:
-          type: boolean
-      required:
-      - id
-      - vendorId
-      - accessType
-      - appURL
-      - loginURL
-      - isDefault
-      - isActive
-      - name
-      - logoURL
-      - createdAt
-      - updatedAt
-      - type
-      - frontendStack
-      - description
-      - integrationFinishedAt
-      - allowDcr
-    ApplicationClientResponseDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID (UUID)
-        appId:
-          type: string
-        clientName:
-          type: string
-        clientSecret:
-          type: string
-        clientType:
-          type: string
-          enum:
-          - Agent
-        redirectURLs:
-          type: array
-          items:
-            type: string
-        externalMetadata:
-          type:
-          - object
-          - 'null'
-          description: External metadata with string, number, or boolean values
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-      required:
-      - id
-      - appId
-      - clientName
-      - clientSecret
-      - clientType
-      - redirectURLs
-      - createdAt
-      - updatedAt
-    ApplicationTenantAssignmentAccessType:
-      type: object
-      properties:
-        appId:
-          type: string
-        accessType:
-          type: string
-          enum:
-          - FREE_ACCESS
-          - MANAGED_ACCESS
-      required:
-      - appId
-      - accessType
     CreateApplicationRequest:
       type: object
       properties:
@@ -779,6 +597,72 @@ components:
         externalMetadata:
           type: object
           description: External metadata with string, number, or boolean values
+    CreateApplicationClientRequestDto:
+      type: object
+      properties:
+        clientName:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type: object
+          description: External metadata with string, number, or boolean values
+      required:
+      - clientName
+      - clientType
+    EditApplicationTenantRequestV1:
+      type: object
+      properties:
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - accessType
+    ApplicationsTenantAssignmentsResponseV2:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationTenantAssignmentAccessType'
+      required:
+      - tenantId
+      - assignments
+    ApplicationsTenantAssignmentResponseV1:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - tenantId
+      - appIds
+    ApplicationTenantAssignmentAccessType:
+      type: object
+      properties:
+        appId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+      required:
+      - appId
+      - accessType
     CreateApplicationTenantRequestV1:
       type: object
       properties:
@@ -800,6 +684,122 @@ components:
             type: string
       required:
       - tenantIds
+    ApplicationsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        accessType:
+          type: string
+          enum:
+          - FREE_ACCESS
+          - MANAGED_ACCESS
+        appURL:
+          type: string
+        loginURL:
+          type: string
+        isDefault:
+          type: boolean
+        isActive:
+          type: boolean
+        name:
+          type: string
+        logoURL:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        type:
+          type: string
+        frontendStack:
+          type: string
+        description:
+          type: string
+        integrationFinishedAt:
+          type: string
+        metadata:
+          type: object
+        appHost:
+          type: string
+        allowDcr:
+          type: boolean
+      required:
+      - id
+      - vendorId
+      - accessType
+      - appURL
+      - loginURL
+      - isDefault
+      - isActive
+      - name
+      - logoURL
+      - createdAt
+      - updatedAt
+      - type
+      - frontendStack
+      - description
+      - integrationFinishedAt
+      - allowDcr
+    RegenerateApplicationClientCredentialsRequest:
+      type: object
+      properties:
+        appId:
+          type: string
+      required:
+      - appId
+    ApplicationsClientCredentialsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        sharedSecret:
+          type: string
+      required:
+      - clientSecret
+      - sharedSecret
+    ApplicationClientResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID (UUID)
+        appId:
+          type: string
+        clientName:
+          type: string
+        clientSecret:
+          type: string
+        clientType:
+          type: string
+          enum:
+          - Agent
+        redirectURLs:
+          type: array
+          items:
+            type: string
+        externalMetadata:
+          type:
+          - object
+          - 'null'
+          description: External metadata with string, number, or boolean values
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - appId
+      - clientName
+      - clientSecret
+      - clientType
+      - redirectURLs
+      - createdAt
+      - updatedAt
     UpdateApplicationRequest:
       type: object
       properties:

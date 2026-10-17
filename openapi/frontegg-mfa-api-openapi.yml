@@ -1395,6 +1395,174 @@ paths:
       - bearer: []
 components:
   schemas:
+    VerifyEnrollMFAWebAuthnRequest:
+      type: object
+      properties:
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        webauthnToken:
+          type: string
+        options:
+          $ref: '#/components/schemas/VerifyNewWebAuthnDeviceRequest'
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - deviceType
+      - webauthnToken
+      - options
+      - mfaToken
+    RequestEnrollMFASMSRequest:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: phoneNumberRegexp
+      required:
+      - phoneNumber
+    DisableMFAAuthAppRequest:
+      type: object
+      properties:
+        token:
+          type: string
+    DisableMFASMSRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+      required:
+      - otcToken
+      - code
+    UserMFAAuthenticatorAppResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    VerifyMFAEmailOTCRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - otcToken
+      - code
+      - mfaToken
+    WebAuthnCredentialCreationOptions:
+      type: object
+      properties: {}
+    RequestDisableMFARequest:
+      type: object
+      properties: {}
+    VerifyEnrollMFASMSRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+      required:
+      - otcToken
+      - code
+    UserMFADevicesResponse:
+      type: object
+      properties:
+        webauthn:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
+        authenticators:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
+      required:
+      - webauthn
+      - phones
+      - authenticators
+      - emails
+    RequestVerifyMFAWebAuthnResponse:
+      type: object
+      properties: {}
+    VerifyMFASMSRequest:
+      type: object
+      properties:
+        otcToken:
+          type: string
+        code:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - otcToken
+      - code
+      - mfaToken
+    VerifyEnrollMFAUserAuthAppRequest:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    RequestEnrollAuthenticatorAppMfaResponse:
+      type: object
+      properties:
+        qrCode:
+          type: string
+          description: QR code to be verified by authenticator app
+      required:
+      - qrCode
+    UserMFAEmailCodeResponse:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+      - email
+    UserMFAWebAuthnDeviceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deviceType:
+          type: string
+          enum:
+          - Platform
+          - CrossPlatform
+        name:
+          type: string
+      required:
+      - id
+      - deviceType
+      - name
+    CheckAllowRememberResponse:
+      type: object
+      properties: {}
+    RequestVerifyMFAEmailResponse:
+      type: object
+      properties: {}
     AuthenticationResponseDto:
       type: object
       properties:
@@ -1445,128 +1613,6 @@ components:
       - refreshToken
       - expiresIn
       - expires
-    UserMFAWebAuthnDeviceResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-        name:
-          type: string
-      required:
-      - id
-      - deviceType
-      - name
-    VerifyMFAAuthAppRequest:
-      type: object
-      properties:
-        value:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - value
-      - mfaToken
-    VerifyMFASMSRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - otcToken
-      - code
-      - mfaToken
-    DisableMFASMSRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-      required:
-      - otcToken
-      - code
-    AuthRequestVerifyMfaRequest:
-      type: object
-      properties:
-        mfaToken:
-          type: string
-      required:
-      - mfaToken
-    RecoverMfaDto:
-      type: object
-      properties:
-        recoveryCode:
-          type: string
-        email:
-          type: string
-      required:
-      - recoveryCode
-      - email
-    RequestVerifyMFAEmailResponse:
-      type: object
-      properties: {}
-    VerifyEnrollMFAUserAuthAppRequest:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
-    UserMFADevicesResponse:
-      type: object
-      properties:
-        webauthn:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAWebAuthnDeviceResponse'
-        phones:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAPhoneDeviceResponse'
-        authenticators:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAAuthenticatorAppResponse'
-        emails:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserMFAEmailCodeResponse'
-      required:
-      - webauthn
-      - phones
-      - authenticators
-      - emails
-    VerifyNewWebAuthnDeviceRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        response:
-          $ref: '#/components/schemas/WebAuthNClientResponse'
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-      required:
-      - id
-      - response
-    RequestDisableMFARequest:
-      type: object
-      properties: {}
     WebAuthNResponse:
       type: object
       properties:
@@ -1583,58 +1629,35 @@ components:
       - authenticatorData
       - signature
       - userHandle
-    AuthRequestEnrollMFARequest:
+    VerifyEnrollMFAResponse:
       type: object
       properties:
-        mfaToken:
+        recoveryCode:
           type: string
       required:
-      - mfaToken
-    VerifyEnrollMFASMSRequest:
-      type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-      required:
-      - otcToken
-      - code
-    RequestVerifyMFAWebAuthnResponse:
-      type: object
-      properties: {}
-    RequestEnrollMFASMSResponse:
-      type: object
-      properties: {}
-    UserMFAPhoneDeviceResponse:
+      - recoveryCode
+    VerifyNewWebAuthnDeviceRequest:
       type: object
       properties:
         id:
           type: string
-        phoneNumber:
+        response:
+          $ref: '#/components/schemas/WebAuthNClientResponse'
+        deviceType:
           type: string
+          enum:
+          - Platform
+          - CrossPlatform
       required:
       - id
-      - phoneNumber
-    VerifyEnrollMFAAuthAppRequest:
+      - response
+    AuthRequestVerifyMfaRequest:
       type: object
       properties:
-        token:
-          type: string
         mfaToken:
           type: string
-        rememberDevice:
-          type: boolean
       required:
-      - token
       - mfaToken
-    UserMFAEmailCodeResponse:
-      type: object
-      properties:
-        email:
-          type: string
-      required:
-      - email
     AuthenticateUserWebAuthNDto:
       type: object
       properties:
@@ -1649,86 +1672,31 @@ components:
       required:
       - id
       - response
-    RequestEnrollAuthenticatorAppMfaResponse:
+    RequestEnrollMFAWebAuthnResponse:
       type: object
       properties:
-        qrCode:
-          type: string
-          description: QR code to be verified by authenticator app
+        options:
+          $ref: '#/components/schemas/WebAuthnCredentialCreationOptions'
       required:
-      - qrCode
-    WebAuthnCredentialCreationOptions:
+      - options
+    RequestDisableMFASMSResponse:
       type: object
       properties: {}
-    VerifyMFAEmailOTCRequest:
+    RequestVerifyMFASMSResponse:
       type: object
-      properties:
-        otcToken:
-          type: string
-        code:
-          type: string
-        mfaToken:
-          type: string
-        rememberDevice:
-          type: boolean
-      required:
-      - otcToken
-      - code
-      - mfaToken
-    RequestEnrollMFASMSRequest:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          pattern: phoneNumberRegexp
-      required:
-      - phoneNumber
-    DisableMFAAuthAppRequest:
+      properties: {}
+    VerifyEnrollMFAAuthAppRequest:
       type: object
       properties:
         token:
           type: string
-    VerifyEnrollMFAWebAuthnRequest:
-      type: object
-      properties:
-        deviceType:
-          type: string
-          enum:
-          - Platform
-          - CrossPlatform
-        webauthnToken:
-          type: string
-        options:
-          $ref: '#/components/schemas/VerifyNewWebAuthnDeviceRequest'
         mfaToken:
           type: string
         rememberDevice:
           type: boolean
       required:
-      - deviceType
-      - webauthnToken
-      - options
+      - token
       - mfaToken
-    WebAuthNClientResponse:
-      type: object
-      properties:
-        clientDataJSON:
-          type: string
-        attestationObject:
-          type: string
-      required:
-      - clientDataJSON
-      - attestationObject
-    VerifyEnrollMFAResponse:
-      type: object
-      properties:
-        recoveryCode:
-          type: string
-      required:
-      - recoveryCode
-    RequestDisableMFASMSResponse:
-      type: object
-      properties: {}
     VerifyMFAWebAuthnRequest:
       type: object
       properties:
@@ -1744,26 +1712,58 @@ components:
       - webauthnToken
       - options
       - mfaToken
-    CheckAllowRememberResponse:
-      type: object
-      properties: {}
-    RequestVerifyMFASMSResponse:
-      type: object
-      properties: {}
-    RequestEnrollMFAWebAuthnResponse:
+    WebAuthNClientResponse:
       type: object
       properties:
-        options:
-          $ref: '#/components/schemas/WebAuthnCredentialCreationOptions'
+        clientDataJSON:
+          type: string
+        attestationObject:
+          type: string
       required:
-      - options
-    UserMFAAuthenticatorAppResponse:
+      - clientDataJSON
+      - attestationObject
+    AuthRequestEnrollMFARequest:
+      type: object
+      properties:
+        mfaToken:
+          type: string
+      required:
+      - mfaToken
+    VerifyMFAAuthAppRequest:
+      type: object
+      properties:
+        value:
+          type: string
+        mfaToken:
+          type: string
+        rememberDevice:
+          type: boolean
+      required:
+      - value
+      - mfaToken
+    RequestEnrollMFASMSResponse:
+      type: object
+      properties: {}
+    RecoverMfaDto:
+      type: object
+      properties:
+        recoveryCode:
+          type: string
+        email:
+          type: string
+      required:
+      - recoveryCode
+      - email
+    UserMFAPhoneDeviceResponse:
       type: object
       properties:
         id:
           type: string
+        phoneNumber:
+          type: string
       required:
       - id
+      - phoneNumber
   securitySchemes:
     bearer:
       scheme: bearer
