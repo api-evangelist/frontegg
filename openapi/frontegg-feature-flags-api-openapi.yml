@@ -1,35 +1,93 @@
 openapi: 3.2.0
 info:
   title: Entitlements Agent (PDP) Feature Flags API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
 - name: Feature Flags
   x-displayName: Feature Flags
 paths:
   /resources/feature-flags/v1:
-    servers:
-    - url: https://api.frontegg.com/entitlements
-      description: EU Region
-    - url: https://api.us.frontegg.com/entitlements
-      description: US Region
-    - url: https://api.ca.frontegg.com/entitlements
-      description: CA Region
-    - url: https://api.au.frontegg.com/entitlements
-      description: AU Region
-    - url: https://{domain}.frontegg.com/entitlements
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: FeatureFlagsControllerV1_getFeatureFlags
       x-tag: Feature Flags
       summary: Get Feature Flags
-      description: Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields).
+      description: Retrieve a paginated list of feature flags. You can search for specific feature flags or order them by field
       parameters:
       - name: offset
         required: false
@@ -94,7 +152,7 @@ paths:
       operationId: FeatureFlagsControllerV1_createFeatureFlag
       x-tag: Feature Flags
       summary: Create Feature Flag
-      description: Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts.
+      description: Create a new feature flag
       parameters: []
       requestBody:
         required: true
@@ -114,25 +172,11 @@ paths:
       security:
       - bearer: []
   /resources/feature-flags/v1/{id}:
-    servers:
-    - url: https://api.frontegg.com/entitlements
-      description: EU Region
-    - url: https://api.us.frontegg.com/entitlements
-      description: US Region
-    - url: https://api.ca.frontegg.com/entitlements
-      description: CA Region
-    - url: https://api.au.frontegg.com/entitlements
-      description: AU Region
-    - url: https://{domain}.frontegg.com/entitlements
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: FeatureFlagsControllerV1_getSingleFeatureFlag
       x-tag: Feature Flags
       summary: Get Single Feature Flag
-      description: Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details.
+      description: Retrieve a single feature flag
       parameters:
       - name: id
         required: true
@@ -154,7 +198,7 @@ paths:
       operationId: FeatureFlagsControllerV1_updateFeatureFlag
       x-tag: Feature Flags
       summary: Update Feature Flag
-      description: Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata.
+      description: Update an existing feature flag
       parameters:
       - name: id
         required: true
@@ -182,7 +226,7 @@ paths:
       operationId: FeatureFlagsControllerV1_deleteFeatureFlag
       x-tag: Feature Flags
       summary: Delete Feature Flag
-      description: Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration.
+      description: Delete a feature flag
       parameters:
       - name: id
         required: true
@@ -198,6 +242,21 @@ paths:
       - bearer: []
 components:
   schemas:
+    FeatureFlagFeature:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID string representing the feature ID
+          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
+        key:
+          type: string
+          description: String representing the feature key
+          example: test-feature
+        name:
+          type: string
+          description: String representing the feature name
+          example: Test Feature
     UpdateFeatureFlagDto:
       type: object
       properties:
@@ -240,6 +299,54 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RuleDto'
+    CreateFeatureFlagDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: String that represent the feature flag name
+          example: Test Feature Flag
+        'on':
+          type: boolean
+          description: Boolean indicating whether the feature flag is on
+          example: true
+        offTreatment:
+          type: string
+          description: Enum that represents the treatment in case feature flag is off
+          example: 'false'
+          enum:
+          - 'true'
+          - 'false'
+        defaultTreatment:
+          type: string
+          description: Enum that represents the default treatment
+          example: 'true'
+          enum:
+          - 'true'
+          - 'false'
+        featureId:
+          type: string
+          description: UUID string that represents the related feature ID
+          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
+        description:
+          type: string
+          description: String the represents the feature flag description
+          example: This is a test feature flag
+        metadata:
+          type: string
+          description: JSON String that represents additional custom metadata to the feature flag entity
+          example: '{}'
+        rules:
+          description: Array of rules that represents the set of conditions targeting the feature
+          type: array
+          items:
+            $ref: '#/components/schemas/RuleDto'
+      required:
+      - name
+      - 'on'
+      - offTreatment
+      - defaultTreatment
+      - featureId
     FeatureFlagDto:
       type: object
       properties:
@@ -296,57 +403,36 @@ components:
           type: string
           description: Date when feature flag was last updated
           example: '2022-01-01T00:00:00'
-    PageDto:
-      type: object
-      properties: {}
-    CreateFeatureFlagDto:
+    RuleDto:
       type: object
       properties:
-        name:
+        description:
           type: string
-          description: String that represent the feature flag name
-          example: Test Feature Flag
-        'on':
-          type: boolean
-          description: Boolean indicating whether the feature flag is on
-          example: true
-        offTreatment:
+          description: String that represents the description of the rule
+          example: This is the first rule
+        conditionLogic:
           type: string
-          description: Enum that represents the treatment in case feature flag is off
-          example: 'false'
+          description: Enum that represents the rule conditions logic
+          example: and
           enum:
-          - 'true'
-          - 'false'
-        defaultTreatment:
+          - and
+        conditions:
+          description: Array of conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/ConditionDto'
+        treatment:
           type: string
-          description: Enum that represents the default treatment
+          description: String that represents the treatment for this rule
           example: 'true'
           enum:
           - 'true'
           - 'false'
-        featureId:
-          type: string
-          description: UUID string that represents the related feature ID
-          example: '26f1b6b8-0317-452c-becd-68a5f782417d '
-        description:
-          type: string
-          description: String the represents the feature flag description
-          example: This is a test feature flag
-        metadata:
-          type: string
-          description: JSON String that represents additional custom metadata to the feature flag entity
-          example: '{}'
-        rules:
-          description: Array of rules that represents the set of conditions targeting the feature
-          type: array
-          items:
-            $ref: '#/components/schemas/RuleDto'
       required:
-      - name
-      - 'on'
-      - offTreatment
-      - defaultTreatment
-      - featureId
+      - description
+      - conditionLogic
+      - conditions
+      - treatment
     ConditionDto:
       type: object
       properties:
@@ -399,51 +485,9 @@ components:
       - negate
       - op
       - value
-    RuleDto:
+    PageDto:
       type: object
-      properties:
-        description:
-          type: string
-          description: String that represents the description of the rule
-          example: This is the first rule
-        conditionLogic:
-          type: string
-          description: Enum that represents the rule conditions logic
-          example: and
-          enum:
-          - and
-        conditions:
-          description: Array of conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/ConditionDto'
-        treatment:
-          type: string
-          description: String that represents the treatment for this rule
-          example: 'true'
-          enum:
-          - 'true'
-          - 'false'
-      required:
-      - description
-      - conditionLogic
-      - conditions
-      - treatment
-    FeatureFlagFeature:
-      type: object
-      properties:
-        id:
-          type: string
-          description: UUID string representing the feature ID
-          example: e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3
-        key:
-          type: string
-          description: String representing the feature key
-          example: test-feature
-        name:
-          type: string
-          description: String representing the feature name
-          example: Test Feature
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer
@@ -453,74 +497,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

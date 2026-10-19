@@ -1,0 +1,289 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) M2M API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: M2M
+  x-displayName: M2M
+paths:
+  /resources/vendor-only/users/access-tokens/v1/active:
+    get:
+      operationId: VendorOnlyUserAccessTokensV1Controller_getActiveAccessTokens
+      summary: Get active access tokens list
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - M2M
+      security:
+      - bearer: []
+  /resources/vendor-only/users/access-tokens/v1/{id}:
+    get:
+      operationId: VendorOnlyUserAccessTokensV1Controller_getUserAccessTokenData
+      summary: Get user access token data
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserAccessTokenResponse'
+      tags:
+      - M2M
+      security:
+      - bearer: []
+  /resources/vendor-only/tenants/access-tokens/v1/{id}:
+    get:
+      operationId: VendorOnlyTenantAccessTokensV1Controller_getTenantAccessTokenData
+      summary: Get tenant access token data
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTenantAccessTokenResponse'
+      tags:
+      - M2M
+      security:
+      - bearer: []
+components:
+  schemas:
+    AuthUserAccessTokenResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        id:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - userId
+      - id
+      - tenantId
+      - permissions
+      - roles
+    AuthTenantAccessTokenResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        expires:
+          format: date-time
+          type: string
+      required:
+      - id
+      - tenantId
+      - permissions
+      - roles
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

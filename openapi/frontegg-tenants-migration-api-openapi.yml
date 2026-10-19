@@ -1,0 +1,206 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Tenants migration API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: Tenants migration
+  x-displayName: Tenants migration
+paths:
+  /resources/migrations/v1/tenants:
+    post:
+      operationId: MigrationControllerV1_migrateTenants
+      summary: Migrate tenants
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrateTenantsRequest'
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Tenants migration
+      security:
+      - bearer: []
+  /resources/migrations/v1/tenants/status/{migrationId}:
+    get:
+      operationId: MigrationControllerV1_getMigrateTenantsStatus
+      summary: Tenant migration status
+      parameters:
+      - name: migrationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants migration
+      security:
+      - bearer: []
+components:
+  schemas:
+    MigrateTenantsRequest:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            type: string
+      required:
+      - tenants
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

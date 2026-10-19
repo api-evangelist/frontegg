@@ -1,0 +1,211 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Account Hierarchy API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: Account Hierarchy
+  x-displayName: Account Hierarchy
+paths:
+  /resources/hierarchy/v1:
+    post:
+      operationId: TenantHierarchyControllerV1_createSubTenants
+      summary: Create sub-tenant
+      description: Assign an existing tenant to the hierarchy as a sub-tenant of a given parent tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubTenantRequestDto'
+      responses:
+        '400':
+          description: When:a) given parameters do not pass validationb) or parent and child tenant are equalc) or child tenant is already a subtenant in other organization's hierarchy
+      tags:
+      - Account Hierarchy
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantHierarchyControllerV1_deleteSubTenant
+      summary: Delete sub-tenant
+      description: Delete given sub-tenant from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSubTenantRequestDto'
+      responses:
+        '400':
+          description: When provided parameters do not pass validation.
+        '404':
+          description: When given tenants are not in parent-child relation.
+      tags:
+      - Account Hierarchy
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateSubTenantRequestDto:
+      type: object
+      properties:
+        parentTenantId:
+          type: string
+        childTenantId:
+          type: string
+    DeleteSubTenantRequestDto:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

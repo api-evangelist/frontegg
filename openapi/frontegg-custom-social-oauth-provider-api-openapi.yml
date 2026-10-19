@@ -1,37 +1,92 @@
 openapi: 3.2.0
 info:
-  title: Entitlements Agent (PDP) Custom Social OAuth Provider API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  title: Entitlements Agent (PDP) Custom social OAuth provider API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
-- name: Custom Social OAuth Provider
+- name: Custom social OAuth provider
   x-displayName: Custom social OAuth provider
 paths:
   /resources/sso/custom/v1:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: CustomSsoV1Controller_createSsoProvider
-      summary: Create Custom Oauth Provider
-      description: 'Create a custom social login provider using the OAuth details of the identity provider.
-
-
-        Provide the required OAuth parameters in the request body.'
+      summary: Create custom oauth provider
+      description: This route creates a custom social login provider using OAuth details of the identity provider
       parameters: []
       requestBody:
         required: true
@@ -43,43 +98,26 @@ paths:
         '200':
           description: ''
       tags:
-      - Custom Social OAuth Provider
+      - Custom social OAuth provider
       security:
       - bearer: []
     get:
       operationId: SsoV2Controller_getSsoProviders
-      summary: Get Custom Oauth Provider
-      description: Retrieve the custom social login providers configured in your environment.
+      summary: Get custom oauth provider
+      description: This route fetches the custom social login providers on an environment
       parameters: []
       responses:
         '200':
           description: ''
       tags:
-      - Custom Social OAuth Provider
+      - Custom social OAuth provider
       security:
       - bearer: []
   /resources/sso/custom/v1/{id}:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     patch:
       operationId: CustomSsoV1Controller_updateSsoProvider
-      summary: Update Custom Oauth Provider
-      description: 'Update a custom social login provider in your environment by ID.
-
-
-        Provide the ID of the custom social login provider and the desired OAuth parameters in the request body.'
+      summary: Update custom oauth provider
+      description: This route updates the custom social login provider on an environment by ID
       parameters:
       - name: id
         required: true
@@ -96,16 +134,13 @@ paths:
         '200':
           description: ''
       tags:
-      - Custom Social OAuth Provider
+      - Custom social OAuth provider
       security:
       - bearer: []
     delete:
       operationId: CustomSsoV1Controller_deleteCustomSsoConfig
-      summary: Delete Custom Oauth Provider
-      description: 'Delete a custom social login provider in your environment by ID.
-
-
-        Provide the ID of the custom social login provider to delete.'
+      summary: Delete custom oauth provider
+      description: This route deletes the custom social login provider on an environment by ID
       parameters:
       - name: id
         required: true
@@ -116,7 +151,7 @@ paths:
         '200':
           description: ''
       tags:
-      - Custom Social OAuth Provider
+      - Custom social OAuth provider
       security:
       - bearer: []
 components:
@@ -192,74 +227,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

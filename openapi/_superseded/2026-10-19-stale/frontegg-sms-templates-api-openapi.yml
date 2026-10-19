@@ -1,0 +1,295 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) SMS Templates API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: SMS Templates
+  x-displayName: SMS templates
+paths:
+  /resources/configurations/v1/sms/templates:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorSmsController_getAllSmsTemplates
+      summary: Gets Vendor SMS Templates
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+      tags:
+      - SMS Templates
+      description: Retrieve the SMS templates configured for your environment.
+      security:
+      - bearer: []
+  /resources/configurations/v1/sms/templates/{type}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorSmsController_getSmsTemplate
+      summary: Gets Vendor SMS Template by Type
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+      tags:
+      - SMS Templates
+      description: 'Retrieve an SMS template by type.
+
+
+        Provide the `type` as a path parameter to specify which SMS template to retrieve.'
+      security:
+      - bearer: []
+    delete:
+      operationId: VendorSmsController_deleteSmsTemplate
+      summary: Deletes Vendor SMS Template by Type
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SMS Templates
+      description: 'Delete an SMS template by type.
+
+
+        Provide the `type` as a path parameter to specify which SMS template to delete.'
+      security:
+      - bearer: []
+    post:
+      operationId: VendorSmsController_createSmsTemplate
+      summary: Create or Update a Vendor SMS Template
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSmsTemplateRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+      tags:
+      - SMS Templates
+      description: 'Create or update an SMS template by type.
+
+
+        Provide the `type` as a path parameter and include the SMS template details in the request body.'
+      security:
+      - bearer: []
+  /resources/configurations/v1/sms/templates/{type}/default:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorSmsController_getSmsDefaultTemplate
+      summary: Gets Vendor Default SMS Template by Type
+      parameters:
+      - name: type
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+      tags:
+      - SMS Templates
+      description: 'Retrieve the default SMS template by type.
+
+
+        Provide the `type` as a path parameter to specify which default SMS template to retrieve.'
+      security:
+      - bearer: []
+  /resources/configurations/v1/sms/templates/default/all:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: VendorSmsController_getAllSmsDefaultTemplates
+      summary: Gets All Vendor Default SMS Templates
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmsTemplateResponse'
+      tags:
+      - SMS Templates
+      security:
+      - bearer: []
+components:
+  schemas:
+    SmsTemplateResponse:
+      type: object
+      properties: {}
+    CreateSmsTemplateRequest:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

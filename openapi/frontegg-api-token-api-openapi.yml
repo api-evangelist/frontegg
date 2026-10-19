@@ -1,40 +1,94 @@
 openapi: 3.2.0
 info:
-  title: Entitlements Agent (PDP) API Token API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  title: Entitlements Agent (PDP) API token API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
-- name: API Token
+- name: API token
   x-displayName: API token
 paths:
   /resources/auth/v2/api-token:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: AuthenticationApiTokenControllerV2_authApiToken
-      summary: Authenticate Using API Token
-      description: 'Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://.frontegg.com`).
+      summary: Authenticate using API token
+      description: 'This route authenticates a tenant’s or user’s API token. The clientId and secret key are in Admin Portal ➜ API Tokens. Send these values as params in the POST body and authenticate to your Frontegg domain by replacing api.frontegg.com with your Frontegg domain.
 
-
-        **Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalidated.
-
-
-        Use this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.'
+        **NOTE**: This route enforces(by default) a rotation mechanism for refresh tokens associated with the API token. It limits each token to a maximum of 100 refresh tokens simultaneously. When a client authenticates using the same API token for the 101th time, the earliest refresh token is automatically invalidated.'
       parameters: []
       requestBody:
         required: true
@@ -50,31 +104,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiTokenAuthV2Response'
       tags:
-      - API Token
+      - API token
       security:
       - bearer: []
   /resources/auth/v2/api-token/token/refresh:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: AuthenticationApiTokenControllerV2_refreshToken
-      summary: Refresh API Token
-      description: 'Refreshes a JWT access token using a refresh token. If the refresh token is valid, returns a new JWT and refresh token pair. This maintains an authenticated session without requiring the user to log in again.
-
-
-        If the refresh token is invalid, expired, or has been revoked due to rotation limits, the request will fail with an authentication error.'
+      summary: Refresh API token
+      description: This route refreshes a JWT using the refresh token value. If the refresh token is valid, the route returns a new JWT and refresh token. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name.
       parameters: []
       requestBody:
         required: true
@@ -90,7 +127,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiTokenAuthV2Response'
       tags:
-      - API Token
+      - API token
       security:
       - bearer: []
 components:
@@ -137,74 +174,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

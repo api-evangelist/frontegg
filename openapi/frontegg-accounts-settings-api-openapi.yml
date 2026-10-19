@@ -1,0 +1,229 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Accounts Settings API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: Accounts Settings
+  x-displayName: Accounts Settings
+paths:
+  /resources/account-settings/v1:
+    get:
+      operationId: AccountSettingsControllerV1_getSettings
+      summary: Get settings
+      description: Get account settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When tenant with given ID does not exist.
+      tags:
+      - Accounts Settings
+      security:
+      - bearer: []
+    put:
+      operationId: AccountSettingsControllerV1_updateSettings
+      summary: Update settings
+      description: Update account settings of a tenant. There has to be at least one setting passed on the body. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSettingsUpdateRequest'
+      responses:
+        '400':
+          description: 'When: a) given parameters do not pass validation b) empty object is passed in request content'
+        '404':
+          description: When tenant with given ID does not exist.
+      tags:
+      - Accounts Settings
+      security:
+      - bearer: []
+  /resources/account-settings/v1/public:
+    get:
+      operationId: AccountSettingsControllerV1_getPublicSettings
+      summary: Get public settings
+      description: Get account public settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When tenant with given ID does not exist.
+      tags:
+      - Accounts Settings
+      security:
+      - bearer: []
+components:
+  schemas:
+    AccountSettingsUpdateRequest:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

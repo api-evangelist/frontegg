@@ -1,0 +1,389 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Domain Restrictions API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: Domain Restrictions
+  x-displayName: Domain restrictions
+paths:
+  /resources/configurations/restrictions/v1/email-domain:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: DomainRestrictionsController_createDomainRestriction
+      summary: Create Domain Restriction
+      description: Creates a new email domain restriction for an account (tenant). Provide the restriction configuration in the request body. See the schema below for available parameters and values.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRestrictionsCreateRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRestrictionsResponse'
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+    get:
+      operationId: DomainRestrictionsController_getDomainRestrictions
+      summary: Get Domain Restrictions
+      description: Retrieve the domain restrictions for an account (tenant).
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/DomainRestrictionsResponse'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/restrictions/v1/email-domain/config:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: DomainRestrictionsController_getDomainRestrictionsConfig
+      summary: Get Domain Restrictions
+      description: Retrieve the domain restrictions for an account (tenant).
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRestrictionsConfigResponse'
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+    post:
+      operationId: DomainRestrictionsController_updateDomainRestrictionsConfig
+      summary: Change Domain Restrictions Config List Type and Toggle It Off/on
+      description: 'Update the domain restrictions configuration.
+
+
+        You can toggle the domain restriction check on or off.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRestrictionsConfigUpdateRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRestrictionsConfigResponse'
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/restrictions/v1/email-domain/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: DomainRestrictionsController_deleteDomainRestriction
+      summary: Delete Domain Restriction
+      description: Delete a domain restriction.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/restrictions/v1/email-domain/replace-bulk:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: DomainRestrictionsController_createBulkDomainsRestriction
+      summary: Replace Bulk Domain Restriction
+      description: Replace all domain restrictions with the domains provided in the request body.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRestrictionsBulkRequestRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainRestrictionsResponse'
+      tags:
+      - Domain Restrictions
+      security:
+      - bearer: []
+components:
+  schemas:
+    DomainRestrictionsBulkRequestRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+        domains:
+          type: array
+          items:
+            type: string
+            pattern: domainRegexString
+      required:
+      - type
+      - domains
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    DomainRestrictionsConfigUpdateRequest:
+      type: object
+      properties:
+        active:
+          type: boolean
+        blockPublicDomains:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+      required:
+      - active
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    DomainRestrictionsCreateRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          pattern: domainRegex
+        type:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+      required:
+      - domain
+      - type
+    DomainRestrictionsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        domain:
+          type: string
+        type:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+      required:
+      - id
+      - domain
+      - type
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    DomainRestrictionsConfigResponse:
+      type: object
+      properties:
+        active:
+          type: boolean
+        listType:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+        blockPublicDomains:
+          type: boolean
+      required:
+      - active
+      - listType
+      - blockPublicDomains
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

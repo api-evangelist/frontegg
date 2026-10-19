@@ -1,37 +1,92 @@
 openapi: 3.2.0
 info:
-  title: Entitlements Agent (PDP) SMS Configuration API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  title: Entitlements Agent (PDP) SMS configuration API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
-- name: SMS Configuration
+- name: SMS configuration
   x-displayName: SMS configuration
 paths:
   /resources/configurations/v1/sms:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: VendorSmsController_createSmsVendorConfig
-      summary: Creates or Updates a Vendor SMS Config
-      description: 'Create or update the SMS configuration for your environment.
-
-
-        Provide the desired SMS configuration values in the request body.'
+      summary: Creates or updates a vendor SMS config
+      description: This route creates or updates SMS configuration for a vendor.
       parameters: []
       requestBody:
         required: true
@@ -53,24 +108,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/SmsVendorConfigResponse'
       tags:
-      - SMS Configuration
+      - SMS configuration
       security:
       - bearer: []
     delete:
       operationId: VendorSmsController_deleteSmsVendorConfig
-      summary: Deletes a Vendor SMS Config
+      summary: Deletes a vendor SMS config
       parameters: []
       responses:
         '200':
           description: ''
       tags:
-      - SMS Configuration
-      description: Delete the SMS configuration for your environment.
+      - SMS configuration
       security:
       - bearer: []
     get:
       operationId: VendorSmsController_getSmsVendorConfig
-      summary: Gets a Vendor SMS Config
+      summary: Gets a vendor SMS config
       parameters: []
       responses:
         '200':
@@ -80,15 +134,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/SmsVendorConfigResponse'
       tags:
-      - SMS Configuration
-      description: Retrieve the SMS configuration for your environment.
+      - SMS configuration
       security:
       - bearer: []
 components:
   schemas:
-    SmsVendorConfigResponse:
-      type: object
-      properties: {}
     CreateSmsVendorConfigRequest:
       type: object
       properties:
@@ -101,15 +151,9 @@ components:
         token:
           type: string
           description: token
-        serviceId:
-          type: string
-          description: service ID
-        provider:
-          type: string
-          description: provider
-        channel:
-          type: string
-          description: channel
+    SmsVendorConfigResponse:
+      type: object
+      properties: {}
   securitySchemes:
     bearer:
       scheme: bearer
@@ -119,74 +163,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

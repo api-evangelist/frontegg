@@ -1,0 +1,410 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) User Phone Numbers API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: User Phone Numbers
+  x-displayName: User Phone Numbers
+paths:
+  /resources/users/phone-numbers/v1:
+    get:
+      operationId: UserPhoneNumbersControllerV1_getAllPhoneNumbers
+      summary: Get all phone numbers
+      description: This route returns all user phone numbers.
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberResponseDto'
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+    post:
+      operationId: UserPhoneNumbersControllerV1_createUserPhoneNumber
+      summary: Create user phone number
+      description: This route creates new user phone number. By default verification code will be sent to the user. To create phone number without verification code, send **`verify`** as part of the request with value **`false`**.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserPhoneNumberRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberCreatedResponseDto'
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/preverify:
+    post:
+      operationId: UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber
+      summary: Pre Verify User Phone Number
+      description: This route sends OTC to users phone number for verification.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreVerifyUserPhoneNumberRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberCreatedResponseDto'
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/verify:
+    post:
+      operationId: UserPhoneNumbersControllerV1_verifyCreateUserPhoneNumber
+      summary: Verify create user phone number
+      description: This route verifies user phone number using OTC code that was sent to the user.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPhoneNumberOTCRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/{id}:
+    delete:
+      operationId: UserPhoneNumbersControllerV1_deleteUserPhoneNumber
+      summary: Delete user phone number
+      description: This route starts delete process for user phone number. Verification code will be sent to the user. Phone number wont be deleted until delete verification.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPhoneNumberDeleteCodeResponseDto'
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/{id}/delete/verify:
+    post:
+      operationId: UserPhoneNumbersControllerV1_verifyDeleteUserPhoneNumber
+      summary: Verify delete dser phone number
+      description: This route verifies delete of user phone number using OTC code that was sent to the user and deletes phone number.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPhoneNumberOTCRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/vendor/{userId}:
+    post:
+      operationId: UserPhoneNumbersControllerV1_createUserPhoneNumberVendor
+      summary: Create user phone number by vendor
+      description: This route creates new user phone number, phone numbers added by vendor will be automatically verified.
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreVerifyUserPhoneNumberRequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+  /resources/users/phone-numbers/v1/vendor/{userId}/{phoneId}:
+    delete:
+      operationId: UserPhoneNumbersControllerV1_deleteUserPhoneNumberVendor
+      summary: Delete user phone number by vendor
+      description: This route deletes user phone number without verification.
+      parameters:
+      - name: phoneId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User Phone Numbers
+      security:
+      - bearer: []
+components:
+  schemas:
+    VerifyPhoneNumberOTCRequestDto:
+      type: object
+      properties:
+        otcToken:
+          type: string
+          description: OTC token
+        code:
+          type: string
+          description: Code that was sent to the user
+      required:
+      - otcToken
+      - code
+    UserPhoneNumberDeleteCodeResponseDto:
+      type: object
+      properties: {}
+    UserPhoneNumberResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        phoneNumber:
+          type: string
+        verified:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - userId
+      - phoneNumber
+      - verified
+      - createdAt
+      - updatedAt
+    PreVerifyUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+      required:
+      - phoneNumber
+    UserPhoneNumberCreatedResponseDto:
+      type: object
+      properties: {}
+    CreateUserPhoneNumberRequestDto:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: New phone number
+        verify:
+          type: boolean
+          default: true
+          description: Should send verification code, default is true
+      required:
+      - phoneNumber
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

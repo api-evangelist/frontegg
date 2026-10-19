@@ -1,0 +1,416 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) IP Restrictions API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: IP Restrictions
+  x-displayName: IP restrictions
+paths:
+  /resources/configurations/v1/restrictions/ip/config:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: IPRestrictionsControllerV1_createDomainRestriction
+      summary: Create or Update IP Restriction Configuration (ALLOW/BLOCK)
+      description: 'Create or update the IP restriction configuration.
+
+
+        You can configure IP restrictions as either ALLOW or BLOCK.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateIpRestrictionConfigDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+    get:
+      operationId: IPRestrictionsControllerV1_getIpRestrictionConfig
+      summary: Get IP Restriction Configuration (ALLOW/BLOCK)
+      description: 'Retrieve the IP restriction configuration for an account (tenant).
+
+
+        The configuration defines whether IP restrictions are set to ALLOW or BLOCK.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/v1/restrictions/ip:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: IPRestrictionsControllerV1_getAllIpRestrictions
+      summary: Get All IP Restrictions
+      description: Retrieve the IP restrictions for an account (tenant).
+      parameters:
+      - name: _limit
+        required: false
+        in: query
+        schema:
+          minimum: 1
+          type: number
+      - name: _offset
+        required: false
+        in: query
+        schema:
+          minimum: 0
+          type: number
+        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
+      - name: _filter
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/FronteggPaginationWrapper'
+                - properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/GetIpRestrictionResponse'
+                    _links:
+                      $ref: '#/components/schemas/FronteggPaginationLinks'
+                    _metadata:
+                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+    post:
+      operationId: IPRestrictionsControllerV1_createIpRestriction
+      summary: Create IP Restriction
+      description: 'Create or update an IP restriction for an account (tenant).
+
+
+        Provide the required values as objects in the request body. Refer to the parameter documentation for the list of supported values.'
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateIpRestrictionDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/v1/restrictions/ip/verify:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: IPRestrictionsControllerV1_testCurrentIp
+      summary: Test Current IP
+      description: Check if the current IP is allowed based on the IP restriction configuration.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/v1/restrictions/ip/verify/allow:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: testCurrentIpInAllowList
+      summary: Test Current IP Is in Allow List
+      description: Verifies if the current IP address is in the allow list for your environment.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+  /resources/configurations/v1/restrictions/ip/{id}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: IPRestrictionsControllerV1_deleteIpRestrictionById
+      summary: Delete IP Restriction by IP
+      description: 'Delete an IP restriction.
+
+
+        Provide the IP restriction ID as a path parameter.'
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - IP Restrictions
+      security:
+      - bearer: []
+components:
+  schemas:
+    GetIpRestrictionResponse:
+      type: object
+      properties: {}
+    CreateOrUpdateIpRestrictionDto:
+      type: object
+      properties:
+        ip:
+          type: string
+          description: IP or CIDR (v4 and v6 are supported)
+        description:
+          type: string
+        strategy:
+          type: string
+          enum:
+          - ALLOW
+          - BLOCK
+        isActive:
+          type: boolean
+      required:
+      - ip
+      - strategy
+    FronteggPaginationLinks:
+      type: object
+      properties:
+        next:
+          type: string
+        prev:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+      required:
+      - next
+      - prev
+      - first
+      - last
+    FronteggPaginationWrapper:
+      type: object
+      properties: {}
+    FronteggPaginationMetadata:
+      type: object
+      properties:
+        totalItems:
+          type: number
+        totalPages:
+          type: number
+      required:
+      - totalItems
+      - totalPages
+    CreateOrUpdateIpRestrictionConfigDto:
+      type: object
+      properties:
+        strategy:
+          enum:
+          - ALLOW
+          - BLOCK
+          type: string
+        isActive:
+          type: boolean
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

@@ -1,0 +1,328 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) SCIM Setup API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: SCIM Setup
+  x-displayName: SCIM Setup
+paths:
+  /resources/v1/configurations/scim2:
+    post:
+      operationId: Scim2ConnectionConfigController_create
+      summary: Create a SCIM configuration
+      description: Create a provisioning (SCIM) configuration for an account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Scim2CreateConnectionConfigRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scim2CreateConnectionConfigResponse'
+      tags:
+      - SCIM Setup
+  /resources/v1/configurations/scim2/{id}:
+    get:
+      operationId: Scim2ConnectionConfigController_fetchById
+      summary: Get a SCIM configuration by ID
+      description: Get a provisioning (SCIM) configuration by its ID.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scim2ConnectionConfigResponse'
+      tags:
+      - SCIM Setup
+    patch:
+      operationId: Scim2ConnectionConfigController_partialUpdate
+      summary: Update a SCIM configuration
+      description: Create a provisioning (SCIM) configuration for an account (tenant).
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Scim2PatchConnectionConfigRequest'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - SCIM Setup
+    delete:
+      operationId: Scim2ConnectionConfigController_deleteById
+      summary: Delete a SCIM configuration
+      description: Create a provisioning (SCIM) configuration for an account (tenant).
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: frontegg-tenant-id
+        in: header
+        description: The tenant ID identifier
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - SCIM Setup
+components:
+  schemas:
+    Scim2CreateConnectionConfigRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+          - frontegg
+          - okta
+          - azure-ad
+          - other
+        connectionName:
+          type: string
+        syncToUserManagement:
+          type: boolean
+      required:
+      - source
+    Scim2ConnectionConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        tenantId:
+          type: string
+        connectionName:
+          type: string
+        source:
+          type: string
+        syncToUserManagement:
+          type: boolean
+        lastSync:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - id
+      - tenantId
+      - connectionName
+      - source
+      - syncToUserManagement
+      - lastSync
+      - createdAt
+    Scim2PatchConnectionConfigRequest:
+      type: object
+      properties:
+        syncToUserManagement:
+          type: boolean
+      required:
+      - syncToUserManagement
+    Scim2CreateConnectionConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        connectionName:
+          type: string
+        token:
+          type: string
+      required:
+      - id
+      - connectionName
+      - token
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

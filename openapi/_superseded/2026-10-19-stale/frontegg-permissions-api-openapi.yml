@@ -1,0 +1,410 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Permissions API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: Permissions
+  x-displayName: Permissions
+paths:
+  /resources/permissions/v1:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: PermissionsControllerV1_getAllPermissions
+      summary: Get Permissions
+      description: 'Retrieve all permissions configured for your environment.
+
+
+        Each permission object includes the name, description, assigned roles, categories, and other defining information.'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PermissionResponse'
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+    post:
+      operationId: PermissionsControllerV1_addPermissions
+      summary: Create Permissions
+      description: 'Add a new permission.
+
+
+        Provide the permission information in the request body.
+
+
+        This route does not associate permissions with roles. Use the associate permission to roles route to manage role associations.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/AddPermissionRequest'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PermissionResponse'
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+  /resources/permissions/v1/{permissionId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: PermissionsControllerV1_deletePermission
+      summary: Delete Permission
+      description: 'Delete a permission.
+
+
+        Provide the permission ID as a path parameter to specify which permission to delete. You can obtain the permission ID using the **Get permissions** API.'
+      parameters:
+      - name: permissionId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+    patch:
+      operationId: PermissionsControllerV1_updatePermission
+      summary: Update Permission
+      description: 'Update an existing permission.
+
+
+        Provide the permission ID as a path parameter to specify which permission to update, and send the updated permission information in the request body.
+
+
+        This route does not update role associations for the permission. Use the associate permission to roles route to manage role associations.'
+      parameters:
+      - name: permissionId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePermissionRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResponse'
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+  /resources/permissions/v1/{permissionId}/roles:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: PermissionsControllerV1_setRolesToPermission
+      summary: Set a Permission to Multiple Roles
+      description: 'Associate a permission with multiple roles.
+
+
+        Provide the permission ID as a path parameter and include the role IDs in the request body as an array of strings. Any pre-existing role associations will remain.
+
+
+        You can obtain role IDs using the **Get roles** API.'
+      parameters:
+      - name: permissionId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRolesToPermissionRequest'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResponse'
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+  /resources/permissions/v1/classification:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: PermissionsControllerV1_updatePermissionsAssignmentType
+      summary: Set Permissions Classification
+      description: 'Classify permissions for self-service usage.
+
+
+        Provide an array of `permissionIds` and the classification `type` in the request body. This allows you to segregate which permissions will be used for self-service.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassifyPermissionsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResponse'
+      tags:
+      - Permissions
+      security:
+      - bearer: []
+components:
+  schemas:
+    UpdatePermissionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
+    AddPermissionRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: string
+        assignmentType:
+          type: string
+          enum:
+          - NEVER
+          - ALWAYS
+          - ASSIGNABLE
+      required:
+      - key
+      - name
+    ClassifyPermissionsDto:
+      type: object
+      properties:
+        permissionIds:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum:
+          - NEVER
+          - ALWAYS
+          - ASSIGNABLE
+      required:
+      - permissionIds
+      - type
+    PermissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+        categoryId:
+          type: string
+        fePermission:
+          type: boolean
+      required:
+      - id
+      - key
+      - name
+      - description
+      - createdAt
+      - updatedAt
+      - roleIds
+      - categoryId
+      - fePermission
+    AddRolesToPermissionRequest:
+      type: object
+      properties:
+        roleIds:
+          description: The permission will be assigned to the specified roles
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

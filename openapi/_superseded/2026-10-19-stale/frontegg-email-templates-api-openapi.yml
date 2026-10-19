@@ -1,0 +1,388 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Email Templates API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: Email Templates
+  x-displayName: Email templates
+paths:
+  /resources/mail/v1/configs/templates:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: MailV1Controller_addOrUpdateTemplate
+      summary: Add or Update Template
+      description: 'Create or update an email template for your environment.
+
+
+        Specify the email template using the `type` parameter. The value of `type` must match one of the predefined Frontegg email templates. Set the sender using the `senderEmail` parameter, and optionally include values for the other available body parameters. Provide the template information in the request body.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTemplateDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+    get:
+      operationId: MailV1Controller_getTemplateConfiguration
+      summary: Get Template
+      description: 'Retrieve all email templates for your environment.
+
+
+        To retrieve a specific template, pass its `type` as a query parameter.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: type
+        required: false
+        in: query
+        schema:
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetTemplateResponseDto'
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+  /resources/mail/v1/configs/templates/{templateId}:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: MailV1Controller_deleteTemplate
+      summary: Delete Template
+      description: 'Delete a specified email template.
+
+
+        Provide the ID of the template to delete. You can obtain the template ID via the **Get template** API.
+
+
+        A valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.'
+      parameters:
+      - name: templateId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+  /resources/mail/v1/configs/{type}/default:
+    servers:
+    - url: https://api.frontegg.com/identity
+      description: EU Region
+    - url: https://api.us.frontegg.com/identity
+      description: US Region
+    - url: https://api.ca.frontegg.com/identity
+      description: CA Region
+    - url: https://api.au.frontegg.com/identity
+      description: AU Region
+    - url: https://{domain}.frontegg.com/identity
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    get:
+      operationId: MailV1Controller_getDefaultTemplateConfiguration
+      summary: Get Default Template by Type
+      description: 'Retrieve the default email template by type.
+
+
+        Pass the required `type` as a query parameter.'
+      parameters:
+      - name: type
+        required: true
+        in: path
+        description: The email template type
+        schema:
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTemplateResponseDto'
+      tags:
+      - Email Templates
+      security:
+      - bearer: []
+components:
+  schemas:
+    GetTemplateResponseDto:
+      type: object
+      properties:
+        htmlTemplate:
+          type: string
+        senderEmail:
+          type: string
+        redirectURL:
+          type: string
+        successRedirectUrl:
+          type: string
+        subject:
+          type: string
+        fromName:
+          type: string
+        active:
+          type: boolean
+        type:
+          type: object
+        redirectURLPattern:
+          type: string
+        successRedirectUrlPattern:
+          type: string
+      required:
+      - htmlTemplate
+      - senderEmail
+      - redirectURL
+      - successRedirectUrl
+      - subject
+      - fromName
+      - active
+      - type
+    CreateTemplateDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - ResetPassword
+          - ActivateUser
+          - InviteToTenant
+          - PwnedPassword
+          - MagicLink
+          - OTC
+          - ConnectNewDevice
+          - UserUsedInvitation
+          - ResetPhoneNumber
+          - BulkInvitesToTenant
+          - MFAEnroll
+          - MFAUnenroll
+          - NewMFAMethod
+          - MFARecoveryCode
+          - RemoveMFAMethod
+          - EmailVerification
+          - BruteForceProtection
+          - SuspiciousIP
+          - MFAOTC
+          - ImpossibleTravel
+          - BotDetection
+          - SmsAuthenticationEnabled
+          - UnlockUser
+          - UnlockUserSuccess
+          - ActivateUserWithCode
+          - InviteToTenantWithCode
+          - VerifyNewEmail
+          - EmailAddressChanged
+          - ApprovalFlowApprove
+        senderEmail:
+          type: string
+          description: Email of the sender cannot exceed 512 characters
+        subject:
+          type: string
+          description: Subject of the email cannot exceed 512 characters
+        fromName:
+          type: string
+          description: Name of the sender cannot exceed 512 characters
+        redirectURL:
+          type: string
+          description: 'Only required for: ResetPassword, ActivateUser, InviteToTenant, MagicLink, BulkInvitesToTenant'
+        htmlTemplate:
+          type: string
+          maxLength: 1000000
+        successRedirectUrl:
+          type: string
+        active:
+          type: boolean
+      required:
+      - type
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

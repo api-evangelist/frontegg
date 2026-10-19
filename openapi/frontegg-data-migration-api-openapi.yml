@@ -1,37 +1,92 @@
 openapi: 3.2.0
 info:
-  title: Entitlements Agent (PDP) Data Migration API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  title: Entitlements Agent (PDP) Data migration API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
 - name: Data Migration
   x-displayName: Data migration
 paths:
   /resources/migrations/v1/auth0:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: UsersControllerV1_migrateUserFromAuth0
-      summary: Migrate From Auth0
-      description: 'Migrate users from Auth0 into your environment.
-
-
-        Provide the `domain`, `clientId`, `secret`, and `tenantIdFieldName` parameters in the request body. These values can be obtained from your Auth0 account (tenant) configuration.'
+      summary: Migrate from Auth0
+      description: This route enables you to migrate your users from Auth0 to Frontegg easily. Add the Domain, Client ID, Secret and the tenant’s ID Field Name - they’ll be found on Auth0 and the migration will be as smooth as possible.
       parameters: []
       requestBody:
         required: true
@@ -47,34 +102,17 @@ paths:
       security:
       - bearer: []
   /resources/migrations/v1/local:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: UsersControllerV1_migrateUserForVendor
-      summary: Migrate a Single User
-      description: 'Migrate a user into your environment.
-
-
-        Provide the required fields: user''s email, `tenantId`, and metadata. You can also include additional properties such as the user''s name, phone number, hashed password, and other optional attributes.'
+      summary: Migrate a vendor user
+      description: 'This route enables you to migrate a user by sending the following required fields: user’s email, their tenantId and metadata, a new user will be created. This endpoint takes other properties as well, such as the user’s name, their phone number, hashed password, etc...'
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MigrateUserRequestV1'
+              $ref: '#/components/schemas/MigrateUserRequest'
       responses:
         '201':
           description: ''
@@ -87,34 +125,17 @@ paths:
       security:
       - bearer: []
   /resources/migrations/v1/local/bulk:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     post:
       operationId: UsersControllerV1_bulkMigrateUserForVendor
-      summary: Migrate Users in Bulk
-      description: 'Migrate users in bulk into your environment.
-
-
-        Provide an array of `users` in the request body. Each user object must include the user''s `email` and `tenantId`, which specifies the user''s parent account. You can include additional fields as needed to store more information. If you need to store custom data, use the `metadata` property.'
+      summary: Migrate vendor users in bulk
+      description: This route enables you to migrate users in bulk. Expects an array of `users`. Each entry must include a user's `email` and `tenantId`, which specifies that user's parent account. Use the the other fields as needed to store additional information. We recommend using the `metadata` property if you need to store custom information in a user's object.
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MigrateUsersRequestV1'
+              $ref: '#/components/schemas/MigrateUsersRequest'
       responses:
         '202':
           description: ''
@@ -127,27 +148,10 @@ paths:
       security:
       - bearer: []
   /resources/migrations/v1/local/bulk/status/{migrationId}:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: UsersControllerV1_checkBulkMigrationStatus
-      summary: Check Status of Bulk Migration
-      description: 'Retrieve the status of a pending or completed migration.
-
-
-        The response includes the migration''s `state`, the number of migrated users, and any errors that occurred during the migration. The response payload is limited to 1,000 users.'
+      summary: Check status of bulk migration
+      description: This route returns the status of a pending or completed migration. The payload includes the migration's current `state`, the number of migrated users, and any errors that occured during migration. Payload is limited to 1,000 users.
       parameters:
       - name: migrationId
         required: true
@@ -165,73 +169,20 @@ paths:
       - Data Migration
       security:
       - bearer: []
-  /resources/migrations/v2/local/bulk:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
-    post:
-      operationId: UsersControllerV2_bulkMigrateUserForVendor
-      summary: Migrate Vendor Users in Bulk
-      description: Migrate users in bulk to your environment. Provide an array of user objects, each containing `email` and `tenantId`. Use the `metadata` property to store custom information for each user.
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MigrateUsersRequestV2'
-      responses:
-        '202':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MigrationContext'
-      tags:
-      - Data Migration
-      security:
-      - bearer: []
 components:
   schemas:
-    Auth0Configuration:
-      type: object
-      properties:
-        domain:
-          type: string
-        clientId:
-          type: string
-        secret:
-          type: string
-        tenantIdFieldName:
-          type: string
-          description: The field name that the tenant ID will be taken from under app metadata
-        isTenantIdOnUserMetadata:
-          type: boolean
-          description: If you would like to take tenant ID from user metadata, set this field to true
-      required:
-      - domain
-      - clientId
-      - secret
-      - tenantIdFieldName
-    RoleResponse:
+    PasswordHashingType:
+      type: string
+      enum:
+      - bcrypt
+      - scrypt
+      - firebase-scrypt
+      - pbkdf2
+      - argon2
+    PermissionResponse:
       type: object
       properties:
         id:
-          type: string
-        vendorId:
-          type: string
-        tenantId:
           type: string
         key:
           type: string
@@ -239,122 +190,47 @@ components:
           type: string
         description:
           type: string
-        isDefault:
-          type: boolean
-        firstUserRole:
-          type: boolean
-        level:
-          type: number
         createdAt:
           format: date-time
           type: string
         updatedAt:
           format: date-time
           type: string
-        permissions:
+        roleIds:
           type: array
           items:
             type: string
+        categoryId:
+          type: string
+        fePermission:
+          type: boolean
       required:
       - id
-      - vendorId
-      - tenantId
       - key
       - name
       - description
-      - isDefault
-      - firstUserRole
-      - level
       - createdAt
       - updatedAt
-      - permissions
-    MigrateUsersRequestV1:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MigrateUserRequestV1'
-      required:
-      - users
-    MigrateUserRequestV2:
+      - roleIds
+      - categoryId
+      - fePermission
+    UserTenantDto:
       type: object
       properties:
         tenantId:
           type: string
-          description: The tenant id of the user
-        name:
-          type: string
-          description: The name of the user
-        profilePictureUrl:
-          type: string
-          description: The profile picture url of the user
-          maxLength: 4095
-        passwordHash:
-          type: string
-          description: The password hash. For SCrypt should include the salt and key seperated by the salt separator
-        passwordHashType:
-          $ref: '#/components/schemas/PasswordHashingType'
-        passwordHashConfig:
-          type: string
-          maxLength: 4095
-          description: Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }
-        authenticatorAppMfaSecret:
-          type: string
-          description: The authenticator app MFA secret
-        phoneNumber:
-          type: string
-          description: 'phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: "+16037184056" The number must be unique'
-        phoneNumberType:
-          $ref: '#/components/schemas/PhoneNumberType'
-        provider:
-          type: string
-          enum:
-          - local
-          - saml
-          - google
-          - github
-          - facebook
-          - microsoft
-          - scim2
-          - slack
-          - apple
-          default: local
-        metadata:
-          type: string
-          description: Stringified JSON object
-        roleIds:
-          default: []
-          description: Role ids of the migrated users. If not provided, the user will be assigned the default roles
+        roles:
           type: array
           items:
-            type: string
-        vendorMetadata:
+            $ref: '#/components/schemas/RoleResponse'
+        temporaryExpirationDate:
+          format: date-time
           type: string
-          description: Extra vendor-only data. stringified JSON object
-        externalId:
-          type: string
-          description: The external id of the user
-        username:
-          type: string
-          description: The username of the user. If not provided, the email is required. Maximum length is 128 characters.
-          maxLength: 128
-        emails:
-          description: The emails of the user. If not provided, the username is required
-          type: array
-          items:
-            $ref: '#/components/schemas/EmailObjectDto'
+        isDisabled:
+          type: boolean
       required:
       - tenantId
-    MigrateUsersRequestV2:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/MigrateUserRequestV2'
-      required:
-      - users
+      - roles
     MigrationObject:
       type: object
       properties: {}
@@ -411,8 +287,6 @@ components:
           type: string
         vendorMetadata:
           type: string
-        externalId:
-          type: string
         createdAt:
           format: date-time
           type: string
@@ -434,8 +308,6 @@ components:
       required:
       - id
       - email
-      - name
-      - profilePictureUrl
       - sub
       - verified
       - mfaEnrolled
@@ -450,88 +322,9 @@ components:
       - createdAt
       - lastLogin
       - subAccountAccessAllowed
-    UserTenantDto:
+    MigrateUserRequest:
       type: object
       properties:
-        tenantId:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleResponse'
-        temporaryExpirationDate:
-          format: date-time
-          type: string
-        isDisabled:
-          type: boolean
-      required:
-      - tenantId
-      - roles
-    PermissionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        updatedAt:
-          format: date-time
-          type: string
-        roleIds:
-          type: array
-          items:
-            type: string
-        categoryId:
-          type: string
-        fePermission:
-          type: boolean
-      required:
-      - id
-      - key
-      - name
-      - description
-      - createdAt
-      - updatedAt
-      - roleIds
-      - categoryId
-      - fePermission
-    EmailObjectDto:
-      type: object
-      properties:
-        email:
-          type: string
-          description: The email address
-          format: email
-        primary:
-          type: boolean
-          description: Whether this is the primary email
-        verified:
-          type: boolean
-          description: Whether this email is verified
-      required:
-      - email
-      - primary
-      - verified
-    MigrateUserRequestV1:
-      type: object
-      properties:
-        tenantId:
-          type: string
-          description: The tenant id of the user
-        name:
-          type: string
-          description: The name of the user
-        profilePictureUrl:
-          type: string
-          description: The profile picture url of the user
-          maxLength: 4095
         passwordHash:
           type: string
           description: The password hash. For SCrypt should include the salt and key seperated by the salt separator
@@ -541,14 +334,9 @@ components:
           type: string
           maxLength: 4095
           description: Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }
-        authenticatorAppMfaSecret:
-          type: string
-          description: The authenticator app MFA secret
         phoneNumber:
           type: string
           description: 'phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: "+16037184056" The number must be unique'
-        phoneNumberType:
-          $ref: '#/components/schemas/PhoneNumberType'
         provider:
           type: string
           enum:
@@ -565,37 +353,59 @@ components:
         metadata:
           type: string
           description: Stringified JSON object
+        verifyUser:
+          type: boolean
+          default: false
+          description: Whether to verify the user as part of the migration process. If this is set to false, another call is required for the verify user API
         roleIds:
           default: []
           description: Role ids of the migrated users. If not provided, the user will be assigned the default roles
           type: array
           items:
             type: string
-        vendorMetadata:
-          type: string
-          description: Extra vendor-only data. stringified JSON object
-        externalId:
-          type: string
-          description: The external id of the user
-        username:
-          type: string
-          description: The username of the user. If not provided, the email is required. Maximum length is 255 characters.
-          maxLength: 128
         email:
           type: string
-          description: The email of the user. If not provided, the username is required
-        verifyUser:
-          type: boolean
-          default: false
-          description: Whether to verify the user as part of the migration process. If this is set to false, another call is required for the verify user API
+        tenantId:
+          type: string
+        name:
+          type: string
+        profilePictureUrl:
+          type: string
+          maxLength: 4095
+        authenticatorAppMfaSecret:
+          type: string
       required:
-      - tenantId
       - email
-    PhoneNumberType:
-      type: string
-      enum:
-      - auth
-      - mfa
+      - tenantId
+    MigrateUsersRequest:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/MigrateUserRequest'
+      required:
+      - users
+    Auth0Configuration:
+      type: object
+      properties:
+        domain:
+          type: string
+        clientId:
+          type: string
+        secret:
+          type: string
+        tenantIdFieldName:
+          type: string
+          description: The field name that the tenant ID will be taken from under app metadata
+        isTenantIdOnUserMetadata:
+          type: boolean
+          description: If you would like to take tenant ID from user metadata, set this field to true
+      required:
+      - domain
+      - clientId
+      - secret
+      - tenantIdFieldName
     MigrationContext:
       type: object
       properties:
@@ -603,16 +413,50 @@ components:
           type: string
       required:
       - migrationId
-    PasswordHashingType:
-      type: string
-      enum:
-      - bcrypt
-      - scrypt
-      - firebase-scrypt
-      - pbkdf2
-      - argon2
-      - sha256
-      - sha1
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        vendorId:
+          type: string
+        tenantId:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        firstUserRole:
+          type: boolean
+        level:
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - vendorId
+      - tenantId
+      - key
+      - name
+      - description
+      - isDefault
+      - firstUserRole
+      - level
+      - createdAt
+      - updatedAt
+      - permissions
   securitySchemes:
     bearer:
       scheme: bearer
@@ -622,74 +466,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

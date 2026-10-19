@@ -1,0 +1,798 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) SSO Configurations API
+  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
+
+
+    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
+  version: '1.0'
+tags:
+- name: SSO Configurations
+  x-displayName: SSO configurations
+paths:
+  /resources/sso/v1/configurations:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SsoConfigurationControllerV1_createSsoConfiguration
+      summary: Create SSO Configuration
+      description: Create a new Single Sign-On (SSO) configuration for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSOConfigurationRequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+    get:
+      operationId: SsoConfigurationControllerV1_getSsoConfigurations
+      summary: Get SSO Configurations
+      description: Retrieve Single Sign-On (SSO) configurations for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: SsoConfigurationControllerV1_deleteSsoConfiguration
+      summary: Delete SSO Configuration
+      description: Delete Single Sign-On (SSO) configurations for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+    patch:
+      operationId: SsoConfigurationControllerV1_updateSsoConfiguration
+      summary: Update SSO Configuration
+      description: Update SSO configuration
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSOConfigurationRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/metadata:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SsoConfigurationControllerV1_createSsoConfigurationByMetadata
+      summary: Create SSO Configuration Using Metadata
+      description: Create a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSSOConfigurationByMetadataRequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/metadata:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SsoConfigurationControllerV1_updateSsoConfigurationByMetadata
+      summary: Update SSO Configuration Using Metadata
+      description: Update a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSSOConfigurationByMetadataRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/domains:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SsoDomainControllerV1_createSsoDomain
+      summary: Create SSO Domain
+      description: Add a domain to a Single Sign-On (SSO) configuration for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSODomainRequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/domains/{domainId}:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    delete:
+      operationId: SsoDomainControllerV1_deleteSsoDomain
+      summary: Delete SSO Domain
+      description: Remove a domain from a Single Sign-On (SSO) configuration for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: domainId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/domains/{domainId}/validate/email:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SsoDomainControllerV1_validateSsoDomainByEmail
+      summary: Validate SSO Domain by Email
+      description: Validate a domain in a Single Sign-On (SSO) configuration using the user's email domain.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: domainId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v2/configurations/{configurationId}/domains/{domainId}/validate:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SsoDomainControllerV2_validateSsoDomain
+      summary: Validate SSO Domain
+      description: Validate a domain in a Single Sign-On (SSO) configuration for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: domainId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/roles:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SsoRolesControllerV1_setSsoDefaultRoles
+      summary: Set SSO Default Roles
+      description: Set default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetSSODefaultRoles'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+    get:
+      operationId: SsoRolesControllerV1_getSsoDefaultRoles
+      summary: Get SSO Default Roles
+      description: Retrieve default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/groups:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    post:
+      operationId: SsoGroupsControllerV1_createSsoGroup
+      summary: Create an SSO Group
+      description: Create a new SSO group for user management and access control within the specified SSO configuration for the account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSOGroupRequestDto'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+    get:
+      operationId: SsoGroupsControllerV1_getSsoGroup
+      summary: Get SSO Group
+      description: Retrieve an SSO group from the specified SSO configuration for the account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/{configurationId}/groups/{groupId}:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    patch:
+      operationId: SsoGroupsControllerV1_updateSsoGroup
+      summary: Update SSO Group
+      description: Update an existing SSO group within the specified SSO configuration for the account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSSOGroupRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+    delete:
+      operationId: SsoGroupsControllerV1_deleteSsoGroup
+      summary: Delete SSO Group
+      description: Delete an existing SSO group from the specified SSO configuration for the account (tenant).
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: The account (tenant) ID identifier
+        required: true
+        schema:
+          type: string
+      - name: configurationId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: groupId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+  /resources/sso/v1/configurations/domains:
+    servers:
+    - url: https://api.frontegg.com/team
+      description: EU Region
+    - url: https://api.us.frontegg.com/team
+      description: US Region
+    - url: https://api.ca.frontegg.com/team
+      description: CA Region
+    - url: https://api.au.frontegg.com/team
+      description: AU Region
+    - url: https://{domain}.frontegg.com/team
+      description: Frontegg sub-domain for use with user tokens
+      variables:
+        domain:
+          default: app-xxx
+    put:
+      operationId: SSODomainsConfigurationControllerV1_createOrUpdateSSODomainsConfiguration
+      summary: Create or Update SSO Domains Configuration
+      description: Create or update the SSO domains configuration for the account (tenant).
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSSODomainConfigurationRequest'
+      responses:
+        '201':
+          description: ''
+      tags:
+      - SSO Configurations
+    get:
+      operationId: SSODomainsConfigurationControllerV1_getSSODomainsConfiguration
+      summary: Get SSO Domains Configuration
+      description: Retrieve the SSO domains configuration for the account (tenant).
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - SSO Configurations
+components:
+  schemas:
+    UpdateSSOGroupRequestDto:
+      type: object
+      properties:
+        group:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - group
+      - roleIds
+    SetSSODefaultRoles:
+      type: object
+      properties:
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - roleIds
+    CreateSSOConfigurationRequestDto:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        ssoEndpoint:
+          type: string
+        publicCertificate:
+          type: string
+        signRequest:
+          type: boolean
+        acsUrl:
+          type: string
+        spEntityId:
+          type: string
+        type:
+          type: string
+        oidcClientId:
+          type: string
+        oidcSecret:
+          type: string
+        configMetadata:
+          type: object
+        overrideActiveTenant:
+          type: boolean
+        subAccountAccessLimit:
+          type: number
+        idpClientId:
+          type: string
+          description: SSO app client ID used to authenticate group fetch requests
+        idpClientSecret:
+          type: string
+          description: SSO app client secret used with the client ID for authentication
+      required:
+      - enabled
+      - ssoEndpoint
+      - publicCertificate
+      - signRequest
+      - acsUrl
+      - spEntityId
+      - type
+      - oidcClientId
+      - oidcSecret
+      - configMetadata
+      - overrideActiveTenant
+      - subAccountAccessLimit
+      - idpClientId
+      - idpClientSecret
+    UpdateSSOConfigurationByMetadataRequestDto:
+      type: object
+      properties:
+        metadata:
+          type: string
+      required:
+      - metadata
+    CreateSSODomainRequestDto:
+      type: object
+      properties: {}
+    CreateSSODomainConfigurationRequest:
+      type: object
+      properties:
+        allowVerifiedUsersToAddDomains:
+          type: boolean
+        skipDomainVerification:
+          type: boolean
+        bypassDomainCrossValidation:
+          type: boolean
+      required:
+      - allowVerifiedUsersToAddDomains
+      - skipDomainVerification
+      - bypassDomainCrossValidation
+    CreateSSOGroupRequestDto:
+      type: object
+      properties:
+        group:
+          type: string
+        roleIds:
+          type: array
+          items:
+            type: string
+      required:
+      - group
+      - roleIds
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Audits Overview
+  tags:
+  - Main
+  - Metrics
+- name: Entitlements Overview
+  tags:
+  - Plans
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+  - ReBAC
+- name: Authentication and Identity Management
+  tags:
+  - API token
+  - API tokens
+  - Account invitations
+  - Account invitations settings
+  - Account roles
+  - Approval Flows
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Domain restrictions
+  - Email configuration
+  - Email templates
+  - General
+  - IP restrictions
+  - Lockout policy
+  - M2M tokens
+  - MFA
+  - MFA configuration
+  - MFA settings
+  - Password settings
+  - Passwordless
+  - Permissions
+  - Permissions categories
+  - Personal tokens
+  - Roles
+  - SMS
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - Sessions management
+  - User emails policy
+  - User groups
+  - User management
+  - Users
+  - User pools
+  - User sessions
+  - Users-applications management
+- name: SCIM Provisioning Overview
+  tags:
+  - SCIM settings
+  - SCIM configurations
+- name: Single Sign-On Overview
+  tags:
+  - SAML configurations
+  - SSO settings
+  - SSO configurations
+  - OIDC configurations
+- name: Account Management Overview
+  tags:
+  - Accounts
+  - tenants_other
+  - Sub-accounts
+  - Account settings
+  - Account migration
+  - Sub-accounts and hierarchy

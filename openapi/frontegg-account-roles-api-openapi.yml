@@ -1,37 +1,92 @@
 openapi: 3.2.0
 info:
-  title: Entitlements Agent (PDP) Account Roles API
-  description: 'The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.
-
-
-    These endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.'
-  version: '1.0'
+  title: Entitlements Agent (PDP) Account roles API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
 tags:
-- name: Account Roles
+- name: Account roles
   x-displayName: Account roles
 paths:
   /resources/roles/v2:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: PermissionsControllerV2_getAllRoles
-      summary: Get Roles V2
-      description: 'Retrieve all roles for your environment.
-
-
-        Each role object includes the name, permissions, and other defining information.'
+      summary: Get roles v2
+      description: This route returns all roles for vendor. Each role is an object containing the name, permissions, and other defining information.
       parameters:
       - name: _limit
         required: false
@@ -79,7 +134,6 @@ paths:
           minimum: 0
           default: 0
           type: number
-        description: The page number to retrieve. For example, use 0 for the first page, 1 for the second page.
       - name: _order
         required: false
         in: query
@@ -95,7 +149,7 @@ paths:
           type: string
       - name: frontegg-tenant-id
         in: header
-        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        description: For relating a role to a specific tenant, use `get tenants` API to find the tenant ids
         required: false
         schema:
           type: string
@@ -105,32 +159,19 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/FronteggPaginationWrapper'
-                - properties:
-                    items:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/RoleResponse'
-                    _links:
-                      $ref: '#/components/schemas/FronteggPaginationLinks'
-                    _metadata:
-                      $ref: '#/components/schemas/FronteggPaginationMetadata'
+                $ref: '#/components/schemas/RoleResponse'
       tags:
-      - Account Roles
+      - Account roles
       security:
       - bearer: []
     post:
       operationId: RolesControllerV2_addRole
-      summary: Create a New Role
-      description: 'Add a new role for a specific account (tenant).
-
-
-        Include the required permissions in the request body to customize the role.'
+      summary: Create a new role
+      description: This route adds a new role for a specific tenant. Send the tenant ID in the **`frontegg-tenant-id`** header. Add the required permissions within the request body to customize the role.
       parameters:
       - name: frontegg-tenant-id
         in: header
-        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        description: For relating a role to a specific tenant, use `get tenants` API to find the tenant ids
         required: false
         schema:
           type: string
@@ -148,32 +189,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/AddRoleWithPermissionsResponse'
       tags:
-      - Account Roles
+      - Account roles
       security:
       - bearer: []
   /resources/roles/v2/distinct-levels:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: RolesControllerV2_getDistinctLevels
-      summary: Get Distinct Levels of Roles
-      description: Retrieve all role levels for your environment.
+      summary: Get distinct levels of roles
+      description: This route returns all levels from roles for vendor.
       parameters:
       - name: frontegg-tenant-id
         in: header
-        description: For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids
+        description: For relating a role to a specific tenant, use `get tenants` API to find the tenant ids
         required: false
         schema:
           type: string
@@ -181,34 +208,26 @@ paths:
         '200':
           description: ''
       tags:
-      - Account Roles
+      - Account roles
       security:
       - bearer: []
   /resources/roles/v2/distinct-tenants:
-    servers:
-    - url: https://api.frontegg.com/identity
-      description: EU Region
-    - url: https://api.us.frontegg.com/identity
-      description: US Region
-    - url: https://api.ca.frontegg.com/identity
-      description: CA Region
-    - url: https://api.au.frontegg.com/identity
-      description: AU Region
-    - url: https://{domain}.frontegg.com/identity
-      description: Frontegg sub-domain for use with user tokens
-      variables:
-        domain:
-          default: app-xxx
     get:
       operationId: RolesControllerV2_getDistinctTenants
-      summary: Get Distinct Assigned Accounts (tenants) of Roles
-      description: Retrieve all assigned account (tenant) IDs from roles for your environment.
-      parameters: []
+      summary: Get distinct assigned tenants of roles
+      description: This route returns all assigned tenant ids from roles for vendor.
+      parameters:
+      - name: frontegg-tenant-id
+        in: header
+        description: For relating a role to a specific tenant, use `get tenants` API to find the tenant ids
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: ''
       tags:
-      - Account Roles
+      - Account roles
       security:
       - bearer: []
 components:
@@ -237,22 +256,6 @@ components:
       - name
       - baseRoleId
       - permissionIds
-    FronteggPaginationLinks:
-      type: object
-      properties:
-        next:
-          type: string
-        prev:
-          type: string
-        first:
-          type: string
-        last:
-          type: string
-      required:
-      - next
-      - prev
-      - first
-      - last
     RoleResponse:
       type: object
       properties:
@@ -297,19 +300,6 @@ components:
       - createdAt
       - updatedAt
       - permissions
-    FronteggPaginationWrapper:
-      type: object
-      properties: {}
-    FronteggPaginationMetadata:
-      type: object
-      properties:
-        totalItems:
-          type: number
-        totalPages:
-          type: number
-      required:
-      - totalItems
-      - totalPages
     AddRoleWithPermissionsResponse:
       type: object
       properties:
@@ -349,74 +339,70 @@ x-tagGroups:
 - name: Entitlements Agent (PDP)
   tags:
   - Entitlements Check
-- name: Audits Overview
+- name: Entitlements Service
   tags:
-  - Main
-  - Metrics
-- name: Entitlements Overview
-  tags:
-  - Plans
+  - Plans (Formerly Bundles)
   - API Access Control
   - API Access Control Configurations
   - Features
   - Entitlements
   - Feature Flags
-  - ReBAC
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
 - name: Authentication and Identity Management
   tags:
+  - User management (multi-app)
   - API token
-  - API tokens
-  - Account invitations
+  - General
+  - MFA
+  - Passwordless
   - Account invitations settings
-  - Account roles
-  - Approval Flows
   - Core settings
   - Custom social OAuth provider
   - Data migration
   - Delegation
-  - Domain restrictions
   - Email configuration
   - Email templates
-  - General
-  - IP restrictions
-  - Lockout policy
-  - M2M tokens
-  - MFA
+  - M2M
   - MFA configuration
-  - MFA settings
-  - Password settings
-  - Passwordless
+  - Permission categories
   - Permissions
-  - Permissions categories
-  - Personal tokens
   - Roles
-  - SMS
   - SMS configuration
   - SMS templates
   - Sessions configuration
-  - Sessions management
-  - User emails policy
-  - User groups
-  - User management
+  - User sources (pools)
   - Users
-  - User pools
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
   - User sessions
-  - Users-applications management
-- name: SCIM Provisioning Overview
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
   tags:
-  - SCIM settings
-  - SCIM configurations
-- name: Single Sign-On Overview
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
   tags:
-  - SAML configurations
-  - SSO settings
-  - SSO configurations
-  - OIDC configurations
-- name: Account Management Overview
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
   tags:
-  - Accounts
-  - tenants_other
-  - Sub-accounts
-  - Account settings
-  - Account migration
-  - Sub-accounts and hierarchy
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

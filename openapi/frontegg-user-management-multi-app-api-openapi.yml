@@ -1,0 +1,535 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) User management (multi-app) API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: User management (multi-app)
+  x-displayName: User management (multi-app)
+paths:
+  /resources/applications/v1/{appId}/users:
+    get:
+      operationId: ApplicationsControllerV1_getUsersForApplication
+      summary: Get users for application
+      description: This route gets users for an application.
+      parameters:
+      - name: appId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1/{userId}/apps:
+    get:
+      operationId: ApplicationsControllerV1_getApplicationsForUser
+      summary: Get applications for user
+      description: This route gets applications for a user.
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1/users-apps:
+    get:
+      operationId: ApplicationsControllerV1_getApplicationsForMultipleUsers
+      summary: Get applications for multiple users
+      description: This route gets applications for multiple users.
+      parameters:
+      - name: userIds
+        required: true
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserApplicationsResponseDto'
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1/apps-users:
+    get:
+      operationId: ApplicationsControllerV1_getUsersForMultipleApplications
+      summary: Get users for multiple applications
+      description: This route gets users for multiple applications.
+      parameters:
+      - name: appIds
+        required: true
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationUsersResponseDto'
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1:
+    post:
+      operationId: ApplicationsControllerV1_assignUsersToApplication
+      summary: Assign users to application
+      description: This route assigns users to an application.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignUsersToAppRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationUserTenantsResponseDto'
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+    delete:
+      operationId: ApplicationsControllerV1_unassignUsersFromApplication
+      summary: Unassign users from application
+      description: This route unassigns users from an application.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignUsersFromAppRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1/apps-user:
+    post:
+      operationId: ApplicationsControllerV1_assignUserToMultipleApplications
+      summary: Assign user to multiple applications
+      description: This route assigns user to multiple applications.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignUserToMultipleApplicationsRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApplicationUserTenantsResponseDto'
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/v1/user-apps:
+    delete:
+      operationId: ApplicationsControllerV1_unassignUserFromMultipleApplications
+      summary: Unassign user from multiple applications
+      description: This route unassigns user from multiple applications.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignUserFromMultipleAppsRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+  /resources/applications/user-tenants/active/v1:
+    get:
+      operationId: ApplicationsActiveUserTenantsControllerV1_getUserApplicationActiveTenants
+      summary: Get user active tenants in applications
+      description: This route gets the active user tenants for an application.
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserApplicationActiveTenantsResponseDto'
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+    put:
+      operationId: ApplicationsActiveUserTenantsControllerV1_switchUserApplicationActiveTenant
+      summary: Switch users active tenant in applications
+      description: This route updates the active user tenants for an application.
+      parameters:
+      - name: frontegg-user-id
+        in: header
+        description: The user ID identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchApplicationActiveUserTenantsRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - User management (multi-app)
+      security:
+      - bearer: []
+components:
+  schemas:
+    AssignUsersToAppRequestDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - tenantId
+      - userIds
+    SwitchApplicationActiveUserTenantsRequestDto:
+      type: object
+      properties:
+        activeApplicationTenants:
+          description: List of applications and tenants to set as active, for user
+          type: array
+          items:
+            $ref: '#/components/schemas/SwitchApplicationActiveUserTenantDto'
+      required:
+      - activeApplicationTenants
+    UserApplicationActiveTenantsResponseDto:
+      type: object
+      properties:
+        applicationActiveTenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplicationActiveTenantResponse'
+      required:
+      - applicationActiveTenants
+    UserApplicationActiveTenantResponse:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        applicationId:
+          type: string
+      required:
+      - tenantId
+      - applicationId
+    UnassignUserFromMultipleAppsRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        tenantId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - userId
+      - tenantId
+      - appIds
+    UnassignUsersFromAppRequestDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        tenantId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - tenantId
+      - userIds
+    AssignUserToMultipleApplicationsRequestDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        tenantId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - userId
+      - tenantId
+      - appIds
+    ApplicationUserTenantsResponseDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        userTenantId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - appId
+      - userTenantId
+      - createdAt
+    SwitchApplicationActiveUserTenantDto:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          description: Desired application to set active tenant in
+        tenantId:
+          type: string
+          description: Desired tenant to set as active tenant for user in application
+      required:
+      - applicationId
+      - tenantId
+    ApplicationUsersResponseDto:
+      type: object
+      properties:
+        appId:
+          type: string
+        userIds:
+          type: array
+          items:
+            type: string
+      required:
+      - appId
+      - userIds
+    UserApplicationsResponseDto:
+      type: object
+      properties:
+        userId:
+          type: string
+        appIds:
+          type: array
+          items:
+            type: string
+      required:
+      - userId
+      - appIds
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy

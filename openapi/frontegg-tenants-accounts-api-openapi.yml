@@ -1,0 +1,409 @@
+openapi: 3.2.0
+info:
+  title: Entitlements Agent (PDP) Tenants (Accounts) API
+  description: ''
+  version: ''
+  contact: {}
+servers:
+- url: http://{host}:{port}
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8181'
+- url: https://{domain}.frontegg.com/entitlements
+  variables:
+    domain:
+      default: api
+- url: https://api.frontegg.com/auth/vendor
+  description: EU Region
+- url: https://api.us.frontegg.com/auth/vendor
+  description: US Region
+- url: https://api.ca.frontegg.com/auth/vendor
+  description: CA Region
+- url: https://api.au.frontegg.com/auth/vendor
+  description: AU Region
+  variables:
+    domain:
+      default: app-xxxx
+- url: https://api.frontegg.com/identity
+  description: EU Region
+- url: https://api.us.frontegg.com/identity
+  description: US Region
+- url: https://api.ca.frontegg.com/identity
+  description: CA Region
+- url: https://api.au.frontegg.com/identity
+  description: AU Region
+- url: https://{domain}.frontegg.com/identity
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/directory
+  description: EU Region
+- url: https://api.us.frontegg.com/directory
+  description: US Region
+- url: https://api.ca.frontegg.com/directory
+  description: CA Region
+- url: https://api.au.frontegg.com/directory
+  description: AU Region
+- url: https://{domain}.frontegg.com/directory
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/team
+  description: EU Region
+- url: https://api.us.frontegg.com/team
+  description: US Region
+- url: https://api.ca.frontegg.com/team
+  description: CA Region
+- url: https://api.au.frontegg.com/team
+  description: AU Region
+- url: https://{domain}.frontegg.com/team
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxx
+- url: https://api.frontegg.com/tenants
+  description: EU Region
+- url: https://api.us.frontegg.com/tenants
+  description: US Region
+- url: https://api.ca.frontegg.com/tenants
+  description: CA Region
+- url: https://api.au.frontegg.com/tenants
+  description: AU Region
+- url: https://{domain}.frontegg.com/tenants
+  description: Frontegg sub-domain for use with user tokens
+  variables:
+    domain:
+      default: app-xxxx
+tags:
+- name: Tenants (Accounts)
+  x-displayName: Tenants (Accounts)
+paths:
+  /resources/tenants/v1/{tenantId}:
+    get:
+      operationId: TenantControllerV1_getTenant
+      summary: Get tenant by ID
+      description: Use the V2 route for **Get Tenant**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        description: The tenant ID to get.
+        schema:
+          type: string
+      responses:
+        '400':
+          description: When the tenant ID does not pass the validation.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+    put:
+      operationId: TenantControllerV1_updateTenant
+      summary: Update Tenant
+      description: Use the V2 route for **Update Tenant**. This route is no longer relevant.
+      deprecated: true
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        '400':
+          description: When body doesn't contain any property to change.
+        '404':
+          description: When given tenant doesn't exist.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantControllerV1_deleteTenant
+      summary: Delete tenant (account)
+      description: Removes a tenant and all users of that tenant.If tenant is a part of the hierarchy, then all of its sub-tenants are assigned to deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the given tenant doesn't exist.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+  /resources/tenants/v1:
+    post:
+      operationId: TenantControllerV1_createTenant
+      summary: Create tenant (account)
+      description: Create a new tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '400':
+          description: When the tenant ID does not pass the validation.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+    delete:
+      operationId: TenantControllerV1_deleteCurrentTenant
+      summary: Delete current tenant
+      description: Removes current tenant and all users of that tenant. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication.
+      parameters: []
+      responses:
+        '200':
+          description: When current tenant has been removed.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+  /resources/tenants/v1/{tenantId}/metadata:
+    post:
+      operationId: TenantControllerV1_addTenantMetadata
+      summary: Add tenant metadata
+      description: Add metadata to a tenant. If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTenantMetadataRequest'
+      responses:
+        '400':
+          description: When the given metadata is neither a JSON, nor JSON-string.
+        '404':
+          description: When the given tenant doesn't exist.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+  /resources/tenants/v1/{tenantId}/metadata/{key}:
+    delete:
+      operationId: TenantControllerV1_deleteTenantMetadata
+      summary: Delete tenant metadata
+      description: Remove a key/value from a tenant's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: key
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '404':
+          description: When the provided tenant doesn't exist.
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+  /resources/tenants/v2:
+    get:
+      operationId: TenantControllerV2_getTenants
+      summary: Get tenants
+      description: This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant id in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+  /resources/tenants/v2/{tenantId}:
+    get:
+      operationId: TenantControllerV2_getTenant
+      summary: Get tenant
+      description: Get a tenant by identifier. When tenant cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+    put:
+      operationId: TenantControllerV2_updateTenant
+      summary: Update tenant
+      description: Update the given tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.
+      parameters:
+      - name: tenantId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequestV2'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Tenants (Accounts)
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateTenantRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          description: Send your own unique tenantId or Frontegg will auto-generate a UUID
+        name:
+          type: string
+        status:
+          type: string
+          description: This field can be used for custom logic, it is not enforced in Frontegg flows
+        website:
+          type: string
+        applicationUrl:
+          type: string
+        logo:
+          type: string
+          description: Base64-encoded image to use as logo.
+        logoUrl:
+          type: string
+        address:
+          type: string
+        timezone:
+          type: string
+        currency:
+          type: string
+        creatorName:
+          type: string
+        creatorEmail:
+          type: string
+        isReseller:
+          type: boolean
+        parentTenantId:
+          type: string
+    UpdateTenantRequest:
+      type: object
+      properties: {}
+    AddTenantMetadataRequest:
+      type: object
+      properties:
+        metadata:
+          oneOf:
+          - type: object
+            example:
+              maximumUsers: 50
+      required:
+      - metadata
+    UpdateTenantRequestV2:
+      type: object
+      properties: {}
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+x-tagGroups:
+- name: Entitlements Agent (PDP)
+  tags:
+  - Entitlements Check
+- name: Entitlements Service
+  tags:
+  - Plans (Formerly Bundles)
+  - API Access Control
+  - API Access Control Configurations
+  - Features
+  - Entitlements
+  - Feature Flags
+- name: Authenticate with env credentials
+  tags:
+  - env-auth_other
+- name: Authentication and Identity Management
+  tags:
+  - User management (multi-app)
+  - API token
+  - General
+  - MFA
+  - Passwordless
+  - Account invitations settings
+  - Core settings
+  - Custom social OAuth provider
+  - Data migration
+  - Delegation
+  - Email configuration
+  - Email templates
+  - M2M
+  - MFA configuration
+  - Permission categories
+  - Permissions
+  - Roles
+  - SMS configuration
+  - SMS templates
+  - Sessions configuration
+  - User sources (pools)
+  - Users
+  - User management
+  - Account invitations
+  - Domain restrictions
+  - User groups
+  - IP restrictions
+  - Lockout policy
+  - MFA settings
+  - Password settings
+  - Personal tokens
+  - Account roles
+  - Sessions management
+  - API (tenant) tokens
+  - User sessions
+  - User Phone Numbers
+  - Vendor-only user management
+- name: Provisioning (SCIM) Service
+  tags:
+  - SCIM Configurations
+  - SCIM Setup
+- name: Single Sign-On Service
+  tags:
+  - SAML Configurations Details
+  - SSO Settings
+  - SSO Configurations
+  - OIDC Configurations Details
+- name: Account Management Service
+  tags:
+  - Tenants (Accounts)
+  - Sub-Accounts
+  - Accounts Settings
+  - Tenants migration
+  - Account Hierarchy
