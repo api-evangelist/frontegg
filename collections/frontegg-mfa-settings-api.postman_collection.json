@@ -1,932 +1,962 @@
 {
+  "info": {
+    "_postman_id": "12752ca5-5b67-45ab-9be2-34186e6702f4",
+    "name": "Entitlements Agent (PDP) MFA settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:24:38.000Z",
+    "updatedAt": "2026-10-21T20:24:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-12752ca5-5b67-45ab-9be2-34186e6702f4"
+  },
   "item": [
     {
-      "id": "05d73f3a-cdda-4e34-94f1-66ddf086c7f8",
-      "name": "MFA Settings",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "53628993-92b6-4715-90cc-f9089aa8f15e",
-          "name": "Create MFA Policy",
-          "request": {
-            "name": "Create MFA Policy",
-            "description": {
-              "content": "Create an MFA policy globally or for a specific account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "5effd756-cf69-4c3f-9c3e-4d7908947134",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "mfa-policy",
+                  "item": [
+                    {
+                      "name": "Create MFA policy",
+                      "id": "98779822-8627-4d64-83fa-919aef130b5c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "mfa-policy"
+                          ]
+                        },
+                        "description": "This route creates the MFA policy globally or for a specific tenant. To create an MFA policy for a specific tenant, send the tenant\u2019s ID in the **`frontegg-tenant-id`** header."
+                      },
+                      "response": [
+                        {
+                          "id": "fc716e1d-106a-41c4-b5e9-c7fbffaf196c",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"allowRememberMyDevice\": \"<boolean>\",\n  \"mfaDeviceExpiration\": \"<number>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"enforceMFAType\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-fc716e1d-106a-41c4-b5e9-c7fbffaf196c"
+                        },
+                        {
+                          "id": "362ef363-8f5b-446e-8ec7-c1db6df96420",
+                          "name": "MFA Policy already exists. Try to use the Update MFA Policy API",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-362ef363-8f5b-446e-8ec7-c1db6df96420"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:38.000Z",
+                      "updatedAt": "2026-10-21T20:24:38.000Z",
+                      "uid": "35240-98779822-8627-4d64-83fa-919aef130b5c"
+                    },
+                    {
+                      "name": "Update security policy",
+                      "id": "3ca83eac-acf2-456d-8b37-fa830c0cefd2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "mfa-policy"
+                          ]
+                        },
+                        "description": "This route updates the MFA policy for all tenants. To update an MFA policy for a specific tenant, send the tenant\u2019s ID in the **`frontegg-tenant-id`** header."
+                      },
+                      "response": [
+                        {
+                          "id": "006c055f-6daf-4401-9ee5-3ea51a208ea6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"allowRememberMyDevice\": \"<boolean>\",\n  \"mfaDeviceExpiration\": \"<number>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"enforceMFAType\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-006c055f-6daf-4401-9ee5-3ea51a208ea6"
+                        },
+                        {
+                          "id": "138c2e15-e610-4e79-96d6-fa1515428f12",
+                          "name": "Missing parameters to update",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-138c2e15-e610-4e79-96d6-fa1515428f12"
+                        },
+                        {
+                          "id": "f388b24b-94cf-431a-a84d-51718aec1e83",
+                          "name": "Security policy not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-f388b24b-94cf-431a-a84d-51718aec1e83"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:38.000Z",
+                      "updatedAt": "2026-10-21T20:24:38.000Z",
+                      "uid": "35240-3ca83eac-acf2-456d-8b37-fa830c0cefd2"
+                    },
+                    {
+                      "name": "Upsert security policy",
+                      "id": "78dbe7ae-7795-415f-9dfc-602c986cb8ed",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "mfa-policy"
+                          ]
+                        },
+                        "description": "This route creates or updates the MFA policy for all tenants. To create or update an MFA policy for a specific tenant, send the tenant\u2019s ID in the **`frontegg-tenant-id`** header."
+                      },
+                      "response": [
+                        {
+                          "id": "eef59007-112b-48ba-a3f9-3ee31fd536e2",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"allowRememberMyDevice\": \"<boolean>\",\n  \"mfaDeviceExpiration\": \"<number>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"enforceMFAType\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-eef59007-112b-48ba-a3f9-3ee31fd536e2"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:38.000Z",
+                      "updatedAt": "2026-10-21T20:24:38.000Z",
+                      "uid": "35240-78dbe7ae-7795-415f-9dfc-602c986cb8ed"
+                    },
+                    {
+                      "name": "Get security policy",
+                      "id": "8b5139d9-7001-4fcd-a80a-8120f076b4e4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "mfa-policy"
+                          ]
+                        },
+                        "description": "This route gets the MFA policy for all tenants. To get the MFA policy for a specific tenant, send the tenant\u2019s ID in the **`frontegg-tenant-id`** header."
+                      },
+                      "response": [
+                        {
+                          "id": "24bdb033-4f5c-4cf3-bd2b-e52a050feee5",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"allowRememberMyDevice\": \"<boolean>\",\n  \"mfaDeviceExpiration\": \"<number>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"enforceMFAType\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-24bdb033-4f5c-4cf3-bd2b-e52a050feee5"
+                        },
+                        {
+                          "id": "153d77e6-05ec-4fc1-be02-8aba36b1bd68",
+                          "name": "Security Policy not found. MFA is disabled",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa-policy"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-153d77e6-05ec-4fc1-be02-8aba36b1bd68"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:38.000Z",
+                      "updatedAt": "2026-10-21T20:24:38.000Z",
+                      "uid": "35240-8b5139d9-7001-4fcd-a80a-8120f076b4e4"
+                    }
+                  ],
+                  "id": "8a3c84c2-718f-4cb7-b715-1d25c80a98ec",
+                  "createdAt": "2026-10-21T20:24:38.000Z",
+                  "updatedAt": "2026-10-21T20:24:38.000Z",
+                  "uid": "35240-8a3c84c2-718f-4cb7-b715-1d25c80a98ec"
+                },
+                {
+                  "name": "mfa",
+                  "item": [
+                    {
+                      "name": "strategies",
+                      "item": [
+                        {
+                          "name": "Get MFA strategies",
+                          "id": "3a8692c3-6bd1-45d0-b6a8-c9a52e24237d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa/strategies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa",
+                                "strategies"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "d6bf8c0a-f750-4d0b-845d-e4926dce56ef",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/mfa/strategies",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "mfa",
+                                    "strategies"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"strategies\": [\n    {\n      \"strategy\": \"AuthenticatorApp\",\n      \"isActive\": \"<boolean>\"\n    },\n    {\n      \"strategy\": \"AuthenticatorApp\",\n      \"isActive\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T20:24:38.000Z",
+                              "updatedAt": "2026-10-21T20:24:38.000Z",
+                              "uid": "35240-d6bf8c0a-f750-4d0b-845d-e4926dce56ef"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-3a8692c3-6bd1-45d0-b6a8-c9a52e24237d"
+                        },
+                        {
+                          "name": "Create or update MFA strategy",
+                          "id": "2c6c6a1a-e33b-45be-8466-51e96ae5ec48",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"isActive\": \"<boolean>\",\n  \"strategy\": \"SMS\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/mfa/strategies",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "mfa",
+                                "strategies"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "0f0f8754-9d77-4d1e-96d1-7e952a4a3ed9",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"isActive\": \"<boolean>\",\n  \"strategy\": \"SMS\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/mfa/strategies",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "mfa",
+                                    "strategies"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:24:38.000Z",
+                              "updatedAt": "2026-10-21T20:24:38.000Z",
+                              "uid": "35240-0f0f8754-9d77-4d1e-96d1-7e952a4a3ed9"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:38.000Z",
+                          "updatedAt": "2026-10-21T20:24:38.000Z",
+                          "uid": "35240-2c6c6a1a-e33b-45be-8466-51e96ae5ec48"
+                        }
+                      ],
+                      "id": "3ce94695-b166-489c-8a22-f3e5deed98e5",
+                      "createdAt": "2026-10-21T20:24:38.000Z",
+                      "updatedAt": "2026-10-21T20:24:38.000Z",
+                      "uid": "35240-3ce94695-b166-489c-8a22-f3e5deed98e5"
+                    }
+                  ],
+                  "id": "5dbaf633-9403-498d-b2ae-5c419d5721e4",
+                  "createdAt": "2026-10-21T20:24:38.000Z",
+                  "updatedAt": "2026-10-21T20:24:38.000Z",
+                  "uid": "35240-5dbaf633-9403-498d-b2ae-5c419d5721e4"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 7700.045246623237,\n  \"createdAt\": \"1981-09-05T10:33:45.690Z\",\n  \"updatedAt\": \"1958-02-12T03:26:13.127Z\",\n  \"enforceMFAType\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "551de5d9-107c-4a27-903b-e5257d2495e3",
-              "name": "MFA Policy already exists. Try to use the Update MFA Policy API",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "54576642-9794-41a5-b202-485bc2a7f61c",
+              "createdAt": "2026-10-21T20:24:38.000Z",
+              "updatedAt": "2026-10-21T20:24:38.000Z",
+              "uid": "35240-54576642-9794-41a5-b202-485bc2a7f61c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "521d9354-75a1-4eab-9ace-87b5672bda6a",
-          "name": "Update Security Policy",
-          "request": {
-            "name": "Update Security Policy",
-            "description": {
-              "content": "Update the MFA policy for all accounts (tenants).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "41a4de75-d36b-4573-8ef0-3b9156ff9288",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 7700.045246623237,\n  \"createdAt\": \"1981-09-05T10:33:45.690Z\",\n  \"updatedAt\": \"1958-02-12T03:26:13.127Z\",\n  \"enforceMFAType\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "612a5e1e-592d-4927-9c73-7a04a135505d",
-              "name": "Missing parameters to update",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8d34cd12-06ef-4f22-9f52-bf7a1ad49666",
-              "name": "Security policy not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7181046d-4c52-49eb-bb0f-bfb167c987d0",
-          "name": "Upsert Security Policy",
-          "request": {
-            "name": "Upsert Security Policy",
-            "description": {
-              "content": "Create or update the MFA policy for all accounts (tenants).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "848ad624-ac01-4f64-8ed4-e119c9c7256c",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enforceMFAType\": \"Force\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 1209600\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 7700.045246623237,\n  \"createdAt\": \"1981-09-05T10:33:45.690Z\",\n  \"updatedAt\": \"1958-02-12T03:26:13.127Z\",\n  \"enforceMFAType\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cffe43f3-1a06-416d-b582-b06e099b0723",
-          "name": "Get Security Policy",
-          "request": {
-            "name": "Get Security Policy",
-            "description": {
-              "content": "This route gets the MFA policy for all accounts (tenants).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ce9c7154-1922-49c0-bc5a-8fc5a3fd9a4c",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"allowRememberMyDevice\": false,\n  \"mfaDeviceExpiration\": 7700.045246623237,\n  \"createdAt\": \"1981-09-05T10:33:45.690Z\",\n  \"updatedAt\": \"1958-02-12T03:26:13.127Z\",\n  \"enforceMFAType\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4600d2cc-6592-4284-bb93-f7b63ad73be0",
-              "name": "Security Policy not found. MFA is disabled",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "79f82b38-5402-4e1a-983a-6c5599a8a471",
-          "name": "Get MFA Strategies",
-          "request": {
-            "name": "Get MFA Strategies",
-            "description": {
-              "content": "Retrieve the MFA strategies configured for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa",
-                "strategies"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-strategies-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "375bc133-3c26-4bd4-a20e-7c3f15db0e64",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa",
-                    "strategies"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-strategies-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"strategies\": [\n    {\n      \"strategy\": \"WebAuthnPlatform\",\n      \"isActive\": false\n    },\n    {\n      \"strategy\": \"AuthenticatorApp\",\n      \"isActive\": true\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c81f0cb0-a8ca-470a-9c74-53823411e5be",
-          "name": "Create or Update MFA Strategy",
-          "request": {
-            "name": "Create or Update MFA Strategy",
-            "description": {
-              "content": "Create or update an MFA strategy.\n\nProvide the desired strategy configuration in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "mfa",
-                "strategies"
-              ],
-              "host": [
-                "{{resources-configurations-v1-mfa-strategies-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"isActive\": \"<boolean>\",\n  \"strategy\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4d30eb28-028c-4e6a-a8f1-bc03278bc4b2",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "mfa",
-                    "strategies"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-mfa-strategies-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"isActive\": \"<boolean>\",\n  \"strategy\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8da9e1a4-268a-4308-b8d1-5b172d339592",
+          "createdAt": "2026-10-21T20:24:38.000Z",
+          "updatedAt": "2026-10-21T20:24:38.000Z",
+          "uid": "35240-8da9e1a4-268a-4308-b8d1-5b172d339592"
         }
       ],
-      "event": []
+      "id": "8588eb01-38af-47f4-9670-db48235d176b",
+      "createdAt": "2026-10-21T20:24:38.000Z",
+      "updatedAt": "2026-10-21T20:24:38.000Z",
+      "uid": "35240-8588eb01-38af-47f4-9670-db48235d176b"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-mfa-policy-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-mfa-strategies-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "3cab1a3d-e7b4-4aa6-ad3d-12230cada259",
-    "name": "Multi-Apps Overview Account Invitations MFA Settings API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

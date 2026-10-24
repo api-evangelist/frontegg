@@ -1,625 +1,639 @@
 {
+  "info": {
+    "_postman_id": "e454c1c8-5cda-462a-b71a-b6b7006eda56",
+    "name": "Entitlements Agent (PDP) Feature Flags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:50.000Z",
+    "updatedAt": "2026-10-21T20:23:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e454c1c8-5cda-462a-b71a-b6b7006eda56"
+  },
   "item": [
     {
-      "id": "cf7ee0ea-4649-4914-98e0-870388d62ddc",
-      "name": "Feature Flags",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "f14c3e06-54f8-4995-a801-d0451b283470",
-          "name": "Get Feature Flags",
-          "request": {
-            "name": "Get Feature Flags",
-            "description": {
-              "content": "Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "feature-flags",
-                "v1"
-              ],
-              "host": [
-                "{{resources-feature-flags-v1-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Page offset of the results to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "10",
-                  "description": "Number of results per page"
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "Search input, searchable by `name`"
-                },
-                {
-                  "disabled": false,
-                  "key": "orderBy",
-                  "value": "<string>",
-                  "description": "Field to order results by create date (`createdAt`) or name (`name`)"
-                },
-                {
-                  "disabled": false,
-                  "key": "sortType",
-                  "value": "<string>",
-                  "description": "Sort type, ASC for ascending, DESC for descending"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "feature-flags",
+          "item": [
             {
-              "id": "79b04d9d-57a3-4035-a2af-3403433c02eb",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "feature-flags",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-feature-flags-v1-Url}}"
-                  ],
-                  "query": [
+              "name": "v1",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
                     {
-                      "key": "offset",
-                      "value": "0"
+                      "name": "Get Single Feature Flag",
+                      "id": "6bde7cbe-b719-414a-808a-1da0d278c036",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "feature-flags",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dde906a8-0f84-4fe3-8409-aa63e15e3608",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single feature flag"
+                      },
+                      "response": [
+                        {
+                          "id": "3b7fbc40-c88b-400a-b87a-6478c73f7935",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "feature-flags",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"on_or_before\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"contains\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"lower_than\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    }\n  ],\n  \"updatedAt\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:23:50.000Z",
+                          "updatedAt": "2026-10-21T20:23:50.000Z",
+                          "uid": "35240-3b7fbc40-c88b-400a-b87a-6478c73f7935"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:50.000Z",
+                      "updatedAt": "2026-10-21T20:23:50.000Z",
+                      "uid": "35240-6bde7cbe-b719-414a-808a-1da0d278c036"
                     },
                     {
-                      "key": "limit",
-                      "value": "10"
+                      "name": "Update Feature Flag",
+                      "id": "3548b509-572d-441c-9e0b-528c1e328a85",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"between_numeric\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"lower_than_equal\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"is\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "feature-flags",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "535896d2-aa24-438b-8b82-800926841e35",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing feature flag"
+                      },
+                      "response": [
+                        {
+                          "id": "95762b59-852b-4624-8887-742b4536cebf",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"between_numeric\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"lower_than_equal\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"is\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "feature-flags",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"on_or_before\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"contains\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"lower_than\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    }\n  ],\n  \"updatedAt\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:23:50.000Z",
+                          "updatedAt": "2026-10-21T20:23:50.000Z",
+                          "uid": "35240-95762b59-852b-4624-8887-742b4536cebf"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:50.000Z",
+                      "updatedAt": "2026-10-21T20:23:50.000Z",
+                      "uid": "35240-3548b509-572d-441c-9e0b-528c1e328a85"
                     },
                     {
-                      "key": "filter",
-                      "value": "search-text"
-                    },
-                    {
-                      "key": "orderBy",
-                      "value": "name"
-                    },
-                    {
-                      "key": "sortType",
-                      "value": "ASC"
+                      "name": "Delete Feature Flag",
+                      "id": "25dbab22-e7b9-442d-b8b1-e8bdfb48b25e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "feature-flags",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "523cccd6-4384-43e8-b4b5-0220320c1667",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a feature flag"
+                      },
+                      "response": [
+                        {
+                          "id": "0725b147-70d5-4ed4-b2d8-090a90abae66",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/feature-flags/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "feature-flags",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:50.000Z",
+                          "updatedAt": "2026-10-21T20:23:50.000Z",
+                          "uid": "35240-0725b147-70d5-4ed4-b2d8-090a90abae66"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:50.000Z",
+                      "updatedAt": "2026-10-21T20:23:50.000Z",
+                      "uid": "35240-25dbab22-e7b9-442d-b8b1-e8bdfb48b25e"
                     }
                   ],
-                  "variable": []
+                  "id": "57656a2a-f255-4c0f-9938-e1ac5354a5eb",
+                  "createdAt": "2026-10-21T20:23:50.000Z",
+                  "updatedAt": "2026-10-21T20:23:50.000Z",
+                  "uid": "35240-57656a2a-f255-4c0f-9938-e1ac5354a5eb"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Get Feature Flags",
+                  "id": "d273c4a0-c807-48e6-8b59-407d6a07466a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature Flag\",\n      \"on\": true,\n      \"offTreatment\": \"false\",\n      \"defaultTreatment\": \"true\",\n      \"feature\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"key\": \"test-feature\",\n        \"name\": \"Test Feature\"\n      },\n      \"description\": \"This is a test feature flag\",\n      \"metadata\": \"{}\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"createdAt\": \"2022-01-01T00:00:00\"\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature Flag\",\n      \"on\": true,\n      \"offTreatment\": \"false\",\n      \"defaultTreatment\": \"true\",\n      \"feature\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"key\": \"test-feature\",\n        \"name\": \"Test Feature\"\n      },\n      \"description\": \"This is a test feature flag\",\n      \"metadata\": \"{}\",\n      \"rules\": [\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"This is the first rule\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"createdAt\": \"2022-01-01T00:00:00\"\n    }\n  ],\n  \"hasNext\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "059e8bf6-1908-4762-9e27-587afa0ef127",
-          "name": "Create Feature Flag",
-          "request": {
-            "name": "Create Feature Flag",
-            "description": {
-              "content": "Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "feature-flags",
-                "v1"
-              ],
-              "host": [
-                "{{resources-feature-flags-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"<string>\",\n  \"defaultTreatment\": \"<string>\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5cc73032-6720-4e69-b1d9-f90796f56b20",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "feature-flags",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-feature-flags-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/feature-flags/v1?offset=0&limit=10&filter=<string>&orderBy=<string>&sortType=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "feature-flags",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page offset of the results to return",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Search input, searchable by `name`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Field to order results by create date (`createdAt`) or name (`name`)",
+                          "key": "orderBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort type, ASC for ascending, DESC for descending",
+                          "key": "sortType",
+                          "value": "DESC"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a paginated list of feature flags. You can search for specific feature flags or order them by field"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature Flag\",\n  \"on\": true,\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"26f1b6b8-0317-452c-becd-68a5f782417d \",\n  \"description\": \"This is a test feature flag\",\n  \"metadata\": \"{}\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Feature Flag\",\n  \"on\": true,\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"key\": \"test-feature\",\n    \"name\": \"Test Feature\"\n  },\n  \"description\": \"This is a test feature flag\",\n  \"metadata\": \"{}\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"createdAt\": \"2022-01-01T00:00:00\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ab11eb5c-e603-4bcc-b343-99ef0894872d",
-          "name": "Get Single Feature Flag",
-          "request": {
-            "name": "Get Single Feature Flag",
-            "description": {
-              "content": "Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "feature-flags",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-feature-flags-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e17c7aee-27f1-4739-8d25-dad37d2e06f0",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "feature-flags",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-feature-flags-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
+                      "id": "20fcf66b-6205-4801-8648-1343c338b21d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/feature-flags/v1?offset=0&limit=10&filter=<string>&orderBy=<string>&sortType=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "feature-flags",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page offset of the results to return",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Search input, searchable by `name`",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Field to order results by create date (`createdAt`) or name (`name`)",
+                              "key": "orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort type, ASC for ascending, DESC for descending",
+                              "key": "sortType",
+                              "value": "DESC"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"on\": \"<boolean>\",\n      \"offTreatment\": \"true\",\n      \"defaultTreatment\": \"true\",\n      \"feature\": {\n        \"id\": \"<string>\",\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"metadata\": \"<string>\",\n      \"rules\": [\n        {\n          \"description\": \"<string>\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"on\",\n              \"value\": {}\n            },\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"on\",\n              \"value\": {}\n            }\n          ],\n          \"treatment\": \"false\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"frontegg\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"lower_than_equal\",\n              \"value\": {}\n            },\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"greater_than\",\n              \"value\": {}\n            }\n          ],\n          \"treatment\": \"false\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"on\": \"<boolean>\",\n      \"offTreatment\": \"false\",\n      \"defaultTreatment\": \"true\",\n      \"feature\": {\n        \"id\": \"<string>\",\n        \"key\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"metadata\": \"<string>\",\n      \"rules\": [\n        {\n          \"description\": \"<string>\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"in_list\",\n              \"value\": {}\n            },\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"contains\",\n              \"value\": {}\n            }\n          ],\n          \"treatment\": \"true\"\n        },\n        {\n          \"description\": \"<string>\",\n          \"conditionLogic\": \"and\",\n          \"conditions\": [\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"frontegg\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"greater_than\",\n              \"value\": {}\n            },\n            {\n              \"attribute\": \"<string>\",\n              \"attributeType\": \"custom\",\n              \"negate\": \"<boolean>\",\n              \"op\": \"between_numeric\",\n              \"value\": {}\n            }\n          ],\n          \"treatment\": \"true\"\n        }\n      ],\n      \"updatedAt\": \"<dateTime>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"hasNext\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:23:50.000Z",
+                      "updatedAt": "2026-10-21T20:23:50.000Z",
+                      "uid": "35240-20fcf66b-6205-4801-8648-1343c338b21d"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-21T20:23:50.000Z",
+                  "updatedAt": "2026-10-21T20:23:50.000Z",
+                  "uid": "35240-d273c4a0-c807-48e6-8b59-407d6a07466a"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Create Feature Flag",
+                  "id": "9b062988-29af-4e62-8d3f-388de105e227",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Feature Flag\",\n  \"on\": true,\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"key\": \"test-feature\",\n    \"name\": \"Test Feature\"\n  },\n  \"description\": \"This is a test feature flag\",\n  \"metadata\": \"{}\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"createdAt\": \"2022-01-01T00:00:00\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "61168143-ed09-4e15-a3f9-d0cc43c505f2",
-          "name": "Update Feature Flag",
-          "request": {
-            "name": "Update Feature Flag",
-            "description": {
-              "content": "Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "feature-flags",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-feature-flags-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"<string>\",\n  \"defaultTreatment\": \"<string>\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"<string>\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1d1431fe-a0fe-4097-ab77-6b4d627fbcf4",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "feature-flags",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-feature-flags-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"true\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"on_or_after\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"between_numeric\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"contains\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/feature-flags/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "feature-flags",
+                        "v1"
+                      ]
+                    },
+                    "description": "Create a new feature flag"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature Flag\",\n  \"on\": true,\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"26f1b6b8-0317-452c-becd-68a5f782417d \",\n  \"description\": \"This is a test feature flag\",\n  \"metadata\": \"{}\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Feature Flag\",\n  \"on\": true,\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"key\": \"test-feature\",\n    \"name\": \"Test Feature\"\n  },\n  \"description\": \"This is a test feature flag\",\n  \"metadata\": \"{}\",\n  \"rules\": [\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"This is the first rule\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        },\n        {\n          \"attribute\": \"myCustomAttribute\",\n          \"attributeType\": \"custom\",\n          \"negate\": false,\n          \"op\": \"in_list\",\n          \"value\": {\n            \"list\": [\n              \"valueA\",\n              \"valueB\"\n            ]\n          }\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ],\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"createdAt\": \"2022-01-01T00:00:00\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "22b8bbe5-0a77-473c-809f-767cb330e503",
-          "name": "Delete Feature Flag",
-          "request": {
-            "name": "Delete Feature Flag",
-            "description": {
-              "content": "Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "feature-flags",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-feature-flags-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "949c9160-cc7e-4f33-93b6-4736cf929c60",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "feature-flags",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-feature-flags-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
+                      "id": "be5fb709-2730-48a1-97ac-3b9ef8412c0e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"true\",\n  \"defaultTreatment\": \"true\",\n  \"featureId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"on_or_after\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"between_numeric\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"contains\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"true\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/feature-flags/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "feature-flags",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"on\": \"<boolean>\",\n  \"offTreatment\": \"false\",\n  \"defaultTreatment\": \"true\",\n  \"feature\": {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"rules\": [\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"on_or_before\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"custom\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"in_list\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"conditionLogic\": \"and\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"contains\",\n          \"value\": {}\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"attributeType\": \"frontegg\",\n          \"negate\": \"<boolean>\",\n          \"op\": \"lower_than\",\n          \"value\": {}\n        }\n      ],\n      \"treatment\": \"false\"\n    }\n  ],\n  \"updatedAt\": \"<dateTime>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:23:50.000Z",
+                      "updatedAt": "2026-10-21T20:23:50.000Z",
+                      "uid": "35240-be5fb709-2730-48a1-97ac-3b9ef8412c0e"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-21T20:23:50.000Z",
+                  "updatedAt": "2026-10-21T20:23:50.000Z",
+                  "uid": "35240-9b062988-29af-4e62-8d3f-388de105e227"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "c7b66c46-0b69-4b38-8bad-a597ae92748d",
+              "createdAt": "2026-10-21T20:23:50.000Z",
+              "updatedAt": "2026-10-21T20:23:50.000Z",
+              "uid": "35240-c7b66c46-0b69-4b38-8bad-a597ae92748d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "44d39f27-e304-4f6e-82ac-f38528dd6ff2",
+          "createdAt": "2026-10-21T20:23:50.000Z",
+          "updatedAt": "2026-10-21T20:23:50.000Z",
+          "uid": "35240-44d39f27-e304-4f6e-82ac-f38528dd6ff2"
         }
       ],
-      "event": []
+      "id": "d935679d-3d57-44d3-ad82-90e983e9f025",
+      "createdAt": "2026-10-21T20:23:50.000Z",
+      "updatedAt": "2026-10-21T20:23:50.000Z",
+      "uid": "35240-d935679d-3d57-44d3-ad82-90e983e9f025"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-feature-flags-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-feature-flags-v1-id-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "65b2e1ad-5345-46c4-a1ab-ac50d9802b94",
-    "name": "Multi-Apps Overview Account Invitations Feature Flags API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "ea27bf4b-c949-4052-914e-98284b0d4c7f",
+    "name": "Entitlements Agent (PDP) Accounts Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:26:24.000Z",
+    "updatedAt": "2026-10-21T20:26:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ea27bf4b-c949-4052-914e-98284b0d4c7f"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "account-settings",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "public",
+                  "item": [
+                    {
+                      "name": "Get public settings",
+                      "id": "3cfef054-0f3c-4b91-88de-8711304bb160",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/account-settings/v1/public",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "account-settings",
+                            "v1",
+                            "public"
+                          ]
+                        },
+                        "description": "Get account public settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "3f46a1f7-94ea-49ae-b6c0-07c94ffe1589",
+                          "name": "When tenant with given ID does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/account-settings/v1/public",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "account-settings",
+                                "v1",
+                                "public"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:26:25.000Z",
+                          "updatedAt": "2026-10-21T20:26:25.000Z",
+                          "uid": "35240-3f46a1f7-94ea-49ae-b6c0-07c94ffe1589"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:26:25.000Z",
+                      "updatedAt": "2026-10-21T20:26:25.000Z",
+                      "uid": "35240-3cfef054-0f3c-4b91-88de-8711304bb160"
+                    }
+                  ],
+                  "id": "64c7b8b5-e890-4a07-a402-4c0ae5171a8c",
+                  "createdAt": "2026-10-21T20:26:25.000Z",
+                  "updatedAt": "2026-10-21T20:26:25.000Z",
+                  "uid": "35240-64c7b8b5-e890-4a07-a402-4c0ae5171a8c"
+                },
+                {
+                  "name": "Get settings",
+                  "id": "ea424fac-5d39-4628-b95f-feb99a2798e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The tenant ID identifier",
+                        "key": "frontegg-tenant-id",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/account-settings/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "account-settings",
+                        "v1"
+                      ]
+                    },
+                    "description": "Get account settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                  },
+                  "response": [
+                    {
+                      "id": "bd0d2e85-6787-4c34-9f20-824e013012b8",
+                      "name": "When tenant with given ID does not exist.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/account-settings/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "account-settings",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:25.000Z",
+                      "updatedAt": "2026-10-21T20:26:25.000Z",
+                      "uid": "35240-bd0d2e85-6787-4c34-9f20-824e013012b8"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:26:25.000Z",
+                  "updatedAt": "2026-10-21T20:26:25.000Z",
+                  "uid": "35240-ea424fac-5d39-4628-b95f-feb99a2798e0"
+                },
+                {
+                  "name": "Update settings",
+                  "id": "c6b9df49-1a1a-466c-be34-362a71c1d511",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The tenant ID identifier",
+                        "key": "frontegg-tenant-id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/account-settings/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "account-settings",
+                        "v1"
+                      ]
+                    },
+                    "description": "Update account settings of a tenant. There has to be at least one setting passed on the body. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                  },
+                  "response": [
+                    {
+                      "id": "7e2f6181-4a8d-4b2a-b3d1-0130d71d000c",
+                      "name": "When: a) given parameters do not pass validation b) empty object is passed in request content",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/account-settings/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "account-settings",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:25.000Z",
+                      "updatedAt": "2026-10-21T20:26:25.000Z",
+                      "uid": "35240-7e2f6181-4a8d-4b2a-b3d1-0130d71d000c"
+                    },
+                    {
+                      "id": "e22f40b8-2f10-4730-aff4-ce9dc594cfb1",
+                      "name": "When tenant with given ID does not exist.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/account-settings/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "account-settings",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:25.000Z",
+                      "updatedAt": "2026-10-21T20:26:25.000Z",
+                      "uid": "35240-e22f40b8-2f10-4730-aff4-ce9dc594cfb1"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:26:25.000Z",
+                  "updatedAt": "2026-10-21T20:26:25.000Z",
+                  "uid": "35240-c6b9df49-1a1a-466c-be34-362a71c1d511"
+                }
+              ],
+              "id": "1f6b3c5a-5ab6-47e8-8fa5-8f2c0d7130a6",
+              "createdAt": "2026-10-21T20:26:25.000Z",
+              "updatedAt": "2026-10-21T20:26:25.000Z",
+              "uid": "35240-1f6b3c5a-5ab6-47e8-8fa5-8f2c0d7130a6"
+            }
+          ],
+          "id": "1f238895-bb90-45eb-a5c0-e3097e34320a",
+          "createdAt": "2026-10-21T20:26:25.000Z",
+          "updatedAt": "2026-10-21T20:26:25.000Z",
+          "uid": "35240-1f238895-bb90-45eb-a5c0-e3097e34320a"
+        }
+      ],
+      "id": "9f2da588-c1a7-455f-b0ea-715c89921213",
+      "createdAt": "2026-10-21T20:26:25.000Z",
+      "updatedAt": "2026-10-21T20:26:25.000Z",
+      "uid": "35240-9f2da588-c1a7-455f-b0ea-715c89921213"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

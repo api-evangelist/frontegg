@@ -1,395 +1,420 @@
 {
+  "info": {
+    "_postman_id": "4b8778a0-b68f-40b8-ac76-b1716675cd9f",
+    "name": "Entitlements Agent (PDP) Entitlements Check API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:44.000Z",
+    "updatedAt": "2026-10-21T20:23:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4b8778a0-b68f-40b8-ac76-b1716675cd9f"
+  },
   "item": [
     {
-      "id": "398caef0-fbd4-4811-aa57-7a3a33161965",
-      "name": "Entitlements Check",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "c179b8c5-dd07-4c31-bc04-8f07b15ea094",
-          "name": "Is Entitled to Feature",
-          "request": {
-            "name": "Is Entitled to Feature",
-            "description": {
-              "content": "Check whether a specific account (tenant) or user is entitled to access a requested feature based on their permissions, attributes, and entitlement configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "data",
-                "e10s",
-                "features",
-                "is_entitled_to_input_feature"
-              ],
-              "host": [
-                "{{v1-data-e10s-features-is_entitled_to_input_feature-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": \"<object>\"\n    },\n    \"requestContext\": {\n      \"featureKey\": \"<string>\"\n    }\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "data",
+          "item": [
             {
-              "id": "ebaa3d00-5e81-43f0-ab54-6746e649f66b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "data",
-                    "e10s",
-                    "features",
-                    "is_entitled_to_input_feature"
-                  ],
-                  "host": [
-                    "{{v1-data-e10s-features-is_entitled_to_input_feature-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"f21ca66c-d23b-496f-b805-121ed37eb46a\",\n      \"userId\": \"6c2ce177-66cd-4163-a012-b7833255a490\",\n      \"permissions\": [\n        \"example.permission.read\",\n        \"example.permission.write\"\n      ],\n      \"attributes\": {\n        \"exampleAttribute\": \"example-value\"\n      }\n    },\n    \"requestContext\": {\n      \"featureKey\": \"example-feature-key\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "e10s",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "features",
+                  "item": [
+                    {
+                      "name": "is_entitled_to_input_feature",
+                      "item": [
+                        {
+                          "name": "Is Entitled To Feature",
+                          "id": "a44647ba-a84e-423a-9a9e-e530a714483e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"featureKey\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data/e10s/features/is_entitled_to_input_feature",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data",
+                                "e10s",
+                                "features",
+                                "is_entitled_to_input_feature"
+                              ]
+                            },
+                            "description": "Check whether a given tenant or user is entitled to the requested feature"
+                          },
+                          "response": [
+                            {
+                              "id": "4491815b-c3a3-431a-81d7-250cdb6e99e1",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"featureKey\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data/e10s/features/is_entitled_to_input_feature",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data",
+                                    "e10s",
+                                    "features",
+                                    "is_entitled_to_input_feature"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"decision_id\": \"<string>\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": \"<boolean>\",\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:23:45.000Z",
+                              "updatedAt": "2026-10-21T20:23:45.000Z",
+                              "uid": "35240-4491815b-c3a3-431a-81d7-250cdb6e99e1"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:45.000Z",
+                          "updatedAt": "2026-10-21T20:23:45.000Z",
+                          "uid": "35240-a44647ba-a84e-423a-9a9e-e530a714483e"
+                        }
+                      ],
+                      "id": "65939c16-0e4c-4234-83eb-67185295cf02",
+                      "createdAt": "2026-10-21T20:23:45.000Z",
+                      "updatedAt": "2026-10-21T20:23:45.000Z",
+                      "uid": "35240-65939c16-0e4c-4234-83eb-67185295cf02"
+                    }
+                  ],
+                  "id": "657ec5c0-5935-48ae-aa15-ff6d89f6536c",
+                  "createdAt": "2026-10-21T20:23:45.000Z",
+                  "updatedAt": "2026-10-21T20:23:45.000Z",
+                  "uid": "35240-657ec5c0-5935-48ae-aa15-ff6d89f6536c"
+                },
+                {
+                  "name": "permissions",
+                  "item": [
+                    {
+                      "name": "is_entitled_to_input_permission",
+                      "item": [
+                        {
+                          "name": "Is Entitled To Permission",
+                          "id": "b6a05669-c84f-42ad-aae5-d63d739bcd6b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"permissionKey\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data/e10s/permissions/is_entitled_to_input_permission",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data",
+                                "e10s",
+                                "permissions",
+                                "is_entitled_to_input_permission"
+                              ]
+                            },
+                            "description": "Check whether a given user is entitled to the requested permission"
+                          },
+                          "response": [
+                            {
+                              "id": "c3133f9e-3b4a-4af2-b7da-d558993c01e2",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"permissionKey\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data/e10s/permissions/is_entitled_to_input_permission",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data",
+                                    "e10s",
+                                    "permissions",
+                                    "is_entitled_to_input_permission"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"decision_id\": \"<string>\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": \"<boolean>\",\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:23:45.000Z",
+                              "updatedAt": "2026-10-21T20:23:45.000Z",
+                              "uid": "35240-c3133f9e-3b4a-4af2-b7da-d558993c01e2"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:45.000Z",
+                          "updatedAt": "2026-10-21T20:23:45.000Z",
+                          "uid": "35240-b6a05669-c84f-42ad-aae5-d63d739bcd6b"
+                        }
+                      ],
+                      "id": "6f0a74cd-ab7b-44e7-8e77-57b56f694db7",
+                      "createdAt": "2026-10-21T20:23:45.000Z",
+                      "updatedAt": "2026-10-21T20:23:45.000Z",
+                      "uid": "35240-6f0a74cd-ab7b-44e7-8e77-57b56f694db7"
+                    }
+                  ],
+                  "id": "248fe7d2-4f37-4761-9f46-010b8f269e74",
+                  "createdAt": "2026-10-21T20:23:45.000Z",
+                  "updatedAt": "2026-10-21T20:23:45.000Z",
+                  "uid": "35240-248fe7d2-4f37-4761-9f46-010b8f269e74"
+                },
+                {
+                  "name": "routes",
+                  "item": [
+                    {
+                      "name": "is_entitled_to_input_route",
+                      "item": [
+                        {
+                          "name": "Is Entitled To Route",
+                          "id": "70ba9934-b8a3-48e0-a7b6-88d7e3847149",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"method\": \"GET\",\n      \"path\": \"<string>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/data/e10s/routes/is_entitled_to_input_route",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "data",
+                                "e10s",
+                                "routes",
+                                "is_entitled_to_input_route"
+                              ]
+                            },
+                            "description": "Check whether a given tenant or user is entitled to the requested route"
+                          },
+                          "response": [
+                            {
+                              "id": "7d20d60e-d007-4122-ae7f-d1ace0da7aab",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": {}\n    },\n    \"requestContext\": {\n      \"method\": \"GET\",\n      \"path\": \"<string>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/data/e10s/routes/is_entitled_to_input_route",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "data",
+                                    "e10s",
+                                    "routes",
+                                    "is_entitled_to_input_route"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"decision_id\": \"<string>\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": \"<boolean>\",\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": \"<boolean>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:23:45.000Z",
+                              "updatedAt": "2026-10-21T20:23:45.000Z",
+                              "uid": "35240-7d20d60e-d007-4122-ae7f-d1ace0da7aab"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:45.000Z",
+                          "updatedAt": "2026-10-21T20:23:45.000Z",
+                          "uid": "35240-70ba9934-b8a3-48e0-a7b6-88d7e3847149"
+                        }
+                      ],
+                      "id": "5fc6cdad-f10b-43e2-86d0-d6479de868ec",
+                      "createdAt": "2026-10-21T20:23:45.000Z",
+                      "updatedAt": "2026-10-21T20:23:45.000Z",
+                      "uid": "35240-5fc6cdad-f10b-43e2-86d0-d6479de868ec"
+                    }
+                  ],
+                  "id": "63c84dc9-b147-449d-85d2-f5b4adc94392",
+                  "createdAt": "2026-10-21T20:23:45.000Z",
+                  "updatedAt": "2026-10-21T20:23:45.000Z",
+                  "uid": "35240-63c84dc9-b147-449d-85d2-f5b4adc94392"
                 }
               ],
-              "body": "{\n  \"decision_id\": \"df5dae62-be02-4333-bbe1-f7220e13c6c3\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": false,\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "484aa980-2c40-4243-b10b-e09b38850007",
+              "createdAt": "2026-10-21T20:23:45.000Z",
+              "updatedAt": "2026-10-21T20:23:45.000Z",
+              "uid": "35240-484aa980-2c40-4243-b10b-e09b38850007"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3c1772f6-3784-4137-ac39-b057e684277e",
-          "name": "Is Entitled to Permission",
-          "request": {
-            "name": "Is Entitled to Permission",
-            "description": {
-              "content": "Check whether a specific user is entitled to access a requested permission based on their role assignments and account (tenant) configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "data",
-                "e10s",
-                "permissions",
-                "is_entitled_to_input_permission"
-              ],
-              "host": [
-                "{{v1-data-e10s-permissions-is_entitled_to_input_permission-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": \"<object>\"\n    },\n    \"requestContext\": {\n      \"permissionKey\": \"<string>\"\n    }\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1a5979af-d146-4904-ad13-ef8cbc56a5c2",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "data",
-                    "e10s",
-                    "permissions",
-                    "is_entitled_to_input_permission"
-                  ],
-                  "host": [
-                    "{{v1-data-e10s-permissions-is_entitled_to_input_permission-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"f21ca66c-d23b-496f-b805-121ed37eb46a\",\n      \"userId\": \"6c2ce177-66cd-4163-a012-b7833255a490\",\n      \"permissions\": [\n        \"example.permission.read\",\n        \"example.permission.write\"\n      ],\n      \"attributes\": {\n        \"exampleAttribute\": \"example-value\"\n      }\n    },\n    \"requestContext\": {\n      \"permissionKey\": \"example.permission.read\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"decision_id\": \"df5dae62-be02-4333-bbe1-f7220e13c6c3\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": false,\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ecfd6dbd-2d01-4d7e-9de3-416d03c4318d",
-          "name": "Is Entitled to Route",
-          "request": {
-            "name": "Is Entitled to Route",
-            "description": {
-              "content": "Check whether a specific account (tenant) or user is entitled to access a requested route based on the HTTP method, path, and their associated permissions or feature entitlements.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "data",
-                "e10s",
-                "routes",
-                "is_entitled_to_input_route"
-              ],
-              "host": [
-                "{{v1-data-e10s-routes-is_entitled_to_input_route-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attributes\": \"<object>\"\n    },\n    \"requestContext\": {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\"\n    }\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "da0180ad-55bb-4060-baf8-924cbea40a44",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "data",
-                    "e10s",
-                    "routes",
-                    "is_entitled_to_input_route"
-                  ],
-                  "host": [
-                    "{{v1-data-e10s-routes-is_entitled_to_input_route-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"input\": {\n    \"subjectContext\": {\n      \"tenantId\": \"f21ca66c-d23b-496f-b805-121ed37eb46a\",\n      \"userId\": \"6c2ce177-66cd-4163-a012-b7833255a490\",\n      \"permissions\": [\n        \"example.permission.read\",\n        \"example.permission.write\"\n      ],\n      \"attributes\": {\n        \"exampleAttribute\": \"example-value\"\n      }\n    },\n    \"requestContext\": {\n      \"method\": \"GET\",\n      \"path\": \"/example\"\n    }\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"decision_id\": \"df5dae62-be02-4333-bbe1-f7220e13c6c3\",\n  \"metrics\": {},\n  \"result\": {\n    \"result\": false,\n    \"justification\": \"MISSING_FEATURE\",\n    \"monitoring\": true\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b42f107c-0bfb-4fde-b65f-bb8317ef466c",
+          "createdAt": "2026-10-21T20:23:45.000Z",
+          "updatedAt": "2026-10-21T20:23:45.000Z",
+          "uid": "35240-b42f107c-0bfb-4fde-b65f-bb8317ef466c"
         }
       ],
-      "event": []
+      "id": "a9e64daf-5837-4cea-bd60-f982b211b5c4",
+      "createdAt": "2026-10-21T20:23:45.000Z",
+      "updatedAt": "2026-10-21T20:23:45.000Z",
+      "uid": "35240-a9e64daf-5837-4cea-bd60-f982b211b5c4"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "localhost",
-      "key": "host"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "8181",
-      "key": "port"
-    },
-    {
-      "type": "string",
-      "value": "http://{{host}}:{{port}}",
-      "key": "v1-data-e10s-features-is_entitled_to_input_feature-Url"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "localhost",
-      "key": "host"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "8181",
-      "key": "port"
-    },
-    {
-      "type": "string",
-      "value": "http://{{host}}:{{port}}",
-      "key": "v1-data-e10s-permissions-is_entitled_to_input_permission-Url"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "localhost",
-      "key": "host"
-    },
-    {
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "8181",
-      "key": "port"
-    },
-    {
-      "type": "string",
-      "value": "http://{{host}}:{{port}}",
-      "key": "v1-data-e10s-routes-is_entitled_to_input_route-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "64e9d07c-cf3c-4d71-a433-f48f12db3e63",
-    "name": "Multi-Apps Overview Account Invitations Entitlements Check API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

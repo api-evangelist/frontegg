@@ -1,804 +1,810 @@
 {
+  "info": {
+    "_postman_id": "19175004-1ae3-4357-9124-e2d93d9891a5",
+    "name": "Entitlements Agent (PDP) Personal tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:24:58.000Z",
+    "updatedAt": "2026-10-21T20:24:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-19175004-1ae3-4357-9124-e2d93d9891a5"
+  },
   "item": [
     {
-      "id": "7e9f5456-df85-45a6-be73-13d852f59594",
-      "name": "Personal Tokens",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "0d08b8b2-c0aa-4086-92d3-c5e6ea5b3d8b",
-          "name": "Create User Access Token",
-          "request": {
-            "name": "Create User Access Token",
-            "description": {
-              "content": "Create an access token for a specific user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "access-tokens",
-                "v1"
-              ],
-              "host": [
-                "{{resources-users-access-tokens-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "users",
+          "item": [
             {
-              "id": "dceff79b-f33c-4399-8f76-8569ed8487ed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "access-tokens",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-users-access-tokens-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "access-tokens",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"createdAt\": \"2022-04-06T18:04:37.619Z\",\n  \"description\": \"string\",\n  \"secret\": \"string\",\n  \"expires\": \"1957-03-05T06:59:36.453Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "74770b21-05ed-491a-aae5-5b1f56a84fac",
-          "name": "Get User Access Tokens",
-          "request": {
-            "name": "Get User Access Tokens",
-            "description": {
-              "content": "Retrieve all access tokens for a specific user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "access-tokens",
-                "v1"
-              ],
-              "host": [
-                "{{resources-users-access-tokens-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "160acf9c-c11a-4dd0-b8f6-06216af6f594",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "access-tokens",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-users-access-tokens-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"accessTokens\": [\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"1998-05-06T11:24:43.354Z\",\n      \"description\": \"string\",\n      \"secret\": \"string\",\n      \"expires\": \"2015-10-02T01:08:29.937Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"createdAt\": \"1999-04-10T07:21:30.399Z\",\n      \"description\": \"string\",\n      \"secret\": \"string\",\n      \"expires\": \"2012-03-31T15:19:55.026Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dedf970b-61f7-4b37-8711-afded974b734",
-          "name": "Delete User Access Token by Token ID",
-          "request": {
-            "name": "Delete User Access Token by Token ID",
-            "description": {
-              "content": "Delete a user access token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "access-tokens",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-users-access-tokens-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e7aba4f2-fdf0-4e47-9fe5-a4951fdb29fa",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "access-tokens",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-users-access-tokens-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "v1",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Delete user access token by token ID",
+                          "id": "873f7064-3fb7-40fa-80ab-1006cdc04c5c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/access-tokens/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "access-tokens",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "16855d23-2087-4e2c-9010-99d80540d36a",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "4da67495-9888-45db-ad5f-dcee367a5c05",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "(Required) The user ID identifier",
+                                    "key": "frontegg-user-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/users/access-tokens/v1/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "users",
+                                    "access-tokens",
+                                    "v1",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:24:59.000Z",
+                              "updatedAt": "2026-10-21T20:24:59.000Z",
+                              "uid": "35240-4da67495-9888-45db-ad5f-dcee367a5c05"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-873f7064-3fb7-40fa-80ab-1006cdc04c5c"
+                        }
+                      ],
+                      "id": "cdf11d44-2f27-454c-91f7-fc19f80c4c10",
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-cdf11d44-2f27-454c-91f7-fc19f80c4c10"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "10a55984-2c7e-4343-8b46-c6d510d3aed8",
-          "name": "Create User Client Credentials Token",
-          "request": {
-            "name": "Create User Client Credentials Token",
-            "description": {
-              "content": "Create a user-specific API token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "api-tokens",
-                "v1"
-              ],
-              "host": [
-                "{{resources-users-api-tokens-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"metadata\": \"<object>\",\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a79e9929-0bce-45e7-b010-a72b84ae3874",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "api-tokens",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-users-api-tokens-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"metadata\": \"<object>\",\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"clientId\": \"string\",\n  \"description\": \"string\",\n  \"metadata\": {},\n  \"createdAt\": \"1978-08-20T18:43:57.803Z\",\n  \"secret\": \"string\",\n  \"expires\": \"1972-05-13T05:52:40.753Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5937edb2-b704-49ed-a5cf-788882396ba4",
-          "name": "Get User Client Credentials Tokens",
-          "request": {
-            "name": "Get User Client Credentials Tokens",
-            "description": {
-              "content": "Retrieve a user-specific API token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "api-tokens",
-                "v1"
-              ],
-              "host": [
-                "{{resources-users-api-tokens-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "641cd7cd-e1a4-463a-8210-b6579723420b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "api-tokens",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-users-api-tokens-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"clientId\": \"string\",\n    \"description\": \"string\",\n    \"metadata\": {},\n    \"createdAt\": \"1950-07-11T10:51:56.771Z\",\n    \"expires\": \"2007-11-19T17:30:45.175Z\"\n  },\n  {\n    \"clientId\": \"string\",\n    \"description\": \"string\",\n    \"metadata\": {},\n    \"createdAt\": \"1991-01-16T19:23:48.717Z\",\n    \"expires\": \"2004-02-03T21:35:10.069Z\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "28be67e7-2b15-4438-9faa-44897b84b2c7",
-          "name": "Delete User Client Credentials Token by Token ID",
-          "request": {
-            "name": "Delete User Client Credentials Token by Token ID",
-            "description": {
-              "content": "Delete a user-specific API token.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "users",
-                "api-tokens",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-users-api-tokens-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "disabled": false,
-                "description": "(Required) The user ID identifier",
-                "key": "frontegg-user-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "6d007183-19c4-40ee-99e4-d6878d33dbf6",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "users",
-                    "api-tokens",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-users-api-tokens-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Create user access token",
+                      "id": "bbf357cd-d3ad-48d0-8d75-861fdababb18",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) The user ID identifier",
+                            "key": "frontegg-user-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/users/access-tokens/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "users",
+                            "access-tokens",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "7802e338-8e25-42af-88f3-3289adf6e35b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/access-tokens/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "access-tokens",
+                                "v1"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"expires\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-7802e338-8e25-42af-88f3-3289adf6e35b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-bbf357cd-d3ad-48d0-8d75-861fdababb18"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The user ID identifier",
-                    "key": "frontegg-user-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                    {
+                      "name": "Get user access tokens",
+                      "id": "2d04ac54-c820-4d0b-9423-19ee888010b7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) The user ID identifier",
+                            "key": "frontegg-user-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/users/access-tokens/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "users",
+                            "access-tokens",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "59b20d56-b0d5-4edd-b9a8-324fbae4b0f7",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/access-tokens/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "access-tokens",
+                                "v1"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"accessTokens\": [\n    {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"expires\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"description\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"expires\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-59b20d56-b0d5-4edd-b9a8-324fbae4b0f7"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-2d04ac54-c820-4d0b-9423-19ee888010b7"
+                    }
+                  ],
+                  "id": "68b222c4-92b5-4e72-b628-956de763f609",
+                  "createdAt": "2026-10-21T20:24:59.000Z",
+                  "updatedAt": "2026-10-21T20:24:59.000Z",
+                  "uid": "35240-68b222c4-92b5-4e72-b628-956de763f609"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "80e8e5d4-6793-4dfd-91e7-d24736f1b0f2",
+              "createdAt": "2026-10-21T20:24:59.000Z",
+              "updatedAt": "2026-10-21T20:24:59.000Z",
+              "uid": "35240-80e8e5d4-6793-4dfd-91e7-d24736f1b0f2"
+            },
+            {
+              "name": "api-tokens",
+              "item": [
+                {
+                  "name": "v1",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Delete user client credentials token by token ID",
+                          "id": "ac635d02-a767-4dce-9b41-b769e25ff974",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/api-tokens/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "api-tokens",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e1a9f74-e34e-4c93-a162-75552ef9efe0",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route deletes a user-specific API token. Send the token as the ID path param. Send the user\u2019s ID in the **`frontegg-user-id`** header and the tenant\u2019s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description."
+                          },
+                          "response": [
+                            {
+                              "id": "8fb42005-8e51-42a3-b86b-a73c52bea151",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "(Required) The user ID identifier",
+                                    "key": "frontegg-user-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/users/api-tokens/v1/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "users",
+                                    "api-tokens",
+                                    "v1",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:24:59.000Z",
+                              "updatedAt": "2026-10-21T20:24:59.000Z",
+                              "uid": "35240-8fb42005-8e51-42a3-b86b-a73c52bea151"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-ac635d02-a767-4dce-9b41-b769e25ff974"
+                        }
+                      ],
+                      "id": "3b2c93bd-92b0-4f50-b3eb-357a5ddbcb73",
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-3b2c93bd-92b0-4f50-b3eb-357a5ddbcb73"
+                    },
+                    {
+                      "name": "Create user client credentials token",
+                      "id": "60b0361d-96a5-486e-b984-eb003f7e85fe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) The user ID identifier",
+                            "key": "frontegg-user-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"metadata\": {},\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/users/api-tokens/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "users",
+                            "api-tokens",
+                            "v1"
+                          ]
+                        },
+                        "description": "This route creates a user-specific API token. Send the user\u2019s ID in the **`frontegg-user-id`** header and the tenant\u2019s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description."
+                      },
+                      "response": [
+                        {
+                          "id": "d178ec9d-3036-4cc2-9b8a-df2567fab89b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"metadata\": {},\n  \"description\": \"<string>\",\n  \"expiresInMinutes\": \"<number>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/api-tokens/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "api-tokens",
+                                "v1"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"clientId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": {},\n  \"createdAt\": \"<dateTime>\",\n  \"secret\": \"<string>\",\n  \"expires\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-d178ec9d-3036-4cc2-9b8a-df2567fab89b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-60b0361d-96a5-486e-b984-eb003f7e85fe"
+                    },
+                    {
+                      "name": "Get user client credentials tokens",
+                      "id": "35d9a9fc-3a50-4d3a-8b1e-90338dcc07ed",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) The user ID identifier",
+                            "key": "frontegg-user-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/users/api-tokens/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "users",
+                            "api-tokens",
+                            "v1"
+                          ]
+                        },
+                        "description": "This route gets a user-specific API token. Send the user\u2019s ID in the **`frontegg-user-id`** header and the tenant\u2019s ID in the **`frontegg-tenant-id`** header."
+                      },
+                      "response": [
+                        {
+                          "id": "faa53389-5846-465c-8589-4d94f8894a52",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/users/api-tokens/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "users",
+                                "api-tokens",
+                                "v1"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"clientId\": \"<string>\",\n    \"description\": \"<string>\",\n    \"metadata\": {},\n    \"createdAt\": \"<dateTime>\",\n    \"expires\": \"<dateTime>\"\n  },\n  {\n    \"clientId\": \"<string>\",\n    \"description\": \"<string>\",\n    \"metadata\": {},\n    \"createdAt\": \"<dateTime>\",\n    \"expires\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-10-21T20:24:59.000Z",
+                          "updatedAt": "2026-10-21T20:24:59.000Z",
+                          "uid": "35240-faa53389-5846-465c-8589-4d94f8894a52"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:59.000Z",
+                      "updatedAt": "2026-10-21T20:24:59.000Z",
+                      "uid": "35240-35d9a9fc-3a50-4d3a-8b1e-90338dcc07ed"
+                    }
+                  ],
+                  "id": "03820c7e-e66f-4653-8e53-89d455285e00",
+                  "createdAt": "2026-10-21T20:24:59.000Z",
+                  "updatedAt": "2026-10-21T20:24:59.000Z",
+                  "uid": "35240-03820c7e-e66f-4653-8e53-89d455285e00"
+                }
+              ],
+              "id": "9cb4a0f3-02cf-4eae-863f-e8cc5e9b8857",
+              "createdAt": "2026-10-21T20:24:59.000Z",
+              "updatedAt": "2026-10-21T20:24:59.000Z",
+              "uid": "35240-9cb4a0f3-02cf-4eae-863f-e8cc5e9b8857"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "714ec0f2-b37f-4d87-957f-5bfcadd955cc",
+          "createdAt": "2026-10-21T20:24:59.000Z",
+          "updatedAt": "2026-10-21T20:24:59.000Z",
+          "uid": "35240-714ec0f2-b37f-4d87-957f-5bfcadd955cc"
         }
       ],
-      "event": []
+      "id": "75dd0afb-e5e7-4d89-ba94-c267273a1ae2",
+      "createdAt": "2026-10-21T20:24:59.000Z",
+      "updatedAt": "2026-10-21T20:24:59.000Z",
+      "uid": "35240-75dd0afb-e5e7-4d89-ba94-c267273a1ae2"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-users-access-tokens-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-users-access-tokens-v1-id-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-users-api-tokens-v1-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-users-api-tokens-v1-id-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "e6918474-02a2-4d4d-a16d-d0e9ef439b9a",
-    "name": "Multi-Apps Overview Account Invitations Personal Tokens API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

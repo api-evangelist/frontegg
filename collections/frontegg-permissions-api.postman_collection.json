@@ -1,718 +1,750 @@
 {
+  "info": {
+    "_postman_id": "32b6ab17-f3ba-473d-b94c-1d4e3d0f3cf1",
+    "name": "Entitlements Agent (PDP) Permissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:24:53.000Z",
+    "updatedAt": "2026-10-21T20:24:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-32b6ab17-f3ba-473d-b94c-1d4e3d0f3cf1"
+  },
   "item": [
     {
-      "id": "dda6f994-ff00-47ff-aa35-ea02ae43a372",
-      "name": "Permissions",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "bf31985d-acb9-4b4f-a9af-5930e106c21a",
-          "name": "Get Permissions",
-          "request": {
-            "name": "Get Permissions",
-            "description": {
-              "content": "Retrieve all permissions configured for your environment.\n\nEach permission object includes the name, description, assigned roles, categories, and other defining information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1"
-              ],
-              "host": [
-                "{{resources-permissions-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "permissions",
+          "item": [
             {
-              "id": "610ea4c6-506b-4f53-8336-b90f1c5a8c53",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"1995-08-24T07:23:51.370Z\",\n    \"updatedAt\": \"1982-01-06T14:39:45.555Z\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categoryId\": \"string\",\n    \"fePermission\": true\n  },\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"1954-03-26T11:10:30.508Z\",\n    \"updatedAt\": \"2007-11-05T19:23:00.861Z\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categoryId\": \"string\",\n    \"fePermission\": false\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "01568818-b7b0-40aa-aa6c-f30ee48dcccf",
-          "name": "Create Permissions",
-          "request": {
-            "name": "Create Permissions",
-            "description": {
-              "content": "Add a new permission.\n\nProvide the permission information in the request body.\n\nThis route does not associate permissions with roles. Use the associate permission to roles route to manage role associations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1"
-              ],
-              "host": [
-                "{{resources-permissions-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"<string>\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"<string>\"\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1b04b11c-4a3b-43f0-b247-0895984b710a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"<string>\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"2022-04-23T15:03:32.690Z\",\n    \"updatedAt\": \"1984-01-06T00:36:45.657Z\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categoryId\": \"string\",\n    \"fePermission\": false\n  },\n  {\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"createdAt\": \"2004-10-26T07:25:44.549Z\",\n    \"updatedAt\": \"2025-10-30T20:11:52.753Z\",\n    \"roleIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"categoryId\": \"string\",\n    \"fePermission\": true\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4de08a7f-42a8-4a87-a776-cf16ab52844c",
-          "name": "Delete Permission",
-          "request": {
-            "name": "Delete Permission",
-            "description": {
-              "content": "Delete a permission.\n\nProvide the permission ID as a path parameter to specify which permission to delete. You can obtain the permission ID using the **Get permissions** API.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1",
-                ":permissionId"
-              ],
-              "host": [
-                "{{resources-permissions-v1-permissionId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "permissionId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "90c2995c-eba8-483e-b9b5-673426172fac",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1",
-                    ":permissionId"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-permissionId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "{permissionId}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "permissionId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "roles",
+                      "item": [
+                        {
+                          "name": "Set a permission to multiple roles",
+                          "id": "4ab4698e-3ea5-4cc9-a892-cd164bb3a0f3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId/roles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                ":permissionId",
+                                "roles"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8bf05855-7309-447e-8695-f3a9571952f4",
+                                  "key": "permissionId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route associates a permission to multiple roles. Add the permission ID as a path parameter to the route url and include the role IDs in the request body as an array of strings. Any pre-existing roles associated with the permission will stay associated. Use the **Get roles** API to get the role IDs."
+                          },
+                          "response": [
+                            {
+                              "id": "5193d130-d9aa-472a-bdf5-a3ca162aaa74",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId/roles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "permissions",
+                                    "v1",
+                                    ":permissionId",
+                                    "roles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "permissionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"categoryId\": \"<string>\",\n  \"fePermission\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-21T20:24:53.000Z",
+                              "updatedAt": "2026-10-21T20:24:53.000Z",
+                              "uid": "35240-5193d130-d9aa-472a-bdf5-a3ca162aaa74"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:53.000Z",
+                          "updatedAt": "2026-10-21T20:24:53.000Z",
+                          "uid": "35240-4ab4698e-3ea5-4cc9-a892-cd164bb3a0f3"
+                        }
+                      ],
+                      "id": "c59e51cc-edd4-4692-9697-614c47986908",
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-c59e51cc-edd4-4692-9697-614c47986908"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "67f9937b-4c82-483f-a31c-74a9be6dc225",
-          "name": "Update Permission",
-          "request": {
-            "name": "Update Permission",
-            "description": {
-              "content": "Update an existing permission.\n\nProvide the permission ID as a path parameter to specify which permission to update, and send the updated permission information in the request body.\n\nThis route does not update role associations for the permission. Use the associate permission to roles route to manage role associations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1",
-                ":permissionId"
-              ],
-              "host": [
-                "{{resources-permissions-v1-permissionId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "permissionId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categoryId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "70b73539-533e-4ad4-ae84-a3ecda822e04",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1",
-                    ":permissionId"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-permissionId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "permissionId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Delete permission",
+                      "id": "68aaf3c6-089a-45a7-80f9-e910648a15ec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1",
+                            ":permissionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "29d24f88-f4db-4eb8-94a6-abd3f418838c",
+                              "key": "permissionId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "This route deletes a permission. Add the permission ID as a path parameter to the route url to specify which permission you are deleting. Use the **Get permissions** API to get the permission ID."
+                      },
+                      "response": [
+                        {
+                          "id": "9fbeeb49-7f79-4dee-ac91-ebaa6d2d45ad",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                ":permissionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "permissionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:24:53.000Z",
+                          "updatedAt": "2026-10-21T20:24:53.000Z",
+                          "uid": "35240-9fbeeb49-7f79-4dee-ac91-ebaa6d2d45ad"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-68aaf3c6-089a-45a7-80f9-e910648a15ec"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categoryId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1996-06-07T00:31:52.881Z\",\n  \"updatedAt\": \"1984-10-08T06:53:46.176Z\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"categoryId\": \"string\",\n  \"fePermission\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "eecb9334-9d20-49d6-abf6-f387f9272958",
-          "name": "Set a Permission to Multiple Roles",
-          "request": {
-            "name": "Set a Permission to Multiple Roles",
-            "description": {
-              "content": "Associate a permission with multiple roles.\n\nProvide the permission ID as a path parameter and include the role IDs in the request body as an array of strings. Any pre-existing role associations will remain.\n\nYou can obtain role IDs using the **Get roles** API.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1",
-                ":permissionId",
-                "roles"
-              ],
-              "host": [
-                "{{resources-permissions-v1-permissionId-roles-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "permissionId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "45c1eef7-bbea-443d-84b9-7fe829ed5d50",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1",
-                    ":permissionId",
-                    "roles"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-permissionId-roles-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "permissionId",
-                      "description": "(Required) "
+                      "name": "Update permission",
+                      "id": "28130646-1c78-4143-b3b7-669e48a10884",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categoryId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1",
+                            ":permissionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5bab458a-e956-4bd9-bbfc-d4585615d235",
+                              "key": "permissionId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "This route updates an existing permission. Add the permission ID as a path parameter to the route url to specify which permission you are updating. Send the updated information about the permission in the PATCH body. Note that you do not update roles for the permission here. Use the associate permission to roles route to do that."
+                      },
+                      "response": [
+                        {
+                          "id": "280a7b1a-1ba9-45af-a539-bf08a94cc7f3",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"categoryId\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/:permissionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                ":permissionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "permissionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"categoryId\": \"<string>\",\n  \"fePermission\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:24:53.000Z",
+                          "updatedAt": "2026-10-21T20:24:53.000Z",
+                          "uid": "35240-280a7b1a-1ba9-45af-a539-bf08a94cc7f3"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-28130646-1c78-4143-b3b7-669e48a10884"
                     }
-                  ]
+                  ],
+                  "id": "aba52423-7863-4d62-8825-d1d7e9ee55a7",
+                  "createdAt": "2026-10-21T20:24:53.000Z",
+                  "updatedAt": "2026-10-21T20:24:53.000Z",
+                  "uid": "35240-aba52423-7863-4d62-8825-d1d7e9ee55a7"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "classification",
+                  "item": [
+                    {
+                      "name": "Set permissions classification",
+                      "id": "cbc4f9df-2218-44ca-8891-e569f0455c66",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"ASSIGNABLE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1/classification",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1",
+                            "classification"
+                          ]
+                        },
+                        "description": "This route accepts an array of **`permissionIds`** and the type for these permissions classifications. This allows segregating which permissions will be used from self service"
+                      },
+                      "response": [
+                        {
+                          "id": "d2d52753-bb2a-4b44-b6bc-3128b57ceaa6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"ASSIGNABLE\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/classification",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                "classification"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"categoryId\": \"<string>\",\n  \"fePermission\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:24:53.000Z",
+                          "updatedAt": "2026-10-21T20:24:53.000Z",
+                          "uid": "35240-d2d52753-bb2a-4b44-b6bc-3128b57ceaa6"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-cbc4f9df-2218-44ca-8891-e569f0455c66"
+                    }
+                  ],
+                  "id": "56c13e62-d73d-411b-9298-7588de8bf527",
+                  "createdAt": "2026-10-21T20:24:53.000Z",
+                  "updatedAt": "2026-10-21T20:24:53.000Z",
+                  "uid": "35240-56c13e62-d73d-411b-9298-7588de8bf527"
+                },
+                {
+                  "name": "Get permissions",
+                  "id": "5513a91a-f6ba-4876-926f-512c83aa0ad8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/permissions/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "permissions",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route returns all permissions for the vendor. Each permission is an object containing the name, description, assigned roles, categories, and other defining information."
+                  },
+                  "response": [
+                    {
+                      "id": "ebc92a10-3781-41f8-8186-4ca5bd78b19c",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"roleIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"categoryId\": \"<string>\",\n    \"fePermission\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"roleIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"categoryId\": \"<string>\",\n    \"fePermission\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-ebc92a10-3781-41f8-8186-4ca5bd78b19c"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:24:53.000Z",
+                  "updatedAt": "2026-10-21T20:24:53.000Z",
+                  "uid": "35240-5513a91a-f6ba-4876-926f-512c83aa0ad8"
+                },
+                {
+                  "name": "Create permissions",
+                  "id": "4c5ed939-ab60-4c9a-9e30-6343e1709667",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"ASSIGNABLE\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"NEVER\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/permissions/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "permissions",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route adds a new permission. Each permission you add requires information about the permission in the POST body. Note that you do not associate permissions to the role here. Use the associate permission to roles route to do that."
+                  },
+                  "response": [
+                    {
+                      "id": "b87a9077-72b2-4947-9d4d-c3b3bdaf1a77",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"ASSIGNABLE\"\n  },\n  {\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"categoryId\": \"<string>\",\n    \"assignmentType\": \"NEVER\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"roleIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"categoryId\": \"<string>\",\n    \"fePermission\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"key\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"roleIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"categoryId\": \"<string>\",\n    \"fePermission\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-10-21T20:24:53.000Z",
+                      "updatedAt": "2026-10-21T20:24:53.000Z",
+                      "uid": "35240-b87a9077-72b2-4947-9d4d-c3b3bdaf1a77"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:24:53.000Z",
+                  "updatedAt": "2026-10-21T20:24:53.000Z",
+                  "uid": "35240-4c5ed939-ab60-4c9a-9e30-6343e1709667"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1996-06-07T00:31:52.881Z\",\n  \"updatedAt\": \"1984-10-08T06:53:46.176Z\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"categoryId\": \"string\",\n  \"fePermission\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "eb2d5d77-96c2-4038-a7db-82729d4e0101",
+              "createdAt": "2026-10-21T20:24:53.000Z",
+              "updatedAt": "2026-10-21T20:24:53.000Z",
+              "uid": "35240-eb2d5d77-96c2-4038-a7db-82729d4e0101"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3d0ee19f-e243-4b27-a98b-f8450d70ce6c",
-          "name": "Set Permissions Classification",
-          "request": {
-            "name": "Set Permissions Classification",
-            "description": {
-              "content": "Classify permissions for self-service usage.\n\nProvide an array of `permissionIds` and the classification `type` in the request body. This allows you to segregate which permissions will be used for self-service.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "permissions",
-                "v1",
-                "classification"
-              ],
-              "host": [
-                "{{resources-permissions-v1-classification-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d81adc1b-d257-4392-be0a-e55fcb4c4adc",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "permissions",
-                    "v1",
-                    "classification"
-                  ],
-                  "host": [
-                    "{{resources-permissions-v1-classification-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"type\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1996-06-07T00:31:52.881Z\",\n  \"updatedAt\": \"1984-10-08T06:53:46.176Z\",\n  \"roleIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"categoryId\": \"string\",\n  \"fePermission\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a5a4ea93-e225-410f-b4fa-2d4014855ebb",
+          "createdAt": "2026-10-21T20:24:53.000Z",
+          "updatedAt": "2026-10-21T20:24:53.000Z",
+          "uid": "35240-a5a4ea93-e225-410f-b4fa-2d4014855ebb"
         }
       ],
-      "event": []
+      "id": "b403306e-dd7b-44d3-9373-a1b0afe708da",
+      "createdAt": "2026-10-21T20:24:53.000Z",
+      "updatedAt": "2026-10-21T20:24:53.000Z",
+      "uid": "35240-b403306e-dd7b-44d3-9373-a1b0afe708da"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-permissions-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-permissions-v1-permissionId-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-permissions-v1-permissionId-roles-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-permissions-v1-classification-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "6c17572c-85d1-4714-915d-6a1041459fa4",
-    "name": "Multi-Apps Overview Account Invitations Permissions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

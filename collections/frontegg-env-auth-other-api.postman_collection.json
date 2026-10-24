@@ -1,0 +1,174 @@
+{
+  "info": {
+    "_postman_id": "799c88b9-7fce-4109-970c-e1c4e5b2904f",
+    "name": "Entitlements Agent (PDP) Env Auth Other API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:26:36.000Z",
+    "updatedAt": "2026-10-21T20:26:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-799c88b9-7fce-4109-970c-e1c4e5b2904f"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Authenticate with env credentials",
+          "id": "eb4ad8c6-e5e0-46dc-8058-09a1ad2dc43b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Authenticate your environment to get a management token for your environment using the `clientId` and `API key`."
+          },
+          "response": [
+            {
+              "id": "ceacea26-06c3-466a-817e-7b8e99ea0cf6",
+              "name": "Authentication succeeded",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"token\": \"<string>\",\n  \"expiresIn\": \"<number>\"\n}",
+              "createdAt": "2026-10-21T20:26:36.000Z",
+              "updatedAt": "2026-10-21T20:26:36.000Z",
+              "uid": "35240-ceacea26-06c3-466a-817e-7b8e99ea0cf6"
+            },
+            {
+              "id": "d27b14fb-2211-4a85-8bec-1c3a3d1a80e4",
+              "name": "Invalid authentication",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-21T20:26:36.000Z",
+              "updatedAt": "2026-10-21T20:26:36.000Z",
+              "uid": "35240-d27b14fb-2211-4a85-8bec-1c3a3d1a80e4"
+            }
+          ],
+          "createdAt": "2026-10-21T20:26:36.000Z",
+          "updatedAt": "2026-10-21T20:26:36.000Z",
+          "uid": "35240-eb4ad8c6-e5e0-46dc-8058-09a1ad2dc43b"
+        }
+      ],
+      "id": "07081234-8b6a-4db0-9dd5-a2494c9bffa3",
+      "createdAt": "2026-10-21T20:26:36.000Z",
+      "updatedAt": "2026-10-21T20:26:36.000Z",
+      "uid": "35240-07081234-8b6a-4db0-9dd5-a2494c9bffa3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

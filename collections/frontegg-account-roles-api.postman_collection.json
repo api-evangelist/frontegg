@@ -1,531 +1,536 @@
 {
+  "info": {
+    "_postman_id": "d15213da-e46e-4d0a-b80d-0690f8ccbd29",
+    "name": "Entitlements Agent (PDP) Account roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:22:28.000Z",
+    "updatedAt": "2026-10-21T20:22:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d15213da-e46e-4d0a-b80d-0690f8ccbd29"
+  },
   "item": [
     {
-      "id": "b556dbbf-7a2a-4d7c-a8ca-c38994029908",
-      "name": "Account Roles",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "0734750e-0b71-4e16-b641-456e2dcfc838",
-          "name": "Get Roles V2",
-          "request": {
-            "name": "Get Roles V2",
-            "description": {
-              "content": "Retrieve all roles for your environment.\n\nEach role object includes the name, permissions, and other defining information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "roles",
-                "v2"
-              ],
-              "host": [
-                "{{resources-roles-v2-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "_limit",
-                  "value": "50"
-                },
-                {
-                  "disabled": false,
-                  "key": "_sortBy",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "_levels",
-                  "value": "<number>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_levels",
-                  "value": "<number>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_tenantIds",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_tenantIds",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_offset",
-                  "value": "0",
-                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
-                },
-                {
-                  "disabled": false,
-                  "key": "_order",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_filter",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "roles",
+          "item": [
             {
-              "id": "722ca2e2-0b82-4718-bb5a-75ab005a142f",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "roles",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{resources-roles-v2-Url}}"
-                  ],
-                  "query": [
+              "name": "v2",
+              "item": [
+                {
+                  "name": "distinct-levels",
+                  "item": [
                     {
-                      "key": "_limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "_sortBy",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_levels",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_levels",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_tenantIds",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_tenantIds",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "_order",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_filter",
-                      "value": "<string>"
+                      "name": "Get distinct levels of roles",
+                      "id": "782c4cd8-3e56-4ff6-8ec3-ca0cfa9d12f2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/roles/v2/distinct-levels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "roles",
+                            "v2",
+                            "distinct-levels"
+                          ]
+                        },
+                        "description": "This route returns all levels from roles for vendor."
+                      },
+                      "response": [
+                        {
+                          "id": "1b63bfaf-09fa-4674-adf6-4d38ab4300de",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/roles/v2/distinct-levels",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "roles",
+                                "v2",
+                                "distinct-levels"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:22:29.000Z",
+                          "updatedAt": "2026-10-21T20:22:29.000Z",
+                          "uid": "35240-1b63bfaf-09fa-4674-adf6-4d38ab4300de"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:29.000Z",
+                      "updatedAt": "2026-10-21T20:22:29.000Z",
+                      "uid": "35240-782c4cd8-3e56-4ff6-8ec3-ca0cfa9d12f2"
                     }
                   ],
-                  "variable": []
+                  "id": "4144332a-7a88-4a21-af09-d864eeb93916",
+                  "createdAt": "2026-10-21T20:22:29.000Z",
+                  "updatedAt": "2026-10-21T20:22:29.000Z",
+                  "uid": "35240-4144332a-7a88-4a21-af09-d864eeb93916"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": false,\n      \"firstUserRole\": true,\n      \"level\": 3325.0934824993674,\n      \"createdAt\": \"1952-09-12T15:00:37.117Z\",\n      \"updatedAt\": \"2025-09-11T15:34:49.709Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"tenantId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isDefault\": true,\n      \"firstUserRole\": true,\n      \"level\": 781.4681118641298,\n      \"createdAt\": \"1998-11-08T12:09:58.795Z\",\n      \"updatedAt\": \"2016-04-14T21:30:29.945Z\",\n      \"permissions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 1165.301023025459,\n    \"totalPages\": 4461.1412627566315\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fb5f65cc-5ab2-4a1f-8e8a-17b2de3353b6",
-          "name": "Create a New Role",
-          "request": {
-            "name": "Create a New Role",
-            "description": {
-              "content": "Add a new role for a specific account (tenant).\n\nInclude the required permissions in the request body to customize the role.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "roles",
-                "v2"
-              ],
-              "host": [
-                "{{resources-roles-v2-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"baseRoleId\": \"<string>\",\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4b6f886e-6eb6-4240-8abe-dc097cc4b860",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "roles",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{resources-roles-v2-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"baseRoleId\": \"<string>\",\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "name": "distinct-tenants",
+                  "item": [
+                    {
+                      "name": "Get distinct assigned tenants of roles",
+                      "id": "84288894-eebd-4c36-9e27-ce8a27009c8d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/roles/v2/distinct-tenants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "roles",
+                            "v2",
+                            "distinct-tenants"
+                          ]
+                        },
+                        "description": "This route returns all assigned tenant ids from roles for vendor."
+                      },
+                      "response": [
+                        {
+                          "id": "c09d7bf6-3680-48ad-a7e0-7527cc25dd27",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/roles/v2/distinct-tenants",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "roles",
+                                "v2",
+                                "distinct-tenants"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:22:29.000Z",
+                          "updatedAt": "2026-10-21T20:22:29.000Z",
+                          "uid": "35240-c09d7bf6-3680-48ad-a7e0-7527cc25dd27"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:29.000Z",
+                      "updatedAt": "2026-10-21T20:22:29.000Z",
+                      "uid": "35240-84288894-eebd-4c36-9e27-ce8a27009c8d"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"tenantId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"isDefault\": false,\n  \"permissions\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "02ca0a7d-6f1d-410d-abbb-338289cd351e",
-          "name": "Get Distinct Levels of Roles",
-          "request": {
-            "name": "Get Distinct Levels of Roles",
-            "description": {
-              "content": "Retrieve all role levels for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "roles",
-                "v2",
-                "distinct-levels"
-              ],
-              "host": [
-                "{{resources-roles-v2-distinct-levels-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "0069ab95-b5aa-4eda-949c-4d5991a419c9",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "roles",
-                    "v2",
-                    "distinct-levels"
                   ],
-                  "host": [
-                    "{{resources-roles-v2-distinct-levels-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "id": "371d9d71-baf9-4437-9a71-090e4acb130e",
+                  "createdAt": "2026-10-21T20:22:29.000Z",
+                  "updatedAt": "2026-10-21T20:22:29.000Z",
+                  "uid": "35240-371d9d71-baf9-4437-9a71-090e4acb130e"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Get roles v2",
+                  "id": "5fdf459a-e512-4d0a-a409-d1734c8642de",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "disabled": false,
-                    "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "75fa0693-c3c0-49ac-924d-a5edb3601c47",
-          "name": "Get Distinct Assigned Accounts (tenants) of Roles",
-          "request": {
-            "name": "Get Distinct Assigned Accounts (tenants) of Roles",
-            "description": {
-              "content": "Retrieve all assigned account (tenant) IDs from roles for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "roles",
-                "v2",
-                "distinct-tenants"
-              ],
-              "host": [
-                "{{resources-roles-v2-distinct-tenants-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "3fa6087e-df20-41b2-a6d4-33d726b38320",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "roles",
-                    "v2",
-                    "distinct-tenants"
-                  ],
-                  "host": [
-                    "{{resources-roles-v2-distinct-tenants-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                        "key": "frontegg-tenant-id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/roles/v2?_limit=50&_sortBy=level&_levels=<number>&_levels=<number>&_tenantIds=<string>&_tenantIds=<string>&_offset=0&_order=ASC&_filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "roles",
+                        "v2"
+                      ],
+                      "query": [
+                        {
+                          "key": "_limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "_sortBy",
+                          "value": "level"
+                        },
+                        {
+                          "key": "_levels",
+                          "value": "<number>"
+                        },
+                        {
+                          "key": "_levels",
+                          "value": "<number>"
+                        },
+                        {
+                          "key": "_tenantIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "_tenantIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "_offset",
+                          "value": "0"
+                        },
+                        {
+                          "key": "_order",
+                          "value": "ASC"
+                        },
+                        {
+                          "key": "_filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "This route returns all roles for vendor. Each role is an object containing the name, permissions, and other defining information."
+                  },
+                  "response": [
+                    {
+                      "id": "8d3d5204-db5c-465a-b3cd-df822d7b3b18",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/roles/v2?_limit=50&_sortBy=level&_levels=<number>&_tenantIds=<string>&_offset=0&_order=ASC&_filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "roles",
+                            "v2"
+                          ],
+                          "query": [
+                            {
+                              "key": "_limit",
+                              "value": "50"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "_sortBy",
+                              "value": "level"
+                            },
+                            {
+                              "key": "_levels",
+                              "value": "<number>"
+                            },
+                            {
+                              "key": "_tenantIds",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "_offset",
+                              "value": "0"
+                            },
+                            {
+                              "key": "_order",
+                              "value": "ASC"
+                            },
+                            {
+                              "key": "_filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\",\n  \"firstUserRole\": \"<boolean>\",\n  \"level\": \"<number>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:22:29.000Z",
+                      "updatedAt": "2026-10-21T20:22:29.000Z",
+                      "uid": "35240-8d3d5204-db5c-465a-b3cd-df822d7b3b18"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:29.000Z",
+                  "updatedAt": "2026-10-21T20:22:29.000Z",
+                  "uid": "35240-5fdf459a-e512-4d0a-a409-d1734c8642de"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "Create a new role",
+                  "id": "6120e3d8-e349-4f09-b2f4-896232c08575",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                        "key": "frontegg-tenant-id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"baseRoleId\": \"<string>\",\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/roles/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "roles",
+                        "v2"
+                      ]
+                    },
+                    "description": "This route adds a new role for a specific tenant. Send the tenant ID in the **`frontegg-tenant-id`** header. Add the required permissions within the request body to customize the role."
+                  },
+                  "response": [
+                    {
+                      "id": "9acdf0ca-39a6-4f8a-b604-2627e09dacdf",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"baseRoleId\": \"<string>\",\n  \"permissionIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/roles/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "roles",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isDefault\": \"<boolean>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:22:29.000Z",
+                      "updatedAt": "2026-10-21T20:22:29.000Z",
+                      "uid": "35240-9acdf0ca-39a6-4f8a-b604-2627e09dacdf"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:29.000Z",
+                  "updatedAt": "2026-10-21T20:22:29.000Z",
+                  "uid": "35240-6120e3d8-e349-4f09-b2f4-896232c08575"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "48bac9ef-89d5-4eb8-98d5-4ab5c0418914",
+              "createdAt": "2026-10-21T20:22:29.000Z",
+              "updatedAt": "2026-10-21T20:22:29.000Z",
+              "uid": "35240-48bac9ef-89d5-4eb8-98d5-4ab5c0418914"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4510ca4c-fd3f-4a71-b0f0-4eb1060844c8",
+          "createdAt": "2026-10-21T20:22:29.000Z",
+          "updatedAt": "2026-10-21T20:22:29.000Z",
+          "uid": "35240-4510ca4c-fd3f-4a71-b0f0-4eb1060844c8"
         }
       ],
-      "event": []
+      "id": "ca5700e4-1b6c-46bf-aa6c-ccb938856f93",
+      "createdAt": "2026-10-21T20:22:29.000Z",
+      "updatedAt": "2026-10-21T20:22:29.000Z",
+      "uid": "35240-ca5700e4-1b6c-46bf-aa6c-ccb938856f93"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-roles-v2-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-roles-v2-distinct-levels-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-roles-v2-distinct-tenants-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "e9cecc43-131d-4ba9-aad8-433b2c6bf3b7",
-    "name": "Multi-Apps Overview Account Invitations Account Roles API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,0 +1,275 @@
+{
+  "info": {
+    "_postman_id": "deed8a5d-c6d0-4f0c-b148-5bb82f93e2ab",
+    "name": "Entitlements Agent (PDP) Tenants migration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:27:27.000Z",
+    "updatedAt": "2026-10-21T20:27:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-deed8a5d-c6d0-4f0c-b148-5bb82f93e2ab"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "migrations",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "tenants",
+                  "item": [
+                    {
+                      "name": "status",
+                      "item": [
+                        {
+                          "name": "{migrationId}",
+                          "item": [
+                            {
+                              "name": "Tenant migration status",
+                              "id": "552f2ddf-7eae-486f-a986-6f8b81e42b6c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/migrations/v1/tenants/status/:migrationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "migrations",
+                                    "v1",
+                                    "tenants",
+                                    "status",
+                                    ":migrationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "874e6a10-f0bf-4adf-b6ee-72fa554d5cb5",
+                                      "key": "migrationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "fade9bcd-052d-4641-8c73-62e3d5b52657",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/migrations/v1/tenants/status/:migrationId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "migrations",
+                                        "v1",
+                                        "tenants",
+                                        "status",
+                                        ":migrationId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "migrationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:27:28.000Z",
+                                  "updatedAt": "2026-10-21T20:27:28.000Z",
+                                  "uid": "35240-fade9bcd-052d-4641-8c73-62e3d5b52657"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:27:28.000Z",
+                              "updatedAt": "2026-10-21T20:27:28.000Z",
+                              "uid": "35240-552f2ddf-7eae-486f-a986-6f8b81e42b6c"
+                            }
+                          ],
+                          "id": "bf05d79f-05de-4710-8791-69085432c4e9",
+                          "createdAt": "2026-10-21T20:27:28.000Z",
+                          "updatedAt": "2026-10-21T20:27:28.000Z",
+                          "uid": "35240-bf05d79f-05de-4710-8791-69085432c4e9"
+                        }
+                      ],
+                      "id": "ddb3aa81-1cf5-4e39-bc45-9fea0a3dd247",
+                      "createdAt": "2026-10-21T20:27:28.000Z",
+                      "updatedAt": "2026-10-21T20:27:28.000Z",
+                      "uid": "35240-ddb3aa81-1cf5-4e39-bc45-9fea0a3dd247"
+                    },
+                    {
+                      "name": "Migrate tenants",
+                      "id": "67e8bd29-7f4d-4e76-bb45-e099e38d6301",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tenants\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/migrations/v1/tenants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "migrations",
+                            "v1",
+                            "tenants"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "0a62c712-38e2-44ab-a22a-fed120e25a3b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tenants\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/migrations/v1/tenants",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "migrations",
+                                "v1",
+                                "tenants"
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:28.000Z",
+                          "updatedAt": "2026-10-21T20:27:28.000Z",
+                          "uid": "35240-0a62c712-38e2-44ab-a22a-fed120e25a3b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:28.000Z",
+                      "updatedAt": "2026-10-21T20:27:28.000Z",
+                      "uid": "35240-67e8bd29-7f4d-4e76-bb45-e099e38d6301"
+                    }
+                  ],
+                  "id": "112c60dd-7fed-4ec8-a5da-c566fb3922a6",
+                  "createdAt": "2026-10-21T20:27:28.000Z",
+                  "updatedAt": "2026-10-21T20:27:28.000Z",
+                  "uid": "35240-112c60dd-7fed-4ec8-a5da-c566fb3922a6"
+                }
+              ],
+              "id": "c9329138-0727-48e6-a17c-f42d5a20ceb8",
+              "createdAt": "2026-10-21T20:27:28.000Z",
+              "updatedAt": "2026-10-21T20:27:28.000Z",
+              "uid": "35240-c9329138-0727-48e6-a17c-f42d5a20ceb8"
+            }
+          ],
+          "id": "ecf28e9d-4323-4a74-911a-2be1daa1da52",
+          "createdAt": "2026-10-21T20:27:28.000Z",
+          "updatedAt": "2026-10-21T20:27:28.000Z",
+          "uid": "35240-ecf28e9d-4323-4a74-911a-2be1daa1da52"
+        }
+      ],
+      "id": "944e67fa-aefd-4d3a-91b4-70a08134b5ff",
+      "createdAt": "2026-10-21T20:27:28.000Z",
+      "updatedAt": "2026-10-21T20:27:28.000Z",
+      "uid": "35240-944e67fa-aefd-4d3a-91b4-70a08134b5ff"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

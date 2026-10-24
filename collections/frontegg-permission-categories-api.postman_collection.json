@@ -1,0 +1,487 @@
+{
+  "info": {
+    "_postman_id": "34b93ef6-48ef-492c-ada2-0b32955bbbaf",
+    "name": "Entitlements Agent (PDP) Permission categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:26:54.000Z",
+    "updatedAt": "2026-10-21T20:26:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-34b93ef6-48ef-492c-ada2-0b32955bbbaf"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "permissions",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "categories",
+                  "item": [
+                    {
+                      "name": "{categoryId}",
+                      "item": [
+                        {
+                          "name": "Update category",
+                          "id": "16f5f9ff-43af-4761-b15f-af52fd1b3b1f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "798d463a-0936-4fef-89da-fc11c8e5d894",
+                                  "key": "categoryId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route updates an existing permissions category. Add the category ID as a path parameter to the route url to specify which category you are updating. Send the updated information about the category in the PATCH body. Note that here is not where you update the permissions associated with the category. Use the add or update permissions routes to do that. Use the **Get categories** API to get"
+                          },
+                          "response": [
+                            {
+                              "id": "5096e990-3505-4413-a6b4-3ebe3fdef718",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/permissions/v1/categories/:categoryId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "permissions",
+                                    "v1",
+                                    "categories",
+                                    ":categoryId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "categoryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:26:55.000Z",
+                              "updatedAt": "2026-10-21T20:26:55.000Z",
+                              "uid": "35240-5096e990-3505-4413-a6b4-3ebe3fdef718"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:26:55.000Z",
+                          "updatedAt": "2026-10-21T20:26:55.000Z",
+                          "uid": "35240-16f5f9ff-43af-4761-b15f-af52fd1b3b1f"
+                        },
+                        {
+                          "name": "Delete category",
+                          "id": "da3baf4a-9a58-4313-ad89-ee870adf259e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "91bec223-1698-4c51-9077-8c72a007477c",
+                                  "key": "categoryId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route deletes a category. Add the category ID as a path parameter to the route url to specify which category you are deleting. Use the **Get categories** API to get the category ID."
+                          },
+                          "response": [
+                            {
+                              "id": "6fca55b2-d2cf-4056-8238-95967f92e80e",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/permissions/v1/categories/:categoryId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "permissions",
+                                    "v1",
+                                    "categories",
+                                    ":categoryId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "categoryId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:26:55.000Z",
+                              "updatedAt": "2026-10-21T20:26:55.000Z",
+                              "uid": "35240-6fca55b2-d2cf-4056-8238-95967f92e80e"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:26:55.000Z",
+                          "updatedAt": "2026-10-21T20:26:55.000Z",
+                          "uid": "35240-da3baf4a-9a58-4313-ad89-ee870adf259e"
+                        }
+                      ],
+                      "id": "6bfc16bc-1875-47c2-a709-86d725d82c72",
+                      "createdAt": "2026-10-21T20:26:55.000Z",
+                      "updatedAt": "2026-10-21T20:26:55.000Z",
+                      "uid": "35240-6bfc16bc-1875-47c2-a709-86d725d82c72"
+                    },
+                    {
+                      "name": "Get permissions categories",
+                      "id": "cff463f2-55b0-4918-88cd-e9978ec82d07",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1/categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1",
+                            "categories"
+                          ]
+                        },
+                        "description": "This route returns all permissions categories for a vendor. Each category is an object containing the name, description, permissions, and other defining information."
+                      },
+                      "response": [
+                        {
+                          "id": "9e27bf0e-e95a-4721-91ab-59dd6562fd13",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/categories",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                "categories"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"createdAt\": \"<dateTime>\",\n    \"feCategory\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string,null>\",\n    \"createdAt\": \"<dateTime>\",\n    \"feCategory\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-10-21T20:26:55.000Z",
+                          "updatedAt": "2026-10-21T20:26:55.000Z",
+                          "uid": "35240-9e27bf0e-e95a-4721-91ab-59dd6562fd13"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:26:55.000Z",
+                      "updatedAt": "2026-10-21T20:26:55.000Z",
+                      "uid": "35240-cff463f2-55b0-4918-88cd-e9978ec82d07"
+                    },
+                    {
+                      "name": "Create category",
+                      "id": "5524be1f-dde4-4718-a70c-9d26c69a227e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/permissions/v1/categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "permissions",
+                            "v1",
+                            "categories"
+                          ]
+                        },
+                        "description": "Use this route to add a new permissions category. Each category you add requires you to send information about the category in the POST body. Note that you do not associate the category with permissions here. You do that using the add and update permission routes where you send the category ID as a body parameter."
+                      },
+                      "response": [
+                        {
+                          "id": "140fd428-293a-465e-885d-815f1163f201",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/permissions/v1/categories",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "permissions",
+                                "v1",
+                                "categories"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"createdAt\": \"<dateTime>\",\n  \"feCategory\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:26:55.000Z",
+                          "updatedAt": "2026-10-21T20:26:55.000Z",
+                          "uid": "35240-140fd428-293a-465e-885d-815f1163f201"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:26:55.000Z",
+                      "updatedAt": "2026-10-21T20:26:55.000Z",
+                      "uid": "35240-5524be1f-dde4-4718-a70c-9d26c69a227e"
+                    }
+                  ],
+                  "id": "de0131cb-02ef-4a9c-bb3c-d0b87d5eb12f",
+                  "createdAt": "2026-10-21T20:26:55.000Z",
+                  "updatedAt": "2026-10-21T20:26:55.000Z",
+                  "uid": "35240-de0131cb-02ef-4a9c-bb3c-d0b87d5eb12f"
+                }
+              ],
+              "id": "f84e7d3b-7aba-4dc1-aea6-37c553f7583f",
+              "createdAt": "2026-10-21T20:26:55.000Z",
+              "updatedAt": "2026-10-21T20:26:55.000Z",
+              "uid": "35240-f84e7d3b-7aba-4dc1-aea6-37c553f7583f"
+            }
+          ],
+          "id": "b2fb0f28-4782-44da-b7df-0b2e69abf4bc",
+          "createdAt": "2026-10-21T20:26:55.000Z",
+          "updatedAt": "2026-10-21T20:26:55.000Z",
+          "uid": "35240-b2fb0f28-4782-44da-b7df-0b2e69abf4bc"
+        }
+      ],
+      "id": "efcc9c23-8a30-4d9f-84cf-38ccde1a073e",
+      "createdAt": "2026-10-21T20:26:55.000Z",
+      "updatedAt": "2026-10-21T20:26:55.000Z",
+      "uid": "35240-efcc9c23-8a30-4d9f-84cf-38ccde1a073e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

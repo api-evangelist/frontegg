@@ -1,812 +1,814 @@
 {
+  "info": {
+    "_postman_id": "4f6d790e-c45e-499b-a031-b2ec14ea34ca",
+    "name": "Entitlements Agent (PDP) Features API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:56.000Z",
+    "updatedAt": "2026-10-21T20:23:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f6d790e-c45e-499b-a031-b2ec14ea34ca"
+  },
   "item": [
     {
-      "id": "f45e6ee4-ae88-42e7-8b6c-caabacd13f1a",
-      "name": "Features",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "f9202774-5246-4ea7-a56f-e1477d805fb7",
-          "name": "Get Feature Flags",
-          "request": {
-            "name": "Get Feature Flags",
-            "description": {
-              "content": "Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v1"
-              ],
-              "host": [
-                "{{resources-features-v1-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Page offset of the results to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "10",
-                  "description": "Number of results per page"
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "Search input; Searchable fields: `name`"
-                },
-                {
-                  "disabled": false,
-                  "key": "orderBy",
-                  "value": "createdAt",
-                  "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)"
-                },
-                {
-                  "disabled": false,
-                  "key": "sortType",
-                  "value": "DESC",
-                  "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order"
-                },
-                {
-                  "disabled": false,
-                  "key": "featureIds",
-                  "value": "<string>",
-                  "description": "Comma separated feature IDs that can be used to filter the results"
-                },
-                {
-                  "disabled": false,
-                  "key": "featureIds",
-                  "value": "<string>",
-                  "description": "Comma separated feature IDs that can be used to filter the results"
-                },
-                {
-                  "disabled": false,
-                  "key": "permissionKeys",
-                  "value": "<string>",
-                  "description": "Comma separated permission keys that can be used to filter the results"
-                },
-                {
-                  "disabled": false,
-                  "key": "permissionKeys",
-                  "value": "<string>",
-                  "description": "Comma separated permission keys that can be used to filter the results"
-                },
-                {
-                  "disabled": false,
-                  "key": "hasFeatureFlag",
-                  "value": "<boolean>",
-                  "description": "Filter out features that are linked/not linked to feature-flag"
-                },
-                {
-                  "disabled": false,
-                  "key": "featureKeys",
-                  "value": "<string>",
-                  "description": "Comma separated feature Keys that can be used to filter the results"
-                },
-                {
-                  "disabled": false,
-                  "key": "featureKeys",
-                  "value": "<string>",
-                  "description": "Comma separated feature Keys that can be used to filter the results"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "features",
+          "item": [
             {
-              "id": "888074b4-46bc-43b3-b4ab-30ce208cc51a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-features-v1-Url}}"
-                  ],
-                  "query": [
+              "name": "v1",
+              "item": [
+                {
+                  "name": "{featureId}",
+                  "item": [
                     {
-                      "key": "offset",
-                      "value": "0"
+                      "name": "Update Feature",
+                      "id": "14bdaaa6-4c34-44ca-98f5-227e43219a84",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v1/:featureId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v1",
+                            ":featureId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0da67e08-719b-4436-9767-ca3439a65bfc",
+                              "key": "featureId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing feature"
+                      },
+                      "response": [
+                        {
+                          "id": "df1923de-a561-4829-991f-b9aeee1904d8",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/features/v1/:featureId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "features",
+                                "v1",
+                                ":featureId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "featureId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:57.000Z",
+                          "updatedAt": "2026-10-21T20:23:57.000Z",
+                          "uid": "35240-df1923de-a561-4829-991f-b9aeee1904d8"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-14bdaaa6-4c34-44ca-98f5-227e43219a84"
                     },
                     {
-                      "key": "limit",
-                      "value": "10"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "search-text"
-                    },
-                    {
-                      "key": "orderBy",
-                      "value": "key"
-                    },
-                    {
-                      "key": "sortType",
-                      "value": "ASC"
-                    },
-                    {
-                      "key": "featureIds",
-                      "value": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-                    },
-                    {
-                      "key": "permissionKeys",
-                      "value": "permission.read"
-                    },
-                    {
-                      "key": "permissionKeys",
-                      "value": "permission.write"
-                    },
-                    {
-                      "key": "hasFeatureFlag",
-                      "value": "<boolean>"
-                    },
-                    {
-                      "key": "featureKeys",
-                      "value": "test-feature"
+                      "name": "Delete Feature",
+                      "id": "319c4c34-442a-4167-ba5d-6f2d94e9ffa2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v1/:featureId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v1",
+                            ":featureId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cab3b2a0-2c37-4a8b-bfd3-57da38714caf",
+                              "key": "featureId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a feature"
+                      },
+                      "response": [
+                        {
+                          "id": "8703baa5-7979-4708-802c-ef8c78e2b1cc",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/features/v1/:featureId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "features",
+                                "v1",
+                                ":featureId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "featureId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:57.000Z",
+                          "updatedAt": "2026-10-21T20:23:57.000Z",
+                          "uid": "35240-8703baa5-7979-4708-802c-ef8c78e2b1cc"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-319c4c34-442a-4167-ba5d-6f2d94e9ffa2"
                     }
                   ],
-                  "variable": []
+                  "id": "dbe33141-3134-4ce0-a134-f18dee648ae2",
+                  "createdAt": "2026-10-21T20:23:57.000Z",
+                  "updatedAt": "2026-10-21T20:23:57.000Z",
+                  "uid": "35240-dbe33141-3134-4ce0-a134-f18dee648ae2"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Get Features",
+                  "id": "160613e5-068f-4374-b627-1802ef37b6e5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature\",\n      \"key\": \"test-feature\",\n      \"metadata\": {},\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"description\": \"This is a test feature\",\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"permissions\": [\n        \"permission.read\",\n        \"permission.write\"\n      ],\n      \"featureFlag\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature Flag\",\n        \"on\": true,\n        \"offTreatment\": \"false\",\n        \"defaultTreatment\": \"true\",\n        \"description\": \"This is a test feature flag\",\n        \"updatedAt\": \"2022-01-01T00:00:00\",\n        \"createdAt\": \"2022-01-01T00:00:00\"\n      }\n    },\n    {\n      \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n      \"name\": \"Test Feature\",\n      \"key\": \"test-feature\",\n      \"metadata\": {},\n      \"createdAt\": \"2022-01-01T00:00:00\",\n      \"description\": \"This is a test feature\",\n      \"updatedAt\": \"2022-01-01T00:00:00\",\n      \"permissions\": [\n        \"permission.read\",\n        \"permission.write\"\n      ],\n      \"featureFlag\": {\n        \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n        \"name\": \"Test Feature Flag\",\n        \"on\": true,\n        \"offTreatment\": \"false\",\n        \"defaultTreatment\": \"true\",\n        \"description\": \"This is a test feature flag\",\n        \"updatedAt\": \"2022-01-01T00:00:00\",\n        \"createdAt\": \"2022-01-01T00:00:00\"\n      }\n    }\n  ],\n  \"hasNext\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "28e44763-6a4a-43cf-aac2-05a4c2bac17a",
-          "name": "Create Feature",
-          "request": {
-            "name": "Create Feature",
-            "description": {
-              "content": "Create a new feature with a unique name and key, optional description, and associated permissions.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v1"
-              ],
-              "host": [
-                "{{resources-features-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "830801e0-dc02-4525-a6b2-8030cf588516",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-features-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/features/v1?offset=0&limit=10&filter=<string>&orderBy=name&sortType=ASC&featureIds=<string>&featureIds=<string>&permissionKeys=<string>&permissionKeys=<string>&hasFeatureFlag=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "features",
+                        "v1"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page offset of the results to return",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Search input; Searchable fields: `name`",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)",
+                          "key": "orderBy",
+                          "value": "name"
+                        },
+                        {
+                          "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order",
+                          "key": "sortType",
+                          "value": "ASC"
+                        },
+                        {
+                          "description": "Comma separated feature IDs that can be used to filter the results",
+                          "key": "featureIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated feature IDs that can be used to filter the results",
+                          "key": "featureIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated permission keys that can be used to filter the results",
+                          "key": "permissionKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma separated permission keys that can be used to filter the results",
+                          "key": "permissionKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter out features that are linked/not linked to feature-flag",
+                          "key": "hasFeatureFlag",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a paginated list of features. You can search for specific features or order them by field"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"description\": \"This is a test feature\",\n  \"permissions\": [\n    \"permission.read\",\n    \"permission.write\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"metadata\": {},\n  \"createdAt\": \"2022-01-01T00:00:00\",\n  \"description\": \"This is a test feature\",\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"permissions\": [\n    \"permission.read\",\n    \"permission.write\"\n  ],\n  \"featureFlag\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Feature Flag\",\n    \"on\": true,\n    \"offTreatment\": \"false\",\n    \"defaultTreatment\": \"true\",\n    \"description\": \"This is a test feature flag\",\n    \"updatedAt\": \"2022-01-01T00:00:00\",\n    \"createdAt\": \"2022-01-01T00:00:00\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cccaec2d-eb6d-4331-ae01-923d3167acbb",
-          "name": "Update Feature",
-          "request": {
-            "name": "Update Feature",
-            "description": {
-              "content": "Update an existing feature's name, key, description, or associated permissions.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v1",
-                ":featureId"
-              ],
-              "host": [
-                "{{resources-features-v1-featureId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "featureId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0c493205-4b0f-4f42-848b-9c6fc44e8b89",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v1",
-                    ":featureId"
-                  ],
-                  "host": [
-                    "{{resources-features-v1-featureId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "featureId",
-                      "description": "(Required) "
+                      "id": "474dd9c8-2f41-4183-bce0-ce6f308e01e5",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v1?offset=0&limit=10&filter=<string>&orderBy=name&sortType=ASC&featureIds=<string>&permissionKeys=<string>&hasFeatureFlag=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v1"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page offset of the results to return",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Search input; Searchable fields: `name`",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)",
+                              "key": "orderBy",
+                              "value": "name"
+                            },
+                            {
+                              "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order",
+                              "key": "sortType",
+                              "value": "ASC"
+                            },
+                            {
+                              "description": "Comma separated feature IDs that can be used to filter the results",
+                              "key": "featureIds",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma separated permission keys that can be used to filter the results",
+                              "key": "permissionKeys",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter out features that are linked/not linked to feature-flag",
+                              "key": "hasFeatureFlag",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"vendorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"key\": \"<string>\",\n      \"metadata\": {},\n      \"createdAt\": \"<string>\",\n      \"description\": \"<string>\",\n      \"updatedAt\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"featureFlag\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"on\": \"<boolean>\",\n        \"offTreatment\": \"false\",\n        \"defaultTreatment\": \"false\",\n        \"description\": \"<string>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"vendorId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"key\": \"<string>\",\n      \"metadata\": {},\n      \"createdAt\": \"<string>\",\n      \"description\": \"<string>\",\n      \"updatedAt\": \"<string>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"featureFlag\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"on\": \"<boolean>\",\n        \"offTreatment\": \"false\",\n        \"defaultTreatment\": \"false\",\n        \"description\": \"<string>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"createdAt\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"hasNext\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-474dd9c8-2f41-4183-bce0-ce6f308e01e5"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-21T20:23:57.000Z",
+                  "updatedAt": "2026-10-21T20:23:57.000Z",
+                  "uid": "35240-160613e5-068f-4374-b627-1802ef37b6e5"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"description\": \"This is a test feature\",\n  \"permissions\": [\n    \"permission.read\",\n    \"permission.write\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bfa9a7ae-4acd-46f3-9342-03b2d72ecd11",
-          "name": "Delete Feature",
-          "request": {
-            "name": "Delete Feature",
-            "description": {
-              "content": "Delete an existing feature by its unique identifier.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v1",
-                ":featureId"
-              ],
-              "host": [
-                "{{resources-features-v1-featureId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "featureId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "5ffe7c71-a2b7-4bf6-b396-6b5946058f3b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v1",
-                    ":featureId"
-                  ],
-                  "host": [
-                    "{{resources-features-v1-featureId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "featureId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fdcd3166-7ca0-4ebf-8e33-7c4f215840be",
-          "name": "Create Feature",
-          "request": {
-            "name": "Create Feature",
-            "description": {
-              "content": "Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v2"
-              ],
-              "host": [
-                "{{resources-features-v2-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "cc162a60-e755-404e-be02-12dba3a4854b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v2"
-                  ],
-                  "host": [
-                    "{{resources-features-v2-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                  "name": "Create Feature",
+                  "id": "90ef8268-0996-4b1d-b14d-78d4a74df001",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"description\": \"This is a test feature\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"user.read\",\n      \"permissionId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"\n    },\n    {\n      \"permissionKey\": \"user.read\",\n      \"permissionId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"\n    }\n  ],\n  \"metadata\": \"{ \\\"some-key\\\": \\\"some-value\\\" }\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"vendorId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"metadata\": {},\n  \"createdAt\": \"2022-01-01T00:00:00\",\n  \"description\": \"This is a test feature\",\n  \"updatedAt\": \"2022-01-01T00:00:00\",\n  \"permissions\": [\n    \"permission.read\",\n    \"permission.write\"\n  ],\n  \"featureFlag\": {\n    \"id\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\",\n    \"name\": \"Test Feature Flag\",\n    \"on\": true,\n    \"offTreatment\": \"false\",\n    \"defaultTreatment\": \"true\",\n    \"description\": \"This is a test feature flag\",\n    \"updatedAt\": \"2022-01-01T00:00:00\",\n    \"createdAt\": \"2022-01-01T00:00:00\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f13c02f1-9f39-4432-b95a-2811ed639cb0",
-          "name": "Update Feature",
-          "request": {
-            "name": "Update Feature",
-            "description": {
-              "content": "Update an existing feature's name, key, description, associated permissions, or custom metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "features",
-                "v2",
-                ":featureId"
-              ],
-              "host": [
-                "{{resources-features-v2-featureId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "featureId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d6bc7faa-3505-4484-b3e8-281526ec6dd1",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "features",
-                    "v2",
-                    ":featureId"
-                  ],
-                  "host": [
-                    "{{resources-features-v2-featureId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "featureId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"Test Feature\",\n  \"key\": \"test-feature\",\n  \"description\": \"This is a test feature\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"user.read\",\n      \"permissionId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"\n    },\n    {\n      \"permissionKey\": \"user.read\",\n      \"permissionId\": \"e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3\"\n    }\n  ],\n  \"metadata\": \"{ \\\"some-key\\\": \\\"some-value\\\" }\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/features/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "features",
+                        "v1"
+                      ]
+                    },
+                    "description": "Create a new feature"
+                  },
+                  "response": [
+                    {
+                      "id": "68447565-be85-4172-b79b-96b4e1ab22fe",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"metadata\": {},\n  \"createdAt\": \"<string>\",\n  \"description\": \"<string>\",\n  \"updatedAt\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"featureFlag\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"on\": \"<boolean>\",\n    \"offTreatment\": \"true\",\n    \"defaultTreatment\": \"false\",\n    \"description\": \"<string>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-68447565-be85-4172-b79b-96b4e1ab22fe"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-21T20:23:57.000Z",
+                  "updatedAt": "2026-10-21T20:23:57.000Z",
+                  "uid": "35240-90ef8268-0996-4b1d-b14d-78d4a74df001"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "a664ab0b-a102-4f01-a969-59370551acf6",
+              "createdAt": "2026-10-21T20:23:57.000Z",
+              "updatedAt": "2026-10-21T20:23:57.000Z",
+              "uid": "35240-a664ab0b-a102-4f01-a969-59370551acf6"
+            },
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "{featureId}",
+                  "item": [
+                    {
+                      "name": "Update Feature",
+                      "id": "10dd531e-c482-413c-9180-948a22125272",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v2/:featureId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v2",
+                            ":featureId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "966ec83f-8f09-4257-b351-4dda019fe927",
+                              "key": "featureId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing feature"
+                      },
+                      "response": [
+                        {
+                          "id": "7453a4e4-4707-4e49-8987-b173714d041f",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/features/v2/:featureId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "features",
+                                "v2",
+                                ":featureId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "featureId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:57.000Z",
+                          "updatedAt": "2026-10-21T20:23:57.000Z",
+                          "uid": "35240-7453a4e4-4707-4e49-8987-b173714d041f"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-10dd531e-c482-413c-9180-948a22125272"
+                    }
+                  ],
+                  "id": "2aff0553-725c-4c7c-9437-a0b42fd4af79",
+                  "createdAt": "2026-10-21T20:23:57.000Z",
+                  "updatedAt": "2026-10-21T20:23:57.000Z",
+                  "uid": "35240-2aff0553-725c-4c7c-9437-a0b42fd4af79"
+                },
+                {
+                  "name": "Create Feature",
+                  "id": "723ad208-79cd-4b09-9998-5414e5584719",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/features/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "features",
+                        "v2"
+                      ]
+                    },
+                    "description": "Create a new feature"
+                  },
+                  "response": [
+                    {
+                      "id": "d362be0b-3959-4aed-a999-69c73ffb7bc1",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"permissions\": [\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    },\n    {\n      \"permissionKey\": \"<string>\",\n      \"permissionId\": \"<string>\"\n    }\n  ],\n  \"metadata\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/features/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "features",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"key\": \"<string>\",\n  \"metadata\": {},\n  \"createdAt\": \"<string>\",\n  \"description\": \"<string>\",\n  \"updatedAt\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"featureFlag\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"on\": \"<boolean>\",\n    \"offTreatment\": \"true\",\n    \"defaultTreatment\": \"false\",\n    \"description\": \"<string>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:23:57.000Z",
+                      "updatedAt": "2026-10-21T20:23:57.000Z",
+                      "uid": "35240-d362be0b-3959-4aed-a999-69c73ffb7bc1"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:23:57.000Z",
+                  "updatedAt": "2026-10-21T20:23:57.000Z",
+                  "uid": "35240-723ad208-79cd-4b09-9998-5414e5584719"
+                }
+              ],
+              "id": "c7963de3-1466-4f51-b585-8268fe7d76a7",
+              "createdAt": "2026-10-21T20:23:57.000Z",
+              "updatedAt": "2026-10-21T20:23:57.000Z",
+              "uid": "35240-c7963de3-1466-4f51-b585-8268fe7d76a7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b4427d33-8514-4225-9705-8a5363e4001b",
+          "createdAt": "2026-10-21T20:23:57.000Z",
+          "updatedAt": "2026-10-21T20:23:57.000Z",
+          "uid": "35240-b4427d33-8514-4225-9705-8a5363e4001b"
         }
       ],
-      "event": []
+      "id": "eedefc96-518a-42c7-b1e8-b0fd8ad9fe4c",
+      "createdAt": "2026-10-21T20:23:57.000Z",
+      "updatedAt": "2026-10-21T20:23:57.000Z",
+      "uid": "35240-eedefc96-518a-42c7-b1e8-b0fd8ad9fe4c"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-features-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-features-v1-featureId-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-features-v2-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-features-v2-featureId-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "46200a3c-ca0e-4067-a3ad-611a8503f657",
-    "name": "Multi-Apps Overview Account Invitations Features API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

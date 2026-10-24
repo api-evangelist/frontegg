@@ -1,0 +1,314 @@
+{
+  "info": {
+    "_postman_id": "c5a6fa8f-4e50-4343-bb0d-533f22d13ddf",
+    "name": "Entitlements Agent (PDP) Vendor-only user management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:27:52.000Z",
+    "updatedAt": "2026-10-21T20:27:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c5a6fa8f-4e50-4343-bb0d-533f22d13ddf"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "phone-numbers",
+              "item": [
+                {
+                  "name": "v1",
+                  "item": [
+                    {
+                      "name": "vendor",
+                      "item": [
+                        {
+                          "name": "{userId}",
+                          "item": [
+                            {
+                              "name": "{phoneId}",
+                              "item": [
+                                {
+                                  "name": "Delete user phone number by vendor",
+                                  "id": "6eeb5876-901b-4ed5-906f-0487d4986451",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/users/phone-numbers/v1/vendor/:userId/:phoneId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "users",
+                                        "phone-numbers",
+                                        "v1",
+                                        "vendor",
+                                        ":userId",
+                                        ":phoneId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "281116a5-0365-4657-b9cc-9a19f7eaaca2",
+                                          "key": "userId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "b93960dd-4f00-474f-89ed-f8585fefdcfe",
+                                          "key": "phoneId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "This route deletes user phone number without verification."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "3030c9f5-6d48-4563-9be8-9a81582bffc2",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/users/phone-numbers/v1/vendor/:userId/:phoneId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "users",
+                                            "phone-numbers",
+                                            "v1",
+                                            "vendor",
+                                            ":userId",
+                                            ":phoneId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "userId"
+                                            },
+                                            {
+                                              "key": "phoneId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-21T20:27:52.000Z",
+                                      "updatedAt": "2026-10-21T20:27:52.000Z",
+                                      "uid": "35240-3030c9f5-6d48-4563-9be8-9a81582bffc2"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:27:52.000Z",
+                                  "updatedAt": "2026-10-21T20:27:52.000Z",
+                                  "uid": "35240-6eeb5876-901b-4ed5-906f-0487d4986451"
+                                }
+                              ],
+                              "id": "c04f4ce1-cb8c-4ee9-945f-126ded8f4cdc",
+                              "createdAt": "2026-10-21T20:27:52.000Z",
+                              "updatedAt": "2026-10-21T20:27:52.000Z",
+                              "uid": "35240-c04f4ce1-cb8c-4ee9-945f-126ded8f4cdc"
+                            },
+                            {
+                              "name": "Create user phone number by vendor",
+                              "id": "128bc256-e93c-4689-b3db-daea5b378ac7",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/users/phone-numbers/v1/vendor/:userId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "users",
+                                    "phone-numbers",
+                                    "v1",
+                                    "vendor",
+                                    ":userId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f91ddc26-d580-402e-bdb6-2f011b209e3a",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "This route creates new user phone number, phone numbers added by vendor will be automatically verified."
+                              },
+                              "response": [
+                                {
+                                  "id": "7129d759-6762-4631-9c83-ff8579bb3d22",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"phoneNumber\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/users/phone-numbers/v1/vendor/:userId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "users",
+                                        "phone-numbers",
+                                        "v1",
+                                        "vendor",
+                                        ":userId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:27:52.000Z",
+                                  "updatedAt": "2026-10-21T20:27:52.000Z",
+                                  "uid": "35240-7129d759-6762-4631-9c83-ff8579bb3d22"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:27:52.000Z",
+                              "updatedAt": "2026-10-21T20:27:52.000Z",
+                              "uid": "35240-128bc256-e93c-4689-b3db-daea5b378ac7"
+                            }
+                          ],
+                          "id": "449adc8e-8e69-4c05-ab5c-82a9152725af",
+                          "createdAt": "2026-10-21T20:27:52.000Z",
+                          "updatedAt": "2026-10-21T20:27:52.000Z",
+                          "uid": "35240-449adc8e-8e69-4c05-ab5c-82a9152725af"
+                        }
+                      ],
+                      "id": "b48083ba-de6b-436d-9263-29e7b5e09275",
+                      "createdAt": "2026-10-21T20:27:52.000Z",
+                      "updatedAt": "2026-10-21T20:27:52.000Z",
+                      "uid": "35240-b48083ba-de6b-436d-9263-29e7b5e09275"
+                    }
+                  ],
+                  "id": "0c288e3d-705b-4964-96cc-b7e8519d4da1",
+                  "createdAt": "2026-10-21T20:27:52.000Z",
+                  "updatedAt": "2026-10-21T20:27:52.000Z",
+                  "uid": "35240-0c288e3d-705b-4964-96cc-b7e8519d4da1"
+                }
+              ],
+              "id": "fbfe09d1-1e2d-4a5b-9736-cfc1e7a94811",
+              "createdAt": "2026-10-21T20:27:52.000Z",
+              "updatedAt": "2026-10-21T20:27:52.000Z",
+              "uid": "35240-fbfe09d1-1e2d-4a5b-9736-cfc1e7a94811"
+            }
+          ],
+          "id": "7406a0e3-725f-4511-a30a-39617a5ea452",
+          "createdAt": "2026-10-21T20:27:52.000Z",
+          "updatedAt": "2026-10-21T20:27:52.000Z",
+          "uid": "35240-7406a0e3-725f-4511-a30a-39617a5ea452"
+        }
+      ],
+      "id": "5b4835df-f77b-4605-a5eb-37ce23361666",
+      "createdAt": "2026-10-21T20:27:52.000Z",
+      "updatedAt": "2026-10-21T20:27:52.000Z",
+      "uid": "35240-5b4835df-f77b-4605-a5eb-37ce23361666"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

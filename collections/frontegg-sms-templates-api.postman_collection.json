@@ -1,759 +1,682 @@
 {
+  "info": {
+    "_postman_id": "ea216429-8c1d-4308-806c-5ce1b33ee744",
+    "name": "Entitlements Agent (PDP) SMS templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:25:37.000Z",
+    "updatedAt": "2026-10-21T20:25:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ea216429-8c1d-4308-806c-5ce1b33ee744"
+  },
   "item": [
     {
-      "id": "c6c53549-da83-4880-bfad-61cbad95f7b5",
-      "name": "SMS Templates",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "d2f74844-b29d-4156-a98d-7bf98baf37b8",
-          "name": "Gets Vendor SMS Templates",
-          "request": {
-            "name": "Gets Vendor SMS Templates",
-            "description": {
-              "content": "Retrieve the SMS templates configured for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "87d43db1-6d99-4466-aedc-3f701efba3fa",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "13a82532-faa6-43d0-876c-73af2758bc03",
-          "name": "Gets Vendor SMS Template by Type",
-          "request": {
-            "name": "Gets Vendor SMS Template by Type",
-            "description": {
-              "content": "Retrieve an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to retrieve.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates",
-                ":type"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-type-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "type",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "30ef1c1c-3c5e-49da-b72a-9d2acc1d7aaa",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-type-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "sms",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) "
+                      "name": "templates",
+                      "item": [
+                        {
+                          "name": "{type}",
+                          "item": [
+                            {
+                              "name": "default",
+                              "item": [
+                                {
+                                  "name": "Gets vendor default SMS template by type",
+                                  "id": "a56ef7ab-8557-4e0a-8392-3bf7586bcba0",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type/default",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "sms",
+                                        "templates",
+                                        ":type",
+                                        "default"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "14488804-7210-49bf-9209-e2b2f4a13ec2",
+                                          "key": "type",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "fc269dca-2145-4aad-a743-f393ed4f0ec4",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type/default",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "configurations",
+                                            "v1",
+                                            "sms",
+                                            "templates",
+                                            ":type",
+                                            "default"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "type"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{}",
+                                      "createdAt": "2026-10-21T20:25:38.000Z",
+                                      "updatedAt": "2026-10-21T20:25:38.000Z",
+                                      "uid": "35240-fc269dca-2145-4aad-a743-f393ed4f0ec4"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:25:38.000Z",
+                                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                                  "uid": "35240-a56ef7ab-8557-4e0a-8392-3bf7586bcba0"
+                                }
+                              ],
+                              "id": "b0a04034-b5db-4652-85c7-35f6cc0e5699",
+                              "createdAt": "2026-10-21T20:25:38.000Z",
+                              "updatedAt": "2026-10-21T20:25:38.000Z",
+                              "uid": "35240-b0a04034-b5db-4652-85c7-35f6cc0e5699"
+                            },
+                            {
+                              "name": "Gets vendor SMS template by type",
+                              "id": "5544486a-0dcb-41cf-93d2-ccc87d2d8361",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "sms",
+                                    "templates",
+                                    ":type"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "def2327e-5fec-4805-91fd-7daf094c5977",
+                                      "key": "type",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "7eb7151f-1994-4b7b-ab53-d6b40a9d586a",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "sms",
+                                        "templates",
+                                        ":type"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "type"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-10-21T20:25:38.000Z",
+                                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                                  "uid": "35240-7eb7151f-1994-4b7b-ab53-d6b40a9d586a"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:38.000Z",
+                              "updatedAt": "2026-10-21T20:25:38.000Z",
+                              "uid": "35240-5544486a-0dcb-41cf-93d2-ccc87d2d8361"
+                            },
+                            {
+                              "name": "Deletes vendor SMS template by type",
+                              "id": "9f3c8147-43d4-469f-a5cf-a3fef66c4835",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "sms",
+                                    "templates",
+                                    ":type"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d1f53f08-3a2a-47a7-a2a2-8b4f85399c7b",
+                                      "key": "type",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "3055c71e-8b03-445d-9b98-f742038abe5e",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "sms",
+                                        "templates",
+                                        ":type"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "type"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:38.000Z",
+                                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                                  "uid": "35240-3055c71e-8b03-445d-9b98-f742038abe5e"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:38.000Z",
+                              "updatedAt": "2026-10-21T20:25:38.000Z",
+                              "uid": "35240-9f3c8147-43d4-469f-a5cf-a3fef66c4835"
+                            },
+                            {
+                              "name": "Create or update a vendor SMS template",
+                              "id": "34aa4251-5f39-4588-8310-1bff02f3c82c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "sms",
+                                    "templates",
+                                    ":type"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "778b6635-45e2-4f49-a535-d2c1dabfac54",
+                                      "key": "type",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "451ff1ec-9a88-4771-9f7a-ed932b38ca44",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "sms",
+                                        "templates",
+                                        ":type"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "type"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-10-21T20:25:38.000Z",
+                                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                                  "uid": "35240-451ff1ec-9a88-4771-9f7a-ed932b38ca44"
+                                },
+                                {
+                                  "id": "e891dd2d-2311-4885-8200-fb0220cf81d4",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates/:type",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "sms",
+                                        "templates",
+                                        ":type"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "type"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{}",
+                                  "createdAt": "2026-10-21T20:25:38.000Z",
+                                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                                  "uid": "35240-e891dd2d-2311-4885-8200-fb0220cf81d4"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:38.000Z",
+                              "updatedAt": "2026-10-21T20:25:38.000Z",
+                              "uid": "35240-34aa4251-5f39-4588-8310-1bff02f3c82c"
+                            }
+                          ],
+                          "id": "86f48ba0-8e1a-4b56-a7f5-b0ce73c66a5f",
+                          "createdAt": "2026-10-21T20:25:38.000Z",
+                          "updatedAt": "2026-10-21T20:25:38.000Z",
+                          "uid": "35240-86f48ba0-8e1a-4b56-a7f5-b0ce73c66a5f"
+                        },
+                        {
+                          "name": "Gets vendor SMS templates",
+                          "id": "d10521a1-5122-4ad7-81dd-20c1a3f56422",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "sms",
+                                "templates"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "89f09ddb-7638-43a6-b5f3-845f7da4ac98",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/sms/templates",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "sms",
+                                    "templates"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-10-21T20:25:38.000Z",
+                              "updatedAt": "2026-10-21T20:25:38.000Z",
+                              "uid": "35240-89f09ddb-7638-43a6-b5f3-845f7da4ac98"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:25:38.000Z",
+                          "updatedAt": "2026-10-21T20:25:38.000Z",
+                          "uid": "35240-d10521a1-5122-4ad7-81dd-20c1a3f56422"
+                        }
+                      ],
+                      "id": "fc56063d-c3fd-42cc-8183-4bfeb7aa2dbd",
+                      "createdAt": "2026-10-21T20:25:38.000Z",
+                      "updatedAt": "2026-10-21T20:25:38.000Z",
+                      "uid": "35240-fc56063d-c3fd-42cc-8183-4bfeb7aa2dbd"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "id": "c08576b5-c345-46b7-9e5c-7bb67d380928",
+                  "createdAt": "2026-10-21T20:25:38.000Z",
+                  "updatedAt": "2026-10-21T20:25:38.000Z",
+                  "uid": "35240-c08576b5-c345-46b7-9e5c-7bb67d380928"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "95eec15e-d55a-475a-a340-65a9c3079408",
+              "createdAt": "2026-10-21T20:25:38.000Z",
+              "updatedAt": "2026-10-21T20:25:38.000Z",
+              "uid": "35240-95eec15e-d55a-475a-a340-65a9c3079408"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4840d508-5a7f-4963-9c4e-95df7b28fd11",
-          "name": "Deletes Vendor SMS Template by Type",
-          "request": {
-            "name": "Deletes Vendor SMS Template by Type",
-            "description": {
-              "content": "Delete an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to delete.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates",
-                ":type"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-type-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "type",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "b6c7d0f5-e1aa-4976-9d40-f65d0d8e9c15",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-type-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "faa00338-897f-4d05-97d3-0330230cedfd",
-          "name": "Create or Update a Vendor SMS Template",
-          "request": {
-            "name": "Create or Update a Vendor SMS Template",
-            "description": {
-              "content": "Create or update an SMS template by type.\n\nProvide the `type` as a path parameter and include the SMS template details in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates",
-                ":type"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-type-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "type",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8f964c08-8a16-4903-b7c6-066a1ab04a24",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-type-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1c75c373-bc16-4387-8681-3166f153d2ee",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    ":type"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-type-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3901aa21-2c06-4fe7-a16b-c3cafe7f190d",
-          "name": "Gets Vendor Default SMS Template by Type",
-          "request": {
-            "name": "Gets Vendor Default SMS Template by Type",
-            "description": {
-              "content": "Retrieve the default SMS template by type.\n\nProvide the `type` as a path parameter to specify which default SMS template to retrieve.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates",
-                ":type",
-                "default"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-type-default-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "type",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "9dda32fc-5f8c-4bac-a90c-40a6e2472c38",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    ":type",
-                    "default"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-type-default-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "type",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "02a01a5a-cc26-4499-ac85-132920dcc3a1",
-          "name": "Gets All Vendor Default SMS Templates",
-          "request": {
-            "name": "Gets All Vendor Default SMS Templates",
-            "description": {},
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "sms",
-                "templates",
-                "default",
-                "all"
-              ],
-              "host": [
-                "{{resources-configurations-v1-sms-templates-default-all-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "2eaa82e1-741a-46fc-9e0a-f7f8ca6573f7",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "sms",
-                    "templates",
-                    "default",
-                    "all"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-sms-templates-default-all-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9040349b-834b-4af5-9016-1575d1c2b974",
+          "createdAt": "2026-10-21T20:25:38.000Z",
+          "updatedAt": "2026-10-21T20:25:38.000Z",
+          "uid": "35240-9040349b-834b-4af5-9016-1575d1c2b974"
         }
       ],
-      "event": []
+      "id": "f121e2ea-3df5-41d0-b333-2b0da295cdda",
+      "createdAt": "2026-10-21T20:25:38.000Z",
+      "updatedAt": "2026-10-21T20:25:38.000Z",
+      "uid": "35240-f121e2ea-3df5-41d0-b333-2b0da295cdda"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-sms-templates-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-sms-templates-type-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-sms-templates-type-default-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-sms-templates-default-all-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "f5c8e01b-09a0-4652-813e-68ad6de17f3c",
-    "name": "Multi-Apps Overview Account Invitations SMS Templates API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

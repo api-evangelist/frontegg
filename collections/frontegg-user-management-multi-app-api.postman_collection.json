@@ -1,0 +1,1232 @@
+{
+  "info": {
+    "_postman_id": "b5961b0b-56e0-43fd-96f0-dd4367dac2d8",
+    "name": "Entitlements Agent (PDP) User management (multi-app) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:27:34.000Z",
+    "updatedAt": "2026-10-21T20:27:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b5961b0b-56e0-43fd-96f0-dd4367dac2d8"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "{appId}",
+                  "item": [
+                    {
+                      "name": "users",
+                      "item": [
+                        {
+                          "name": "Get users for application",
+                          "id": "c1c5e2af-656e-4e27-ab2f-424fcb0f4215",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/:appId/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                ":appId",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "af35a633-6d18-428e-b77a-92413e50c097",
+                                  "key": "appId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route gets users for an application."
+                          },
+                          "response": [
+                            {
+                              "id": "c1ce3c83-19fa-40b2-8334-cd096b9e57a6",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/applications/v1/:appId/users",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "applications",
+                                    "v1",
+                                    ":appId",
+                                    "users"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "appId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                              "createdAt": "2026-10-21T20:27:35.000Z",
+                              "updatedAt": "2026-10-21T20:27:35.000Z",
+                              "uid": "35240-c1ce3c83-19fa-40b2-8334-cd096b9e57a6"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:34.000Z",
+                          "updatedAt": "2026-10-21T20:27:34.000Z",
+                          "uid": "35240-c1c5e2af-656e-4e27-ab2f-424fcb0f4215"
+                        }
+                      ],
+                      "id": "1c94718b-a886-44d1-8294-ca85b79e906b",
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-1c94718b-a886-44d1-8294-ca85b79e906b"
+                    }
+                  ],
+                  "id": "8b70bf6b-3420-4820-9f87-04084dcc6986",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-8b70bf6b-3420-4820-9f87-04084dcc6986"
+                },
+                {
+                  "name": "{userId}",
+                  "item": [
+                    {
+                      "name": "apps",
+                      "item": [
+                        {
+                          "name": "Get applications for user",
+                          "id": "d88e8a9e-c00d-46fc-bf78-ab5d1d0c62b9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/:userId/apps",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                ":userId",
+                                "apps"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "34ad6ac5-4b7e-4d91-ba5d-8e3f5220f7f6",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "This route gets applications for a user."
+                          },
+                          "response": [
+                            {
+                              "id": "21309175-627c-4361-90b5-1bfa94017e51",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/applications/v1/:userId/apps",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "applications",
+                                    "v1",
+                                    ":userId",
+                                    "apps"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                              "createdAt": "2026-10-21T20:27:35.000Z",
+                              "updatedAt": "2026-10-21T20:27:35.000Z",
+                              "uid": "35240-21309175-627c-4361-90b5-1bfa94017e51"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:34.000Z",
+                          "updatedAt": "2026-10-21T20:27:34.000Z",
+                          "uid": "35240-d88e8a9e-c00d-46fc-bf78-ab5d1d0c62b9"
+                        }
+                      ],
+                      "id": "c040e6a2-ab1b-43b9-aa35-dbec4f65aa7e",
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-c040e6a2-ab1b-43b9-aa35-dbec4f65aa7e"
+                    }
+                  ],
+                  "id": "7e421063-df50-45eb-b8cf-af146f49d29e",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-7e421063-df50-45eb-b8cf-af146f49d29e"
+                },
+                {
+                  "name": "users-apps",
+                  "item": [
+                    {
+                      "name": "Get applications for multiple users",
+                      "id": "1334315d-067c-4e0f-8cf3-5b2dfa31ebcd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1/users-apps?userIds=<string>&userIds=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1",
+                            "users-apps"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "userIds",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "userIds",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "This route gets applications for multiple users."
+                      },
+                      "response": [
+                        {
+                          "id": "dab3df6e-bdc1-4c36-ae00-f5b717f8dc11",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/users-apps?userIds=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                "users-apps"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "userIds",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"userId\": \"<string>\",\n    \"appIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"userId\": \"<string>\",\n    \"appIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                          "createdAt": "2026-10-21T20:27:35.000Z",
+                          "updatedAt": "2026-10-21T20:27:35.000Z",
+                          "uid": "35240-dab3df6e-bdc1-4c36-ae00-f5b717f8dc11"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-1334315d-067c-4e0f-8cf3-5b2dfa31ebcd"
+                    }
+                  ],
+                  "id": "c803d62b-b9a1-4e88-a540-e89e461063d5",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-c803d62b-b9a1-4e88-a540-e89e461063d5"
+                },
+                {
+                  "name": "apps-users",
+                  "item": [
+                    {
+                      "name": "Get users for multiple applications",
+                      "id": "db44412e-b826-45a3-8476-8668dd4355a1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1/apps-users?appIds=<string>&appIds=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1",
+                            "apps-users"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "appIds",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "appIds",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "This route gets users for multiple applications."
+                      },
+                      "response": [
+                        {
+                          "id": "0ea8edab-13c0-4d42-a493-db1c59501a93",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/apps-users?appIds=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                "apps-users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "appIds",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"appId\": \"<string>\",\n    \"userIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"appId\": \"<string>\",\n    \"userIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                          "createdAt": "2026-10-21T20:27:35.000Z",
+                          "updatedAt": "2026-10-21T20:27:35.000Z",
+                          "uid": "35240-0ea8edab-13c0-4d42-a493-db1c59501a93"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-db44412e-b826-45a3-8476-8668dd4355a1"
+                    }
+                  ],
+                  "id": "7aa2d3ab-c6fe-4ad7-917b-b3296804d036",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-7aa2d3ab-c6fe-4ad7-917b-b3296804d036"
+                },
+                {
+                  "name": "apps-user",
+                  "item": [
+                    {
+                      "name": "Assign user to multiple applications",
+                      "id": "335b1dd4-66eb-4c8f-bca8-adc229126b4a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1/apps-user",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1",
+                            "apps-user"
+                          ]
+                        },
+                        "description": "This route assigns user to multiple applications."
+                      },
+                      "response": [
+                        {
+                          "id": "b1afb2c8-5bb3-4309-b55b-43ac5c9db5ca",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/apps-user",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                "apps-user"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"appId\": \"<string>\",\n    \"userTenantId\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  },\n  {\n    \"appId\": \"<string>\",\n    \"userTenantId\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n]",
+                          "createdAt": "2026-10-21T20:27:35.000Z",
+                          "updatedAt": "2026-10-21T20:27:35.000Z",
+                          "uid": "35240-b1afb2c8-5bb3-4309-b55b-43ac5c9db5ca"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-335b1dd4-66eb-4c8f-bca8-adc229126b4a"
+                    }
+                  ],
+                  "id": "89e91b63-5cea-47c3-a446-873132691c77",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-89e91b63-5cea-47c3-a446-873132691c77"
+                },
+                {
+                  "name": "user-apps",
+                  "item": [
+                    {
+                      "name": "Unassign user from multiple applications",
+                      "id": "e29aac44-2598-4846-9721-a6d6a35c836f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1/user-apps",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1",
+                            "user-apps"
+                          ]
+                        },
+                        "description": "This route unassigns user from multiple applications."
+                      },
+                      "response": [
+                        {
+                          "id": "434fbe8c-4f0c-4fa6-9acc-1e31c0b756a0",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"userId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"appIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/v1/user-apps",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "v1",
+                                "user-apps"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:35.000Z",
+                          "updatedAt": "2026-10-21T20:27:35.000Z",
+                          "uid": "35240-434fbe8c-4f0c-4fa6-9acc-1e31c0b756a0"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-e29aac44-2598-4846-9721-a6d6a35c836f"
+                    }
+                  ],
+                  "id": "534895d2-a961-470a-8828-18ba7c1dc9c8",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-534895d2-a961-470a-8828-18ba7c1dc9c8"
+                },
+                {
+                  "name": "Assign users to application",
+                  "id": "8fd401cf-51cf-4655-b3e0-93d0e6bd07fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/applications/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "applications",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route assigns users to an application."
+                  },
+                  "response": [
+                    {
+                      "id": "787e915f-368b-4747-b07e-6d811fe3518f",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"appId\": \"<string>\",\n    \"userTenantId\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  },\n  {\n    \"appId\": \"<string>\",\n    \"userTenantId\": \"<string>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-10-21T20:27:35.000Z",
+                      "updatedAt": "2026-10-21T20:27:35.000Z",
+                      "uid": "35240-787e915f-368b-4747-b07e-6d811fe3518f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-8fd401cf-51cf-4655-b3e0-93d0e6bd07fa"
+                },
+                {
+                  "name": "Unassign users from application",
+                  "id": "745802e3-58ba-4478-8a57-dd7b259d151c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/applications/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "applications",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route unassigns users from an application."
+                  },
+                  "response": [
+                    {
+                      "id": "17c3c285-0d2e-45f5-a057-70293be201d6",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"appId\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/applications/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "applications",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:27:35.000Z",
+                      "updatedAt": "2026-10-21T20:27:35.000Z",
+                      "uid": "35240-17c3c285-0d2e-45f5-a057-70293be201d6"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-745802e3-58ba-4478-8a57-dd7b259d151c"
+                }
+              ],
+              "id": "150bf3e3-e5e1-484e-ada6-5ae138a41a10",
+              "createdAt": "2026-10-21T20:27:34.000Z",
+              "updatedAt": "2026-10-21T20:27:34.000Z",
+              "uid": "35240-150bf3e3-e5e1-484e-ada6-5ae138a41a10"
+            },
+            {
+              "name": "user-tenants",
+              "item": [
+                {
+                  "name": "active",
+                  "item": [
+                    {
+                      "name": "v1",
+                      "item": [
+                        {
+                          "name": "Get user active tenants in applications",
+                          "id": "7b6d2540-df71-4ce1-b213-32ee96dfed5f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/user-tenants/active/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "user-tenants",
+                                "active",
+                                "v1"
+                              ]
+                            },
+                            "description": "This route gets the active user tenants for an application."
+                          },
+                          "response": [
+                            {
+                              "id": "3b662c3b-7845-4342-963b-35d728c8f384",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The user ID identifier",
+                                    "key": "frontegg-user-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/applications/user-tenants/active/v1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "applications",
+                                    "user-tenants",
+                                    "active",
+                                    "v1"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"applicationActiveTenants\": [\n    {\n      \"tenantId\": \"<string>\",\n      \"applicationId\": \"<string>\"\n    },\n    {\n      \"tenantId\": \"<string>\",\n      \"applicationId\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T20:27:35.000Z",
+                              "updatedAt": "2026-10-21T20:27:35.000Z",
+                              "uid": "35240-3b662c3b-7845-4342-963b-35d728c8f384"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:34.000Z",
+                          "updatedAt": "2026-10-21T20:27:34.000Z",
+                          "uid": "35240-7b6d2540-df71-4ce1-b213-32ee96dfed5f"
+                        },
+                        {
+                          "name": "Switch users active tenant in applications",
+                          "id": "8d332c5c-2261-4334-950a-6afbda9f819d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The user ID identifier",
+                                "key": "frontegg-user-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"activeApplicationTenants\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/applications/user-tenants/active/v1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "applications",
+                                "user-tenants",
+                                "active",
+                                "v1"
+                              ]
+                            },
+                            "description": "This route updates the active user tenants for an application."
+                          },
+                          "response": [
+                            {
+                              "id": "cee770e8-e336-41ab-b714-95e19a322603",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The user ID identifier",
+                                    "key": "frontegg-user-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"activeApplicationTenants\": [\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    },\n    {\n      \"applicationId\": \"<string>\",\n      \"tenantId\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/applications/user-tenants/active/v1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "applications",
+                                    "user-tenants",
+                                    "active",
+                                    "v1"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:27:35.000Z",
+                              "updatedAt": "2026-10-21T20:27:35.000Z",
+                              "uid": "35240-cee770e8-e336-41ab-b714-95e19a322603"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:34.000Z",
+                          "updatedAt": "2026-10-21T20:27:34.000Z",
+                          "uid": "35240-8d332c5c-2261-4334-950a-6afbda9f819d"
+                        }
+                      ],
+                      "id": "1a1f1e61-5949-480d-9f72-81f0ab9babd6",
+                      "createdAt": "2026-10-21T20:27:34.000Z",
+                      "updatedAt": "2026-10-21T20:27:34.000Z",
+                      "uid": "35240-1a1f1e61-5949-480d-9f72-81f0ab9babd6"
+                    }
+                  ],
+                  "id": "9986091a-e305-402a-b86f-336da3068970",
+                  "createdAt": "2026-10-21T20:27:34.000Z",
+                  "updatedAt": "2026-10-21T20:27:34.000Z",
+                  "uid": "35240-9986091a-e305-402a-b86f-336da3068970"
+                }
+              ],
+              "id": "afbd721e-5e32-4146-a60c-c691bfd24c20",
+              "createdAt": "2026-10-21T20:27:34.000Z",
+              "updatedAt": "2026-10-21T20:27:34.000Z",
+              "uid": "35240-afbd721e-5e32-4146-a60c-c691bfd24c20"
+            }
+          ],
+          "id": "5bde519c-06ab-4641-8b29-e811b3caaa5a",
+          "createdAt": "2026-10-21T20:27:34.000Z",
+          "updatedAt": "2026-10-21T20:27:34.000Z",
+          "uid": "35240-5bde519c-06ab-4641-8b29-e811b3caaa5a"
+        }
+      ],
+      "id": "d8236fac-2fac-4248-871d-3e647867d2a3",
+      "createdAt": "2026-10-21T20:27:34.000Z",
+      "updatedAt": "2026-10-21T20:27:34.000Z",
+      "uid": "35240-d8236fac-2fac-4248-871d-3e647867d2a3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

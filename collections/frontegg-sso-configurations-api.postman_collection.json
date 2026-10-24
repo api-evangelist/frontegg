@@ -1,2021 +1,1878 @@
 {
+  "info": {
+    "_postman_id": "1a3be776-baec-47b8-acfb-ff43e00e214d",
+    "name": "Entitlements Agent (PDP) SSO Configurations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:25:42.000Z",
+    "updatedAt": "2026-10-21T20:25:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a3be776-baec-47b8-acfb-ff43e00e214d"
+  },
   "item": [
     {
-      "id": "9b5277c7-7c3e-45db-8a6f-f24b5ad000bc",
-      "name": "SSO Configurations",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "87b94638-b0d4-4a12-9e5f-3f22ad0f0c90",
-          "name": "Create SSO Configuration",
-          "request": {
-            "name": "Create SSO Configuration",
-            "description": {
-              "content": "Create a new Single Sign-On (SSO) configuration for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": \"<object>\",\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\",\n  \"idpClientId\": \"<string>\",\n  \"idpClientSecret\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "sso",
+          "item": [
             {
-              "id": "3ecf921d-a100-4812-ac5b-85a60a097e15",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": \"<object>\",\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\",\n  \"idpClientId\": \"<string>\",\n  \"idpClientSecret\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3df9d90b-7c7c-4682-914f-5b2b7c9fe36e",
-          "name": "Get SSO Configurations",
-          "request": {
-            "name": "Get SSO Configurations",
-            "description": {
-              "content": "Retrieve Single Sign-On (SSO) configurations for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "411be075-4a5f-48ff-bf78-277aea49bf05",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "364d668a-ef6a-4faf-91f4-df2b623f6bc3",
-          "name": "Delete SSO Configuration",
-          "request": {
-            "name": "Delete SSO Configuration",
-            "description": {
-              "content": "Delete Single Sign-On (SSO) configurations for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "452b8621-76b4-489a-9bb4-8c434ffaad00",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "configurations",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8b449909-cbba-4e26-ab00-362df5fbed9f",
-          "name": "Update SSO Configuration",
-          "request": {
-            "name": "Update SSO Configuration",
-            "description": {
-              "content": "Update SSO configuration",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": \"<object>\",\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\",\n  \"idpClientId\": \"<string>\",\n  \"idpClientSecret\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f6ebd385-b64b-4e90-abd4-3b3660ce454d",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": \"<object>\",\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\",\n  \"idpClientId\": \"<string>\",\n  \"idpClientSecret\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1c298276-5622-4fda-9e91-019d4c8587e5",
-          "name": "Create SSO Configuration Using Metadata",
-          "request": {
-            "name": "Create SSO Configuration Using Metadata",
-            "description": {
-              "content": "Create a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                "metadata"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-metadata-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"metadata\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "58e8f313-ecd3-4675-a63b-e5d2f006c32c",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-metadata-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"metadata\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e7a25b01-bbaf-47d6-81a9-69feb6166668",
-          "name": "Update SSO Configuration Using Metadata",
-          "request": {
-            "name": "Update SSO Configuration Using Metadata",
-            "description": {
-              "content": "Update a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "metadata"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-metadata-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"metadata\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1ec3dc60-b024-4472-b726-405373a546e4",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-metadata-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"metadata\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "674737e0-a19f-44f8-aa03-f1cfeae4e45f",
-          "name": "Create SSO Domain",
-          "request": {
-            "name": "Create SSO Domain",
-            "description": {
-              "content": "Add a domain to a Single Sign-On (SSO) configuration for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "domains"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-domains-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a353d26f-7e8f-4948-a128-9ac10f70f822",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "domains"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-domains-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e32a2fbb-8b8c-4387-bad9-e068239594ac",
-          "name": "Delete SSO Domain",
-          "request": {
-            "name": "Delete SSO Domain",
-            "description": {
-              "content": "Remove a domain from a Single Sign-On (SSO) configuration for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "domains",
-                ":domainId"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-domains-domainId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "domainId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "98d0465a-2751-4605-9860-c754b4bf9748",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "domains",
-                    ":domainId"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-domains-domainId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
+                      "name": "{configurationId}",
+                      "item": [
+                        {
+                          "name": "metadata",
+                          "item": [
+                            {
+                              "name": "Update SSO configuration using metadata",
+                              "id": "170818ad-806f-41fc-8e71-05a03bb41513",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"metadata\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "0b274f6d-9376-46f0-aa08-ae526a256863",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "f8863c47-4832-42c3-8689-020102cb5af7",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"metadata\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/metadata",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "metadata"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-f8863c47-4832-42c3-8689-020102cb5af7"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-170818ad-806f-41fc-8e71-05a03bb41513"
+                            }
+                          ],
+                          "id": "96298bfc-df74-489b-98b4-5d6de1f90d07",
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-96298bfc-df74-489b-98b4-5d6de1f90d07"
+                        },
+                        {
+                          "name": "domains",
+                          "item": [
+                            {
+                              "name": "{domainId}",
+                              "item": [
+                                {
+                                  "name": "validate",
+                                  "item": [
+                                    {
+                                      "name": "email",
+                                      "item": [
+                                        {
+                                          "name": "Validate SSO domain by email",
+                                          "id": "14826993-bb47-4a0d-9249-6093157e5a7e",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "description": "(Required) The tenant ID identifier",
+                                                "key": "frontegg-tenant-id",
+                                                "value": "<string>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains/:domainId/validate/email",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "resources",
+                                                "sso",
+                                                "v1",
+                                                "configurations",
+                                                ":configurationId",
+                                                "domains",
+                                                ":domainId",
+                                                "validate",
+                                                "email"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "ac557135-92b1-4e1f-b436-a0782910e71d",
+                                                  "key": "configurationId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                },
+                                                {
+                                                  "id": "01ee55e0-89e2-49b1-b86b-480ad654cfb3",
+                                                  "key": "domainId",
+                                                  "value": "<string>",
+                                                  "description": "(Required) "
+                                                }
+                                              ]
+                                            },
+                                            "description": "Validate SSO using user's email domain"
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "5d9834ec-cb28-4b10-a570-971e7f2d0f4f",
+                                              "name": "New Response",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "description": "(Required) The tenant ID identifier",
+                                                    "key": "frontegg-tenant-id",
+                                                    "value": "<string>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains/:domainId/validate/email",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "resources",
+                                                    "sso",
+                                                    "v1",
+                                                    "configurations",
+                                                    ":configurationId",
+                                                    "domains",
+                                                    ":domainId",
+                                                    "validate",
+                                                    "email"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "configurationId"
+                                                    },
+                                                    {
+                                                      "key": "domainId"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-10-21T20:25:43.000Z",
+                                              "updatedAt": "2026-10-21T20:25:43.000Z",
+                                              "uid": "35240-5d9834ec-cb28-4b10-a570-971e7f2d0f4f"
+                                            }
+                                          ],
+                                          "createdAt": "2026-10-21T20:25:42.000Z",
+                                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                                          "uid": "35240-14826993-bb47-4a0d-9249-6093157e5a7e"
+                                        }
+                                      ],
+                                      "id": "49762abf-3faf-4115-bc24-82b1a5db6b58",
+                                      "createdAt": "2026-10-21T20:25:42.000Z",
+                                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                                      "uid": "35240-49762abf-3faf-4115-bc24-82b1a5db6b58"
+                                    }
+                                  ],
+                                  "id": "4967aaf6-9829-4491-b45a-f87c6b8b65d3",
+                                  "createdAt": "2026-10-21T20:25:42.000Z",
+                                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                                  "uid": "35240-4967aaf6-9829-4491-b45a-f87c6b8b65d3"
+                                },
+                                {
+                                  "name": "Delete SSO domain",
+                                  "id": "13d5f705-8c0d-499d-920e-07cccf7737b5",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains/:domainId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "domains",
+                                        ":domainId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "6c11cd1d-62c3-4a9f-9117-661a54bdac56",
+                                          "key": "configurationId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "655b6bf8-f4bf-4687-a693-4010e25ff1d0",
+                                          "key": "domainId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b41ef40f-e95b-45bc-9abb-fa5ac67cf2c8",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The tenant ID identifier",
+                                            "key": "frontegg-tenant-id",
+                                            "value": "<string>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains/:domainId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "sso",
+                                            "v1",
+                                            "configurations",
+                                            ":configurationId",
+                                            "domains",
+                                            ":domainId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "configurationId"
+                                            },
+                                            {
+                                              "key": "domainId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-21T20:25:43.000Z",
+                                      "updatedAt": "2026-10-21T20:25:43.000Z",
+                                      "uid": "35240-b41ef40f-e95b-45bc-9abb-fa5ac67cf2c8"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:25:42.000Z",
+                                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                                  "uid": "35240-13d5f705-8c0d-499d-920e-07cccf7737b5"
+                                }
+                              ],
+                              "id": "5486ffb6-5945-4e3a-bf54-761d82829aca",
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-5486ffb6-5945-4e3a-bf54-761d82829aca"
+                            },
+                            {
+                              "name": "Create SSO domain",
+                              "id": "e42bb733-af2f-4d46-8a81-3a72399d2350",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "domains"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "cfa8a1a5-ee16-4074-9baa-2743885457a1",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "bdd57f07-e7ef-45a0-866f-43d87f2fa602",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/domains",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "domains"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-bdd57f07-e7ef-45a0-866f-43d87f2fa602"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-e42bb733-af2f-4d46-8a81-3a72399d2350"
+                            }
+                          ],
+                          "id": "d50e70fd-6ccf-4203-ba04-46c3fb4695fa",
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-d50e70fd-6ccf-4203-ba04-46c3fb4695fa"
+                        },
+                        {
+                          "name": "roles",
+                          "item": [
+                            {
+                              "name": "Set SSO default roles",
+                              "id": "a023f778-1de1-4838-bd3c-306697260e34",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/roles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "roles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d414807c-4327-47c0-9f7d-773d3da5a108",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "0e6b3462-2626-4221-90c2-de9ee29b7e42",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/roles",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "roles"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-0e6b3462-2626-4221-90c2-de9ee29b7e42"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-a023f778-1de1-4838-bd3c-306697260e34"
+                            },
+                            {
+                              "name": "Get SSO default roles",
+                              "id": "840ce90f-1839-4ca3-8afc-b215e6ae7ba8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/roles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "roles"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "6bdedaf6-d99f-4940-91c4-8b319a6b57d5",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "8d79d630-3b24-4fa2-ad94-59ceb098b700",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/roles",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "roles"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-8d79d630-3b24-4fa2-ad94-59ceb098b700"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-840ce90f-1839-4ca3-8afc-b215e6ae7ba8"
+                            }
+                          ],
+                          "id": "14d0dcbe-81b9-457e-92f5-e3498e56d21c",
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-14d0dcbe-81b9-457e-92f5-e3498e56d21c"
+                        },
+                        {
+                          "name": "groups",
+                          "item": [
+                            {
+                              "name": "{groupId}",
+                              "item": [
+                                {
+                                  "name": "Update SSO group",
+                                  "id": "e4e13725-6189-4f6b-958d-50a8bb2551ea",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PATCH",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "groups",
+                                        ":groupId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "30b08b74-0580-4a05-8573-aae33a898587",
+                                          "key": "configurationId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "ca9c6cff-86f7-4aa7-95bc-a2b2dc57aa4b",
+                                          "key": "groupId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1e8e6264-258d-4619-bf45-d08ce4e29a8a",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "PATCH",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The tenant ID identifier",
+                                            "key": "frontegg-tenant-id",
+                                            "value": "<string>"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "sso",
+                                            "v1",
+                                            "configurations",
+                                            ":configurationId",
+                                            "groups",
+                                            ":groupId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "configurationId"
+                                            },
+                                            {
+                                              "key": "groupId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-21T20:25:43.000Z",
+                                      "updatedAt": "2026-10-21T20:25:43.000Z",
+                                      "uid": "35240-1e8e6264-258d-4619-bf45-d08ce4e29a8a"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:25:42.000Z",
+                                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                                  "uid": "35240-e4e13725-6189-4f6b-958d-50a8bb2551ea"
+                                },
+                                {
+                                  "name": "Delete SSO group",
+                                  "id": "c2fa4024-5821-40f4-b346-f4d2b2576ac2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "groups",
+                                        ":groupId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e267a945-2653-451c-9ad2-6af541e60e43",
+                                          "key": "configurationId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        },
+                                        {
+                                          "id": "9ac0f872-46b8-4ca9-bf7c-d3b31f869cc3",
+                                          "key": "groupId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "07f7fcd4-c8f1-4b2f-a687-afff179190b1",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The tenant ID identifier",
+                                            "key": "frontegg-tenant-id",
+                                            "value": "<string>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups/:groupId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "sso",
+                                            "v1",
+                                            "configurations",
+                                            ":configurationId",
+                                            "groups",
+                                            ":groupId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "configurationId"
+                                            },
+                                            {
+                                              "key": "groupId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-21T20:25:43.000Z",
+                                      "updatedAt": "2026-10-21T20:25:43.000Z",
+                                      "uid": "35240-07f7fcd4-c8f1-4b2f-a687-afff179190b1"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:25:42.000Z",
+                                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                                  "uid": "35240-c2fa4024-5821-40f4-b346-f4d2b2576ac2"
+                                }
+                              ],
+                              "id": "a9cd828c-1881-4173-aa7d-2a59edd8c3c5",
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-a9cd828c-1881-4173-aa7d-2a59edd8c3c5"
+                            },
+                            {
+                              "name": "Create an SSO group",
+                              "id": "e83deeb5-788d-4a7c-8b29-504d806b7649",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "groups"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9e97aeee-fe71-4bbb-ae7c-406ac8b9ac03",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "8d16859c-c40e-4862-944e-69e4909ebb6d",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "groups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-8d16859c-c40e-4862-944e-69e4909ebb6d"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-e83deeb5-788d-4a7c-8b29-504d806b7649"
+                            },
+                            {
+                              "name": "Get SSO group",
+                              "id": "18c7e075-8d09-4d4a-8157-4d9ee7dc3bce",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId",
+                                    "groups"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1aee9467-a3a2-49ee-99d6-80b801078736",
+                                      "key": "configurationId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "9dc25b76-207f-4f52-8470-bdc6aa542446",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) The tenant ID identifier",
+                                        "key": "frontegg-tenant-id",
+                                        "value": "<string>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId/groups",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "sso",
+                                        "v1",
+                                        "configurations",
+                                        ":configurationId",
+                                        "groups"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "configurationId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:25:43.000Z",
+                                  "updatedAt": "2026-10-21T20:25:43.000Z",
+                                  "uid": "35240-9dc25b76-207f-4f52-8470-bdc6aa542446"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-18c7e075-8d09-4d4a-8157-4d9ee7dc3bce"
+                            }
+                          ],
+                          "id": "cfd9021c-ef0c-48f4-810b-824770e283a9",
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-cfd9021c-ef0c-48f4-810b-824770e283a9"
+                        },
+                        {
+                          "name": "Delete SSO configuration",
+                          "id": "30404c02-da01-4bb3-8754-9a1465f4f8be",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations",
+                                ":configurationId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c8a8c58c-b432-4373-b3ba-1d2b876388ea",
+                                  "key": "configurationId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "ba4e01e0-1e94-46ea-9e16-09fbd8e65052",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/:configurationId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    ":configurationId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "configurationId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:25:43.000Z",
+                              "updatedAt": "2026-10-21T20:25:43.000Z",
+                              "uid": "35240-ba4e01e0-1e94-46ea-9e16-09fbd8e65052"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-30404c02-da01-4bb3-8754-9a1465f4f8be"
+                        }
+                      ],
+                      "id": "f48526b8-4d87-4352-b214-f45f718755e8",
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-f48526b8-4d87-4352-b214-f45f718755e8"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "domainId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8a5d7e8d-c008-4c05-9a5d-c96f3eae9242",
-          "name": "Validate SSO Domain by Email",
-          "request": {
-            "name": "Validate SSO Domain by Email",
-            "description": {
-              "content": "Validate a domain in a Single Sign-On (SSO) configuration using the user's email domain.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "domains",
-                ":domainId",
-                "validate",
-                "email"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-domains-domainId-validate-email-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "domainId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "04bf0341-be66-4a21-b1bf-93ec0ac75932",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "domains",
-                    ":domainId",
-                    "validate",
-                    "email"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-domains-domainId-validate-email-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
+                      "name": "metadata",
+                      "item": [
+                        {
+                          "name": "Create SSO configuration using metadata",
+                          "id": "6d31ad97-990b-4ca8-9f36-22e7e5858965",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"metadata\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations",
+                                "metadata"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "f823ccfd-d8e3-4665-b195-6fdc3bc4cdd1",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"metadata\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    "metadata"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:25:43.000Z",
+                              "updatedAt": "2026-10-21T20:25:43.000Z",
+                              "uid": "35240-f823ccfd-d8e3-4665-b195-6fdc3bc4cdd1"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-6d31ad97-990b-4ca8-9f36-22e7e5858965"
+                        }
+                      ],
+                      "id": "9e30ee53-d5ee-42e1-8276-afd248fcb17b",
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-9e30ee53-d5ee-42e1-8276-afd248fcb17b"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "domainId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "840b4133-91f4-427c-ac09-8bff3fada7a9",
-          "name": "Validate SSO Domain",
-          "request": {
-            "name": "Validate SSO Domain",
-            "description": {
-              "content": "Validate a domain in a Single Sign-On (SSO) configuration for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v2",
-                "configurations",
-                ":configurationId",
-                "domains",
-                ":domainId",
-                "validate"
-              ],
-              "host": [
-                "{{resources-sso-v2-configurations-configurationId-domains-domainId-validate-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "domainId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "PUT",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "92357dd9-c59e-45ca-b383-23c583fd74d6",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v2",
-                    "configurations",
-                    ":configurationId",
-                    "domains",
-                    ":domainId",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{resources-sso-v2-configurations-configurationId-domains-domainId-validate-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
+                      "name": "domains",
+                      "item": [
+                        {
+                          "name": "Create or update SSO domains configuration",
+                          "id": "43c46097-20f5-42ef-87e8-6e99f5d1263c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"allowVerifiedUsersToAddDomains\": \"<boolean>\",\n  \"skipDomainVerification\": \"<boolean>\",\n  \"bypassDomainCrossValidation\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations/domains",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations",
+                                "domains"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "a489f436-38fd-4246-9d47-9160f2e36cbc",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"allowVerifiedUsersToAddDomains\": \"<boolean>\",\n  \"skipDomainVerification\": \"<boolean>\",\n  \"bypassDomainCrossValidation\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/domains",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    "domains"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:25:43.000Z",
+                              "updatedAt": "2026-10-21T20:25:43.000Z",
+                              "uid": "35240-a489f436-38fd-4246-9d47-9160f2e36cbc"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-43c46097-20f5-42ef-87e8-6e99f5d1263c"
+                        },
+                        {
+                          "name": "Get SSO domains configuration",
+                          "id": "082b9507-856b-4e43-b349-a7902dc479ec",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations/domains",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations",
+                                "domains"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "e3110792-0d29-4259-b3bf-a321c1abc754",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/sso/v1/configurations/domains",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "sso",
+                                    "v1",
+                                    "configurations",
+                                    "domains"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:25:43.000Z",
+                              "updatedAt": "2026-10-21T20:25:43.000Z",
+                              "uid": "35240-e3110792-0d29-4259-b3bf-a321c1abc754"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-082b9507-856b-4e43-b349-a7902dc479ec"
+                        }
+                      ],
+                      "id": "3dfa817d-de65-4aab-8e80-d5db03ea4faa",
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-3dfa817d-de65-4aab-8e80-d5db03ea4faa"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "domainId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "50b078c6-ae4b-41c1-b1b3-5da68b2c7f97",
-          "name": "Set SSO Default Roles",
-          "request": {
-            "name": "Set SSO Default Roles",
-            "description": {
-              "content": "Set default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "roles"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-roles-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "902d3333-f15d-47d9-add0-355860a21a80",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "roles"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-roles-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1a134725-c36c-4990-bf36-6709aada6e2f",
-          "name": "Get SSO Default Roles",
-          "request": {
-            "name": "Get SSO Default Roles",
-            "description": {
-              "content": "Retrieve default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "roles"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-roles-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "08b7cdda-7a80-4572-9196-35276b3a9caf",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "roles"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-roles-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "19e4b3bf-3cb2-4b0d-bd3a-a3ddcdca6b79",
-          "name": "Create an SSO Group",
-          "request": {
-            "name": "Create an SSO Group",
-            "description": {
-              "content": "Create a new SSO group for user management and access control within the specified SSO configuration for the account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "groups"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-groups-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3ba3906e-0c22-4052-9e21-6a80d7b7d9a6",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "groups"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-groups-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "de199190-8d06-43b1-b9b2-3d05d08e5524",
-          "name": "Get SSO Group",
-          "request": {
-            "name": "Get SSO Group",
-            "description": {
-              "content": "Retrieve an SSO group from the specified SSO configuration for the account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "groups"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-groups-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3ef31758-ce66-4293-8d26-77726f80f64d",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "groups"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-groups-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bbd74aee-b2a3-4fb6-9926-0fda3521d302",
-          "name": "Update SSO Group",
-          "request": {
-            "name": "Update SSO Group",
-            "description": {
-              "content": "Update an existing SSO group within the specified SSO configuration for the account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "groups",
-                ":groupId"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-groups-groupId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "groupId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8010187a-b187-4c5e-baba-2c587bda805a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "groups",
-                    ":groupId"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-groups-groupId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
+                      "name": "Create SSO configuration",
+                      "id": "a96b3d4a-0ced-4e49-b37f-f89aa7f85020",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": {},\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/sso/v1/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "sso",
+                            "v1",
+                            "configurations"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "3040271b-0fd6-49d7-a91e-8d167d183c50",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"ssoEndpoint\": \"<string>\",\n  \"publicCertificate\": \"<string>\",\n  \"signRequest\": \"<boolean>\",\n  \"acsUrl\": \"<string>\",\n  \"spEntityId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"oidcClientId\": \"<string>\",\n  \"oidcSecret\": \"<string>\",\n  \"configMetadata\": {},\n  \"overrideActiveTenant\": \"<boolean>\",\n  \"subAccountAccessLimit\": \"<number>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:25:43.000Z",
+                          "updatedAt": "2026-10-21T20:25:43.000Z",
+                          "uid": "35240-3040271b-0fd6-49d7-a91e-8d167d183c50"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-a96b3d4a-0ced-4e49-b37f-f89aa7f85020"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "groupId",
-                      "description": "(Required) "
+                      "name": "Get SSO configurations",
+                      "id": "88bdeade-22d5-48a7-9a1b-f03d474cf3b6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/sso/v1/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "sso",
+                            "v1",
+                            "configurations"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "51f0c725-8f98-405d-83f6-70b455d237c6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/sso/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "sso",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:25:43.000Z",
+                          "updatedAt": "2026-10-21T20:25:43.000Z",
+                          "uid": "35240-51f0c725-8f98-405d-83f6-70b455d237c6"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-88bdeade-22d5-48a7-9a1b-f03d474cf3b6"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"group\": \"<string>\",\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "911c302d-3e96-4861-9da0-b7557bfbb55b",
+                  "createdAt": "2026-10-21T20:25:42.000Z",
+                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                  "uid": "35240-911c302d-3e96-4861-9da0-b7557bfbb55b"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "204fba19-a255-4dfd-9556-84e3431d12f0",
-          "name": "Delete SSO Group",
-          "request": {
-            "name": "Delete SSO Group",
-            "description": {
-              "content": "Delete an existing SSO group from the specified SSO configuration for the account (tenant).",
-              "type": "text/plain"
+              "id": "6ca48d08-4fbf-43fc-b7ca-374db7a92304",
+              "createdAt": "2026-10-21T20:25:42.000Z",
+              "updatedAt": "2026-10-21T20:25:42.000Z",
+              "uid": "35240-6ca48d08-4fbf-43fc-b7ca-374db7a92304"
             },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                ":configurationId",
-                "groups",
-                ":groupId"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-configurationId-groups-groupId-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "configurationId",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "groupId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The account (tenant) ID identifier",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "7ea16f2b-5553-4fa9-a760-71bd0e30f34e",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    ":configurationId",
-                    "groups",
-                    ":groupId"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-configurationId-groups-groupId-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "v2",
+              "item": [
+                {
+                  "name": "configurations",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "configurationId",
-                      "description": "(Required) "
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "groupId",
-                      "description": "(Required) "
+                      "name": "{configurationId}",
+                      "item": [
+                        {
+                          "name": "domains",
+                          "item": [
+                            {
+                              "name": "{domainId}",
+                              "item": [
+                                {
+                                  "name": "validate",
+                                  "item": [
+                                    {
+                                      "name": "Validate SSO domain",
+                                      "id": "9ddeec50-66d1-4ed3-9002-394fc69c7fe5",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "(Required) The tenant ID identifier",
+                                            "key": "frontegg-tenant-id",
+                                            "value": "<string>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/sso/v2/configurations/:configurationId/domains/:domainId/validate",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "sso",
+                                            "v2",
+                                            "configurations",
+                                            ":configurationId",
+                                            "domains",
+                                            ":domainId",
+                                            "validate"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "c24cab8c-4c76-4e2a-ab8e-7f2fd6126a0d",
+                                              "key": "configurationId",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            },
+                                            {
+                                              "id": "372d5221-9954-4e7d-9ba1-bf2eb219ec82",
+                                              "key": "domainId",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "028201e9-4122-4339-8c93-62c5b4f9cb4f",
+                                          "name": "New Response",
+                                          "originalRequest": {
+                                            "method": "PUT",
+                                            "header": [
+                                              {
+                                                "description": "(Required) The tenant ID identifier",
+                                                "key": "frontegg-tenant-id",
+                                                "value": "<string>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/resources/sso/v2/configurations/:configurationId/domains/:domainId/validate",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "resources",
+                                                "sso",
+                                                "v2",
+                                                "configurations",
+                                                ":configurationId",
+                                                "domains",
+                                                ":domainId",
+                                                "validate"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "configurationId"
+                                                },
+                                                {
+                                                  "key": "domainId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-10-21T20:25:43.000Z",
+                                          "updatedAt": "2026-10-21T20:25:43.000Z",
+                                          "uid": "35240-028201e9-4122-4339-8c93-62c5b4f9cb4f"
+                                        }
+                                      ],
+                                      "createdAt": "2026-10-21T20:25:42.000Z",
+                                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                                      "uid": "35240-9ddeec50-66d1-4ed3-9002-394fc69c7fe5"
+                                    }
+                                  ],
+                                  "id": "ccaa3550-95ff-410c-9ab3-4dbf53c5786d",
+                                  "createdAt": "2026-10-21T20:25:42.000Z",
+                                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                                  "uid": "35240-ccaa3550-95ff-410c-9ab3-4dbf53c5786d"
+                                }
+                              ],
+                              "id": "55a8059d-4d79-4824-87d1-4db762b5d10b",
+                              "createdAt": "2026-10-21T20:25:42.000Z",
+                              "updatedAt": "2026-10-21T20:25:42.000Z",
+                              "uid": "35240-55a8059d-4d79-4824-87d1-4db762b5d10b"
+                            }
+                          ],
+                          "id": "654ecc45-8436-4af7-b2f8-ce9bb6bb1c9d",
+                          "createdAt": "2026-10-21T20:25:42.000Z",
+                          "updatedAt": "2026-10-21T20:25:42.000Z",
+                          "uid": "35240-654ecc45-8436-4af7-b2f8-ce9bb6bb1c9d"
+                        }
+                      ],
+                      "id": "a1a9c644-1a69-4f1a-97a9-a87eb80784ce",
+                      "createdAt": "2026-10-21T20:25:42.000Z",
+                      "updatedAt": "2026-10-21T20:25:42.000Z",
+                      "uid": "35240-a1a9c644-1a69-4f1a-97a9-a87eb80784ce"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) The account (tenant) ID identifier",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "2d56ff41-98ed-4663-8f1b-a2eeed808153",
+                  "createdAt": "2026-10-21T20:25:42.000Z",
+                  "updatedAt": "2026-10-21T20:25:42.000Z",
+                  "uid": "35240-2d56ff41-98ed-4663-8f1b-a2eeed808153"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "0a0301c4-c680-476e-a6be-4b4edac6ec62",
+              "createdAt": "2026-10-21T20:25:42.000Z",
+              "updatedAt": "2026-10-21T20:25:42.000Z",
+              "uid": "35240-0a0301c4-c680-476e-a6be-4b4edac6ec62"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "857e7b79-c4fb-4673-93d6-d4ee8f44e6be",
-          "name": "Create or Update SSO Domains Configuration",
-          "request": {
-            "name": "Create or Update SSO Domains Configuration",
-            "description": {
-              "content": "Create or update the SSO domains configuration for the account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                "domains"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-domains-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"allowVerifiedUsersToAddDomains\": \"<boolean>\",\n  \"skipDomainVerification\": \"<boolean>\",\n  \"bypassDomainCrossValidation\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fb7a22ee-7b4a-4592-98ca-6b4ec6615d64",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    "domains"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-domains-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"allowVerifiedUsersToAddDomains\": \"<boolean>\",\n  \"skipDomainVerification\": \"<boolean>\",\n  \"bypassDomainCrossValidation\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e4261fa0-cb3f-4077-8950-cde01883555e",
-          "name": "Get SSO Domains Configuration",
-          "request": {
-            "name": "Get SSO Domains Configuration",
-            "description": {
-              "content": "Retrieve the SSO domains configuration for the account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "sso",
-                "v1",
-                "configurations",
-                "domains"
-              ],
-              "host": [
-                "{{resources-sso-v1-configurations-domains-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cc5f9cdc-4441-4a1c-85fa-c5d4199da1d7",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "sso",
-                    "v1",
-                    "configurations",
-                    "domains"
-                  ],
-                  "host": [
-                    "{{resources-sso-v1-configurations-domains-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "597e69ba-2ba3-4349-9d35-9b15da9dd0d9",
+          "createdAt": "2026-10-21T20:25:42.000Z",
+          "updatedAt": "2026-10-21T20:25:42.000Z",
+          "uid": "35240-597e69ba-2ba3-4349-9d35-9b15da9dd0d9"
         }
       ],
-      "event": []
+      "id": "015179b9-e2e7-4dab-a098-028cebc0ab84",
+      "createdAt": "2026-10-21T20:25:42.000Z",
+      "updatedAt": "2026-10-21T20:25:42.000Z",
+      "uid": "35240-015179b9-e2e7-4dab-a098-028cebc0ab84"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-metadata-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-metadata-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-domains-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-domains-domainId-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-domains-domainId-validate-email-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v2-configurations-configurationId-domains-domainId-validate-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-roles-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-groups-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-configurationId-groups-groupId-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/team",
-      "key": "resources-sso-v1-configurations-domains-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "89fbfe5b-9d5e-4c64-a196-4c8180470249",
-    "name": "Multi-Apps Overview Account Invitations SSO Configurations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

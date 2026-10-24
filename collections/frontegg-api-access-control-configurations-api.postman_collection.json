@@ -1,240 +1,269 @@
 {
+  "info": {
+    "_postman_id": "54f01785-9895-44a2-881d-b4821494bf23",
+    "name": "Entitlements Agent (PDP) API Access Control Configurations\u2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:22:42.000Z",
+    "updatedAt": "2026-10-21T20:22:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54f01785-9895-44a2-881d-b4821494bf23"
+  },
   "item": [
     {
-      "id": "41de323b-f653-4e7e-94c9-4075f1a01cf9",
-      "name": "API Access Control Configurations",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "9b0095e2-47bc-4189-a948-bf824d5e87ce",
-          "name": "Get Routes Configuration",
-          "request": {
-            "name": "Get Routes Configuration",
-            "description": {
-              "content": "Retrieve routes configuration",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                "configuration"
-              ],
-              "host": [
-                "{{resources-routes-v1-configuration-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "routes",
+          "item": [
             {
-              "id": "f691c60b-6489-42e8-8ad0-63909589cd07",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    "configuration"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-configuration-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"vendorId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"accessControlMode\": \"monitor\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "182b040c-bdbc-40f6-8a3b-ea12efb29635",
-          "name": "Update Routes Configuration",
-          "request": {
-            "name": "Update Routes Configuration",
-            "description": {
-              "content": "Update route configurations",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                "configuration"
-              ],
-              "host": [
-                "{{resources-routes-v1-configuration-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"accessControlMode\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c05fe705-90e3-4bf7-90c2-b870da4cc664",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    "configuration"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-configuration-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "name": "configuration",
+                  "item": [
+                    {
+                      "name": "Get Routes Configuration",
+                      "id": "8bacb69a-e2dc-4d0b-a1d1-8086445d0fc1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            "configuration"
+                          ]
+                        },
+                        "description": "Retrieve routes configuration"
+                      },
+                      "response": [
+                        {
+                          "id": "a1ad4e00-084b-4c3d-8682-41b44d76fd16",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                "configuration"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"accessControlMode\": \"guard\"\n}",
+                          "createdAt": "2026-10-21T20:22:42.000Z",
+                          "updatedAt": "2026-10-21T20:22:42.000Z",
+                          "uid": "35240-a1ad4e00-084b-4c3d-8682-41b44d76fd16"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:42.000Z",
+                      "updatedAt": "2026-10-21T20:22:42.000Z",
+                      "uid": "35240-8bacb69a-e2dc-4d0b-a1d1-8086445d0fc1"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"accessControlMode\": \"monitor\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "name": "Update Routes Configuration",
+                      "id": "51ae03c8-88a3-43f7-9062-002d28319663",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"accessControlMode\": \"monitor\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            "configuration"
+                          ]
+                        },
+                        "description": "Update route configurations"
+                      },
+                      "response": [
+                        {
+                          "id": "5e53c636-d8cc-4664-8cd1-b0264c920998",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"accessControlMode\": \"monitor\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                "configuration"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"vendorId\": \"<string>\",\n  \"accessControlMode\": \"guard\"\n}",
+                          "createdAt": "2026-10-21T20:22:42.000Z",
+                          "updatedAt": "2026-10-21T20:22:42.000Z",
+                          "uid": "35240-5e53c636-d8cc-4664-8cd1-b0264c920998"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:42.000Z",
+                      "updatedAt": "2026-10-21T20:22:42.000Z",
+                      "uid": "35240-51ae03c8-88a3-43f7-9062-002d28319663"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "id": "a5757450-a08f-4d21-8c8c-285fd713d677",
+                  "createdAt": "2026-10-21T20:22:42.000Z",
+                  "updatedAt": "2026-10-21T20:22:42.000Z",
+                  "uid": "35240-a5757450-a08f-4d21-8c8c-285fd713d677"
                 }
               ],
-              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"vendorId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"accessControlMode\": \"monitor\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "7bb134b5-7f8d-42ad-91c0-cf551484c18d",
+              "createdAt": "2026-10-21T20:22:42.000Z",
+              "updatedAt": "2026-10-21T20:22:42.000Z",
+              "uid": "35240-7bb134b5-7f8d-42ad-91c0-cf551484c18d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "15dd9eb8-b348-4376-b0e5-ef14e896319e",
+          "createdAt": "2026-10-21T20:22:42.000Z",
+          "updatedAt": "2026-10-21T20:22:42.000Z",
+          "uid": "35240-15dd9eb8-b348-4376-b0e5-ef14e896319e"
         }
       ],
-      "event": []
+      "id": "497bcfd0-75fb-4224-b9e9-da0eb4f87e54",
+      "createdAt": "2026-10-21T20:22:42.000Z",
+      "updatedAt": "2026-10-21T20:22:42.000Z",
+      "uid": "35240-497bcfd0-75fb-4224-b9e9-da0eb4f87e54"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-routes-v1-configuration-Url"
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "b868e4cf-93bb-44e4-b0e1-461cf6313813",
-    "name": "Multi-Apps Overview Account Invitations API Access Control Configurations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

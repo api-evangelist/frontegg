@@ -1,1813 +1,686 @@
 {
+  "info": {
+    "_postman_id": "0dcd4e19-0e6f-4648-984a-97d804203965",
+    "name": "Entitlements Agent (PDP) Core settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:22:55.000Z",
+    "updatedAt": "2026-10-21T20:22:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0dcd4e19-0e6f-4648-984a-97d804203965"
+  },
   "item": [
     {
-      "id": "ac9f2620-4336-46d9-b29c-8860d8300d2c",
-      "name": "Core Settings",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "602c79c6-9173-4fcb-b60d-19ed4f86aed8",
-          "name": "Update Identity Management Configuration",
-          "request": {
-            "name": "Update Identity Management Configuration",
-            "description": {
-              "content": "Update the identity management configuration for your environment.\n\nUse this endpoint to add or update identity management parameters by sending the desired values in the request body.\n\nRefer to the parameter documentation for the list of supported values.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1"
-              ],
-              "host": [
-                "{{resources-configurations-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"cookieSameSite\": \"<string>\",\n  \"machineToMachineAuthStrategy\": \"<string>\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"<string>\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\",\n  \"authStrategy\": \"<string>\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"skipTenantValidation\": \"<boolean>\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\",\n  \"allowCustomLoginTenantSwitch\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "7b2c2830-84d0-4c2a-aa47-23f1516d2302",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+              "name": "v1",
+              "item": [
+                {
+                  "name": "captcha-policy",
+                  "item": [
+                    {
+                      "name": "Create captcha policy",
+                      "id": "6dc59f6a-3bf0-463b-a1ca-4a6df5e178df",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "captcha-policy"
+                          ]
+                        },
+                        "description": "This route creates a captcha policy for all tenants. To enable the Captcha Policy, make sure to set the enabled variable to true, the site key and secret key to the ones you got from reCaptcha and the minimum score to a number between 0 to 1."
+                      },
+                      "response": [
+                        {
+                          "id": "14b3c0ae-2fc8-4556-a0cf-7990fa4e3641",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "captcha-policy"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:22:56.000Z",
+                          "updatedAt": "2026-10-21T20:22:56.000Z",
+                          "uid": "35240-14b3c0ae-2fc8-4556-a0cf-7990fa4e3641"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-6dc59f6a-3bf0-463b-a1ca-4a6df5e178df"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    {
+                      "name": "Update captcha policy",
+                      "id": "55f79da9-e2b5-4881-80e6-a9a85de12f0d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "captcha-policy"
+                          ]
+                        },
+                        "description": "This route updates a captcha policy for all tenants. To enable the Captcha Policy, make sure to set the enabled variable to true, the site key and secret key to the ones you got from reCaptcha and the minimum score to a number between 0 to 1."
+                      },
+                      "response": [
+                        {
+                          "id": "7d4de1ef-f058-48a2-8c7e-8778a6abb867",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "captcha-policy"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:22:56.000Z",
+                          "updatedAt": "2026-10-21T20:22:56.000Z",
+                          "uid": "35240-7d4de1ef-f058-48a2-8c7e-8778a6abb867"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-55f79da9-e2b5-4881-80e6-a9a85de12f0d"
+                    },
+                    {
+                      "name": "Get captcha policy",
+                      "id": "89b0f57d-f960-475e-b5e4-a33ec9381234",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "captcha-policy"
+                          ]
+                        },
+                        "description": "This route gets the captcha policy. It returns the policy\u2019s ID, site key, secret key, minimum score and ignored emails and wether the ."
+                      },
+                      "response": [
+                        {
+                          "id": "77651c2e-c06a-411b-8ef3-f3f0fa7d79c5",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/captcha-policy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "captcha-policy"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:22:56.000Z",
+                          "updatedAt": "2026-10-21T20:22:56.000Z",
+                          "uid": "35240-77651c2e-c06a-411b-8ef3-f3f0fa7d79c5"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-89b0f57d-f960-475e-b5e4-a33ec9381234"
+                    }
+                  ],
+                  "id": "81ba79e9-af0b-44bb-a1b3-64f3116d4b36",
+                  "createdAt": "2026-10-21T20:22:55.000Z",
+                  "updatedAt": "2026-10-21T20:22:55.000Z",
+                  "uid": "35240-81ba79e9-af0b-44bb-a1b3-64f3116d4b36"
+                },
+                {
+                  "name": "basic",
+                  "item": [
+                    {
+                      "name": "Get identity management configuration",
+                      "id": "1defba7d-831a-4472-a386-7a7aa1690184",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/basic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "basic"
+                          ]
+                        },
+                        "description": "This route gets the identity management configuration for a vendor."
+                      },
+                      "response": [
+                        {
+                          "id": "b954efce-0902-4565-87a9-c8e2b34ccc5d",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"forcePermissions\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:22:56.000Z",
+                          "updatedAt": "2026-10-21T20:22:56.000Z",
+                          "uid": "35240-b954efce-0902-4565-87a9-c8e2b34ccc5d"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-1defba7d-831a-4472-a386-7a7aa1690184"
+                    }
+                  ],
+                  "id": "46f8b942-cc50-492a-80fa-28dbe21b345a",
+                  "createdAt": "2026-10-21T20:22:55.000Z",
+                  "updatedAt": "2026-10-21T20:22:55.000Z",
+                  "uid": "35240-46f8b942-cc50-492a-80fa-28dbe21b345a"
+                },
+                {
+                  "name": "Update identity management configuration",
+                  "id": "76adab09-5dbb-4581-a896-7ed655dd3625",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"cookieSameSite\": \"<string>\",\n  \"machineToMachineAuthStrategy\": \"<string>\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"<string>\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\",\n  \"authStrategy\": \"<string>\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"skipTenantValidation\": \"<boolean>\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\",\n  \"allowCustomLoginTenantSwitch\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"defaultTokenExpiration\": 6460.972025447816,\n  \"defaultRefreshTokenExpiration\": 425.2529634746605,\n  \"publicKey\": \"string\",\n  \"cookieSameSite\": \"LAX\",\n  \"allowSignups\": false,\n  \"apiTokensEnabled\": true,\n  \"allowOverridePasswordComplexity\": true,\n  \"allowOverridePasswordExpiration\": true,\n  \"allowOverrideEnforcePasswordHistory\": false,\n  \"jwtAlgorithm\": \"HS256\",\n  \"jwtSecret\": \"string\",\n  \"allowNotVerifiedUsersLogin\": false,\n  \"forcePermissions\": true,\n  \"authStrategy\": \"UsernameAndSms\",\n  \"defaultPasswordlessTokenExpiration\": 5715.318106086541,\n  \"forceSameDeviceOnAuth\": false,\n  \"allowTenantInvitations\": true,\n  \"rotateRefreshTokens\": true,\n  \"machineToMachineAuthStrategy\": \"ClientCredentials\",\n  \"addRolesToJwt\": true,\n  \"addPermissionsToJwt\": true,\n  \"refreshTokensRotationLimit\": 7968.8878307837485,\n  \"addSamlAttributesToJwt\": false,\n  \"allowCustomLoginTenantSwitch\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dc70dc48-3b69-4ec5-8d3b-d815cac74d6e",
-          "name": "Get Identity Management Configuration",
-          "request": {
-            "name": "Get Identity Management Configuration",
-            "description": {
-              "content": "Retrieve the identity management configuration for your environment.\n\nUse this endpoint to get the current identity management settings configured in your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1"
-              ],
-              "host": [
-                "{{resources-configurations-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "b38c7664-85ae-4ff1-8282-cf6c0a206d40",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"cookieSameSite\": \"NONE\",\n  \"machineToMachineAuthStrategy\": \"ClientCredentials\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"RS256\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\",\n  \"authStrategy\": \"NoLocalAuthentication\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"skipTenantValidation\": \"<boolean>\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/configurations/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "configurations",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route updates the identity management configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"defaultTokenExpiration\": 6460.972025447816,\n  \"defaultRefreshTokenExpiration\": 425.2529634746605,\n  \"publicKey\": \"string\",\n  \"cookieSameSite\": \"LAX\",\n  \"allowSignups\": false,\n  \"apiTokensEnabled\": true,\n  \"allowOverridePasswordComplexity\": true,\n  \"allowOverridePasswordExpiration\": true,\n  \"allowOverrideEnforcePasswordHistory\": false,\n  \"jwtAlgorithm\": \"HS256\",\n  \"jwtSecret\": \"string\",\n  \"allowNotVerifiedUsersLogin\": false,\n  \"forcePermissions\": true,\n  \"authStrategy\": \"UsernameAndSms\",\n  \"defaultPasswordlessTokenExpiration\": 5715.318106086541,\n  \"forceSameDeviceOnAuth\": false,\n  \"allowTenantInvitations\": true,\n  \"rotateRefreshTokens\": true,\n  \"machineToMachineAuthStrategy\": \"ClientCredentials\",\n  \"addRolesToJwt\": true,\n  \"addPermissionsToJwt\": true,\n  \"refreshTokensRotationLimit\": 7968.8878307837485,\n  \"addSamlAttributesToJwt\": false,\n  \"allowCustomLoginTenantSwitch\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "03c8978a-9dea-45b2-a713-b30b196a3af1",
-          "name": "Create Captcha Policy",
-          "request": {
-            "name": "Create Captcha Policy",
-            "description": {
-              "content": "Create a CAPTCHA policy for all accounts (tenants).\n\nProvide the required settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "captcha-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-captcha-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "12a58429-c459-43dc-a36e-9f45c1403c15",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "captcha-policy"
+                  "response": [
+                    {
+                      "id": "058c11af-c976-4880-baee-a46043e1caf4",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"cookieSameSite\": \"NONE\",\n  \"machineToMachineAuthStrategy\": \"ClientCredentials\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"RS256\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\",\n  \"authStrategy\": \"NoLocalAuthentication\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"skipTenantValidation\": \"<boolean>\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"publicKey\": \"<string>\",\n  \"cookieSameSite\": \"STRICT\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"RS256\",\n  \"jwtSecret\": \"<string>\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"authStrategy\": \"NoLocalAuthentication\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"machineToMachineAuthStrategy\": \"AccessToken\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\",\n  \"refreshTokensRotationLimit\": \"<number>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-058c11af-c976-4880-baee-a46043e1caf4"
+                    }
                   ],
-                  "host": [
-                    "{{resources-configurations-v1-captcha-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "createdAt": "2026-10-21T20:22:56.000Z",
+                  "updatedAt": "2026-10-21T20:22:56.000Z",
+                  "uid": "35240-76adab09-5dbb-4581-a896-7ed655dd3625"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Get identity management configuration",
+                  "id": "73d0ac4c-747b-48d8-acef-534ddd827fae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"siteKey\": \"string\",\n  \"secretKey\": \"string\",\n  \"enabled\": true,\n  \"minScore\": 3531.5339182440143,\n  \"ignoredEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1954-08-07T16:19:19.832Z\",\n  \"updatedAt\": \"2005-03-06T19:56:11.280Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a2c9804-e31d-418e-a4a0-5a9a2487c27f",
-          "name": "Update Captcha Policy",
-          "request": {
-            "name": "Update Captcha Policy",
-            "description": {
-              "content": "Update the CAPTCHA policy for all accounts (tenants).\n\nProvide the desired settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "captcha-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-captcha-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "04c9d188-000d-4a8d-bbf8-01ba2e220817",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "captcha-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-captcha-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/configurations/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "configurations",
+                        "v1"
+                      ]
+                    },
+                    "description": "This route gets the identity management configuration for a vendor."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"siteKey\": \"<string>\",\n  \"secretKey\": \"<string>\",\n  \"minScore\": \"<number>\",\n  \"ignoredEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"siteKey\": \"string\",\n  \"secretKey\": \"string\",\n  \"enabled\": false,\n  \"minScore\": 1652.810261062958,\n  \"ignoredEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1985-01-27T04:08:32.694Z\",\n  \"updatedAt\": \"1987-10-31T13:58:42.101Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2f375e6e-aaae-4a6c-8ae1-533feac28d0a",
-          "name": "Get Captcha Policy",
-          "request": {
-            "name": "Get Captcha Policy",
-            "description": {
-              "content": "Retrieve the CAPTCHA policy for your environment.\n\nThe response includes the policy ID, `siteKey`, `secretKey`, `minimumScore`, list of ignored emails, and whether the policy is enabled.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "captcha-policy"
-              ],
-              "host": [
-                "{{resources-configurations-v1-captcha-policy-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e73bc6a3-ab0e-4536-8150-7514189f8af5",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "captcha-policy"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-captcha-policy-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"siteKey\": \"string\",\n  \"secretKey\": \"string\",\n  \"enabled\": false,\n  \"minScore\": 1652.810261062958,\n  \"ignoredEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1985-01-27T04:08:32.694Z\",\n  \"updatedAt\": \"1987-10-31T13:58:42.101Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7fe7326f-4100-4428-af26-305eb8709df1",
-          "name": "Get JWT Template Targeting Configuration",
-          "request": {
-            "name": "Get JWT Template Targeting Configuration",
-            "description": {
-              "content": "Retrieves the JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "jwt-template-targeting"
-              ],
-              "host": [
-                "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d40707fd-ad20-4e9d-8492-e8f143d56a91",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "jwt-template-targeting"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"createdAt\": \"1955-06-27T13:09:51.832Z\",\n  \"updatedAt\": \"1959-07-15T14:59:31.690Z\",\n  \"targeting\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2a080130-045d-4fad-876b-8721734017a1",
-          "name": "Create JWT Template Targeting Configuration",
-          "request": {
-            "name": "Create JWT Template Targeting Configuration",
-            "description": {
-              "content": "Creates a new JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "jwt-template-targeting"
-              ],
-              "host": [
-                "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "eddcb54f-1d9a-4f98-b7f6-164d32e515e5",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "jwt-template-targeting"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"createdAt\": \"1955-06-27T13:09:51.832Z\",\n  \"updatedAt\": \"1959-07-15T14:59:31.690Z\",\n  \"targeting\": {}\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d071af21-1157-4f80-bb40-acda6c0da943",
-          "name": "Update or Create JWT Template Targeting Configuration",
-          "request": {
-            "name": "Update or Create JWT Template Targeting Configuration",
-            "description": {
-              "content": "Updates or creates a JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "jwt-template-targeting"
-              ],
-              "host": [
-                "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "93565990-4149-42e0-a83c-16332b483b18",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "jwt-template-targeting"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-jwt-template-targeting-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "be507951-4a6c-4872-a006-ebe906e169de",
-          "name": "Update JWT Template Targeting Configuration by ID",
-          "request": {
-            "name": "Update JWT Template Targeting Configuration by ID",
-            "description": {
-              "content": "Updates a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "jwt-template-targeting",
-                ":id"
-              ],
-              "host": [
-                "{{resources-configurations-v1-jwt-template-targeting-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "483e6026-cfd4-4ee3-b790-1959ec80d57b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "jwt-template-targeting",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-jwt-template-targeting-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"rules\": [\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    },\n    {\n      \"conditionLogic\": \"<string>\",\n      \"conditions\": [\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<object>\",\n          \"negate\": \"<boolean>\"\n        }\n      ],\n      \"treatment\": \"<string>\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1a1112c0-7fb8-4b7e-af9b-a80bba5d564b",
-          "name": "Delete JWT Template Targeting Configuration by ID",
-          "request": {
-            "name": "Delete JWT Template Targeting Configuration by ID",
-            "description": {
-              "content": "Deletes a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "jwt-template-targeting",
-                ":id"
-              ],
-              "host": [
-                "{{resources-configurations-v1-jwt-template-targeting-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e0b57a1b-756d-464f-9115-48af83345421",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "jwt-template-targeting",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-jwt-template-targeting-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "18a62e03-243e-4fff-878a-f51cc08d2845",
-          "name": "Create JWT Template",
-          "request": {
-            "name": "Create JWT Template",
-            "description": {
-              "content": "Creates a new JWT template for your environment. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "jwt-templates",
-                "v1"
-              ],
-              "host": [
-                "{{resources-jwt-templates-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expiration\": \"<number>\",\n  \"algorithm\": \"<string>\",\n  \"templateSchema\": {\n    \"claims\": \"<object>\"\n  },\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d419e6ee-8546-4598-8e70-8efa42838707",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "jwt-templates",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-jwt-templates-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"expiration\": \"<number>\",\n  \"algorithm\": \"<string>\",\n  \"templateSchema\": {\n    \"claims\": \"<object>\"\n  },\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"expiration\": 2922.7109926042303,\n  \"algorithm\": \"HS256\",\n  \"templateSchema\": {\n    \"claims\": {}\n  },\n  \"createdAt\": \"2000-03-21T01:11:22.901Z\",\n  \"updatedAt\": \"1994-10-31T01:31:12.505Z\",\n  \"description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c678a160-f8f1-4bd7-acc6-c676ab796548",
-          "name": "Get All JWT Templates",
-          "request": {
-            "name": "Get All JWT Templates",
-            "description": {
-              "content": "Retrieves all JWT templates for your environment. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "jwt-templates",
-                "v1"
-              ],
-              "host": [
-                "{{resources-jwt-templates-v1-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "keys",
-                  "value": "<string>",
-                  "description": "Filter by template keys"
-                },
-                {
-                  "disabled": false,
-                  "key": "keys",
-                  "value": "<string>",
-                  "description": "Filter by template keys"
-                },
-                {
-                  "disabled": false,
-                  "key": "ids",
-                  "value": "<string>",
-                  "description": "Filter by template IDs"
-                },
-                {
-                  "disabled": false,
-                  "key": "ids",
-                  "value": "<string>",
-                  "description": "Filter by template IDs"
-                },
-                {
-                  "disabled": false,
-                  "key": "_limit",
-                  "value": "<number>",
-                  "description": "Maximum number of items to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "_offset",
-                  "value": "<number>",
-                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
-                },
-                {
-                  "disabled": false,
-                  "key": "_sortBy",
-                  "value": "<string>",
-                  "description": "Field to sort by"
-                },
-                {
-                  "disabled": false,
-                  "key": "_order",
-                  "value": "<string>",
-                  "description": "Sort order"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "8b50abb4-9a92-4ab0-a005-d771de7e36cc",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "jwt-templates",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-jwt-templates-v1-Url}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "keys",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "keys",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "ids",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "ids",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_limit",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_offset",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_sortBy",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "_order",
-                      "value": "<string>"
+                      "id": "a4ea617e-140c-4633-9488-a12349c62345",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"defaultTokenExpiration\": \"<number>\",\n  \"defaultRefreshTokenExpiration\": \"<number>\",\n  \"publicKey\": \"<string>\",\n  \"cookieSameSite\": \"STRICT\",\n  \"allowSignups\": \"<boolean>\",\n  \"apiTokensEnabled\": \"<boolean>\",\n  \"allowOverridePasswordComplexity\": \"<boolean>\",\n  \"allowOverridePasswordExpiration\": \"<boolean>\",\n  \"allowOverrideEnforcePasswordHistory\": \"<boolean>\",\n  \"jwtAlgorithm\": \"RS256\",\n  \"jwtSecret\": \"<string>\",\n  \"allowNotVerifiedUsersLogin\": \"<boolean>\",\n  \"forcePermissions\": \"<boolean>\",\n  \"authStrategy\": \"NoLocalAuthentication\",\n  \"defaultPasswordlessTokenExpiration\": \"<number>\",\n  \"forceSameDeviceOnAuth\": \"<boolean>\",\n  \"allowTenantInvitations\": \"<boolean>\",\n  \"rotateRefreshTokens\": \"<boolean>\",\n  \"machineToMachineAuthStrategy\": \"AccessToken\",\n  \"addRolesToJwt\": \"<boolean>\",\n  \"addPermissionsToJwt\": \"<boolean>\",\n  \"refreshTokensRotationLimit\": \"<number>\",\n  \"addSamlAttributesToJwt\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:22:56.000Z",
+                      "updatedAt": "2026-10-21T20:22:56.000Z",
+                      "uid": "35240-a4ea617e-140c-4633-9488-a12349c62345"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-21T20:22:56.000Z",
+                  "updatedAt": "2026-10-21T20:22:56.000Z",
+                  "uid": "35240-73d0ac4c-747b-48d8-acef-534ddd827fae"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"expiration\": 6652.056804942768,\n      \"algorithm\": \"HS256\",\n      \"templateSchema\": {\n        \"claims\": {}\n      },\n      \"createdAt\": \"2017-10-13T09:06:13.227Z\",\n      \"updatedAt\": \"2005-05-08T02:57:10.348Z\",\n      \"description\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"vendorId\": \"string\",\n      \"key\": \"string\",\n      \"name\": \"string\",\n      \"expiration\": 6279.247612440857,\n      \"algorithm\": \"RS256\",\n      \"templateSchema\": {\n        \"claims\": {}\n      },\n      \"createdAt\": \"2015-11-30T08:35:47.108Z\",\n      \"updatedAt\": \"1982-07-02T12:33:07.824Z\",\n      \"description\": \"string\"\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 998.0930036848257,\n    \"totalPages\": 2821.496606646524\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "461b9659-5249-40bd-8b49-cb90489867d9",
+              "createdAt": "2026-10-21T20:22:55.000Z",
+              "updatedAt": "2026-10-21T20:22:55.000Z",
+              "uid": "35240-461b9659-5249-40bd-8b49-cb90489867d9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "22813011-a3aa-4dee-8249-3599917de56b",
-          "name": "Get JWT Template by ID",
-          "request": {
-            "name": "Get JWT Template by ID",
-            "description": {
-              "content": "Retrieves a specific JWT template by ID. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "jwt-templates",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-jwt-templates-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "1edd9df1-a4a4-4129-bfe6-37ea330b63a3",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "jwt-templates",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-jwt-templates-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"expiration\": 2922.7109926042303,\n  \"algorithm\": \"HS256\",\n  \"templateSchema\": {\n    \"claims\": {}\n  },\n  \"createdAt\": \"2000-03-21T01:11:22.901Z\",\n  \"updatedAt\": \"1994-10-31T01:31:12.505Z\",\n  \"description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5ec1146f-91a2-4b9d-9b2b-399416b2a8ca",
-          "name": "Update JWT Template",
-          "request": {
-            "name": "Update JWT Template",
-            "description": {
-              "content": "Updates an existing JWT template. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "jwt-templates",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-jwt-templates-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"expiration\": \"<number>\",\n  \"algorithm\": \"<string>\",\n  \"templateSchema\": {\n    \"claims\": \"<object>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1e8098a2-cb12-421a-a954-ae20a50d7cae",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "jwt-templates",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-jwt-templates-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"expiration\": \"<number>\",\n  \"algorithm\": \"<string>\",\n  \"templateSchema\": {\n    \"claims\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"vendorId\": \"string\",\n  \"key\": \"string\",\n  \"name\": \"string\",\n  \"expiration\": 2922.7109926042303,\n  \"algorithm\": \"HS256\",\n  \"templateSchema\": {\n    \"claims\": {}\n  },\n  \"createdAt\": \"2000-03-21T01:11:22.901Z\",\n  \"updatedAt\": \"1994-10-31T01:31:12.505Z\",\n  \"description\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "22aec196-20ea-4016-aaa4-62c60280a43b",
-          "name": "Delete JWT Template",
-          "request": {
-            "name": "Delete JWT Template",
-            "description": {
-              "content": "Deletes an existing JWT template. Note: This feature must be enabled by request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "jwt-templates",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-jwt-templates-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "5856f8f2-37a7-4152-b3a8-870c21283d2a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "jwt-templates",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-jwt-templates-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "78edf6c1-9a43-4064-841b-2dae946bbb1a",
-          "name": "Get Identity Management Configuration",
-          "request": {
-            "name": "Get Identity Management Configuration",
-            "description": {
-              "content": "Retrieve the identity management configuration for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "basic"
-              ],
-              "host": [
-                "{{resources-configurations-v1-basic-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "7d03fcef-9187-47e9-b039-5f3a9ab10766",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "basic"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-basic-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"forcePermissions\": false,\n  \"machineToMachineAuthStrategy\": \"ClientCredentials\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6feb1ed9-083e-4f5b-9422-5f21c2560b07",
+          "createdAt": "2026-10-21T20:22:55.000Z",
+          "updatedAt": "2026-10-21T20:22:55.000Z",
+          "uid": "35240-6feb1ed9-083e-4f5b-9422-5f21c2560b07"
         }
       ],
-      "event": []
+      "id": "fb0cd20c-96b6-4db4-b871-d73879c12435",
+      "createdAt": "2026-10-21T20:22:55.000Z",
+      "updatedAt": "2026-10-21T20:22:55.000Z",
+      "uid": "35240-fb0cd20c-96b6-4db4-b871-d73879c12435"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-captcha-policy-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-jwt-template-targeting-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-jwt-template-targeting-id-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-jwt-templates-v1-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-jwt-templates-v1-id-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-basic-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "be11e8b5-7db4-4c30-9d7c-af19c9060d9c",
-    "name": "Multi-Apps Overview Account Invitations Core Settings API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

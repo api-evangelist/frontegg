@@ -1,794 +1,810 @@
 {
+  "info": {
+    "_postman_id": "2dd5367c-e7b3-4b2a-93f4-6226d39d3a10",
+    "name": "Entitlements Agent (PDP) API Access Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:22:35.000Z",
+    "updatedAt": "2026-10-21T20:22:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2dd5367c-e7b3-4b2a-93f4-6226d39d3a10"
+  },
   "item": [
     {
-      "id": "4a28c934-e9fa-4b39-82ae-dc4e12afa663",
-      "name": "API Access Control",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "3b39d989-9637-42f1-bf29-6186bdb66f1a",
-          "name": "Get Routes",
-          "request": {
-            "name": "Get Routes",
-            "description": {
-              "content": "Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1"
-              ],
-              "host": [
-                "{{resources-routes-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "routes",
+          "item": [
             {
-              "id": "711fad4c-9850-49fc-a2ec-34b9241b40b4",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"method\": \"GET\",\n    \"path\": \"/users\",\n    \"priority\": 100,\n    \"description\": \"This is an example route\",\n    \"policyType\": \"allow\",\n    \"rules\": [\n      {\n        \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"type\": \"feature\",\n        \"value\": \"my-feature-key\"\n      },\n      {\n        \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"type\": \"feature\",\n        \"value\": \"my-feature-key\"\n      }\n    ]\n  },\n  {\n    \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"method\": \"GET\",\n    \"path\": \"/users\",\n    \"priority\": 100,\n    \"description\": \"This is an example route\",\n    \"policyType\": \"allow\",\n    \"rules\": [\n      {\n        \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"type\": \"feature\",\n        \"value\": \"my-feature-key\"\n      },\n      {\n        \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n        \"type\": \"feature\",\n        \"value\": \"my-feature-key\"\n      }\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "71b1bcd7-71e8-4a3e-a0a5-9bc863b96a97",
-          "name": "Create Route",
-          "request": {
-            "name": "Create Route",
-            "description": {
-              "content": "Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1"
-              ],
-              "host": [
-                "{{resources-routes-v1-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4f5ed96e-57b9-4ab8-9774-b4fe61e7c39d",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"method\": \"GET\",\n  \"path\": \"/users\",\n  \"policyType\": \"allow\",\n  \"description\": \"This is an example route\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"method\": \"GET\",\n  \"path\": \"/users\",\n  \"priority\": 100,\n  \"description\": \"This is an example route\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    },\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6115140c-b3ef-4c1f-a046-7d3567f253dd",
-          "name": "Get Single Route",
-          "request": {
-            "name": "Get Single Route",
-            "description": {
-              "content": "Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-routes-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "3a5e70cc-79da-4ffe-bfc4-68bdfe3fc105",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "{id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "rules",
+                      "item": [
+                        {
+                          "name": "Create or Replace Route Rules",
+                          "id": "9218c8b2-9160-4d23-9513-ed34bdb37099",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"feature\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/:id/rules",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                ":id",
+                                "rules"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "18d3da99-c3d0-42c0-9cfc-579ee07a6994",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Create or replace route rules"
+                          },
+                          "response": [
+                            {
+                              "id": "8e990f16-b092-4453-a3a0-9ccb80b24076",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"feature\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/routes/v1/:id/rules",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "routes",
+                                    "v1",
+                                    ":id",
+                                    "rules"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"routeId\": \"<string>\",\n    \"type\": \"feature\",\n    \"value\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"routeId\": \"<string>\",\n    \"type\": \"feature\",\n    \"value\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-21T20:22:36.000Z",
+                              "updatedAt": "2026-10-21T20:22:36.000Z",
+                              "uid": "35240-8e990f16-b092-4453-a3a0-9ccb80b24076"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:22:36.000Z",
+                          "updatedAt": "2026-10-21T20:22:36.000Z",
+                          "uid": "35240-9218c8b2-9160-4d23-9513-ed34bdb37099"
+                        }
+                      ],
+                      "id": "b293fd16-47c2-4575-92b2-c123f945ff71",
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-b293fd16-47c2-4575-92b2-c123f945ff71"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"method\": \"GET\",\n  \"path\": \"/users\",\n  \"priority\": 100,\n  \"description\": \"This is an example route\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    },\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f4dbc527-41c2-4566-8383-24620918b5b3",
-          "name": "Delete Route",
-          "request": {
-            "name": "Delete Route",
-            "description": {
-              "content": "Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-routes-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "938ff8f0-7124-475d-baed-1d60872d1b9b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Get Single Route",
+                      "id": "9f791337-6128-4c7d-a290-eee4e227aefc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cd9c2ace-9a92-4347-be38-a7bab3d713c6",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a single route"
+                      },
+                      "response": [
+                        {
+                          "id": "ece8a033-2937-4af1-bdb7-8be2a6099e67",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"method\": \"POST\",\n  \"path\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"description\": \"<string>\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:22:36.000Z",
+                          "updatedAt": "2026-10-21T20:22:36.000Z",
+                          "uid": "35240-ece8a033-2937-4af1-bdb7-8be2a6099e67"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-9f791337-6128-4c7d-a290-eee4e227aefc"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "db22e420-9d06-481b-8b9d-096da83eb32e",
-          "name": "Update Route",
-          "request": {
-            "name": "Update Route",
-            "description": {
-              "content": "Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                ":id"
-              ],
-              "host": [
-                "{{resources-routes-v1-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"policyType\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8040583c-21b9-428f-bfab-06a46f2c31f6",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                      "name": "Delete Route",
+                      "id": "d3710b0f-3f8c-4440-953c-90a7ac3bb34a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d5f293cf-3859-4bc0-b026-78712be27379",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a route"
+                      },
+                      "response": [
+                        {
+                          "id": "e15df511-ab0f-4197-9115-46279ff2f598",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:22:36.000Z",
+                          "updatedAt": "2026-10-21T20:22:36.000Z",
+                          "uid": "35240-e15df511-ab0f-4197-9115-46279ff2f598"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-d3710b0f-3f8c-4440-953c-90a7ac3bb34a"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"method\": \"GET\",\n  \"path\": \"/users\",\n  \"policyType\": \"allow\",\n  \"description\": \"This is an example route\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n  \"method\": \"GET\",\n  \"path\": \"/users\",\n  \"priority\": 100,\n  \"description\": \"This is an example route\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    },\n    {\n      \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b3cce7fe-5e6f-45b3-97b8-a41700497f30",
-          "name": "Import Open API",
-          "request": {
-            "name": "Import Open API",
-            "description": {
-              "content": "Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                "import-open-api"
-              ],
-              "host": [
-                "{{resources-routes-v1-import-open-api-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "79f92477-6083-4e04-a684-711a994c8784",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    "import-open-api"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-import-open-api-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "53c647e4-4ac5-4def-8fad-90bef18e140a",
-          "name": "Create or Replace Route Rules",
-          "request": {
-            "name": "Create or Replace Route Rules",
-            "description": {
-              "content": "Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "routes",
-                "v1",
-                ":id",
-                "rules"
-              ],
-              "host": [
-                "{{resources-routes-v1-id-rules-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "657b9bdc-6899-4ae9-8b79-3e92e3110b9a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "routes",
-                    "v1",
-                    ":id",
-                    "rules"
-                  ],
-                  "host": [
-                    "{{resources-routes-v1-id-rules-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
+                      "name": "Update Route",
+                      "id": "5b0387b7-3a0a-4719-a406-de8ab17dea53",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"policyType\": \"ruleBased\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "983a36b7-14c3-4f98-b6fd-0583cdabba52",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing route"
+                      },
+                      "response": [
+                        {
+                          "id": "c484acbf-ee8f-4204-8685-63055b25ba71",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"policyType\": \"ruleBased\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"method\": \"POST\",\n  \"path\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"description\": \"<string>\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:22:36.000Z",
+                          "updatedAt": "2026-10-21T20:22:36.000Z",
+                          "uid": "35240-c484acbf-ee8f-4204-8685-63055b25ba71"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-5b0387b7-3a0a-4719-a406-de8ab17dea53"
                     }
-                  ]
+                  ],
+                  "id": "b685b623-684d-4a91-8873-ec27bbcdd531",
+                  "createdAt": "2026-10-21T20:22:36.000Z",
+                  "updatedAt": "2026-10-21T20:22:36.000Z",
+                  "uid": "35240-b685b623-684d-4a91-8873-ec27bbcdd531"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"rules\": [\n    {\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    },\n    {\n      \"type\": \"feature\",\n      \"value\": \"my-feature-key\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "import-open-api",
+                  "item": [
+                    {
+                      "name": "Import Open API",
+                      "id": "5bc68d28-aaf7-46be-9916-d3cefe34a7cd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1/import-open-api",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1",
+                            "import-open-api"
+                          ]
+                        },
+                        "description": "Imports an Open API specifications in JSON format"
+                      },
+                      "response": [
+                        {
+                          "id": "b8dd5a0e-c2a4-47f1-9203-1e438fd77b79",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/routes/v1/import-open-api",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "routes",
+                                "v1",
+                                "import-open-api"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:22:36.000Z",
+                          "updatedAt": "2026-10-21T20:22:36.000Z",
+                          "uid": "35240-b8dd5a0e-c2a4-47f1-9203-1e438fd77b79"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-5bc68d28-aaf7-46be-9916-d3cefe34a7cd"
+                    }
+                  ],
+                  "id": "0cb01e77-b70c-47b5-b4ac-85be40463b13",
+                  "createdAt": "2026-10-21T20:22:36.000Z",
+                  "updatedAt": "2026-10-21T20:22:36.000Z",
+                  "uid": "35240-0cb01e77-b70c-47b5-b4ac-85be40463b13"
+                },
+                {
+                  "name": "Get Routes",
+                  "id": "33607a46-6c6a-4a0b-b2d6-10e14ee9701b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/routes/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "routes",
+                        "v1"
+                      ]
+                    },
+                    "description": "Retrieve all routes"
+                  },
+                  "response": [
+                    {
+                      "id": "915a44d2-2537-44c5-9d15-36796e7710c9",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"method\": \"PATCH\",\n    \"path\": \"<string>\",\n    \"priority\": \"<number>\",\n    \"description\": \"<string>\",\n    \"policyType\": \"ruleBased\",\n    \"rules\": [\n      {\n        \"id\": \"<string>\",\n        \"routeId\": \"<string>\",\n        \"type\": \"feature\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"routeId\": \"<string>\",\n        \"type\": \"feature\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"method\": \"GET\",\n    \"path\": \"<string>\",\n    \"priority\": \"<number>\",\n    \"description\": \"<string>\",\n    \"policyType\": \"ruleBased\",\n    \"rules\": [\n      {\n        \"id\": \"<string>\",\n        \"routeId\": \"<string>\",\n        \"type\": \"feature\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"routeId\": \"<string>\",\n        \"type\": \"feature\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n]",
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-915a44d2-2537-44c5-9d15-36796e7710c9"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:36.000Z",
+                  "updatedAt": "2026-10-21T20:22:36.000Z",
+                  "uid": "35240-33607a46-6c6a-4a0b-b2d6-10e14ee9701b"
+                },
+                {
+                  "name": "Create Route",
+                  "id": "8cab5bf9-d528-4de0-88e4-4c92a6f27acf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"policyType\": \"ruleBased\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/routes/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "routes",
+                        "v1"
+                      ]
+                    },
+                    "description": "Create a new route"
+                  },
+                  "response": [
+                    {
+                      "id": "1c7efc7d-73a9-4944-8e8e-ab0bb7bb0883",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"policyType\": \"ruleBased\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/routes/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "routes",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"method\": \"POST\",\n  \"path\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"description\": \"<string>\",\n  \"policyType\": \"allow\",\n  \"rules\": [\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"routeId\": \"<string>\",\n      \"type\": \"permission\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:22:36.000Z",
+                      "updatedAt": "2026-10-21T20:22:36.000Z",
+                      "uid": "35240-1c7efc7d-73a9-4944-8e8e-ab0bb7bb0883"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:22:36.000Z",
+                  "updatedAt": "2026-10-21T20:22:36.000Z",
+                  "uid": "35240-8cab5bf9-d528-4de0-88e4-4c92a6f27acf"
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"type\": \"feature\",\n    \"value\": \"my-feature-key\"\n  },\n  {\n    \"id\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"routeId\": \"b796239c-6641-4cf3-9ff3-658ad4049131\",\n    \"type\": \"feature\",\n    \"value\": \"my-feature-key\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "37e5db65-8b3d-498a-ad50-1e6d9a19528c",
+              "createdAt": "2026-10-21T20:22:36.000Z",
+              "updatedAt": "2026-10-21T20:22:36.000Z",
+              "uid": "35240-37e5db65-8b3d-498a-ad50-1e6d9a19528c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a71e3122-7630-433f-a547-4e450fcdcaa3",
+          "createdAt": "2026-10-21T20:22:36.000Z",
+          "updatedAt": "2026-10-21T20:22:36.000Z",
+          "uid": "35240-a71e3122-7630-433f-a547-4e450fcdcaa3"
         }
       ],
-      "event": []
+      "id": "36a64c0f-b4fe-4421-87da-186fcf6c116b",
+      "createdAt": "2026-10-21T20:22:36.000Z",
+      "updatedAt": "2026-10-21T20:22:36.000Z",
+      "uid": "35240-36a64c0f-b4fe-4421-87da-186fcf6c116b"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-routes-v1-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-routes-v1-id-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-routes-v1-import-open-api-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/entitlements",
-      "key": "resources-routes-v1-id-rules-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "1fd0f661-a552-42fa-9ca0-4e49b1237528",
-    "name": "Multi-Apps Overview Account Invitations API Access Control API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

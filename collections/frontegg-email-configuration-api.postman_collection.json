@@ -1,471 +1,503 @@
 {
+  "info": {
+    "_postman_id": "d291933d-fad8-4c83-94c9-55143d72a967",
+    "name": "Entitlements Agent (PDP) Email configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:25.000Z",
+    "updatedAt": "2026-10-21T20:23:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d291933d-fad8-4c83-94c9-55143d72a967"
+  },
   "item": [
     {
-      "id": "bd9b6e9a-626c-4889-bff3-1561d58b0586",
-      "name": "Email Configuration",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "4b42a29d-55ba-4b06-95d4-916d87655e02",
-          "name": "Create or Update Configuration",
-          "request": {
-            "name": "Create or Update Configuration",
-            "description": {
-              "content": "Configure your SendGrid account to send emails from your environment.\n\nProvide your SendGrid secret key in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "mail",
-                "v1",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-mail-v1-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"secret\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "mail",
+          "item": [
             {
-              "id": "35fb5718-610c-4ad4-8e23-40e71b0aa0d1",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "mail",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-mail-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+              "name": "v1",
+              "item": [
+                {
+                  "name": "configurations",
+                  "item": [
+                    {
+                      "name": "Create or update configuration",
+                      "id": "5fd0fd24-9d86-4790-b55d-3b933b6940f8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"secret\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "mail",
+                            "v1",
+                            "configurations"
+                          ]
+                        },
+                        "description": "Frontegg sends emails via SendGrid. If you already have an account on SendGrid and you wish emails to be sent from your SendGrid account, pass the SendGrid secret key as a body param. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "1a607716-b8f8-43db-9b9e-b5138a60bd89",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "mail",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-1a607716-b8f8-43db-9b9e-b5138a60bd89"
+                        },
+                        {
+                          "id": "124af29d-83c0-4b82-9cdd-8649d4ffd0c9",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "mail",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-124af29d-83c0-4b82-9cdd-8649d4ffd0c9"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-5fd0fd24-9d86-4790-b55d-3b933b6940f8"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"secret\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "name": "Get configuration",
+                      "id": "10f34cbd-33e1-4741-907a-bf28c51b1776",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "mail",
+                            "v1",
+                            "configurations"
+                          ]
+                        },
+                        "description": "This route returns the mail configuration setup on Frontegg for your SendGrid account. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "d20b4941-9e1d-4e97-a4ca-d3fac7b1e51f",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "mail",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"secret\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"extension\": [],\n  \"provider\": \"mailgun\"\n}",
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-d20b4941-9e1d-4e97-a4ca-d3fac7b1e51f"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-10f34cbd-33e1-4741-907a-bf28c51b1776"
+                    },
+                    {
+                      "name": "Delete configuration",
+                      "id": "bbbd301a-713f-49dd-a0dc-e0ddb83c672f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "mail",
+                            "v1",
+                            "configurations"
+                          ]
+                        },
+                        "description": "A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "9f9d3d78-00a3-4f8b-b783-6ff11a2b1333",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/mail/v1/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "mail",
+                                "v1",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-9f9d3d78-00a3-4f8b-b783-6ff11a2b1333"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-bbbd301a-713f-49dd-a0dc-e0ddb83c672f"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "42236814-863e-4340-a7d2-6ef3c80a86ef",
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-42236814-863e-4340-a7d2-6ef3c80a86ef"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "188fe0ad-97dd-46aa-9ad5-d01a001f776c",
+              "createdAt": "2026-10-21T20:23:26.000Z",
+              "updatedAt": "2026-10-21T20:23:26.000Z",
+              "uid": "35240-188fe0ad-97dd-46aa-9ad5-d01a001f776c"
             },
             {
-              "id": "87228732-4093-46a6-8e9c-ccfcd60e6993",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "mail",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-mail-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"secret\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+              "name": "v2",
+              "item": [
+                {
+                  "name": "configurations",
+                  "item": [
+                    {
+                      "name": "Create or update configuration v2",
+                      "id": "821869c8-738c-42b6-b80e-3f0782b51906",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payload\": {\n    \"provider\": \"sendgrid\",\n    \"secret\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/mail/v2/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "mail",
+                            "v2",
+                            "configurations"
+                          ]
+                        },
+                        "description": "Configure and manage email settings with our controller, supporting SES, Mailgun, and SendGrid. Easily set the email provider and sender details, include additional parameters as needed, and send configuration data via POST. A vendor token from the authentication route is required."
+                      },
+                      "response": [
+                        {
+                          "id": "8fcdf676-0080-48d6-ab3a-b6bb9629856d",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"payload\": {\n    \"provider\": \"sendgrid\",\n    \"secret\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/mail/v2/configurations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "mail",
+                                "v2",
+                                "configurations"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:26.000Z",
+                          "updatedAt": "2026-10-21T20:23:26.000Z",
+                          "uid": "35240-8fcdf676-0080-48d6-ab3a-b6bb9629856d"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:26.000Z",
+                      "updatedAt": "2026-10-21T20:23:26.000Z",
+                      "uid": "35240-821869c8-738c-42b6-b80e-3f0782b51906"
                     }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "5fa78fd2-7e17-417c-8238-989327d87f6f",
+                  "createdAt": "2026-10-21T20:23:26.000Z",
+                  "updatedAt": "2026-10-21T20:23:26.000Z",
+                  "uid": "35240-5fa78fd2-7e17-417c-8238-989327d87f6f"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "b39bd506-3b5b-4255-b50d-e7352fd6edeb",
+              "createdAt": "2026-10-21T20:23:26.000Z",
+              "updatedAt": "2026-10-21T20:23:26.000Z",
+              "uid": "35240-b39bd506-3b5b-4255-b50d-e7352fd6edeb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6ced1bab-1de0-448f-a406-222c13d05a5b",
-          "name": "Get Configuration",
-          "request": {
-            "name": "Get Configuration",
-            "description": {
-              "content": "Retrieve the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "mail",
-                "v1",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-mail-v1-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "7ad31def-7bed-40b4-a0c9-3de376d177a2",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "mail",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-mail-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"secret\": \"string\",\n  \"createdAt\": \"1967-07-17T01:49:35.695Z\",\n  \"updatedAt\": \"2005-06-22T17:40:36.952Z\",\n  \"extension\": [],\n  \"provider\": \"mailgun\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d3efc36c-2534-4799-a1f9-be98ea1c78dc",
-          "name": "Delete Configuration",
-          "request": {
-            "name": "Delete Configuration",
-            "description": {
-              "content": "Delete the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "mail",
-                "v1",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-mail-v1-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "5262c88d-ce1b-4fd0-9256-b0e366729f15",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "mail",
-                    "v1",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-mail-v1-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e3ab1721-1b67-4862-b85b-bbb33f469ca3",
-          "name": "Create or Update Configuration V2",
-          "request": {
-            "name": "Create or Update Configuration V2",
-            "description": {
-              "content": "Configure email settings for your environment, supporting SES, Mailgun, and SendGrid.\n\nProvide the email provider, sender details, and any additional parameters in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "mail",
-                "v2",
-                "configurations"
-              ],
-              "host": [
-                "{{resources-mail-v2-configurations-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"payload\": {\n    \"provider\": \"<string>\",\n    \"secret\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "66d844ad-033b-4015-a666-1b0aa5d2431b",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "mail",
-                    "v2",
-                    "configurations"
-                  ],
-                  "host": [
-                    "{{resources-mail-v2-configurations-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"payload\": {\n    \"provider\": \"<string>\",\n    \"secret\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2b986c69-d860-4876-8170-63465ea5a286",
+          "createdAt": "2026-10-21T20:23:26.000Z",
+          "updatedAt": "2026-10-21T20:23:26.000Z",
+          "uid": "35240-2b986c69-d860-4876-8170-63465ea5a286"
         }
       ],
-      "event": []
+      "id": "61082031-8067-42e4-ba48-e0d6218bed4d",
+      "createdAt": "2026-10-21T20:23:26.000Z",
+      "updatedAt": "2026-10-21T20:23:26.000Z",
+      "uid": "35240-61082031-8067-42e4-ba48-e0d6218bed4d"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-mail-v1-configurations-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-mail-v2-configurations-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "1e031118-456e-4518-95c5-127078c1c004",
-    "name": "Multi-Apps Overview Account Invitations Email Configuration API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

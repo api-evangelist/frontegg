@@ -1,0 +1,307 @@
+{
+  "info": {
+    "_postman_id": "dc6108f9-50bc-4f45-ac82-8fba9e0a6277",
+    "name": "Entitlements Agent (PDP) Account Hierarchy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:26:16.000Z",
+    "updatedAt": "2026-10-21T20:26:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dc6108f9-50bc-4f45-ac82-8fba9e0a6277"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "hierarchy",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "Create sub-tenant",
+                  "id": "d65e1ddf-055c-4b83-98f3-b61862cd7e0f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"parentTenantId\": \"<string>\",\n  \"childTenantId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/hierarchy/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "hierarchy",
+                        "v1"
+                      ]
+                    },
+                    "description": "Assign an existing tenant to the hierarchy as a sub-tenant of a given parent tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                  },
+                  "response": [
+                    {
+                      "id": "1d66e023-3604-4804-b2c6-d27f39e13b93",
+                      "name": "When:a) given parameters do not pass validationb) or parent and child tenant are equalc) or child tenant is already a subtenant in other organization's hierarchy",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"parentTenantId\": \"<string>\",\n  \"childTenantId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/hierarchy/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "hierarchy",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:16.000Z",
+                      "updatedAt": "2026-10-21T20:26:16.000Z",
+                      "uid": "35240-1d66e023-3604-4804-b2c6-d27f39e13b93"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:26:16.000Z",
+                  "updatedAt": "2026-10-21T20:26:16.000Z",
+                  "uid": "35240-d65e1ddf-055c-4b83-98f3-b61862cd7e0f"
+                },
+                {
+                  "name": "Delete sub-tenant",
+                  "id": "6c7d8a22-0985-4b9b-9c06-3b9a6748f93f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/hierarchy/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "hierarchy",
+                        "v1"
+                      ]
+                    },
+                    "description": "Delete given sub-tenant from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                  },
+                  "response": [
+                    {
+                      "id": "3d71e90e-e767-4db5-b0a3-83ad156e002c",
+                      "name": "When provided parameters do not pass validation.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/hierarchy/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "hierarchy",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:16.000Z",
+                      "updatedAt": "2026-10-21T20:26:16.000Z",
+                      "uid": "35240-3d71e90e-e767-4db5-b0a3-83ad156e002c"
+                    },
+                    {
+                      "id": "115c51b0-bdac-4229-a9e3-290af3109a3b",
+                      "name": "When given tenants are not in parent-child relation.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/hierarchy/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "hierarchy",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:26:16.000Z",
+                      "updatedAt": "2026-10-21T20:26:16.000Z",
+                      "uid": "35240-115c51b0-bdac-4229-a9e3-290af3109a3b"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:26:16.000Z",
+                  "updatedAt": "2026-10-21T20:26:16.000Z",
+                  "uid": "35240-6c7d8a22-0985-4b9b-9c06-3b9a6748f93f"
+                }
+              ],
+              "id": "a67a18f2-fd26-4494-a0f0-ad9dc62b1ba3",
+              "createdAt": "2026-10-21T20:26:16.000Z",
+              "updatedAt": "2026-10-21T20:26:16.000Z",
+              "uid": "35240-a67a18f2-fd26-4494-a0f0-ad9dc62b1ba3"
+            }
+          ],
+          "id": "15bec772-d228-429f-b038-1bd42ab1fac8",
+          "createdAt": "2026-10-21T20:26:16.000Z",
+          "updatedAt": "2026-10-21T20:26:16.000Z",
+          "uid": "35240-15bec772-d228-429f-b038-1bd42ab1fac8"
+        }
+      ],
+      "id": "c16ab0cd-139a-4050-b001-05f3bb4affc3",
+      "createdAt": "2026-10-21T20:26:16.000Z",
+      "updatedAt": "2026-10-21T20:26:16.000Z",
+      "uid": "35240-c16ab0cd-139a-4050-b001-05f3bb4affc3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

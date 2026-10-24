@@ -1,0 +1,1176 @@
+{
+  "info": {
+    "_postman_id": "fbcc2ce8-b4fd-4e7b-8995-a91d43d49300",
+    "name": "Entitlements Agent (PDP) Tenants (Accounts) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:27:21.000Z",
+    "updatedAt": "2026-10-21T20:27:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fbcc2ce8-b4fd-4e7b-8995-a91d43d49300"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "tenants",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "{tenantId}",
+                  "item": [
+                    {
+                      "name": "metadata",
+                      "item": [
+                        {
+                          "name": "{key}",
+                          "item": [
+                            {
+                              "name": "Delete tenant metadata",
+                              "id": "76ce0f1d-29e6-4112-b2b8-07027e4cfa8c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId/metadata/:key",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "tenants",
+                                    "v1",
+                                    ":tenantId",
+                                    "metadata",
+                                    ":key"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "4913db1b-59c0-4a0a-a525-56d19324d3d6",
+                                      "key": "tenantId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    },
+                                    {
+                                      "id": "cc1f2bc7-81d2-43dd-82f1-883b51fe5cff",
+                                      "key": "key",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Remove a key/value from a tenant's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                              },
+                              "response": [
+                                {
+                                  "id": "5763d8f2-ad0b-4856-a728-9b519e6b4cce",
+                                  "name": "When the provided tenant doesn't exist.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId/metadata/:key",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "tenants",
+                                        "v1",
+                                        ":tenantId",
+                                        "metadata",
+                                        ":key"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "tenantId"
+                                        },
+                                        {
+                                          "key": "key"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:27:21.000Z",
+                                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                                  "uid": "35240-5763d8f2-ad0b-4856-a728-9b519e6b4cce"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:27:21.000Z",
+                              "updatedAt": "2026-10-21T20:27:21.000Z",
+                              "uid": "35240-76ce0f1d-29e6-4112-b2b8-07027e4cfa8c"
+                            }
+                          ],
+                          "id": "75b061e6-5f1e-473e-a136-11d8119406bc",
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-75b061e6-5f1e-473e-a136-11d8119406bc"
+                        },
+                        {
+                          "name": "Add tenant metadata",
+                          "id": "bfd214af-6e3f-4eb2-8aba-aaa79532fc6c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"metadata\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId/metadata",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v1",
+                                ":tenantId",
+                                "metadata"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "89d9885a-c27c-48c9-a096-a09d43b7e395",
+                                  "key": "tenantId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Add metadata to a tenant. If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                          },
+                          "response": [
+                            {
+                              "id": "08973b66-e6b6-48b1-9893-1fec8ca09d3d",
+                              "name": "When the given metadata is neither a JSON, nor JSON-string.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"metadata\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "tenants",
+                                    "v1",
+                                    ":tenantId",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:27:21.000Z",
+                              "updatedAt": "2026-10-21T20:27:21.000Z",
+                              "uid": "35240-08973b66-e6b6-48b1-9893-1fec8ca09d3d"
+                            },
+                            {
+                              "id": "56567528-10f9-458c-9f8b-fcb9820be3d7",
+                              "name": "When the given tenant doesn't exist.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"metadata\": {}\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId/metadata",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "tenants",
+                                    "v1",
+                                    ":tenantId",
+                                    "metadata"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tenantId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:27:21.000Z",
+                              "updatedAt": "2026-10-21T20:27:21.000Z",
+                              "uid": "35240-56567528-10f9-458c-9f8b-fcb9820be3d7"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-bfd214af-6e3f-4eb2-8aba-aaa79532fc6c"
+                        }
+                      ],
+                      "id": "cf2d1e7a-5a04-4a2e-a4a9-95606a50c4be",
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-cf2d1e7a-5a04-4a2e-a4a9-95606a50c4be"
+                    },
+                    {
+                      "name": "Get tenant by ID",
+                      "id": "410d42e6-6a7e-4ec3-a8b2-188af8903ecd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v1",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c14cbca5-761e-4672-8562-751dcf44d605",
+                              "key": "tenantId",
+                              "value": "<string>",
+                              "description": "(Required) The tenant ID to get."
+                            }
+                          ]
+                        },
+                        "description": "Use the V2 route for **Get Tenant**. This route is no longer relevant."
+                      },
+                      "response": [
+                        {
+                          "id": "63f3794f-ccbb-4152-9322-edf5237655fb",
+                          "name": "When the tenant ID does not pass the validation.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v1",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-63f3794f-ccbb-4152-9322-edf5237655fb"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-410d42e6-6a7e-4ec3-a8b2-188af8903ecd"
+                    },
+                    {
+                      "name": "Update Tenant",
+                      "id": "d0517654-cd89-436b-9683-52707754a4d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v1",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3e81a2ce-d7c0-48e5-aa88-60acfc11f80d",
+                              "key": "tenantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Use the V2 route for **Update Tenant**. This route is no longer relevant."
+                      },
+                      "response": [
+                        {
+                          "id": "34ef0570-54e4-4fe1-b2f4-97cb79423e96",
+                          "name": "When body doesn't contain any property to change.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v1",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-34ef0570-54e4-4fe1-b2f4-97cb79423e96"
+                        },
+                        {
+                          "id": "86e8816d-8538-4d93-9fdc-f6eb542bd0ab",
+                          "name": "When given tenant doesn't exist.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v1",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-86e8816d-8538-4d93-9fdc-f6eb542bd0ab"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-d0517654-cd89-436b-9683-52707754a4d2"
+                    },
+                    {
+                      "name": "Delete tenant (account)",
+                      "id": "949ae210-1a59-4332-82c7-67421df34877",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v1",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7df3399f-cea5-4397-9eac-db2f0ef6bb82",
+                              "key": "tenantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Removes a tenant and all users of that tenant.If tenant is a part of the hierarchy, then all of its sub-tenants are assigned to deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "9b818c71-3b73-46d0-9f32-dcea866e5274",
+                          "name": "When the given tenant doesn't exist.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v1/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v1",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-9b818c71-3b73-46d0-9f32-dcea866e5274"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-949ae210-1a59-4332-82c7-67421df34877"
+                    }
+                  ],
+                  "id": "2bc907f6-8ecd-4c27-9dbd-0e60c487e907",
+                  "createdAt": "2026-10-21T20:27:21.000Z",
+                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                  "uid": "35240-2bc907f6-8ecd-4c27-9dbd-0e60c487e907"
+                },
+                {
+                  "name": "Create tenant (account)",
+                  "id": "eac552aa-d6e4-425a-9741-9ea5b82467cc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"website\": \"<string>\",\n  \"applicationUrl\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"address\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\",\n  \"parentTenantId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/tenants/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "tenants",
+                        "v1"
+                      ]
+                    },
+                    "description": "Create a new tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                  },
+                  "response": [
+                    {
+                      "id": "d32a7953-1a41-46b8-8d2f-1f02eb10ea7a",
+                      "name": "When the tenant ID does not pass the validation.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tenantId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"website\": \"<string>\",\n  \"applicationUrl\": \"<string>\",\n  \"logo\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"address\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"creatorName\": \"<string>\",\n  \"creatorEmail\": \"<string>\",\n  \"isReseller\": \"<boolean>\",\n  \"parentTenantId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-d32a7953-1a41-46b8-8d2f-1f02eb10ea7a"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:27:21.000Z",
+                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                  "uid": "35240-eac552aa-d6e4-425a-9741-9ea5b82467cc"
+                },
+                {
+                  "name": "Delete current tenant",
+                  "id": "5d51c8bf-aaea-4914-9cd1-75f02e1b5c53",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/tenants/v1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "tenants",
+                        "v1"
+                      ]
+                    },
+                    "description": "Removes current tenant and all users of that tenant. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication."
+                  },
+                  "response": [
+                    {
+                      "id": "c87cb42d-2fa3-46ea-b937-2edc2e2d7822",
+                      "name": "When current tenant has been removed.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v1"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-c87cb42d-2fa3-46ea-b937-2edc2e2d7822"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:27:21.000Z",
+                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                  "uid": "35240-5d51c8bf-aaea-4914-9cd1-75f02e1b5c53"
+                }
+              ],
+              "id": "94e1aeaf-0c80-4587-8964-6e38b59b3f9f",
+              "createdAt": "2026-10-21T20:27:21.000Z",
+              "updatedAt": "2026-10-21T20:27:21.000Z",
+              "uid": "35240-94e1aeaf-0c80-4587-8964-6e38b59b3f9f"
+            },
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "{tenantId}",
+                  "item": [
+                    {
+                      "name": "Get tenant",
+                      "id": "faf67cc1-042f-4f93-9bcb-ae81f12ea3e3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v2/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v2",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5b36ba48-2262-48f3-8def-d3e724db9185",
+                              "key": "tenantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Get a tenant by identifier. When tenant cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "7f212edf-9da6-42e3-ad9b-87ba28a98665",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v2/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v2",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-7f212edf-9da6-42e3-ad9b-87ba28a98665"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-faf67cc1-042f-4f93-9bcb-ae81f12ea3e3"
+                    },
+                    {
+                      "name": "Update tenant",
+                      "id": "68fc8c25-4b33-409b-ab9f-7a32b65283a2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v2/:tenantId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v2",
+                            ":tenantId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "410bc54e-61ec-4e67-8c57-907c160e3778",
+                              "key": "tenantId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update the given tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route."
+                      },
+                      "response": [
+                        {
+                          "id": "8831c028-2f97-4edc-9f4a-dbd8f71855d4",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/tenants/v2/:tenantId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "tenants",
+                                "v2",
+                                ":tenantId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenantId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:27:21.000Z",
+                          "updatedAt": "2026-10-21T20:27:21.000Z",
+                          "uid": "35240-8831c028-2f97-4edc-9f4a-dbd8f71855d4"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-68fc8c25-4b33-409b-ab9f-7a32b65283a2"
+                    }
+                  ],
+                  "id": "c6b9073b-bb5a-4ad8-9290-f5ad1961a887",
+                  "createdAt": "2026-10-21T20:27:21.000Z",
+                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                  "uid": "35240-c6b9073b-bb5a-4ad8-9290-f5ad1961a887"
+                },
+                {
+                  "name": "Get tenants",
+                  "id": "a32a749e-6d4c-4e95-a989-ca6bf88e5454",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/resources/tenants/v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "resources",
+                        "tenants",
+                        "v2"
+                      ]
+                    },
+                    "description": "This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant id in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information."
+                  },
+                  "response": [
+                    {
+                      "id": "1b36c39e-2821-43aa-a92e-272c0b641155",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/tenants/v2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "tenants",
+                            "v2"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T20:27:21.000Z",
+                      "updatedAt": "2026-10-21T20:27:21.000Z",
+                      "uid": "35240-1b36c39e-2821-43aa-a92e-272c0b641155"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:27:21.000Z",
+                  "updatedAt": "2026-10-21T20:27:21.000Z",
+                  "uid": "35240-a32a749e-6d4c-4e95-a989-ca6bf88e5454"
+                }
+              ],
+              "id": "a1c50539-fb54-4813-80e3-e9ab3864988a",
+              "createdAt": "2026-10-21T20:27:21.000Z",
+              "updatedAt": "2026-10-21T20:27:21.000Z",
+              "uid": "35240-a1c50539-fb54-4813-80e3-e9ab3864988a"
+            }
+          ],
+          "id": "f598375e-ca45-40fb-93bf-73c21cbc0b51",
+          "createdAt": "2026-10-21T20:27:21.000Z",
+          "updatedAt": "2026-10-21T20:27:21.000Z",
+          "uid": "35240-f598375e-ca45-40fb-93bf-73c21cbc0b51"
+        }
+      ],
+      "id": "d7301e63-efa6-472f-ae7c-dcc015863494",
+      "createdAt": "2026-10-21T20:27:21.000Z",
+      "updatedAt": "2026-10-21T20:27:21.000Z",
+      "uid": "35240-d7301e63-efa6-472f-ae7c-dcc015863494"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

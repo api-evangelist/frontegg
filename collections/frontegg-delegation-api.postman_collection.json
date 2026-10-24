@@ -1,232 +1,256 @@
 {
+  "info": {
+    "_postman_id": "305a296c-6acc-47ce-882e-eab8e8e8e6d2",
+    "name": "Entitlements Agent (PDP) Delegation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:12.000Z",
+    "updatedAt": "2026-10-21T20:23:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-305a296c-6acc-47ce-882e-eab8e8e8e6d2"
+  },
   "item": [
     {
-      "id": "4f8990cc-82bf-4ad4-8aed-4b4e4b0b81a1",
-      "name": "Delegation",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "dd1949a2-2ee8-4080-8d19-b0e0729dd996",
-          "name": "Get Delegation Configuration",
-          "request": {
-            "name": "Get Delegation Configuration",
-            "description": {
-              "content": "Retrieve the delegation configuration for your environment.\n\nA valid environment token is required to call this endpoint.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "delegation"
-              ],
-              "host": [
-                "{{resources-configurations-v1-delegation-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "97c5f96d-578e-4d9d-83bb-4ca0245e7032",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "delegation"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-delegation-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"enabled\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "76c64a1f-beaf-4cca-9b9b-4d3ca5766a52",
-          "name": "Create or Update Delegation Configuration",
-          "request": {
-            "name": "Create or Update Delegation Configuration",
-            "description": {
-              "content": "Enable or disable delegation in the token exchange flow.\n\nUse this endpoint to update the delegation configuration by enabling or disabling delegation for the token exchange flow.\n\nA valid environment token is required to call this endpoint.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "delegation"
-              ],
-              "host": [
-                "{{resources-configurations-v1-delegation-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "7b425ae0-debd-4fd4-b1d9-7b79b98789b1",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "delegation"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-delegation-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "name": "delegation",
+                  "item": [
+                    {
+                      "name": "Get delegation configuration",
+                      "id": "30d13956-9f49-4fc3-a59f-3137b43237bc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/delegation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "delegation"
+                          ]
+                        },
+                        "description": "Get information about the delegation configuration (if enabled). A vendor token is required for this route."
+                      },
+                      "response": [
+                        {
+                          "id": "28275509-e0e3-46cf-a89d-1eaf50094f3b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/delegation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "delegation"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"enabled\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:23:13.000Z",
+                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                          "uid": "35240-28275509-e0e3-46cf-a89d-1eaf50094f3b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:13.000Z",
+                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                      "uid": "35240-30d13956-9f49-4fc3-a59f-3137b43237bc"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "name": "Create or update delegation configuration",
+                      "id": "b097fa2a-68e8-4248-9fed-d93e650012bf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/configurations/v1/delegation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "configurations",
+                            "v1",
+                            "delegation"
+                          ]
+                        },
+                        "description": "Enable or disable the ability to use delegation in a token exchange flow. A vendor token is required for this route."
+                      },
+                      "response": [
+                        {
+                          "id": "a469aa50-b8f8-4351-89e7-69acd6607255",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"enabled\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/delegation",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "delegation"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:23:13.000Z",
+                          "updatedAt": "2026-10-21T20:23:13.000Z",
+                          "uid": "35240-a469aa50-b8f8-4351-89e7-69acd6607255"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:23:13.000Z",
+                      "updatedAt": "2026-10-21T20:23:13.000Z",
+                      "uid": "35240-b097fa2a-68e8-4248-9fed-d93e650012bf"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "5bd6f481-52bd-4472-b451-0136a56793dd",
+                  "createdAt": "2026-10-21T20:23:13.000Z",
+                  "updatedAt": "2026-10-21T20:23:13.000Z",
+                  "uid": "35240-5bd6f481-52bd-4472-b451-0136a56793dd"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "a84affa8-20c2-47c9-9bda-3d20afbba355",
+              "createdAt": "2026-10-21T20:23:13.000Z",
+              "updatedAt": "2026-10-21T20:23:13.000Z",
+              "uid": "35240-a84affa8-20c2-47c9-9bda-3d20afbba355"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "596c577a-362f-4552-b6d8-768ad1438a1d",
+          "createdAt": "2026-10-21T20:23:13.000Z",
+          "updatedAt": "2026-10-21T20:23:13.000Z",
+          "uid": "35240-596c577a-362f-4552-b6d8-768ad1438a1d"
         }
       ],
-      "event": []
+      "id": "f977d5e4-fd8b-4ad0-aa11-92f51f3848e5",
+      "createdAt": "2026-10-21T20:23:13.000Z",
+      "updatedAt": "2026-10-21T20:23:13.000Z",
+      "uid": "35240-f977d5e4-fd8b-4ad0-aa11-92f51f3848e5"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-delegation-Url"
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "744ab48f-9d39-42ee-baff-e3732138732a",
-    "name": "Multi-Apps Overview Account Invitations Delegation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

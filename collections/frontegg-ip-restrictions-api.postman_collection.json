@@ -1,844 +1,758 @@
 {
+  "info": {
+    "_postman_id": "c4446546-a05c-453e-98e6-13d19fa1bed3",
+    "name": "Entitlements Agent (PDP) IP restrictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:24:14.000Z",
+    "updatedAt": "2026-10-21T20:24:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4446546-a05c-453e-98e6-13d19fa1bed3"
+  },
   "item": [
     {
-      "id": "5df79d24-7e79-4783-a39e-20b1c4528212",
-      "name": "IP Restrictions",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "01122605-8985-43a6-82e3-06071f2c14e1",
-          "name": "Create or Update IP Restriction Configuration (ALLOW/BLOCK)",
-          "request": {
-            "name": "Create or Update IP Restriction Configuration (ALLOW/BLOCK)",
-            "description": {
-              "content": "Create or update the IP restriction configuration.\n\nYou can configure IP restrictions as either ALLOW or BLOCK.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip",
-                "config"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-config-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"strategy\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "7dc90066-4901-488f-926a-815a6bfa34b3",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip",
-                    "config"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-config-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"strategy\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "v1",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ea31ec17-d202-49da-8c72-1f5036a6e79e",
-          "name": "Get IP Restriction Configuration (ALLOW/BLOCK)",
-          "request": {
-            "name": "Get IP Restriction Configuration (ALLOW/BLOCK)",
-            "description": {
-              "content": "Retrieve the IP restriction configuration for an account (tenant).\n\nThe configuration defines whether IP restrictions are set to ALLOW or BLOCK.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip",
-                "config"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-config-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "f59dae5d-18e8-4e88-978d-33a7b18668e6",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip",
-                    "config"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-config-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a5bf2b6c-34c7-4167-b2ca-c7f553f96acb",
-          "name": "Get All IP Restrictions",
-          "request": {
-            "name": "Get All IP Restrictions",
-            "description": {
-              "content": "Retrieve the IP restrictions for an account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-Url}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "_limit",
-                  "value": "<number>"
-                },
-                {
-                  "disabled": false,
-                  "key": "_offset",
-                  "value": "<number>",
-                  "description": "The page number to retrieve. For example, use 0 for the first page, 1 for the second page."
-                },
-                {
-                  "disabled": false,
-                  "key": "_filter",
-                  "value": "<string>"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "2de0cf5d-f505-4563-92da-adcd38aa8c38",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-Url}}"
-                  ],
-                  "query": [
+                  "name": "restrictions",
+                  "item": [
                     {
-                      "key": "_limit",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_offset",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "_filter",
-                      "value": "<string>"
+                      "name": "ip",
+                      "item": [
+                        {
+                          "name": "config",
+                          "item": [
+                            {
+                              "name": "Create or update IP restriction configuration (ALLOW/BLOCK)",
+                              "id": "da768f6b-85c7-4cfe-83de-c8a20e078ba9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"strategy\": \"ALLOW\",\n  \"isActive\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip",
+                                    "config"
+                                  ]
+                                },
+                                "description": "This route creates or updates ip restrictions config."
+                              },
+                              "response": [
+                                {
+                                  "id": "2da44f31-001d-4480-9d04-eed402f83f31",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"strategy\": \"ALLOW\",\n  \"isActive\": \"<boolean>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/config",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "restrictions",
+                                        "ip",
+                                        "config"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:24:15.000Z",
+                                  "updatedAt": "2026-10-21T20:24:15.000Z",
+                                  "uid": "35240-2da44f31-001d-4480-9d04-eed402f83f31"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-da768f6b-85c7-4cfe-83de-c8a20e078ba9"
+                            },
+                            {
+                              "name": "Get IP restriction configuration (ALLOW/BLOCK)",
+                              "id": "639c0d19-da32-4472-ae76-256705a82a11",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip",
+                                    "config"
+                                  ]
+                                },
+                                "description": "This route gets the ip restrictions config for a tenant."
+                              },
+                              "response": [
+                                {
+                                  "id": "44f36df5-e780-4a2f-91b5-838d24efbbde",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/config",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "restrictions",
+                                        "ip",
+                                        "config"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:24:15.000Z",
+                                  "updatedAt": "2026-10-21T20:24:15.000Z",
+                                  "uid": "35240-44f36df5-e780-4a2f-91b5-838d24efbbde"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-639c0d19-da32-4472-ae76-256705a82a11"
+                            }
+                          ],
+                          "id": "aed9cd9b-1a50-469a-8883-6795ff756e1e",
+                          "createdAt": "2026-10-21T20:24:14.000Z",
+                          "updatedAt": "2026-10-21T20:24:14.000Z",
+                          "uid": "35240-aed9cd9b-1a50-469a-8883-6795ff756e1e"
+                        },
+                        {
+                          "name": "verify",
+                          "item": [
+                            {
+                              "name": "allow",
+                              "item": [
+                                {
+                                  "name": "Test current IP is in allow list",
+                                  "id": "30443d49-3fa0-4f9b-9013-85309a12b7a1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "bearer",
+                                      "bearer": [
+                                        {
+                                          "key": "token",
+                                          "value": "{{bearerToken}}",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "POST",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/verify/allow",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "restrictions",
+                                        "ip",
+                                        "verify",
+                                        "allow"
+                                      ]
+                                    },
+                                    "description": "This route checks if current ip is active in the allow list."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "368e888d-3c8a-4121-b808-fb04f5ce3827",
+                                      "name": "New Response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/verify/allow",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "resources",
+                                            "configurations",
+                                            "v1",
+                                            "restrictions",
+                                            "ip",
+                                            "verify",
+                                            "allow"
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-21T20:24:15.000Z",
+                                      "updatedAt": "2026-10-21T20:24:15.000Z",
+                                      "uid": "35240-368e888d-3c8a-4121-b808-fb04f5ce3827"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-21T20:24:15.000Z",
+                                  "updatedAt": "2026-10-21T20:24:15.000Z",
+                                  "uid": "35240-30443d49-3fa0-4f9b-9013-85309a12b7a1"
+                                }
+                              ],
+                              "id": "bc93b4fd-1730-4275-a5c9-701e8e95c6f1",
+                              "createdAt": "2026-10-21T20:24:14.000Z",
+                              "updatedAt": "2026-10-21T20:24:14.000Z",
+                              "uid": "35240-bc93b4fd-1730-4275-a5c9-701e8e95c6f1"
+                            },
+                            {
+                              "name": "Test Current IP",
+                              "id": "23fa8e2e-4a9a-4eff-99e6-2001b123572d",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/verify",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip",
+                                    "verify"
+                                  ]
+                                },
+                                "description": "This route checks if current ip is allowed."
+                              },
+                              "response": [
+                                {
+                                  "id": "ab491b0d-6f41-4ded-af72-a8daf7962778",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/verify",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "restrictions",
+                                        "ip",
+                                        "verify"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:24:15.000Z",
+                                  "updatedAt": "2026-10-21T20:24:15.000Z",
+                                  "uid": "35240-ab491b0d-6f41-4ded-af72-a8daf7962778"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-23fa8e2e-4a9a-4eff-99e6-2001b123572d"
+                            }
+                          ],
+                          "id": "506a403d-f7b5-4ec7-8280-0c7e15a22e93",
+                          "createdAt": "2026-10-21T20:24:14.000Z",
+                          "updatedAt": "2026-10-21T20:24:14.000Z",
+                          "uid": "35240-506a403d-f7b5-4ec7-8280-0c7e15a22e93"
+                        },
+                        {
+                          "name": "{id}",
+                          "item": [
+                            {
+                              "name": "Delete IP restriction by IP",
+                              "id": "4a7d9d33-749b-4c16-8d40-2d190a0fcbad",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "93e06fc8-e59d-474d-9279-29b7c4021c2e",
+                                      "key": "id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "This route deletes ip restriction."
+                              },
+                              "response": [
+                                {
+                                  "id": "e4e82284-5883-4deb-bae7-a393ab7785a6",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip/:id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "v1",
+                                        "restrictions",
+                                        "ip",
+                                        ":id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:24:15.000Z",
+                                  "updatedAt": "2026-10-21T20:24:15.000Z",
+                                  "uid": "35240-e4e82284-5883-4deb-bae7-a393ab7785a6"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-4a7d9d33-749b-4c16-8d40-2d190a0fcbad"
+                            }
+                          ],
+                          "id": "d81e4deb-38d7-49b3-9df1-2a5fbc45b50d",
+                          "createdAt": "2026-10-21T20:24:14.000Z",
+                          "updatedAt": "2026-10-21T20:24:14.000Z",
+                          "uid": "35240-d81e4deb-38d7-49b3-9df1-2a5fbc45b50d"
+                        },
+                        {
+                          "name": "Get all IP restrictions",
+                          "id": "50f48587-f83e-470e-a924-9c0dfc770505",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip?_limit=<number>&_offset=<number>&_filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "restrictions",
+                                "ip"
+                              ],
+                              "query": [
+                                {
+                                  "key": "_limit",
+                                  "value": "<number>"
+                                },
+                                {
+                                  "key": "_offset",
+                                  "value": "<number>"
+                                },
+                                {
+                                  "key": "_filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "This route gets the ip restrictions for a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "c56cc1aa-9ee5-40a1-ad23-0e22a0ab419d",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip?_limit=<number>&_offset=<number>&_filter=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "_limit",
+                                      "value": "<number>"
+                                    },
+                                    {
+                                      "key": "_offset",
+                                      "value": "<number>"
+                                    },
+                                    {
+                                      "key": "_filter",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-c56cc1aa-9ee5-40a1-ad23-0e22a0ab419d"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:15.000Z",
+                          "updatedAt": "2026-10-21T20:24:15.000Z",
+                          "uid": "35240-50f48587-f83e-470e-a924-9c0dfc770505"
+                        },
+                        {
+                          "name": "Create IP restriction",
+                          "id": "4ab6ac4e-e7da-4f45-9b64-30b7c174191f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ip\": \"<string>\",\n  \"strategy\": \"BLOCK\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "v1",
+                                "restrictions",
+                                "ip"
+                              ]
+                            },
+                            "description": "This route creates or updates ip restriction for a tenant. Send values in the POST body as objects. See the dropdowns for available values for each object param."
+                          },
+                          "response": [
+                            {
+                              "id": "e92ab019-5174-41c9-8583-d7596b6f633f",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"ip\": \"<string>\",\n  \"strategy\": \"BLOCK\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/v1/restrictions/ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "v1",
+                                    "restrictions",
+                                    "ip"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:24:15.000Z",
+                              "updatedAt": "2026-10-21T20:24:15.000Z",
+                              "uid": "35240-e92ab019-5174-41c9-8583-d7596b6f633f"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:24:15.000Z",
+                          "updatedAt": "2026-10-21T20:24:15.000Z",
+                          "uid": "35240-4ab6ac4e-e7da-4f45-9b64-30b7c174191f"
+                        }
+                      ],
+                      "id": "78bd9884-6f73-48bc-a623-65964bfe80c6",
+                      "createdAt": "2026-10-21T20:24:14.000Z",
+                      "updatedAt": "2026-10-21T20:24:14.000Z",
+                      "uid": "35240-78bd9884-6f73-48bc-a623-65964bfe80c6"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "4b53249e-8089-4735-a3ad-60cf26e359ea",
+                  "createdAt": "2026-10-21T20:24:14.000Z",
+                  "updatedAt": "2026-10-21T20:24:14.000Z",
+                  "uid": "35240-4b53249e-8089-4735-a3ad-60cf26e359ea"
                 }
               ],
-              "body": "{\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 1250.6597008867127,\n    \"totalPages\": 599.0764240165325\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fb294747-ae1c-4584-a91e-a4e1620cbcba",
+              "createdAt": "2026-10-21T20:24:14.000Z",
+              "updatedAt": "2026-10-21T20:24:14.000Z",
+              "uid": "35240-fb294747-ae1c-4584-a91e-a4e1620cbcba"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2e976ed8-7989-4cba-886c-2a3f3180d64e",
-          "name": "Create IP Restriction",
-          "request": {
-            "name": "Create IP Restriction",
-            "description": {
-              "content": "Create or update an IP restriction for an account (tenant).\n\nProvide the required values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"ip\": \"<string>\",\n  \"strategy\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "799ecd69-95e2-44c5-987b-c496b6cb2c0e",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ip\": \"<string>\",\n  \"strategy\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isActive\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "42cf61a7-7b42-4c00-a4d7-1b36c9af711f",
-          "name": "Test Current IP",
-          "request": {
-            "name": "Test Current IP",
-            "description": {
-              "content": "Check if the current IP is allowed based on the IP restriction configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip",
-                "verify"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-verify-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "d5dc71ce-bbc2-4960-b4bc-63c472f74d06",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip",
-                    "verify"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-verify-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b8594f8b-63b7-44e9-bba9-364576f134e8",
-          "name": "Test Current IP Is in Allow List",
-          "request": {
-            "name": "Test Current IP Is in Allow List",
-            "description": {
-              "content": "Verifies if the current IP address is in the allow list for your environment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip",
-                "verify",
-                "allow"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-verify-allow-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "bce21c18-1ae3-461d-9b32-2f3c7ae80cd2",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip",
-                    "verify",
-                    "allow"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-verify-allow-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c03d5f02-ba8f-4841-bd37-882dbf10efda",
-          "name": "Delete IP Restriction by IP",
-          "request": {
-            "name": "Delete IP Restriction by IP",
-            "description": {
-              "content": "Delete an IP restriction.\n\nProvide the IP restriction ID as a path parameter.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "v1",
-                "restrictions",
-                "ip",
-                ":id"
-              ],
-              "host": [
-                "{{resources-configurations-v1-restrictions-ip-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                "key": "frontegg-tenant-id",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "8e43d9b7-80f3-4d97-af37-ef2a4082d7e3",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "v1",
-                    "restrictions",
-                    "ip",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-configurations-v1-restrictions-ip-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-                    "key": "frontegg-tenant-id",
-                    "value": "<string>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d34a8221-542b-4335-aa2c-64c832c47a3f",
+          "createdAt": "2026-10-21T20:24:14.000Z",
+          "updatedAt": "2026-10-21T20:24:14.000Z",
+          "uid": "35240-d34a8221-542b-4335-aa2c-64c832c47a3f"
         }
       ],
-      "event": []
+      "id": "7e91f70b-f58a-4fba-8880-ba04ee15e737",
+      "createdAt": "2026-10-21T20:24:14.000Z",
+      "updatedAt": "2026-10-21T20:24:14.000Z",
+      "uid": "35240-7e91f70b-f58a-4fba-8880-ba04ee15e737"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-restrictions-ip-config-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-restrictions-ip-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-restrictions-ip-verify-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-restrictions-ip-verify-allow-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-v1-restrictions-ip-id-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "f9426817-4ac3-4ead-b0ad-072487bb7041",
-    "name": "Multi-Apps Overview Account Invitations IP Restrictions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

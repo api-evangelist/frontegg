@@ -1,0 +1,483 @@
+{
+  "info": {
+    "_postman_id": "68e24a57-2c24-4746-ba97-5ac247aa7069",
+    "name": "Entitlements Agent (PDP) SCIM Setup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:27:13.000Z",
+    "updatedAt": "2026-10-21T20:27:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-68e24a57-2c24-4746-ba97-5ac247aa7069"
+  },
+  "item": [
+    {
+      "name": "resources",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "configurations",
+              "item": [
+                {
+                  "name": "scim2",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Get a SCIM configuration by ID",
+                          "id": "15a934b7-b689-4a26-932a-61f4cc3adc97",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "v1",
+                                "configurations",
+                                "scim2",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aa7ccd40-f9fb-4853-b9b5-5cb6177d8336",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Get a provisioning (SCIM) configuration by its ID."
+                          },
+                          "response": [
+                            {
+                              "id": "82388dd1-1ab9-4067-9058-f5594babd3ac",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "v1",
+                                    "configurations",
+                                    "scim2",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"tenantId\": \"<string>\",\n  \"connectionName\": \"<string>\",\n  \"source\": \"<string>\",\n  \"syncToUserManagement\": \"<boolean>\",\n  \"lastSync\": \"<string,null-date-time>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-21T20:27:14.000Z",
+                              "updatedAt": "2026-10-21T20:27:14.000Z",
+                              "uid": "35240-82388dd1-1ab9-4067-9058-f5594babd3ac"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:14.000Z",
+                          "updatedAt": "2026-10-21T20:27:14.000Z",
+                          "uid": "35240-15a934b7-b689-4a26-932a-61f4cc3adc97"
+                        },
+                        {
+                          "name": "Update a SCIM configuration",
+                          "id": "49f8ea71-ab43-4b4b-86e3-83764ca513df",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"syncToUserManagement\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "v1",
+                                "configurations",
+                                "scim2",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1155deb2-a9d3-4996-838c-7f7074976996",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Create a provisioning (SCIM) configuration for an account (tenant)."
+                          },
+                          "response": [
+                            {
+                              "id": "f757d01a-86d8-4fd6-b289-68bbc35f3060",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"syncToUserManagement\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "v1",
+                                    "configurations",
+                                    "scim2",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:27:14.000Z",
+                              "updatedAt": "2026-10-21T20:27:14.000Z",
+                              "uid": "35240-f757d01a-86d8-4fd6-b289-68bbc35f3060"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:14.000Z",
+                          "updatedAt": "2026-10-21T20:27:14.000Z",
+                          "uid": "35240-49f8ea71-ab43-4b4b-86e3-83764ca513df"
+                        },
+                        {
+                          "name": "Delete a SCIM configuration",
+                          "id": "9d9e415d-00d4-40ba-9beb-1bc91c052162",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "v1",
+                                "configurations",
+                                "scim2",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "522a5381-68bb-42d2-825e-317907d76bc7",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Create a provisioning (SCIM) configuration for an account (tenant)."
+                          },
+                          "response": [
+                            {
+                              "id": "6d786c64-a344-41ed-b1ce-16a9e6a8ce6e",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "The tenant ID identifier",
+                                    "key": "frontegg-tenant-id",
+                                    "value": "<string>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/v1/configurations/scim2/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "v1",
+                                    "configurations",
+                                    "scim2",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T20:27:14.000Z",
+                              "updatedAt": "2026-10-21T20:27:14.000Z",
+                              "uid": "35240-6d786c64-a344-41ed-b1ce-16a9e6a8ce6e"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:27:14.000Z",
+                          "updatedAt": "2026-10-21T20:27:14.000Z",
+                          "uid": "35240-9d9e415d-00d4-40ba-9beb-1bc91c052162"
+                        }
+                      ],
+                      "id": "72bf5d1a-9a6e-42e3-8e9a-00993c902e40",
+                      "createdAt": "2026-10-21T20:27:14.000Z",
+                      "updatedAt": "2026-10-21T20:27:14.000Z",
+                      "uid": "35240-72bf5d1a-9a6e-42e3-8e9a-00993c902e40"
+                    },
+                    {
+                      "name": "Create a SCIM configuration",
+                      "id": "53d42e04-634e-49ea-bdc9-bc53e7abb220",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The tenant ID identifier",
+                            "key": "frontegg-tenant-id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source\": \"okta\",\n  \"connectionName\": \"<string>\",\n  \"syncToUserManagement\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/resources/v1/configurations/scim2",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "resources",
+                            "v1",
+                            "configurations",
+                            "scim2"
+                          ]
+                        },
+                        "description": "Create a provisioning (SCIM) configuration for an account (tenant)."
+                      },
+                      "response": [
+                        {
+                          "id": "2d6ed9d6-6419-44d4-b06f-f446818a156c",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The tenant ID identifier",
+                                "key": "frontegg-tenant-id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"source\": \"okta\",\n  \"connectionName\": \"<string>\",\n  \"syncToUserManagement\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/v1/configurations/scim2",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "v1",
+                                "configurations",
+                                "scim2"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"connectionName\": \"<string>\",\n  \"token\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:27:14.000Z",
+                          "updatedAt": "2026-10-21T20:27:14.000Z",
+                          "uid": "35240-2d6ed9d6-6419-44d4-b06f-f446818a156c"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:27:14.000Z",
+                      "updatedAt": "2026-10-21T20:27:14.000Z",
+                      "uid": "35240-53d42e04-634e-49ea-bdc9-bc53e7abb220"
+                    }
+                  ],
+                  "id": "96e6c3dc-4dd7-4e1d-9ad4-4528aeadd6c9",
+                  "createdAt": "2026-10-21T20:27:14.000Z",
+                  "updatedAt": "2026-10-21T20:27:14.000Z",
+                  "uid": "35240-96e6c3dc-4dd7-4e1d-9ad4-4528aeadd6c9"
+                }
+              ],
+              "id": "27f7f7df-102a-4cb7-8268-fdd25cd1b81d",
+              "createdAt": "2026-10-21T20:27:14.000Z",
+              "updatedAt": "2026-10-21T20:27:14.000Z",
+              "uid": "35240-27f7f7df-102a-4cb7-8268-fdd25cd1b81d"
+            }
+          ],
+          "id": "4b4b1470-a21a-4dc9-9edc-1c911343e134",
+          "createdAt": "2026-10-21T20:27:14.000Z",
+          "updatedAt": "2026-10-21T20:27:14.000Z",
+          "uid": "35240-4b4b1470-a21a-4dc9-9edc-1c911343e134"
+        }
+      ],
+      "id": "f5621c2d-070c-4197-82f8-b5f49192115b",
+      "createdAt": "2026-10-21T20:27:14.000Z",
+      "updatedAt": "2026-10-21T20:27:14.000Z",
+      "uid": "35240-f5621c2d-070c-4197-82f8-b5f49192115b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "8181"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
+    }
+  ]
+}

@@ -1,687 +1,736 @@
 {
+  "info": {
+    "_postman_id": "ab18437f-54d2-4989-8fcc-a428812ebfbb",
+    "name": "Entitlements Agent (PDP) Domain restrictions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:23:19.000Z",
+    "updatedAt": "2026-10-21T20:23:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ab18437f-54d2-4989-8fcc-a428812ebfbb"
+  },
   "item": [
     {
-      "id": "69643675-e102-4d58-97b4-7d7ce4d34c90",
-      "name": "Domain Restrictions",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "resources",
       "item": [
         {
-          "id": "32374987-0bfa-42d8-a829-eb8c00a19b01",
-          "name": "Create Domain Restriction",
-          "request": {
-            "name": "Create Domain Restriction",
-            "description": {
-              "content": "Creates a new email domain restriction for an account (tenant). Provide the restriction configuration in the request body. See the schema below for available parameters and values.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"domain\": \"<string>\",\n  \"type\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "configurations",
+          "item": [
             {
-              "id": "f18e3d2a-32b6-43f1-a953-74b085e945ba",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"domain\": \"<string>\",\n  \"type\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "restrictions",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"domain\": \"string\",\n  \"type\": \"BLOCK\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cdaa7403-db2f-4ae3-8261-7bea812148ab",
-          "name": "Get Domain Restrictions",
-          "request": {
-            "name": "Get Domain Restrictions",
-            "description": {
-              "content": "Retrieve the domain restrictions for an account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "15d7adfe-5957-4990-9c37-4bb8d71dab20",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"domain\": \"string\",\n      \"type\": \"BLOCK\"\n    },\n    {\n      \"id\": \"string\",\n      \"domain\": \"string\",\n      \"type\": \"ALLOW\"\n    }\n  ],\n  \"_links\": {\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"_metadata\": {\n    \"totalItems\": 2435.9580476539177,\n    \"totalPages\": 9791.839383709113\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e187ae32-1e7f-4e85-8efb-b2097eb7bb93",
-          "name": "Get Domain Restrictions",
-          "request": {
-            "name": "Get Domain Restrictions",
-            "description": {
-              "content": "Retrieve the domain restrictions for an account (tenant).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain",
-                "config"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-config-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "e15ff164-ce1c-4f41-9b5e-cda10717a18a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain",
-                    "config"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-config-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"active\": false,\n  \"listType\": \"ALLOW\",\n  \"blockPublicDomains\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "40356c6c-c0df-45a3-b158-9bb3c88398b5",
-          "name": "Change Domain Restrictions Config List Type and Toggle It Off/on",
-          "request": {
-            "name": "Change Domain Restrictions Config List Type and Toggle It Off/on",
-            "description": {
-              "content": "Update the domain restrictions configuration.\n\nYou can toggle the domain restriction check on or off.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain",
-                "config"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-config-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"active\": \"<boolean>\",\n  \"blockPublicDomains\": \"<boolean>\",\n  \"type\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "28d38ec2-a381-4ae4-857c-79f8acad4ad8",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain",
-                    "config"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-config-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"blockPublicDomains\": \"<boolean>\",\n  \"type\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"active\": false,\n  \"listType\": \"ALLOW\",\n  \"blockPublicDomains\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d6d6184f-97f1-476e-8bb1-ce0ff3ef2273",
-          "name": "Delete Domain Restriction",
-          "request": {
-            "name": "Delete Domain Restriction",
-            "description": {
-              "content": "Delete a domain restriction.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain",
-                ":id"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-id-Url}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "58714ba2-13ce-4e98-8c01-61ac08c464df",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-id-Url}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "v1",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) "
+                      "name": "email-domain",
+                      "item": [
+                        {
+                          "name": "config",
+                          "item": [
+                            {
+                              "name": "Get domain restrictions",
+                              "id": "f024881f-6f46-4260-830f-8aa037ad67da",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain",
+                                    "config"
+                                  ]
+                                },
+                                "description": "This route gets the domain restrictions for a tenant."
+                              },
+                              "response": [
+                                {
+                                  "id": "409e3e87-8bba-4de4-adc2-e93698b22561",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/config",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "restrictions",
+                                        "v1",
+                                        "email-domain",
+                                        "config"
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"active\": \"<boolean>\",\n  \"listType\": \"ALLOW\",\n  \"blockPublicDomains\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-21T20:23:19.000Z",
+                                  "updatedAt": "2026-10-21T20:23:19.000Z",
+                                  "uid": "35240-409e3e87-8bba-4de4-adc2-e93698b22561"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-f024881f-6f46-4260-830f-8aa037ad67da"
+                            },
+                            {
+                              "name": "Change domain restrictions config list type and toggle it off/on",
+                              "id": "bf054fab-76d4-46bb-93ee-bb4807b81589",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"blockPublicDomains\": \"<boolean>\",\n  \"type\": \"BLOCK\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/config",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain",
+                                    "config"
+                                  ]
+                                },
+                                "description": "This route updates domain restrictions config, can toggle check on/off."
+                              },
+                              "response": [
+                                {
+                                  "id": "bd8728b0-04d1-4b08-81d6-0298c450af2a",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"blockPublicDomains\": \"<boolean>\",\n  \"type\": \"BLOCK\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/config",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "restrictions",
+                                        "v1",
+                                        "email-domain",
+                                        "config"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"active\": \"<boolean>\",\n  \"listType\": \"ALLOW\",\n  \"blockPublicDomains\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-21T20:23:19.000Z",
+                                  "updatedAt": "2026-10-21T20:23:19.000Z",
+                                  "uid": "35240-bd8728b0-04d1-4b08-81d6-0298c450af2a"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-bf054fab-76d4-46bb-93ee-bb4807b81589"
+                            }
+                          ],
+                          "id": "f663155a-e981-479f-ac2a-f4d422c9d865",
+                          "createdAt": "2026-10-21T20:23:19.000Z",
+                          "updatedAt": "2026-10-21T20:23:19.000Z",
+                          "uid": "35240-f663155a-e981-479f-ac2a-f4d422c9d865"
+                        },
+                        {
+                          "name": "{id}",
+                          "item": [
+                            {
+                              "name": "Delete domain restriction",
+                              "id": "49901ffd-3263-4328-a983-155a3791aa8e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bba151d0-1637-40fe-9c85-92126512748b",
+                                      "key": "id",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "This route deletes domain restriction."
+                              },
+                              "response": [
+                                {
+                                  "id": "5b4ec8b0-35e6-4a08-87fc-e4ec65b1dfd0",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/:id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "restrictions",
+                                        "v1",
+                                        "email-domain",
+                                        ":id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-10-21T20:23:19.000Z",
+                                  "updatedAt": "2026-10-21T20:23:19.000Z",
+                                  "uid": "35240-5b4ec8b0-35e6-4a08-87fc-e4ec65b1dfd0"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-49901ffd-3263-4328-a983-155a3791aa8e"
+                            }
+                          ],
+                          "id": "afe1fba0-2d22-4500-8369-2e6fc5029eec",
+                          "createdAt": "2026-10-21T20:23:19.000Z",
+                          "updatedAt": "2026-10-21T20:23:19.000Z",
+                          "uid": "35240-afe1fba0-2d22-4500-8369-2e6fc5029eec"
+                        },
+                        {
+                          "name": "replace-bulk",
+                          "item": [
+                            {
+                              "name": "Replace bulk domain restriction",
+                              "id": "1e59801c-9cbc-4286-a9d2-34fe1914801e",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"type\": \"ALLOW\",\n  \"domains\": [\n    \"domainRegexString\",\n    \"domainRegexString\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/replace-bulk",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain",
+                                    "replace-bulk"
+                                  ]
+                                },
+                                "description": "This route replaces all domains from the incoming request"
+                              },
+                              "response": [
+                                {
+                                  "id": "d3e4e3c1-5071-491b-91bf-e1552edd95ee",
+                                  "name": "New Response",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"type\": \"ALLOW\",\n  \"domains\": [\n    \"domainRegexString\",\n    \"domainRegexString\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain/replace-bulk",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "resources",
+                                        "configurations",
+                                        "restrictions",
+                                        "v1",
+                                        "email-domain",
+                                        "replace-bulk"
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"type\": \"BLOCK\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"type\": \"BLOCK\"\n  }\n]",
+                                  "createdAt": "2026-10-21T20:23:19.000Z",
+                                  "updatedAt": "2026-10-21T20:23:19.000Z",
+                                  "uid": "35240-d3e4e3c1-5071-491b-91bf-e1552edd95ee"
+                                }
+                              ],
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-1e59801c-9cbc-4286-a9d2-34fe1914801e"
+                            }
+                          ],
+                          "id": "2ccebd69-565b-4240-828a-5a2fbbb5c29b",
+                          "createdAt": "2026-10-21T20:23:19.000Z",
+                          "updatedAt": "2026-10-21T20:23:19.000Z",
+                          "uid": "35240-2ccebd69-565b-4240-828a-5a2fbbb5c29b"
+                        },
+                        {
+                          "name": "Create domain restriction",
+                          "id": "fc2352c8-e982-4f16-8667-346096606faf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"domain\": \"domainRegex\",\n  \"type\": \"ALLOW\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "restrictions",
+                                "v1",
+                                "email-domain"
+                              ]
+                            },
+                            "description": "This route creates a new domain restriction for a tenant. Send values in the POST body as objects. See the dropdowns for available values for each object param."
+                          },
+                          "response": [
+                            {
+                              "id": "56c429b5-2ce6-426a-97ce-66fd6fafa74c",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"domain\": \"domainRegex\",\n  \"type\": \"ALLOW\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"type\": \"BLOCK\"\n}",
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-56c429b5-2ce6-426a-97ce-66fd6fafa74c"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:19.000Z",
+                          "updatedAt": "2026-10-21T20:23:19.000Z",
+                          "uid": "35240-fc2352c8-e982-4f16-8667-346096606faf"
+                        },
+                        {
+                          "name": "Get domain restrictions",
+                          "id": "7f6860e1-1e52-4687-93d5-76286b8f0a7b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "resources",
+                                "configurations",
+                                "restrictions",
+                                "v1",
+                                "email-domain"
+                              ]
+                            },
+                            "description": "This route gets the domain restrictions for a tenant."
+                          },
+                          "response": [
+                            {
+                              "id": "4457cd7b-32b8-4987-b85a-2f310b608ba9",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/resources/configurations/restrictions/v1/email-domain",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "resources",
+                                    "configurations",
+                                    "restrictions",
+                                    "v1",
+                                    "email-domain"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"type\": \"BLOCK\"\n}",
+                              "createdAt": "2026-10-21T20:23:19.000Z",
+                              "updatedAt": "2026-10-21T20:23:19.000Z",
+                              "uid": "35240-4457cd7b-32b8-4987-b85a-2f310b608ba9"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:23:19.000Z",
+                          "updatedAt": "2026-10-21T20:23:19.000Z",
+                          "uid": "35240-7f6860e1-1e52-4687-93d5-76286b8f0a7b"
+                        }
+                      ],
+                      "id": "8919c994-6615-454b-9753-2d6f65d29acf",
+                      "createdAt": "2026-10-21T20:23:19.000Z",
+                      "updatedAt": "2026-10-21T20:23:19.000Z",
+                      "uid": "35240-8919c994-6615-454b-9753-2d6f65d29acf"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "id": "f5172837-7d67-4812-a2bf-adce210ad00c",
+                  "createdAt": "2026-10-21T20:23:19.000Z",
+                  "updatedAt": "2026-10-21T20:23:19.000Z",
+                  "uid": "35240-f5172837-7d67-4812-a2bf-adce210ad00c"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "62305b8b-a170-4d96-9055-cf46ef95c7b3",
+              "createdAt": "2026-10-21T20:23:19.000Z",
+              "updatedAt": "2026-10-21T20:23:19.000Z",
+              "uid": "35240-62305b8b-a170-4d96-9055-cf46ef95c7b3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c5860dc0-8373-45a4-a70b-3ce596903ebc",
-          "name": "Replace Bulk Domain Restriction",
-          "request": {
-            "name": "Replace Bulk Domain Restriction",
-            "description": {
-              "content": "Replace all domain restrictions with the domains provided in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "resources",
-                "configurations",
-                "restrictions",
-                "v1",
-                "email-domain",
-                "replace-bulk"
-              ],
-              "host": [
-                "{{resources-configurations-restrictions-v1-email-domain-replace-bulk-Url}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "2d6e5f1e-bae0-4375-99b9-8c3f0b3c8142",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "resources",
-                    "configurations",
-                    "restrictions",
-                    "v1",
-                    "email-domain",
-                    "replace-bulk"
-                  ],
-                  "host": [
-                    "{{resources-configurations-restrictions-v1-email-domain-replace-bulk-Url}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"string\",\n    \"domain\": \"string\",\n    \"type\": \"ALLOW\"\n  },\n  {\n    \"id\": \"string\",\n    \"domain\": \"string\",\n    \"type\": \"ALLOW\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "36fee1f5-8ab9-4389-a858-dad674abed7c",
+          "createdAt": "2026-10-21T20:23:19.000Z",
+          "updatedAt": "2026-10-21T20:23:19.000Z",
+          "uid": "35240-36fee1f5-8ab9-4389-a858-dad674abed7c"
         }
       ],
-      "event": []
+      "id": "588b77b9-bae7-41df-b70e-7b33dfba7c86",
+      "createdAt": "2026-10-21T20:23:19.000Z",
+      "updatedAt": "2026-10-21T20:23:19.000Z",
+      "uid": "35240-588b77b9-bae7-41df-b70e-7b33dfba7c86"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/applications",
-      "key": "baseUrl"
+      "key": "host",
+      "value": "localhost"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-restrictions-v1-email-domain-Url"
+      "key": "port",
+      "value": "8181"
     },
     {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-restrictions-v1-email-domain-config-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-restrictions-v1-email-domain-id-Url"
-    },
-    {
-      "type": "string",
-      "value": "https://api.frontegg.com/identity",
-      "key": "resources-configurations-restrictions-v1-email-domain-replace-bulk-Url"
+      "key": "baseUrl",
+      "value": "http://{{host}}:{{port}}"
     }
-  ],
-  "info": {
-    "_postman_id": "e8e78400-7fcd-4bda-a280-6fc72a874cd6",
-    "name": "Multi-Apps Overview Account Invitations Domain Restrictions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
